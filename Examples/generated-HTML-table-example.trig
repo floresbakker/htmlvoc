@@ -24,14 +24,14 @@ graph:instances  {
 	a html:Document;
 	rdfs:label 'document example'@en ;
 	rdf:_1 root:tutorial;
-	html:fragment '<!DOCTYPE html><head><title>Tutorial Document Example</title><style>table { white-space: nowrap; text-align: left ; border-collapse: separate; border-spacing: 0.2em; margin: 0 0 2.2em -0.2em; text-align: left; width: 100%; } td { text-align: right; border-bottom: 1px solid #000; padding: 0.4em 0.9em 0.4em 0.5em; background: #f5f5f5; font-size: 1.1em; } th { white-space: nowrap; text-align: left; padding: 0.4em 0.9em 0.4em 0.5em; font-size: 1.1em; background: #e1e1e1; } .boldRow td {font-weight:bold;} .italicRow td {font-style:italic;}</style><meta http-equiv="Content-Type" content="text/html" charset="utf-8"></meta><body><table><caption>Voorbeeld tabel</caption><thead><tr><th>aap</th><th>noot</th><th>mies</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>'^^rdf:HTML.
+	html:fragment '<!DOCTYPE html><head><title>Tutorial Document Example</title><style>table { white-space: nowrap; text-align: left ; border-collapse: separate; border-spacing: 0.2em; margin: 0 0 2.2em -0.2em; text-align: left; width: 100%; } td { text-align: right; border-bottom: 1px solid #000; padding: 0.4em 0.9em 0.4em 0.5em; background: #f5f5f5; font-size: 1.1em; } th { white-space: nowrap; text-align: left; padding: 0.4em 0.9em 0.4em 0.5em; font-size: 1.1em; background: #e1e1e1; } .boldRow td {font-weight:bold;} .italicRow td {font-style:italic;}</style><meta http-equiv="Content-Type" content="text/html" charset="utf-8"></meta><body><table><caption>Voorbeeld tabel</caption><thead><tr><th>banana</th><th>orange</th><th>apple</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>'^^rdf:HTML.
 
   root:tutorial 
 	a html:Html;
-    rdfs:label "Root element of HTML document";
-    rdf:_1 head:tutorial;
+	rdfs:label "Root element of HTML document";
+	rdf:_1 head:tutorial;
 	rdf:_2 body:tutorial;
-	html:fragment '<head><title>Tutorial Document Example</title><style>table { white-space: nowrap; text-align: left ; border-collapse: separate; border-spacing: 0.2em; margin: 0 0 2.2em -0.2em; text-align: left; width: 100%; } td { text-align: right; border-bottom: 1px solid #000; padding: 0.4em 0.9em 0.4em 0.5em; background: #f5f5f5; font-size: 1.1em; } th { white-space: nowrap; text-align: left; padding: 0.4em 0.9em 0.4em 0.5em; font-size: 1.1em; background: #e1e1e1; } .boldRow td {font-weight:bold;} .italicRow td {font-style:italic;}</style><meta http-equiv="Content-Type" content="text/html" charset="utf-8"></meta><body><table><caption>Voorbeeld tabel</caption><thead><tr><th>aap</th><th>noot</th><th>mies</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>'^^rdf:HTML.
+	html:fragment '<head><title>Tutorial Document Example</title><style>table { white-space: nowrap; text-align: left ; border-collapse: separate; border-spacing: 0.2em; margin: 0 0 2.2em -0.2em; text-align: left; width: 100%; } td { text-align: right; border-bottom: 1px solid #000; padding: 0.4em 0.9em 0.4em 0.5em; background: #f5f5f5; font-size: 1.1em; } th { white-space: nowrap; text-align: left; padding: 0.4em 0.9em 0.4em 0.5em; font-size: 1.1em; background: #e1e1e1; } .boldRow td {font-weight:bold;} .italicRow td {font-style:italic;}</style><meta http-equiv="Content-Type" content="text/html" charset="utf-8"></meta><body><table><caption>Voorbeeld tabel</caption><thead><tr><th>banana</th><th>orange</th><th>apple</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>'^^rdf:HTML.
 
   head:tutorial 
 	a html:Head;
@@ -43,7 +43,7 @@ graph:instances  {
 
   title:tutorial 
 	a html:Title;
-    rdfs:label "Title element of HTML document";
+	rdfs:label "Title element of HTML document";
 	html:fragment "<title>Tutorial Document Example</title>"^^rdf:HTML.
 
   style:tutorial 
@@ -68,150 +68,150 @@ graph:instances  {
 	a html:Body;
 	rdfs:label "Body element of HTML document";
 	rdf:_1 table:tutorial;
-	html:fragment "<body><table><caption>Voorbeeld tabel</caption><thead><tr><th>aap</th><th>noot</th><th>mies</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>"^^rdf:HTML.
+	html:fragment "<body><table><caption>Voorbeeld tabel</caption><thead><tr><th>banana</th><th>orange</th><th>apple</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table></body>"^^rdf:HTML.
 
   table:tutorial
-    a html:Table ;
-    rdfs:label 'table example'@en ;
-    rdf:_1 caption:example ;
-    rdf:_2 thead:example ;
-    rdf:_3 tbody:example ;
-	html:fragment "<table><caption>Voorbeeld tabel</caption><thead><tr><th>aap</th><th>noot</th><th>mies</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table>"^^rdf:HTML.
+	a html:Table ;
+	rdfs:label 'table example'@en ;
+	rdf:_1 caption:example ;
+	rdf:_2 thead:example ;
+	rdf:_3 tbody:example ;
+	html:fragment "<table><caption>Voorbeeld tabel</caption><thead><tr><th>banana</th><th>orange</th><th>apple</th></tr></thead><tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr></table>"^^rdf:HTML.
 
   caption:example
-    a html:Caption ;
-    rdfs:label 'caption example'@en ;
-    rdf:_1 text:caption;
+	a html:Caption ;
+	rdfs:label 'caption example'@en ;
+	rdf:_1 text:caption;
 	html:fragment "<caption>Voorbeeld tabel</caption>"^^rdf:HTML. 
-    
+
   text:caption
-    a html:TextElement;
-    html:fragment 'Voorbeeld tabel'@nl .
+	a html:TextElement;
+	html:fragment 'Voorbeeld tabel'@nl .
 
   thead:example
-    a html:TableHeader ;
-    rdfs:label 'table header example'@en ;
-    rdf:_1 row:exampleHeader ;
-	html:fragment "<thead><tr><th>aap</th><th>noot</th><th>mies</th></tr></thead>"^^rdf:HTML.
+	a html:TableHeader ;
+	rdfs:label 'table header example'@en ;
+	rdf:_1 row:exampleHeader ;
+	html:fragment "<thead><tr><th>banana</th><th>orange</th><th>apple</th></tr></thead>"^^rdf:HTML.
 
   row:exampleHeader
-    a html:HeaderRow ;
-    rdfs:label 'example header row'@en;
-    rdf:_1 cell:aap  ;
-    rdf:_2 cell:noot ;
-    rdf:_3 cell:mies ;
-	html:fragment "<tr><th>aap</th><th>noot</th><th>mies</th></tr>"^^rdf:HTML.
+	a html:HeaderRow ;
+	rdfs:label 'example header row'@en;
+	rdf:_1 cell:banana  ;
+	rdf:_2 cell:orange ;
+	rdf:_3 cell:apple ;
+	html:fragment "<tr><th>banana</th><th>orange</th><th>apple</th></tr>"^^rdf:HTML.
 
-  cell:aap
-    a html:HeaderCell ;
-    rdfs:label 'header cell (row 1, column 1)'@en ;
-    rdf:_1 text:aap;
-	html:fragment "<th>aap</th>"^^rdf:HTML.
+  cell:banana
+	a html:HeaderCell ;
+	rdfs:label 'header cell (row 1, column 1)'@en ;
+	rdf:_1 text:banana;
+	html:fragment "<th>banana</th>"^^rdf:HTML.
 
-  text:aap  
-    a html:TextElement ;
-    html:fragment 'aap'.
+  text:banana  
+	a html:TextElement ;
+	html:fragment 'banana'.
 
-  cell:noot
-    a html:HeaderCell ;
-    rdfs:label 'header cell (row 1, column 2)'@en ;
-    rdf:_1 text:noot;
-	html:fragment "<th>noot</th>"^^rdf:HTML.
+  cell:orange
+	a html:HeaderCell ;
+	rdfs:label 'header cell (row 1, column 2)'@en ;
+	rdf:_1 text:orange;
+	html:fragment "<th>orange</th>"^^rdf:HTML.
 
-  text:noot 
-    a html:TextElement ;
-    html:fragment 'noot'.   
+  text:orange 
+	a html:TextElement ;
+	html:fragment 'orange'.   
 
-  cell:mies
-    a html:HeaderCell ;
-    rdfs:label 'header cell (row 1, column 3)'@en ;
-    rdf:_1 text:mies ;
-	html:fragment "<th>mies</th>"^^rdf:HTML.
+  cell:apple
+	a html:HeaderCell ;
+	rdfs:label 'header cell (row 1, column 3)'@en ;
+	rdf:_1 text:apple ;
+	html:fragment "<th>apple</th>"^^rdf:HTML.
 
-  text:mies 
-    a html:TextElement ;
-    html:fragment 'mies'.  
+  text:apple 
+	a html:TextElement ;
+	html:fragment 'apple'.  
 
   tbody:example
-    a html:TableBody ;
-    rdfs:label 'table body example'@en;
-    rdf:_1 row:exampleData1 ;
-    rdf:_2 row:exampleData2 ;
+	a html:TableBody ;
+	rdfs:label 'table body example'@en;
+	rdf:_1 row:exampleData1 ;
+	rdf:_2 row:exampleData2 ;
 	html:fragment "<tbody><tr><td>1</td><td>2</td><td>3</td></tr></tbody><tr><td>a</td><td>b</td><td>c</td></tr>"^^rdf:HTML.
 
   row:exampleData1
-    a html:DataRow ;
-    rdfs:label 'data row 1'@en;
-    rdf:_1 cell:1 ;
-    rdf:_2 cell:2 ;
-    rdf:_3 cell:3 ;
+	a html:DataRow ;
+	rdfs:label 'data row 1'@en;
+	rdf:_1 cell:1 ;
+	rdf:_2 cell:2 ;
+	rdf:_3 cell:3 ;
 	html:fragment "<tr><td>1</td><td>2</td><td>3</td></tr>"^^rdf:HTML.
 
   row:exampleData2
-    a html:DataRow ;
-    rdfs:label 'data row 2'@en;
-    rdf:_1 cell:a ;
-    rdf:_2 cell:b ;
-    rdf:_3 cell:c ;
+	a html:DataRow ;
+	rdfs:label 'data row 2'@en;
+	rdf:_1 cell:a ;
+	rdf:_2 cell:b ;
+	rdf:_3 cell:c ;
 	html:fragment "<tr><td>a</td><td>b</td><td>c</td></tr>"^^rdf:HTML.
 
   cell:1
-    a html:DataCell ;
-    rdfs:label 'data cell (row 1, column 1)'@en ;
-    rdf:_1 text:1;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 1, column 1)'@en ;
+	rdf:_1 text:1;
 	html:fragment "<td>1</td>"^^rdf:HTML.
 
   text:1  
-    a html:TextElement ;
-    html:fragment '1'.
+	a html:TextElement ;
+	html:fragment '1'.
 
   cell:2
-    a html:DataCell ;
-    rdfs:label 'data cell (row 1, column 2)'@en ;
-    rdf:_2 text:2;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 1, column 2)'@en ;
+	rdf:_2 text:2;
 	html:fragment "<td>2</td>"^^rdf:HTML.
 
   text:2 
-    a html:TextElement ;
-    html:fragment '2'.
+	a html:TextElement ;
+	html:fragment '2'.
 
   cell:3
-    a html:DataCell ;
-    rdfs:label 'data cell (row 1, column 3)'@en ;
-    rdf:_1 text:3;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 1, column 3)'@en ;
+	rdf:_1 text:3;
 	html:fragment "<td>3</td>"^^rdf:HTML.
 
   text:3  
-    a html:TextElement ;
-    html:fragment '3'.
+	a html:TextElement ;
+	html:fragment '3'.
 
   cell:a
-    a html:DataCell ;
-    rdfs:label 'data cell (row 2, column 1)'@en ;
-    rdf:_1 text:a;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 2, column 1)'@en ;
+	rdf:_1 text:a;
 	html:fragment "<td>a</td>"^^rdf:HTML.
 
   text:a  
-    a html:TextElement ;
-    html:fragment 'a'.
+	a html:TextElement ;
+	html:fragment 'a'.
 
   cell:b
-    a html:DataCell ;
-    rdfs:label 'data cell (row 2, column 2)'@en ;
-    rdf:_1 text:b;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 2, column 2)'@en ;
+	rdf:_1 text:b;
 	html:fragment "<td>b</td>"^^rdf:HTML.
 
   text:b
-    a html:TextElement ;
-    html:fragment 'b'.
+	a html:TextElement ;
+	html:fragment 'b'.
 
   cell:c
-    a html:DataCell ;
-    rdfs:label 'data cell (row 2, column 3)'@en ;
-    rdf:_1 text:c;
+	a html:DataCell ;
+	rdfs:label 'data cell (row 2, column 3)'@en ;
+	rdf:_1 text:c;
 	html:fragment "<td>c</td>"^^rdf:HTML.
 
   text:c
-    a html:TextElement ;
-    html:fragment 'c'.
+	a html:TextElement ;
+	html:fragment 'c'.
 }
