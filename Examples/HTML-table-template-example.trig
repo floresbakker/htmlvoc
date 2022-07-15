@@ -21,12 +21,12 @@ prefix cell: <https://example.com/tutorial/id/cell/>
 graph:instances  {
 
   doc:tutorial
-	  a html:Document;
-	  rdfs:label 'document example'@en ;
-	  rdf:_1 root:tutorial.
+	a html:Document;
+	rdfs:label 'document example'@en ;
+	rdf:_1 root:tutorial.
 
   root:tutorial 
-	  a html:Html;
+	a html:Html;
 	rdfs:label "Root element of HTML document";
 	rdf:_1 head:tutorial;
 	rdf:_2 body:tutorial.
@@ -39,7 +39,7 @@ graph:instances  {
 	rdf:_3 meta:tutorial.
 
   title:tutorial 
-	  a html:Title;
+	a html:Title;
 	rdfs:label "Title element of HTML document".
 
   style:tutorial 
@@ -77,7 +77,7 @@ graph:instances  {
 
   text:caption
 	a html:TextElement;
-	html:fragment 'Voorbeeld tabel'^^rdf:HTML. 
+	html:fragment 'Example table'^^rdf:HTML. 
 
   thead:example
 	a html:TableHeader ;
@@ -94,29 +94,29 @@ graph:instances  {
   cell:aap
 	a html:HeaderCell ;
 	rdfs:label 'header cell (row 1, column 1)'@en ;
-	rdf:_1 text:aap .
+	rdf:_1 text:banana .
 
-  text:aap  
+  text:banana  
 	a html:TextElement ;
-	html:fragment 'aap'^^rdf:HTML. 
+	html:fragment 'banana'^^rdf:HTML. 
 
-  cell:noot
+  cell:orange
 	a html:HeaderCell ;
 	rdfs:label 'header cell (row 1, column 2)'@en ;
-	rdf:_1 text:noot .
+	rdf:_1 text:orange .
 
-  text:noot 
+  text:orange 
 	a html:TextElement ;
-	html:fragment 'noot'^^rdf:HTML.   
+	html:fragment 'orange'^^rdf:HTML.   
 
-  cell:mies
+  cell:apple
 	a html:HeaderCell ;
 	rdfs:label 'header cell (row 1, column 3)'@en ;
-	rdf:_1 text:mies .
+	rdf:_1 text:apple .
 
-  text:mies 
+  text:apple 
 	a html:TextElement ;
-	html:fragment 'mies'^^rdf:HTML.  
+	html:fragment 'apple'^^rdf:HTML.  
 
   tbody:example
 	a html:TableBody ;
