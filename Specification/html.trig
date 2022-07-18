@@ -60,7 +60,7 @@ html: {
       rdfs:,
       sh:,
       skos:;
-    owl:versionInfo '0.8.0';
+    owl:versionInfo '0.2.0';
     vann:preferredNamespacePrefix 'html';
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
     void:subSet graph:model;
