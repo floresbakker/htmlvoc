@@ -87,11 +87,11 @@ graph:instances  {
   row:exampleHeader
 	a html:HeaderRow ;
 	rdfs:label 'example header row'@en;
-	rdf:_1 cell:aap  ;
-	rdf:_2 cell:noot ;
-	rdf:_3 cell:mies .
+	rdf:_1 cell:banana  ;
+	rdf:_2 cell:orange ;
+	rdf:_3 cell:apple .
 
-  cell:aap
+  cell:banana
 	a html:HeaderCell ;
 	rdfs:label 'header cell (row 1, column 1)'@en ;
 	rdf:_1 text:banana .
