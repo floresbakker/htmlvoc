@@ -1,3 +1,4 @@
+prefix tutorial: <https://example.com/tutorial/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -18,7 +19,7 @@ prefix tbody: <https://example.com/tutorial/id/tbody/>
 prefix row: <https://example.com/tutorial/id/row/>
 prefix cell: <https://example.com/tutorial/id/cell/>
 
-graph:instances  {
+tutorial:instances  {
 
   doc:tutorial
 	a html:Document;
@@ -44,8 +45,13 @@ graph:instances  {
   title:tutorial 
 	a html:Title;
 	rdfs:label "Title element of HTML document";
+	rdf:_1 text:title;
 	html:fragment "<title>Tutorial Document Example</title>"^^rdf:HTML.
 
+  text:title
+	a html:TextElement;
+	html:fragment "Tutorial Document Example"^^rdf:HTML. 
+	
   style:tutorial 
 	a html:StyleSheet;
 	rdfs:label "Style element of HTML document";
