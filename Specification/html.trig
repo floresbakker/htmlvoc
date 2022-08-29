@@ -883,40 +883,27 @@ target:SerializableElement
         a sh:SPARQLTarget ;
         sh:select '''
 PREFIX dom: <https://data.rijksfinancien.nl/dom/model/def/>
+PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
 
-# Select the HTML element, for which each and any underlying child element contains an html fragment.
+# Select the HTML element for which there does not yet exist an HTML fragment, with the additional requirement that each and any underlying child element contains an HTML fragment.
+SELECT $this WHERE {
 
-select $this where {
-  {
-    select $this ?TotalNumberOfChildElements ?NumberOfSerializedChildElements
-    where {
-      $this a/rdfs:subClassOf* html:Element .
-
-      # Count the number of child elements that are already serialized into html fragments.
-      {
-        select $this (count(?childElement) as ?NumberOfSerializedChildElements) where {
-          $this a/rdfs:subClassOf* html:Element ; # Only an HTML-element can have children so no html:TextElement or dom:Element
-                ?member ?childElement .
-          ?childElement html:fragment ?fragment .
-        }
-        group by $this 
-      }
-
-      # Count the total number of child elements 
-      {
-        select $this (count(?childElement) as ?TotalNumberOfChildElements) where {
-          $this a/rdfs:subClassOf* html:Element ; # Only an html:Element can have children so no html:TextElement or dom:Element
-                        ?member ?childElement .
-          ?childElement a/rdfs:subClassOf dom:Element. # Here a child can be either an html:Element or an html:TextElement. 
-        }
-        group by $this 
-      }
-
-      # All child elements should have been serialized (each one containing an html fragment) or else the parent element cannot be serialized
-      FILTER (?TotalNumberOfChildElements = ?NumberOfSerializedChildElements) 
+# The HTML element could be any html:Element, html:TextElement or html:VoidElement, all subclasses of dom:Element.
+  $this a/rdfs:subClassOf* dom:Element.
+  
+# The HTML element should not have an HTML fragment yet.
+  FILTER NOT EXISTS {
+    $this html:fragment ?fragmentSerializableElement
+  }
+  
+# The HTML element may not contain one or more child elements lacking an HTML fragment
+  MINUS {
+    $this ?member ?childElement.
+    ?childElement a/rdfs:subClassOf* dom:Element.
+    FILTER NOT EXISTS {
+      ?childElement html:fragment ?fragmentChildElement
     }
   }
 }
