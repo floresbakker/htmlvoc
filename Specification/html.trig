@@ -899,7 +899,7 @@ SELECT $this WHERE {
   }
   
 # The HTML element may not contain one or more child elements lacking an HTML fragment
-  MINUS {
+  FILTER NOT EXISTS {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
     FILTER NOT EXISTS {
