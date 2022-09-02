@@ -1018,7 +1018,7 @@ construct {
   bind(strdt(
     concat(
       # open tag and include any attributes if there are any
-      '<',?tag,if(bound(?attributes),concat(' ',?attributes),''),'>',
+      '<',?tag,if(bound(?attributes),concat(' ',?attributes),''),'>'
       ),rdf:HTML) as ?fragment)
 }'''.
 
