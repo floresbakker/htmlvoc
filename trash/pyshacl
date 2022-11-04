@@ -1,0 +1,154 @@
+prefix cell: <https://example.com/tutorial/id/cell/> 
+prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix row: <https://example.com/tutorial/id/row/> 
+prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
+prefix sh: <http://www.w3.org/ns/shacl#>
+prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix target: <https://data.rijksfinancien.nl/html/model/target/>
+prefix text: <https://example.com/tutorial/id/text/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+### MODEL ###
+
+html:DataRow
+    a owl:Class;
+    html:tag 'tr';
+    rdfs:subClassOf html:Element;
+    skos:prefLabel 'data row'@en.
+	
+html:DataCell
+    a owl:Class;
+    html:tag 'td';
+    rdfs:subClassOf html:Element;
+    skos:definition 'The data cell (<td> element) represents a cell in a table that contains some unspecified form of data.'@en;
+    skos:prefLabel 'data cell'@en.
+	
+html:TextElement
+    a owl:Class;
+    rdfs:subClassOf dom:Element;
+    skos:definition 'A DOM element that has textual content and that does not contain any HTML vocabulary.'@en;
+    skos:example
+      'A numeric value that appears in a table cell.'@en,
+      'A natural language sentence that appears in a table caption.'@en;
+    skos:prefLabel 'Text element'@en.
+	
+html:Element
+    a owl:Class;
+    rdfs:subClassOf dom:Element;
+    skos:definition 'An element in the DOM represents a thing; that is, it has intrinsic meaning, also known as semantics. An element consists of an HTML start tag and an HTML end tag and has value content. An HTML start tag consists of a ‘smaller than’ character (‘<’) and a tag name, followed by a ‘greater than’ character (‘>’). An HTML end tag consists of a ‘smaller than’ character (‘<’), a slash (‘/’) and a tag name, followed by a ‘greater than’ character (‘>’).  The value content of an element can be arbitrarily complex.'@en;
+    skos:prefLabel 'element'@en.
+    
+### DATA ###
+
+row:exampleData1
+	a html:DataRow ;
+	rdfs:label 'data row 1'@en;
+	rdf:_1 cell:1 .
+
+cell:1
+	a html:DataCell ;
+	rdfs:label 'data cell (row 1, column 1)'@en ;
+	rdf:_1 text:1.
+
+text:1  
+	a html:TextElement ;
+	html:fragment '1'.
+  
+### SHAPES ###
+
+shp:SerializableElement
+    a sh:NodeShape;
+    sh:order 20;
+    sh:rule rule:Serialize_HTML_fragment_HTML_Element;
+    sh:target target:SerializableElement;
+    skos:prefLabel 'Serializable element shape'@en.
+     
+target:SerializableElement
+        a sh:SPARQLTarget ;
+        sh:select '''
+PREFIX dom: <https://data.rijksfinancien.nl/dom/model/def/>
+PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Select the HTML element for which there does not yet exist an HTML fragment, with the additional requirement that each and any underlying child element contains an HTML fragment.
+SELECT $this WHERE {
+
+# The HTML element could be any form of dom:Element.
+  $this a/rdfs:subClassOf* dom:Element.
+  
+# The HTML element should not have an HTML fragment yet.
+  FILTER NOT EXISTS {
+    $this html:fragment ?fragmentSerializableElement
+  }
+  
+# The HTML element may not contain one or more child elements lacking an HTML fragment
+  FILTER NOT EXISTS {
+    $this ?member ?childElement.
+    ?childElement a/rdfs:subClassOf* dom:Element.
+    FILTER NOT EXISTS {
+      ?childElement html:fragment ?fragmentChildElement
+    }
+  }
+}
+''' .
+
+rule:Serialize_HTML_fragment_HTML_Element
+    a sh:SPARQLRule;
+    rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
+    skos:prefLabel 'HTML element fragment serialisation rule'@en;
+    sh:construct
+'''PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+construct {
+
+  # create the HTML-fragment for the HTML-element to be serialized.
+  $this
+    html:fragment ?fragment.
+} where {
+
+  # Get the HTML tag of the HTML-element to be serialized.
+  $this a ?class.
+  ?class html:tag ?tag.
+
+  # Get the (possibly empty) sequence of HTML attributes, if there are any.
+  {
+    select (str(group_concat(distinct ?attribute;separator=' ')) as ?attributes) {
+      $this ?attribute0 ?value.
+      ?attribute0 html:key ?key.
+      bind(concat(?key,'="',str(?value),'"') as ?attribute)
+    }
+  }
+
+  # Get the (possibly empty) sequence of child element fragments, if there are any.
+  {
+    select (group_concat(str(?fragment);separator='') as ?fragments) {
+      {
+        select ?member ?fragment {
+          $this ?member ?element.
+          ?element html:fragment ?fragment.
+          filter(strstarts(str(?member),concat(str(rdf:),'_')))
+        }
+        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
+      }
+    }
+  }
+
+  # Create the HTML fragment of this HTML element by combining everything retrieved above.
+  bind(strdt(
+    concat(
+      # open tag and include any attributes if there are any
+      '<',?tag,if(bound(?attributes),concat(' ',?attributes),''),'>',
+      # retrieved html content of children html elements 
+      ?fragments,
+      # close tag and cast as HTML snippet
+      '</',?tag,'>'),rdf:HTML) as ?fragment)
+}'''.  
