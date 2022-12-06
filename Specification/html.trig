@@ -932,7 +932,7 @@ construct {
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any.
   {
-    select (str(group_concat(distinct ?attribute;separator=' ')) as ?attributes) {
+    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
       $this ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
@@ -1005,7 +1005,7 @@ construct {
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any. Void elements can have attributes.
   {
-    select (str(group_concat(distinct ?attribute;separator=' ')) as ?attributes) {
+    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
       $this ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
