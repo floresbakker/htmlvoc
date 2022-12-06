@@ -882,10 +882,10 @@ shp:SerializableElement
 target:SerializableElement
         a sh:SPARQLTarget ;
         sh:select '''
-PREFIX dom: <https://data.rijksfinancien.nl/dom/model/def/>
-PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 # Select the HTML element for which there does not yet exist an HTML fragment, with the additional requirement that each and any underlying child element contains an HTML fragment.
 SELECT $this WHERE {
@@ -914,10 +914,10 @@ rule:Serialize_HTML_fragment_HTML_Element
     rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
     sh:construct
-'''PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+'''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
 
@@ -987,10 +987,10 @@ rule:Serialize_HTML_fragment_Void_Element
     rdfs:comment 'A rule that creates an HTML fragment for an HTML Void element.'@en;
     skos:prefLabel 'HTML void element fragment serialisation rule'@en;
     sh:construct
-'''PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+'''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
 
