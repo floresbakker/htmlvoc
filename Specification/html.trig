@@ -957,7 +957,7 @@ construct {
   bind(strdt(
     concat(
       # open tag and include any attributes if there are any
-      '<',?tag,if(bound(?attributes),concat(' ',?attributes),''),'>',
+      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
       # retrieved html content of children html elements 
       ?fragments,
       # close tag and cast as HTML snippet
@@ -1018,7 +1018,7 @@ construct {
   bind(strdt(
     concat(
       # open tag and include any attributes if there are any
-      '<',?tag,if(bound(?attributes),concat(' ',?attributes),''),'>'
+      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>'
       ),rdf:HTML) as ?fragment)
 }'''.
 
