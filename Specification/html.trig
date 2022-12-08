@@ -1736,7 +1736,8 @@ construct {
     skos:definition 'The <br> HTML element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant.'@en;
     skos:prefLabel 'br element'@en.
 
-  html:wbr a owl:Class;
+  html:Wbr
+    a owl:Class;
     dct:conformsTo section:4.5.28;
     html:tag 'wbr';
     rdfs:subClassOf html:VoidElement;
