@@ -926,8 +926,7 @@ construct {
 } where {
 
   # Get the HTML tag of the HTML-element to be serialized.
-  $this a ?class.
-  ?class html:tag ?tag.
+  $this a/html:tag ?tag.
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any.
   {
@@ -998,8 +997,7 @@ construct {
 } where {
 
   # Get the HTML tag of the HTML-element to be serialized.
-  $this a ?class.
-  ?class html:tag ?tag.
+  $this a/html:tag ?tag.
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any. Void elements can have attributes.
   {
