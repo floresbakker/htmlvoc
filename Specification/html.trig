@@ -872,6 +872,22 @@ section:4.8.13
     rdfs:range xsd:string;
     skos:prefLabel 'has class'@en.
 
+  html:action
+    a owl:DatatypeProperty;
+    html:key 'action';
+    rdfs:domain html:Form;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'form submission URL'@en.
+
+  html:for
+    a owl:DatatypeProperty;
+    html:key 'for';
+    rdfs:domain html:Label;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'for'@en.
+
   html:href
     a owl:DatatypeProperty;
     html:key 'href';
