@@ -881,8 +881,7 @@ section:4.8.13
 
   target:SerializableElement
     a sh:SPARQLTarget ;
-    sh:select '''
-prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+    sh:select '''prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -1051,8 +1050,8 @@ construct {
     sh:property
       shp:Document_documentType,
       shp:Document_root;
-    sh:rule rule:GenerateDocument;
-    sh:targetClass html:Document.
+    sh:rule rule:Document;
+    sh:target target:Document.
 
   html:Document
     a owl:Class;
@@ -1064,10 +1063,20 @@ construct {
   
   html:documentRestriction
     a owl:Restriction;
-      owl:hasValue documentType:html;
-      owl:onProperty dom:documentType .
+    owl:hasValue documentType:html;
+    owl:onProperty dom:documentType .
 
-  rule:GenerateDocument
+  target:Document
+    a sh:SPARQLTarget;
+    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+select $this {
+  $this a html:Document.
+  filter not exists {
+    $this html:fragment [].
+  }
+}'''.
+
+  rule:Document
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates the upper HTML fragment for an HTML document and connects it with the previously generated tree of serialized HTML elements and their HTML fragments.'@en;
     rdfs:label 'HTML document generation rule'@en;
@@ -1090,7 +1099,7 @@ construct {
     prov:atTime ?activityDateTime;
     prov:used
       html: , # HTML Ontology
-      rule:GenerateDocument.
+      rule:Document.
 } where {
   $this ?member ?root.
   ?root rdf:type html:Html;
