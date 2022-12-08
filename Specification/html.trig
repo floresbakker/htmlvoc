@@ -824,7 +824,7 @@ section:4.8.13
     rdfs:comment 'Every element can have one and only one html fragment.'@en;
     skos:prefLabel 'has fragment shape'@en;
     sh:nodeKind sh:Literal;
-    rdfs:range rdf:HTML;
+    sh:datatype rdf:HTML;
     sh:path html:fragment.
 
   html:fragment
