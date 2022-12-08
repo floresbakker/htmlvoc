@@ -98,7 +98,7 @@ tutorial:instances  {
 	
   text:Register
 	a html:TextElement;
-	html:fragment "Register".
+	html:fragment 'Register'^^rdf:HTML.
 	
   paragraph:FillIn
 	a html:Paragraph;
@@ -107,7 +107,7 @@ tutorial:instances  {
 	
   text:FillIn
 	a html:TextElement;
-	html:fragment "Please fill in this form to create an account.".
+	html:fragment 'Please fill in this form to create an account.'^^rdf:HTML.
 	
   hr:hr
 	a html:Hr;
@@ -126,7 +126,7 @@ tutorial:instances  {
 
   text:email
 	a html:TextElement;
-	html:fragment 'email'.
+	html:fragment 'email'^^rdf:HTML.
 
   input:enter_email
 	a html:Input;
@@ -150,7 +150,7 @@ tutorial:instances  {
 
   text:password
 	a html:TextElement;
-	html:fragment 'Password'.
+	html:fragment 'Password'^^rdf:HTML.
 
   input:enter_password
 	a html:Input;
@@ -174,7 +174,7 @@ tutorial:instances  {
 
   text:repeat_password
 	a html:TextElement;
-	html:fragment 'Repeat Password'.
+	html:fragment 'Repeat Password'^^rdf:HTML.
 
   input:repeat_password
 	a html:Input;
@@ -194,7 +194,7 @@ tutorial:instances  {
 	
   text:ByCreating
 	a html:TextElement;
-	html:fragment "By creating an account you agree to our ".
+	html:fragment 'By creating an account you agree to our '^^rdf:HTML.
 
   a:TermsPrivacy
 	a html:A;
@@ -203,11 +203,11 @@ tutorial:instances  {
 
   text:TermsPrivacy 
 	a html:TextElement;
-	html:fragment "Terms & Privacy".
+	html:fragment 'Terms & Privacy'^^rdf:HTML.
 
   text:Period
 	a html:TextElement;
-	html:fragment ".".
+	html:fragment '.'^^rdf:HTML.
 
   button:submit
 	a html:Button;
@@ -218,7 +218,7 @@ tutorial:instances  {
 	
   text:Register
 	a html:TextElement;
-	html:fragment "Register".
+	html:fragment 'Register'^^rdf:HTML.
 
   div:tutorialForm2
 	a html:Div;
@@ -235,7 +235,7 @@ tutorial:instances  {
 	
   text:AlreadyAccount
   	a html:TextElement;
-	html:fragment "Already have an account?".
+	html:fragment 'Already have an account?'^^rdf:HTML.
 
   a:SignIn
 	a html:A;
@@ -244,5 +244,5 @@ tutorial:instances  {
 
   text:SignIn
   	a html:TextElement;
-	html:fragment "Sign in".
+	html:fragment 'Sign in'^^rdf:HTML.
 }
