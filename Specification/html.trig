@@ -872,6 +872,14 @@ section:4.8.13
     rdfs:range xsd:string;
     skos:prefLabel 'has class'@en.
 
+  html:href
+    a owl:DatatypeProperty;
+    html:key 'href';
+    rdfs:domain html:A;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'hyperlink reference'@en.
+
   shp:SerializableElement
     a sh:NodeShape;
     sh:order 20;

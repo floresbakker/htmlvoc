@@ -198,6 +198,7 @@ tutorial:instances  {
 
   a:TermsPrivacy
 	a html:A;
+  html:href '#';
 	rdfs:label "A element of HTML document with form - terms & privacy";
 	rdf:_1 text:TermsPrivacy.
 
@@ -239,6 +240,7 @@ tutorial:instances  {
 
   a:SignIn
 	a html:A;
+  html:href '#';
 	rdfs:label "A element of HTML document with form - SignIn";
 	rdf:_1 text:SignIn.
 
