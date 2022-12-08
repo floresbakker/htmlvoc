@@ -872,44 +872,45 @@ section:4.8.13
     rdfs:range xsd:string;
     skos:prefLabel 'has class'@en.
 
-shp:SerializableElement
+  shp:SerializableElement
     a sh:NodeShape;
     sh:order 20;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
     sh:target target:SerializableElement;
     skos:prefLabel 'Serializable element shape'@en.
-     
-target:SerializableElement
-        a sh:SPARQLTarget ;
-        sh:select '''
+
+  target:SerializableElement
+    a sh:SPARQLTarget ;
+    sh:select '''
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-# Select the HTML element for which there does not yet exist an HTML fragment, with the additional requirement that each and any underlying child element contains an HTML fragment.
-SELECT $this WHERE {
-
-# The HTML element could be any html:Element, html:TextElement or html:VoidElement, all subclasses of dom:Element.
+# Select the HTML element for which there does not yet exist an HTML
+# fragment, with the additional requirement that each and any
+# underlying child element contains an HTML fragment.
+select $this {
+  # The HTML element could be any html:Element, html:TextElement or
+  # html:VoidElement, all subclasses of dom:Element.
   $this a/rdfs:subClassOf* dom:Element.
-  
-# The HTML element should not have an HTML fragment yet.
-  FILTER NOT EXISTS {
+  # The HTML element should not have an HTML fragment yet.
+  filter not exists {
     $this html:fragment ?fragmentSerializableElement
   }
-  
-# The HTML element may not contain one or more child elements lacking an HTML fragment
-  FILTER NOT EXISTS {
+  # The HTML element may not contain one or more child elements
+  # lacking an HTML fragment.
+  filter not exists {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
-    FILTER NOT EXISTS {
+    filter not exists {
       ?childElement html:fragment ?fragmentChildElement
     }
   }
 }
 ''' .
 
-rule:Serialize_HTML_fragment_HTML_Element
+  rule:Serialize_HTML_fragment_HTML_Element
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
@@ -922,8 +923,7 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 construct {
 
   # create the HTML-fragment for the HTML-element to be serialized.
-  $this
-    html:fragment ?fragment.
+  $this html:fragment ?fragment.
 } where {
 
   # Get the HTML tag of the HTML-element to be serialized.
@@ -982,7 +982,7 @@ construct {
       '<hr>'@en;
     skos:prefLabel 'Void element'@en.
 
-rule:Serialize_HTML_fragment_Void_Element
+  rule:Serialize_HTML_fragment_Void_Element
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML Void element.'@en;
     skos:prefLabel 'HTML void element fragment serialisation rule'@en;
@@ -995,8 +995,7 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 construct {
 
   # create the HTML-fragment for the HTML-element to be serialized.
-  $this
-    html:fragment ?fragment.
+  $this html:fragment ?fragment.
 } where {
 
   # Get the HTML tag of the HTML-element to be serialized.
