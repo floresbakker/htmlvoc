@@ -101,7 +101,7 @@ tutorial:instances  {
 	html:fragment 'Register'^^rdf:HTML.
 	
   paragraph:FillIn
-	a html:Paragraph;
+	a html:P;
 	rdfs:label "P element of HTML document with form - 1";
 	rdf:_1 text:FillIn.
 	
@@ -186,7 +186,7 @@ tutorial:instances  {
 	html:required true.
 
   paragraph:termsconditions
-	a html:Paragraph;
+	a html:P;
 	rdfs:label "paragraph element of HTML document with form - terms & conditions";
 	rdf:_1 text:ByCreating;
 	rdf:_2 a:TermsPrivacy;
@@ -228,7 +228,7 @@ tutorial:instances  {
 	html:class "container signin".
 	
   paragraph:AlreadyAccount
-	a html:Paragraph;
+	a html:P;
 	rdfs:label "paragraph element of HTML document with form - already account";
 	rdf:_1 text:AlreadyAccount;
 	rdf:_2 a:SignIn;
