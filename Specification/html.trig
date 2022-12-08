@@ -864,7 +864,8 @@ section:4.8.13
     rdfs:range xsd:string;
     skos:prefLabel 'has style attribute'@en.
 
-  html:class a owl:DatatypeProperty;
+  html:class
+    a owl:DatatypeProperty;
     html:key 'class';
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
@@ -1243,21 +1244,24 @@ construct {
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en;
     skos:prefLabel 'meta element'@en.
 
-  html:http-equiv a owl:DatatypeProperty;
+  html:http-equiv
+    a owl:DatatypeProperty;
     html:key 'http-equiv';
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
     skos:prefLabel 'has http-equiv'@en.
 
-  html:content-attribute a owl:DatatypeProperty;
+  html:content-attribute
+    a owl:DatatypeProperty;
     html:key 'content';
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
     skos:prefLabel 'has content'@en.
 
-  html:charset a owl:DatatypeProperty;
+  html:charset
+    a owl:DatatypeProperty;
     html:key 'charset';
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
