@@ -1,3 +1,4 @@
+prefix tutorial: <https://example.com/tutorial/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -22,9 +23,7 @@ prefix input: <https://example.com/tutorial/id/input/>
 prefix a: <https://example.com/tutorial/id/a/>
 prefix button: <https://example.com/tutorial/id/button/>
 
-
-
-graph:instances  {
+tutorial:instances  {
 
   doc:tutorialForm
 	a html:Document;
@@ -246,5 +245,4 @@ graph:instances  {
   text:SignIn
   	a html:TextElement;
 	html:fragment "Sign in".
-	
 }
