@@ -841,7 +841,7 @@ section:4.8.13
     sh:path html:attribute.
 
   html:attribute
-    a rdf:Property;
+    a owl:DatatypeProperty;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
