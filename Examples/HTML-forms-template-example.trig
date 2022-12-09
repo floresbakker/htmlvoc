@@ -50,7 +50,7 @@ tutorial:instances  {
   style:tutorialForm
     a html:StyleSheet;
     rdfs:label 'Style element of HTML document with form';
-    rdf:_1 text:style.
+    rdf:_1 text:styleForm.
 
   text:styleForm
     a html:TextElement;
