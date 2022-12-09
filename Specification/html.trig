@@ -1245,7 +1245,20 @@ construct {
     rdfs:subClassOf html:VoidElement;
     skos:definition 'The <base> HTML element specifies the base URL to use for all relative URLs in a document. There can be only one <base> element in a document.'@en;
     skos:prefLabel 'base element'@en.
+    
+  shp:Link
+    a sh:NodeShape;
+    rdfs:comment 'The link element allows authors to link their document to other resources.'@en;
+    rdfs:label 'link shape'@en;
+    sh:targetClass html:Link.
 
+  html:Link
+    a owl:Class;
+    dct:conformsTo section:4.2.4;
+    html:tag 'link';
+    rdfs:subClassOf html:VoidElement;
+    skos:definition 'The link element allows authors to link their document to other resources.'@en;
+    skos:prefLabel 'link element'@en.
 
   # Meta element (<meta>)
 
