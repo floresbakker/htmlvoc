@@ -2273,6 +2273,38 @@ construct {
     skos:definition 'The <input> HTML element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent. The <input> element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes.'@en;
     skos:prefLabel 'input element'@en.
 
+  html:name
+    a owl:DatatypeProperty;
+    html:key 'name';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'name'@en.
+
+  html:placeholder
+    a owl:DatatypeProperty;
+    html:key 'placeholder';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'placeholder'@en.
+
+  html:required
+    a owl:DatatypeProperty;
+    html:key 'required';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'required'@en.
+
+  html:type
+    a owl:DatatypeProperty;
+    html:key 'type';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'type'@en.
+
   html:Button
     a owl:Class;
     dct:conformsTo section:4.10.6;
