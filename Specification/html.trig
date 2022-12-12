@@ -933,15 +933,18 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 # fragment, with the additional requirement that each and any
 # underlying child element contains an HTML fragment.
 select $this {
-  # The HTML element could be any html:Element, html:TextElement or
-  # html:VoidElement, all subclasses of dom:Element.
+  # Any DOM element (`dom:Element`) that is not known to be a void element
+  # (html:VoidElement).
   $this a/rdfs:subClassOf* dom:Element.
-  # The HTML element should not have an HTML fragment yet.
   filter not exists {
-    $this html:fragment ?fragmentSerializableElement
+    $this a/rdfs:subClassOf html:VoidElement.
   }
-  # The HTML element may not contain one or more child elements
-  # lacking an HTML fragment.
+  # The HTML element must not have an HTML fragment yet.
+  filter not exists {
+    $this html:fragment [].
+  }
+  # The HTML element may not contain one or more child elements that lack an
+  # HTML fragment.
   filter not exists {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
