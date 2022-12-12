@@ -956,7 +956,7 @@ select $this {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
     filter not exists {
-      ?childElement html:fragment ?fragmentChildElement
+      ?childElement html:fragment [].
     }
   }
 }'''.
