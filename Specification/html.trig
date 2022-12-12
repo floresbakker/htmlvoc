@@ -917,7 +917,6 @@ section:4.8.13
     
   shp:SerializableElement
     a sh:NodeShape;
-    sh:order 20;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
     sh:target target:SerializableElement;
     skos:prefLabel 'Serializable element shape'@en.
@@ -1010,7 +1009,6 @@ construct {
 
   shp:VoidElement
     a sh:NodeShape;
-    sh:order 10;
     skos:prefLabel 'Void element shape'@en;
     sh:rule rule:Serialize_HTML_fragment_Void_Element;
     sh:target target:VoidElement.
@@ -1096,7 +1094,6 @@ construct {
 
   shp:Document
     a sh:NodeShape;
-    sh:order 999;
     sh:description 'A HTML document contains a required documenttype HTML and a root HTML element.'@en;
     sh:name 'HTML Document'@en;
     sh:property
