@@ -1010,7 +1010,18 @@ construct {
     sh:order 10;
     skos:prefLabel 'Void element shape'@en;
     sh:rule rule:Serialize_HTML_fragment_Void_Element;
-    sh:targetClass html:VoidElement.
+    sh:target target:VoidElement.
+
+  target:VoidElement
+    a sh:SPARQLTarget;
+    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select $this {
+  $this a/rdfs:subClassOf* html:VoidElement.
+  filter not exists {
+    $this html:fragment [].
+  }
+}'''.
 
   html:VoidElement
     a owl:Class;
