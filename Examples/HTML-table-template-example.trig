@@ -74,7 +74,8 @@ tutorial:instances  {
     rdfs:label 'table example'@en;
     rdf:_1 caption:example;
     rdf:_2 thead:example;
-    rdf:_3 tbody:example .
+    rdf:_3 tbody:example;
+    html:resource 'https://example.com/tutorial/id/table/tutorial'.
 
   caption:example
     a html:Caption;

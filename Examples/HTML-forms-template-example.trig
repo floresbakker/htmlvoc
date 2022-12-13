@@ -33,8 +33,8 @@ tutorial:instances  {
   root:tutorialForm
     a html:Html;
     rdfs:label 'Root element of HTML document with form';
-    rdf:_1 head:tutorial;
-    rdf:_2 body:tutorial.
+    rdf:_1 head:tutorialForm;
+    rdf:_2 body:tutorialForm.
 
   head:tutorialForm
     a html:Head;
@@ -66,12 +66,13 @@ tutorial:instances  {
   body:tutorialForm
     a html:Body;
     rdfs:label 'Body element of HTML document with form';
-    rdf:_1 form:tutorial.
+    rdf:_1 form:tutorialForm.
 
   form:tutorialForm
     a html:Form;
     rdfs:label 'Form element of HTML document with form';
     rdf:_1 div:tutorialForm1;
+    rdf:_2 div:tutorialForm2;
     html:action 'action_page.php'.
 
   div:tutorialForm1

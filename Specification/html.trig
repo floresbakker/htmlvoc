@@ -861,6 +861,14 @@ section:4.8.13
     rdfs:range xsd:string;
     skos:prefLabel 'has style attribute'@en.
 
+  html:resource
+    a owl:DatatypeProperty;
+    html:key 'resource';
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'resource'@en.
+
   html:class
     a owl:DatatypeProperty;
     html:key 'class';
@@ -917,7 +925,6 @@ section:4.8.13
     
   shp:SerializableElement
     a sh:NodeShape;
-    sh:order 20;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
     sh:target target:SerializableElement;
     skos:prefLabel 'Serializable element shape'@en.
@@ -933,20 +940,23 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 # fragment, with the additional requirement that each and any
 # underlying child element contains an HTML fragment.
 select $this {
-  # The HTML element could be any html:Element, html:TextElement or
-  # html:VoidElement, all subclasses of dom:Element.
+  # Any DOM element (`dom:Element`) that is not known to be a void element
+  # (html:VoidElement).
   $this a/rdfs:subClassOf* dom:Element.
-  # The HTML element should not have an HTML fragment yet.
   filter not exists {
-    $this html:fragment ?fragmentSerializableElement
+    $this a/rdfs:subClassOf html:VoidElement.
   }
-  # The HTML element may not contain one or more child elements
-  # lacking an HTML fragment.
+  # The HTML element must not have an HTML fragment yet.
+  filter not exists {
+    $this html:fragment [].
+  }
+  # The HTML element may not contain one or more child elements that lack an
+  # HTML fragment.
   filter not exists {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
     filter not exists {
-      ?childElement html:fragment ?fragmentChildElement
+      ?childElement html:fragment [].
     }
   }
 }'''.
@@ -1007,10 +1017,20 @@ construct {
 
   shp:VoidElement
     a sh:NodeShape;
-    sh:order 10;
     skos:prefLabel 'Void element shape'@en;
     sh:rule rule:Serialize_HTML_fragment_Void_Element;
-    sh:targetClass html:VoidElement.
+    sh:target target:VoidElement.
+
+  target:VoidElement
+    a sh:SPARQLTarget;
+    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select $this {
+  $this a/rdfs:subClassOf* html:VoidElement.
+  filter not exists {
+    $this html:fragment [].
+  }
+}'''.
 
   html:VoidElement
     a owl:Class;
@@ -1082,7 +1102,6 @@ construct {
 
   shp:Document
     a sh:NodeShape;
-    sh:order 999;
     sh:description 'A HTML document contains a required documenttype HTML and a root HTML element.'@en;
     sh:name 'HTML Document'@en;
     sh:property
@@ -2272,6 +2291,38 @@ construct {
     rdfs:subClassOf html:VoidElement;
     skos:definition 'The <input> HTML element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent. The <input> element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes.'@en;
     skos:prefLabel 'input element'@en.
+
+  html:name
+    a owl:DatatypeProperty;
+    html:key 'name';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'name'@en.
+
+  html:placeholder
+    a owl:DatatypeProperty;
+    html:key 'placeholder';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'placeholder'@en.
+
+  html:required
+    a owl:DatatypeProperty;
+    html:key 'required';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'required'@en.
+
+  html:type
+    a owl:DatatypeProperty;
+    html:key 'type';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'type'@en.
 
   html:Button
     a owl:Class;
