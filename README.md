@@ -73,7 +73,7 @@ Let us go through the semantic HTML-vocabulary with an example of an ordinary HT
 
 This table is rendered in a browser as follows:
 
-![An example of an HTML-document](/Examples/ExampleTable-HTMLDocument.jpg)
+![An example of an HTML-document](/Examples/ExampleTable-HTMLDocument.JPG)
 
 ## Expressing the HTML-document in RDF
 
@@ -340,9 +340,14 @@ doc:50.16.1 a html:TextElement ;
 
 Make note on how each element in the HTML-document is identified by a unique identifier, the IRI (Internationalized Resource Identifier). Now we can address each element, or combinations of elements, and say something about them. Either we express meaning (RDF, RDFS, OWL and more), or impose constraints (SHACL) or we can query (SPARQL) them to know more about them.
 
-# Tools
+# Tools and dependencies
 
-This repository comes with two, fairly primitive, tools to handle HTML-documents and RDF-representations of HTML. Both tools make extensive use of RDFlib.
+This repository comes with two, fairly primitive, Python-based tools to handle HTML-documents and RDF-representations of HTML. 
+
+1. HTML2RDF
+2. RDF2HTML
+
+
 
 ## HTML2RDF
 
@@ -371,20 +376,19 @@ python HTML2RDF.py
 D. Go to the output folder in htmlvoc\Tools\HTML2RDF\Output and grab your Turtle-file(s) (*.ttl). 
 
 
-
-
 ## RDF2HTML
 
 The tool RDF2HTML is used to read a RDF-based representation of an HTML-document into a graph and then serialize and save this to an actual HTML-file. 
 
 ### How to use RDF2HTML
 
-A. Install all necessary libraries:
+A. Install all necessary libraries (in this order):
 
 	1. pip install os 
-	2. pip install bs4
-	3. pip install pyshacl
+	2. pip install pyshacl
 	3. pip install rdflib
+
+NOTE: pyshacl has a dependency with an older RDFlib version. However, for an optimal functioning of the semantic HTML-vocabulary, the most recent release of RDFlib should be used. Hence, it is advised to first install pyshacl and then RDFlib, so that RDFlib is installed having the latest version. This is currently the least instrusive way of handling the dependency, offering accessibility for those not well versed in Python. 
 
 B. Place one or more Turtle-files (*.ttl) in the input folder in htmlvoc\Tools\RDF2HTML\Input. A Turtle-file should represent a HTML-document using the HTML-vocabulary from this repository.
 
@@ -425,6 +429,16 @@ addendum_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/
 html_vocabulary = html_vocabulary + addendum_vocabulary
 ```
 
+4. Please note: the runtime of RDF2HTML for a rather complex and long HTML-file can be rather large.
+
+## Dependencies 
+
+Both tools make extensive use of [RDFlib](https://rdflib.readthedocs.io/en/stable/index.html). Rdflib is a Python library used for working with Resource Description Framework (RDF) data. RDF is a widely used framework for representing and processing information on the web. It is a standard model for data interchange on the web, particularly for representing metadata and data about resources available on the internet.
+
+Rdflib provides a comprehensive set of tools and utilities for working with RDF data, including parsing and serializing RDF in various formats (such as RDF/XML, Turtle, JSON-LD, and more), querying RDF data using SPARQL, creating RDF graphs, and performing various operations on RDF triples.
+
+The RDF2HTML tool additionally makes use of [PyShacl](https://github.com/RDFLib/pySHACL). PySHACL is a complete open-source implementation of the SHACL W3C specification, with broad use in the community as well. 
+
 # Acknowledgements
 
-We would like to thank Iwan Aucamp @RDFlib for his unrelenting support and accomplishments regarding the open source triple store and related services, as well as Ashley Sommers @PyShacl for his work on the important open source implementation of a SHACL engine. 
+We would like to thank Iwan Aucamp @RDFlib for his unrelenting support and accomplishments regarding the open source triple store and related services, as well as Ashley Sommer @PyShacl for his work on the important open source implementation of a SHACL engine. 
