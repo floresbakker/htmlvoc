@@ -23,8 +23,6 @@ prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
 prefix standard: <https://data.rijksfinancien.nl/html/id/standard/>
 prefix target: <https://data.rijksfinancien.nl/html/model/target/>
 
-html: {
-
   html:
     a
       owl:Ontology,
@@ -64,11 +62,6 @@ html: {
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
 
-}
-
-
-
-graph:model {
 
   # HTML standard
 
@@ -842,7 +835,7 @@ section:4.8.13
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
-    skos:definition 'The parent property of all HTML attribute properties.'@en;
+    skos:definition "An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string. Html:atribute is the parent property of all existing HTML attribute properties."@en;
     skos:prefLabel 'has attribute'@en.
 
   shp:Element_style
@@ -860,6 +853,190 @@ section:4.8.13
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:prefLabel 'has style attribute'@en.
+	
+  html:title
+    a owl:DatatypeProperty;
+    html:key 'title';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has title attribute'@en.
+
+  html:dir
+    a owl:DatatypeProperty;
+    html:key 'dir';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has dir attribute'@en.
+
+  html:accesskey
+    a owl:DatatypeProperty;
+    html:key 'accesskey';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has accesskey attribute'@en.
+
+  html:autocapitalize
+    a owl:DatatypeProperty;
+    html:key 'autocapitalize';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has autocapitalize attribute'@en.
+
+  html:autofocus
+    a owl:DatatypeProperty;
+    html:key 'autofocus';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has autofocus attribute'@en.
+
+  html:contenteditable
+    a owl:DatatypeProperty;
+    html:key 'contenteditable';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has contenteditable attribute'@en.
+	
+  html:draggable
+    a owl:DatatypeProperty;
+    html:key 'draggable';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has draggable attribute'@en.	
+
+  html:enterkeyhint
+    a owl:DatatypeProperty;
+    html:key 'enterkeyhint';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has enterkeyhint attribute'@en.	
+
+  html:hidden
+    a owl:DatatypeProperty;
+    html:key 'hidden';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has hidden attribute'@en.	
+
+  html:inert
+    a owl:DatatypeProperty;
+    html:key 'inert';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has inert attribute'@en.	
+
+  html:inputmode
+    a owl:DatatypeProperty;
+    html:key 'inputmode';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has inputmode attribute'@en.	
+
+  html:is
+    a owl:DatatypeProperty;
+    html:key 'is';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has is attribute'@en.	
+	
+  html:itemid
+    a owl:DatatypeProperty;
+    html:key 'itemid';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has itemid attribute'@en.	
+
+  html:itemprop
+    a owl:DatatypeProperty;
+    html:key 'itemprop';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has itemprop attribute'@en.	
+
+  html:itemref
+    a owl:DatatypeProperty;
+    html:key 'itemref';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has itemref attribute'@en.	
+
+  html:itemscope
+    a owl:DatatypeProperty;
+    html:key 'itemscope';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has itemscope attribute'@en.	
+
+  html:itemtype
+    a owl:DatatypeProperty;
+    html:key 'itemtype';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has itemtype attribute'@en.	
+
+  html:nonce
+    a owl:DatatypeProperty;
+    html:key 'nonce';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has nonce attribute'@en.	
+
+  html:popover
+    a owl:DatatypeProperty;
+    html:key 'popover';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has popover attribute'@en.	
+	
+  html:spellcheck
+    a owl:DatatypeProperty;
+    html:key 'spellcheck';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has spellcheck attribute'@en.	
+
+  html:tabindex
+    a owl:DatatypeProperty;
+    html:key 'tabindex';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has tabindex attribute'@en.	
+
+  html:translate
+    a owl:DatatypeProperty;
+    html:key 'translate';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has translate attribute'@en.	
+
+  html:lang
+    a owl:DatatypeProperty;
+    html:key 'lang';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has lang attribute'@en.
 
   html:resource
     a owl:DatatypeProperty;
@@ -952,7 +1129,7 @@ select $this {
   }
   # The HTML element may not contain one or more child elements that lack an
   # HTML fragment.
-  filter not exists {
+  minus {
     $this ?member ?childElement.
     ?childElement a/rdfs:subClassOf* dom:Element.
     filter not exists {
@@ -1325,7 +1502,7 @@ construct {
     rdfs:range xsd:string;
     skos:prefLabel 'has http-equiv'@en.
 
-  html:content-attribute
+  html:content
     a owl:DatatypeProperty;
     html:key 'content';
     rdfs:subPropertyOf html:attribute;
@@ -1341,6 +1518,46 @@ construct {
     rdfs:range xsd:string;
     skos:prefLabel 'has charset'@en.
 
+  html:id
+    a owl:DatatypeProperty;
+    html:key 'id';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has id'@en.
+
+  html:src
+    a owl:DatatypeProperty;
+    html:key 'src';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Audio html:Embed html:Iframe html:Img html:Input html:Script html:Source html:Track html:Video)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has src'@en.
+	
+ html:alt
+    a owl:DatatypeProperty;
+    html:key 'alt';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Area html:Img html:Input)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has alt'@en.
+	
+ html:width
+    a owl:DatatypeProperty;
+    html:key 'width';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Video)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'has width'@en.	
 
   # Style sheet element (<style>)
 
@@ -2517,4 +2734,3 @@ construct {
     skos:definition 'The tag name of a specific HTML element type.'@en;
     skos:prefLabel 'has tag name'@en.
 
-}

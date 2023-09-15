@@ -1,0 +1,257 @@
+@prefix doc: <http://www.example.org/document/> .
+@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+doc:1 a html:Document ;
+    rdf:_1 doc:2.0 .
+
+doc:2.0 a html:Html ;
+    rdf:_1 doc:2.0.1 ;
+    rdf:_2 doc:3.0 ;
+    rdf:_3 doc:2.0.3 ;
+    rdf:_4 doc:31.0 ;
+    rdf:_5 doc:2.0.5 .
+
+doc:2.0.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:2.0.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:2.0.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:3.0 a html:Head ;
+    rdf:_1 doc:3.0.1 ;
+    rdf:_2 doc:4.4 ;
+    rdf:_3 doc:3.0.3 ;
+    rdf:_4 doc:5.4 ;
+    rdf:_5 doc:3.0.5 .
+
+doc:3.0.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:3.0.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:3.0.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:31.0 a html:Body ;
+    rdf:_1 doc:31.0.1 ;
+    rdf:_2 doc:32.4 ;
+    rdf:_3 doc:31.0.3 .
+
+doc:31.0.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:31.0.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:32.4 a html:Table ;
+    rdf:_1 doc:32.4.1 ;
+    rdf:_2 doc:33.8 ;
+    rdf:_3 doc:32.4.3 ;
+    rdf:_4 doc:34.8 ;
+    rdf:_5 doc:32.4.5 ;
+    rdf:_6 doc:41.8 ;
+    rdf:_7 doc:32.4.7 .
+
+doc:32.4.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:32.4.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:32.4.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:32.4.7 a html:TextElement ;
+    html:fragment "" .
+
+doc:33.8 a html:Caption ;
+    rdf:_1 doc:33.8.1 .
+
+doc:33.8.1 a html:TextElement ;
+    html:fragment "Example table" .
+
+doc:34.8 a html:TableHeader ;
+    rdf:_1 doc:34.8.1 ;
+    rdf:_2 doc:35.12 ;
+    rdf:_3 doc:34.8.3 .
+
+doc:34.8.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:34.8.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:35.12 a html:DataRow ;
+    rdf:_1 doc:35.12.1 ;
+    rdf:_2 doc:36.16 ;
+    rdf:_3 doc:35.12.3 ;
+    rdf:_4 doc:37.16 ;
+    rdf:_5 doc:35.12.5 ;
+    rdf:_6 doc:38.16 ;
+    rdf:_7 doc:35.12.7 .
+
+doc:35.12.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:35.12.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:35.12.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:35.12.7 a html:TextElement ;
+    html:fragment "" .
+
+doc:36.16 a html:HeaderCell ;
+    rdf:_1 doc:36.16.1 .
+
+doc:36.16.1 a html:TextElement ;
+    html:fragment "banana" .
+
+doc:37.16 a html:HeaderCell ;
+    rdf:_1 doc:37.16.1 .
+
+doc:37.16.1 a html:TextElement ;
+    html:fragment "orange" .
+
+doc:38.16 a html:HeaderCell ;
+    rdf:_1 doc:38.16.1 .
+
+doc:38.16.1 a html:TextElement ;
+    html:fragment "apple" .
+
+doc:4.4 a html:Title ;
+    rdf:_1 doc:4.4.1 .
+
+doc:4.4.1 a html:TextElement ;
+    html:fragment "Tutorial Document Example" .
+
+doc:41.8 a html:TableBody ;
+    rdf:_1 doc:41.8.1 ;
+    rdf:_2 doc:42.12 ;
+    rdf:_3 doc:41.8.3 ;
+    rdf:_4 doc:47.12 ;
+    rdf:_5 doc:41.8.5 .
+
+doc:41.8.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:41.8.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:41.8.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:42.12 a html:DataRow ;
+    rdf:_1 doc:42.12.1 ;
+    rdf:_2 doc:43.16 ;
+    rdf:_3 doc:42.12.3 ;
+    rdf:_4 doc:44.16 ;
+    rdf:_5 doc:42.12.5 ;
+    rdf:_6 doc:45.16 ;
+    rdf:_7 doc:42.12.7 .
+
+doc:42.12.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:42.12.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:42.12.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:42.12.7 a html:TextElement ;
+    html:fragment "" .
+
+doc:43.16 a html:DataCell ;
+    rdf:_1 doc:43.16.1 .
+
+doc:43.16.1 a html:TextElement ;
+    html:fragment "1" .
+
+doc:44.16 a html:DataCell ;
+    rdf:_1 doc:44.16.1 .
+
+doc:44.16.1 a html:TextElement ;
+    html:fragment "2" .
+
+doc:45.16 a html:DataCell ;
+    rdf:_1 doc:45.16.1 .
+
+doc:45.16.1 a html:TextElement ;
+    html:fragment "3" .
+
+doc:47.12 a html:DataRow ;
+    rdf:_1 doc:47.12.1 ;
+    rdf:_2 doc:48.16 ;
+    rdf:_3 doc:47.12.3 ;
+    rdf:_4 doc:49.16 ;
+    rdf:_5 doc:47.12.5 ;
+    rdf:_6 doc:50.16 ;
+    rdf:_7 doc:47.12.7 .
+
+doc:47.12.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:47.12.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:47.12.5 a html:TextElement ;
+    html:fragment "" .
+
+doc:47.12.7 a html:TextElement ;
+    html:fragment "" .
+
+doc:48.16 a html:DataCell ;
+    rdf:_1 doc:48.16.1 .
+
+doc:48.16.1 a html:TextElement ;
+    html:fragment "a" .
+
+doc:49.16 a html:DataCell ;
+    rdf:_1 doc:49.16.1 .
+
+doc:49.16.1 a html:TextElement ;
+    html:fragment "b" .
+
+doc:5.4 a html:StyleSheet ;
+    rdf:_1 doc:5.4.1 .
+
+doc:5.4.1 a html:TextElement ;
+    html:fragment """
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    """ .
+
+doc:50.16 a html:DataCell ;
+    rdf:_1 doc:50.16.1 .
+
+doc:50.16.1 a html:TextElement ;
+    html:fragment "c" .
+

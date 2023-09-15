@@ -1,0 +1,166 @@
+@prefix doc: <http://www.example.org/document/> .
+@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+doc:1 a html:Document ;
+    rdf:_1 doc:1.15 .
+
+doc:1.1058 a html:Meta ;
+    html:charset "utf-8" ;
+    html:http-equiv "Content-Type" .
+
+doc:1.1113 a html:Body ;
+    rdf:_1 doc:1.1119 .
+
+doc:1.1119 a html:Form ;
+    rdf:_1 doc:1.1150 ;
+    rdf:_2 doc:1.1804 ;
+    html:action "action_page.php" .
+
+doc:1.1150 a html:Div ;
+    rdf:_1 doc:1.1173 ;
+    rdf:_10 doc:1.1656 ;
+    rdf:_11 doc:1.1660 ;
+    rdf:_12 doc:1.1739 ;
+    rdf:_2 doc:1.1190 ;
+    rdf:_3 doc:1.1243 ;
+    rdf:_4 doc:1.1247 ;
+    rdf:_5 doc:1.1286 ;
+    rdf:_6 doc:1.1371 ;
+    rdf:_7 doc:1.1411 ;
+    rdf:_8 doc:1.1499 ;
+    rdf:_9 doc:1.1553 ;
+    html:class "container" .
+
+doc:1.1173 a html:H1 ;
+    rdf:_1 doc:1.1173.1 .
+
+doc:1.1173.1 a html:TextElement ;
+    html:fragment "Register" .
+
+doc:1.1190 a html:P ;
+    rdf:_1 doc:1.1190.1 .
+
+doc:1.1190.1 a html:TextElement ;
+    html:fragment "Please fill in this form to create an account." .
+
+doc:1.1243 a html:Hr .
+
+doc:1.1247 a html:Label ;
+    rdf:_1 doc:1.1266 ;
+    html:for "email" .
+
+doc:1.1266 a html:B ;
+    rdf:_1 doc:1.1266.1 .
+
+doc:1.1266.1 a html:TextElement ;
+    html:fragment "email" .
+
+doc:1.1286 a html:Input ;
+    html:id "email" ;
+    html:name "email" ;
+    html:placeholder "Enter Email" ;
+    html:required "true" ;
+    html:type "text" .
+
+doc:1.1371 a html:Label ;
+    rdf:_1 doc:1.1388 ;
+    html:for "psw" .
+
+doc:1.1388 a html:B ;
+    rdf:_1 doc:1.1388.1 .
+
+doc:1.1388.1 a html:TextElement ;
+    html:fragment "Password" .
+
+doc:1.1411 a html:Input ;
+    html:id "psw" ;
+    html:name "psw" ;
+    html:placeholder "Enter Password" ;
+    html:required "true" ;
+    html:type "password" .
+
+doc:1.1499 a html:Label ;
+    rdf:_1 doc:1.1523 ;
+    html:for "psw-repeat" .
+
+doc:1.15 a html:Html ;
+    rdf:_1 doc:1.21 ;
+    rdf:_2 doc:1.1113 .
+
+doc:1.1523 a html:B ;
+    rdf:_1 doc:1.1523.1 .
+
+doc:1.1523.1 a html:TextElement ;
+    html:fragment "Repeat Password" .
+
+doc:1.1553 a html:Input ;
+    html:id "psw-repeat" ;
+    html:name "psw-repeat" ;
+    html:placeholder "Repeat Password" ;
+    html:required "true" ;
+    html:type "password" .
+
+doc:1.1656 a html:Hr .
+
+doc:1.1660 a html:P ;
+    rdf:_1 doc:1.1660.1 ;
+    rdf:_2 doc:1.1703 ;
+    rdf:_3 doc:1.1660.3 .
+
+doc:1.1660.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:1.1660.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:1.1703 a html:A ;
+    rdf:_1 doc:1.1703.1 ;
+    html:href "#" .
+
+doc:1.1703.1 a html:TextElement ;
+    html:fragment "Terms & Privacy" .
+
+doc:1.1739 a html:Button ;
+    rdf:_1 doc:1.1739.1 ;
+    html:class "registerbtn" ;
+    html:type "submit" .
+
+doc:1.1739.1 a html:TextElement ;
+    html:fragment "Register" .
+
+doc:1.1804 a html:Div ;
+    rdf:_1 doc:1.1834 ;
+    html:class "container signin" .
+
+doc:1.1834 a html:P ;
+    rdf:_1 doc:1.1834.1 ;
+    rdf:_2 doc:1.1861 ;
+    rdf:_3 doc:1.1834.3 .
+
+doc:1.1834.1 a html:TextElement ;
+    html:fragment "" .
+
+doc:1.1834.3 a html:TextElement ;
+    html:fragment "" .
+
+doc:1.1861 a html:A ;
+    rdf:_1 doc:1.1861.1 ;
+    html:href "#" .
+
+doc:1.1861.1 a html:TextElement ;
+    html:fragment "Sign in" .
+
+doc:1.21 a html:Head ;
+    rdf:_1 doc:1.27 ;
+    rdf:_2 doc:1.42 ;
+    rdf:_3 doc:1.1058 .
+
+doc:1.27 a html:Title .
+
+doc:1.42 a html:StyleSheet ;
+    rdf:_1 doc:1.42.1 .
+
+doc:1.42.1 a html:TextElement ;
+    html:fragment "body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}" .
+
