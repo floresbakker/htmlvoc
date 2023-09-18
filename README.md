@@ -579,7 +579,7 @@ C. Run the script in the command prompt by typing:
 python RDF2HTML.py
 ```
 
-D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-file(s). Additionally included are Turtle-file(s) (*.ttl) that contain the serialized the html:fragment properties for the very same HTML-document. 
+D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-file(s). Additionally included are Turtle-file(s) (*.ttl) that contain the serialized 'html:fragment' properties for the very same HTML-document and the HTML-elements it contains. 
 
 ### Known issues
 

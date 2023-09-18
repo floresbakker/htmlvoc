@@ -69,6 +69,7 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
         # Check whether another iteration is needed. If the root has a html:fragment then the serialisation is done.
         for result in resultquery:
             if result == False:
+                writeGraph(serializable_graph)
                 iteratePyShacl(html_vocabulary, serializable_graph)
             else: 
                 print ("Document is serialised.")

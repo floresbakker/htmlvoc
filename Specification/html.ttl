@@ -45,6 +45,7 @@ prefix target: <https://data.rijksfinancien.nl/html/model/target/>
     dct:status status:UnderDevelopment;
     dct:subject 'HTML'@en;
     dct:title 'HTML Ontology'@en;
+	dct:source <https://github.com/floresbakker/htmlvoc>;
     foaf:depiction 'https://www.rijksfinancien.nl/themes/custom/indicia_theme/files/logo-rijksoverheid.svg'^^xsd:anyURI;
     foaf:homepage 'https://www.rijksfinancien.nl/'^^xsd:anyURI;
     owl:imports
