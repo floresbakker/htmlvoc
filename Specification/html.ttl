@@ -807,8 +807,8 @@ section:4.8.13
     a owl:Class;
     dct:conformsTo section:3.2;
     rdfs:subClassOf prov:Entity, dom:Element;
-    skos:definition 'An element in the DOM represents a thing; that is, it has intrinsic meaning, also known as semantics. An element consists of an HTML start tag and an HTML end tag and has value content. An HTML start tag consists of a ‘smaller than’ character (‘<’) and a tag name, followed by a ‘greater than’ character (‘>’). An HTML end tag consists of a ‘smaller than’ character (‘<’), a slash (‘/’) and a tag name, followed by a ‘greater than’ character (‘>’).  The value content of an element can be arbitrarily complex.'@en;
-    skos:prefLabel 'HTML element'@en.
+    skos:definition 'An element in the DOM represents a thing; that is, it has intrinsic meaning, also known as semantics. An element consists of an HTML start tag and an HTML end tag and has value content. An HTML start tag consists of a "smaller than" character ("<") and a tag name, followed by a "greater than" character (">"). An HTML end tag consists of a "smaller than" character ("<"), a slash ("/") and a tag name, followed by a "greater than" character (">").  The value content of an element can be arbitrarily complex.'@en;
+    skos:prefLabel 'class of html elements'@en.
 
   shp:Element_fragment
     a sh:PropertyShape;
@@ -1449,7 +1449,7 @@ construct {
     html:tag 'title';
     rdfs:subClassOf html:Element;
     skos:definition 'The Title (<title> element) defines a document its title that is shown in a browser title bar or a page tab. It only contains text; tags within the element are ignored.'@en;
-    skos:prefLabel 'title'@en.
+    skos:prefLabel 'title element'@en.
 
   shp:Base
     a sh:NodeShape;
@@ -2385,7 +2385,7 @@ construct {
   shp:DataRow
     a sh:NodeShape;
     rdfs:comment 'A data row (<tbody><tr> elements) contains zero or more data cells (<td> element).'@en;
-    skos:prefLabel 'data row'@en;
+    skos:prefLabel 'data row shape'@en;
     sh:property shp:DataRow_member;
     sh:targetClass html:DataRow.
 
