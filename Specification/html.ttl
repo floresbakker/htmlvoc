@@ -808,7 +808,7 @@ section:4.8.13
     dct:conformsTo section:3.2;
     rdfs:subClassOf prov:Entity, dom:Element;
     skos:definition 'An element in the DOM represents a thing; that is, it has intrinsic meaning, also known as semantics. An element consists of an HTML start tag and an HTML end tag and has value content. An HTML start tag consists of a ‘smaller than’ character (‘<’) and a tag name, followed by a ‘greater than’ character (‘>’). An HTML end tag consists of a ‘smaller than’ character (‘<’), a slash (‘/’) and a tag name, followed by a ‘greater than’ character (‘>’).  The value content of an element can be arbitrarily complex.'@en;
-    skos:prefLabel 'element'@en.
+    skos:prefLabel 'HTML element'@en.
 
   shp:Element_fragment
     a sh:PropertyShape;
@@ -1105,7 +1105,7 @@ section:4.8.13
     a sh:NodeShape;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
     sh:target target:SerializableElement;
-    skos:prefLabel 'Serializable element shape'@en.
+    skos:prefLabel 'serializable element shape'@en.
 
   target:SerializableElement
     a sh:SPARQLTarget;
@@ -1195,7 +1195,7 @@ construct {
 
   shp:VoidElement
     a sh:NodeShape;
-    skos:prefLabel 'Void element shape'@en;
+    skos:prefLabel 'void element shape'@en;
     sh:rule rule:Serialize_HTML_fragment_Void_Element;
     sh:target target:VoidElement.
 
@@ -1217,7 +1217,7 @@ select $this {
     skos:example
       '<br>'@en,
       '<hr>'@en;
-    skos:prefLabel 'Void element'@en.
+    skos:prefLabel 'void element'@en.
 
   rule:Serialize_HTML_fragment_Void_Element
     a sh:SPARQLRule;
@@ -1260,7 +1260,7 @@ construct {
 
   shp:TextElement
     a sh:NodeShape;
-    skos:prefLabel 'Text element shape'@en;
+    skos:prefLabel 'text element shape'@en;
     # no rule need as the text value of the text element should be encoded as html:fragment from the start
     sh:targetClass html:TextElement.
 
@@ -1271,7 +1271,7 @@ construct {
     skos:example
       'A numeric value that appears in a table cell.'@en,
       'A natural language sentence that appears in a table caption.'@en;
-    skos:prefLabel 'Text element'@en.
+    skos:prefLabel 'text element'@en.
 
 
 # HTML - living standard - 4.1 Document element
@@ -2211,7 +2211,7 @@ construct {
     html:tag 'table';
     rdfs:subClassOf html:Element;
     skos:definition 'A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap.'@en;
-    skos:prefLabel 'table'@en.
+    skos:prefLabel 'table element'@en.
 
   shp:Table_caption
     a sh:PropertyShape;
@@ -2236,7 +2236,7 @@ construct {
     html:tag 'caption';
     rdfs:subClassOf html:Element;
     skos:definition 'The caption element represents the title of the table that is its parent, if it has a parent and that is a table element.'@en;
-    skos:prefLabel 'caption'@en.
+    skos:prefLabel 'caption element'@en.
 
   shp:Table_tbody
     a sh:PropertyShape;
@@ -2291,7 +2291,7 @@ construct {
     html:tag 'tbody';
     rdfs:subClassOf html:Element;
     skos:definition 'The table body (<tbody> element) represents a block of rows that consist of a body of data for the parent table.'@en;
-    skos:prefLabel 'table body'@en.
+    skos:prefLabel 'table body element'@en.
 
   shp:TableBody_member
     a sh:PropertyShape;
@@ -2315,7 +2315,7 @@ construct {
     html:tag 'thead';
     rdfs:subClassOf html:Element;
     skos:definition 'The table header (<thead> element) represents the block of rows that consist of the column labels (headers) for the parent table.'@en;
-    skos:prefLabel 'table header'@en.
+    skos:prefLabel 'table header element'@en.
 
   shp:TableHeader_member
     a sh:PropertyShape;
@@ -2337,7 +2337,7 @@ construct {
     html:tag 'tfoot';
     rdfs:subClassOf html:Element;
     skos:definition 'The table footer (<tfoot> element) represents the block of rows that consist of the column summaries (footers) for the parent table.'@en;
-    skos:prefLabel 'table footer'@en.
+    skos:prefLabel 'table footer element'@en.
 
 
   # Header row element (<thead><tr>)
@@ -2355,7 +2355,7 @@ construct {
     html:tag 'tr';
     rdfs:subClassOf html:Element;
     skos:definition 'The table header row (<tr> element) represents a row of cells in a table header.'@en;
-    skos:prefLabel 'header row'@en.
+    skos:prefLabel 'header row element'@en.
 
   shp:HeaderRow_member
     a sh:PropertyShape;
@@ -2377,7 +2377,7 @@ construct {
     html:tag 'tr';
     owl:unionOf (html:DataRow html:HeaderRow);
     rdfs:subClassOf html:Element;
-    skos:prefLabel 'row'@en.
+    skos:prefLabel 'row element'@en.
 
 
   # Data row element (<tbody><tr>)
@@ -2394,7 +2394,7 @@ construct {
     dct:conformsTo section:4.9.8;
     html:tag 'tr';
     rdfs:subClassOf html:Element;
-    skos:prefLabel 'data row'@en.
+    skos:prefLabel 'data row element'@en.
 
   shp:DataRow_member
     a sh:PropertyShape;
@@ -2425,7 +2425,7 @@ construct {
     html:tag 'td';
     rdfs:subClassOf html:Element;
     skos:definition 'The data cell (<td> element) represents a cell in a table that contains some unspecified form of data.'@en;
-    skos:prefLabel 'data cell'@en.
+    skos:prefLabel 'data cell element'@en.
 
 
   # Header cell element (<th>)
@@ -2433,7 +2433,7 @@ construct {
   shp:HeaderCell
     a sh:NodeShape;
     rdfs:comment 'A header cell (‘<th>’ element) contains flow content, but with no header, footer, sectioning content, or heading content descendants.'@en;
-    skos:prefLabel 'header cell'@en;
+    skos:prefLabel 'header cell shape'@en;
     sh:targetClass html:HeaderCell.
 
   html:HeaderCell
@@ -2442,13 +2442,13 @@ construct {
     html:tag 'th';
     rdfs:subClassOf html:Element;
     skos:definition 'The ‘th’ element represents a header cell in a table.'@en;
-    skos:prefLabel 'header cell'@en.
+    skos:prefLabel 'header cell element'@en.
 
   # Cell element (<td>)
 
   shp:Cell
     a sh:NodeShape;
-    skos:prefLabel 'cell'@en;
+    skos:prefLabel 'cell shape'@en;
     sh:property
       shp:Cell_colspan,
       shp:Cell_rowspan;
@@ -2458,7 +2458,7 @@ construct {
     a owl:Class;
     owl:unionOf (html:DataCell html:HeaderCell);
     rdfs:subClassOf html:Element;
-    skos:prefLabel 'cell'@en.
+    skos:prefLabel 'cell element'@en.
 
   shp:Cell_colspan
     a sh:PropertyShape;
