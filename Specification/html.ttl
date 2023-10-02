@@ -36,10 +36,8 @@ prefix target: <https://data.rijksfinancien.nl/html/model/target/>
       'Simon Werner',
       'Thomas de Groot',
       'Wouter Beek';
-    dct:description '''<section lang='en'>
-  <p><b>HTML vocabulary</b></p>
-  <p>This vocabulary describes the fundamental aspects of the HTML-language. It is based on the HTML Living Standard.</p>
-</section>'''^^rdf:HTML;
+    dct:description '''This RDF-based vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. This offers a myriad of possibilities. First, an HTML document can now be generated from its RDF-based representation, leveraging full control of each aspect of the HTML document. Second, the vocabulary can be used to parse an HTML document and express its content in RDF, so that any aspect can be described, reused or validated. This RDF-based vocabulary bridges the gap between HTML and semantic technologies, fostering richer web content management and integration.'''@en;
+	dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en;  
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
     dct:publisher <https://rijksfinancien.nl>;
