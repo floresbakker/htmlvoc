@@ -38,43 +38,20 @@ prefix target: <https://data.rijksfinancien.nl/html/model/target/>
       'Thomas de Groot',
       'Wouter Beek';
     respec:introduction '''
-This technical specification document outlines the RDF-based semantic HTML Vocabulary, a groundbreaking standard that paves the way for seamless integration of HTML and Semantic Web technologies. This vocabulary sets the stage for a new era in web content management and representation, bridging the gap between traditional HTML documents and the rich possibilities offered by semantic technologies. Built upon the foundation of the Living Standard of HTML, this vocabulary offers a comprehensive solution that empowers developers and content creators with precise control over every aspect of an HTML document. It achieves this through a set of well-defined classes for representing HTML elements, datatype properties for encoding HTML attributes, and a concise collection of SHACL shapes for the serialization of HTML code.  
+In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
 
-## Key Features and Benefits
+So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
 
-The RDF-based HTML Vocabulary opens up a myriad of possibilities for web development and content management:  
-
-1. **HTML Document Generation:** With this vocabulary, it becomes possible to generate an HTML document directly from its RDF-based representation. This groundbreaking feature grants developers full control over each component of the resulting HTML document, allowing for tailored and customized content presentation.  
-
-2. **HTML Document Parsing and Enrichment:** Beyond document generation, this vocabulary can be employed to parse existing HTML documents and express their content in RDF. This means that any aspect of an HTML document can be precisely described, easily reused, or rigorously validated within the semantic web ecosystem.  
-
-3. **Bridging HTML and Semantic Technologies:** By seamlessly integrating HTML and RDF, this vocabulary harmonizes two distinct worlds of web technology. This synergy fosters richer content management, enabling applications to tap into the full potential of semantic web capabilities.  
-
-## Audience
-
-This document is intended for a diverse audience of web developers, semantic web enthusiasts, content managers, and anyone seeking to leverage the power of RDF to enhance HTML-based web content.  
-
-## Document Structure  
-
-The technical specification document is organized into sections that provide comprehensive details on the RDF-based HTML Vocabulary, including its classes, properties, and SHACL shapes. Additionally, it offers practical guidance on implementation, examples, and best practices for utilizing this vocabulary effectively.  
-
-## Conformance and Compliance  
-
-To ensure interoperability and consistency, the document defines conformance requirements and guidelines for those implementing the RDF-based HTML Vocabulary.  
-
-## Acknowledgments  
-
-This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.  
-
-## Next Steps  
-
-The subsequent sections of this document delve into the specifics of the RDF-based HTML Vocabulary, providing a comprehensive reference for its usage, implementation, and integration with web applications.  
-
-'''@en;
-    dct:description '''This RDF-based vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. This offers a myriad of possibilities. First, an HTML document can now be generated from its RDF-based representation, leveraging full control of each aspect of the HTML document. Second, the vocabulary can be used to parse an HTML document and express its content in RDF, so that any aspect can be described, reused or validated. This RDF-based vocabulary bridges the gap between HTML and semantic technologies, fostering richer web content management and integration.'''@en;
+To address this need, we have pioneered the development of the RDF-based Semantic HTML Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
+   respec:background '''In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'''@en;
+   respec:ontologyIntroduction '''In response to these challenges, we introduce the RDF-based Semantic HTML Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
+    respec:audience '''This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'''@en;
+    respec:acknowledgements '''This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'''@en;
+    dct:description '''This RDF-based vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code.'''@en;
     dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en; 
-    skos:example """Here is an example of an 'Hello world' HTML-document:
-	
+    skos:example """
+
+```
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -91,8 +68,10 @@ The subsequent sections of this document delve into the specifics of the RDF-bas
 	</body>
 	</html>
 	
+```
 This can be rendered in RDF using the HTML vocabulary as follows:
 	
+```
 	@prefix doc: <http://www.example.org/document/> .
 	@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
 	@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -131,7 +110,8 @@ This can be rendered in RDF using the HTML vocabulary as follows:
 	doc:1.93.1 a html:TextElement ;
 		html:fragment " .italic-text {font-style: italic;}" .
 	
-			""";
+```
+""";
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
     dct:publisher <https://rijksfinancien.nl>;
