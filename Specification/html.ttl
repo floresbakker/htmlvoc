@@ -51,7 +51,6 @@ To address this need, we have pioneered the development of the RDF-based Semanti
     dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en; 
     skos:example """
 
-```
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -68,10 +67,8 @@ To address this need, we have pioneered the development of the RDF-based Semanti
 	</body>
 	</html>
 	
-```
 This can be rendered in RDF using the HTML vocabulary as follows:
 	
-```
 	@prefix doc: <http://www.example.org/document/> .
 	@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
 	@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -110,7 +107,6 @@ This can be rendered in RDF using the HTML vocabulary as follows:
 	doc:1.93.1 a html:TextElement ;
 		html:fragment " .italic-text {font-style: italic;}" .
 	
-```
 """;
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
