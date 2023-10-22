@@ -7,10 +7,7 @@ Created on Wed Sep 14 19:42:53 2023
 The HTML generator offers a simple way of serialising a RDF-model of an HTML-document into an actual HTML-file with HTML-code. 
 Just place your own RDF-model (in turtle format) in the input directory.
 
-Attention: due to a bug in html5parser, which is indirectly used by RDflib, the log in the console will show parse errors indicating some 'unexpected tag' message.
-This can be safely ignored as this does not have effect on the results. Attempts are made to have this resolved in the html5parser library.
-
-Also make note of the following; whenever a custom made html attribute is used (for example 'html:myOwnAttribute' or something), the serialisation will skip the element to which the attribute belongs, unless this attribute is explicitly defined as being rdfs:subPropertyOf html:attribute. 
+Attention: whenever a custom made html attribute is used (for example 'html:myOwnAttribute' or something), the serialisation will skip the element to which the attribute belongs, unless this attribute is explicitly defined as being rdfs:subPropertyOf html:attribute. 
 Only then the SHACL engine can work with this attribute. This rdfs:subPropertyOf relation defining the custom attribute as a subproperty of html:attribute should be added as part of the vocabulary. In the future this will be supported better by this script, for instance with a separate turtle file containg any additionally created custom attributes.
 
 
@@ -66,7 +63,7 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
 
         ''')   
 
-        # Check whether another iteration is needed. If the root has a html:fragment then the serialisation is done.
+        # Check whether another iteration is needed. If the html root of the document contains a html:fragment statement then the serialisation is considered done.
         for result in resultquery:
             if result == False:
                 writeGraph(serializable_graph)
@@ -97,7 +94,7 @@ for filename in os.listdir(directory_path+"htmlvoc/Tools/RDF2HTML/Input"):
         serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="ttl")
 
         # Inform user
-        print ("Serialising document '" + filename + "' to a knowledge graph...")
+        print ("Serialising the html as contained in document '" + filename + "'...")
 
         # Call the shacl engine with the HTML vocabulary and the document to be serialized
         iteratePyShacl(html_vocabulary, serializable_graph)
