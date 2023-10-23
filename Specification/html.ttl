@@ -43,7 +43,7 @@ So, how can organizations effectively navigate this information-intensive terrai
 
 To address this need, we have pioneered the development of the RDF-based Semantic HTML Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
    respec:background '''In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'''@en;
-   respec:ontologyIntroduction '''In response to these challenges, we introduce the RDF-based semantic HTML Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
+   respec:objective '''In response to these challenges, we introduce the RDF-based semantic HTML Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
     respec:audience '''This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'''@en;
     respec:acknowledgements '''This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'''@en;
     dct:description '''The HTML vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of DOM:element, the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:TextElement', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:TextElement ; html:fragment "Hello world".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
@@ -887,27 +887,12 @@ section:4.8.13
     sh:datatype rdf:HTML;
     sh:path html:fragment.
 
-  html:fragment
-    a owl:DatatypeProperty;
-    rdfs:domain html:Element;
-    rdfs:range rdf:HTML;
-    skos:definition 'Property that links the html fragment that is represented by an element within a HTML-document to that element.'@en;
-    skos:prefLabel 'has fragment'@en.
-
   shp:Element_attribute
     a sh:PropertyShape;
     rdfs:comment 'Every element can have one or more attributes.'@en;
     skos:prefLabel 'has attribute shape'@en;
     sh:nodeKind sh:Literal;
     sh:path html:attribute.
-
-  html:attribute
-    a owl:DatatypeProperty;
-    dct:conformsTo section:13.1.2.3;
-    rdfs:domain html:Element;
-    rdfs:range rdfs:Literal;
-    skos:definition "Property that is the parent property of all existing HTML attributes. An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string."@en;
-    skos:prefLabel 'has attribute'@en.
 
   shp:Element_style
     a sh:PropertyShape;
@@ -917,262 +902,7 @@ section:4.8.13
     sh:maxCount 1;
     sh:path html:style.
 
-  html:style
-    a owl:DatatypeProperty;
-    html:key 'style';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has style attribute'@en;
-    skos:definition 'Property that permits the author to directly apply style information to a specific html element. All HTML elements may have the style content attribute set. This is a style attribute as defined by CSS Style Attributes.'@en.
-
-  html:title
-    a owl:DatatypeProperty;
-    html:key 'title';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has title attribute'@en;
-    skos:definition 'Property that represents advisory information for the element, such as would be appropriate for a tooltip. On a link, this could be the title or a description of the target resource; on an image, it could be the image credit or a description of the image; on a paragraph, it could be a footnote or commentary on the text; on a citation, it could be further information about the source; on interactive content, it could be a label for, or instructions for, use of the element; and so forth. The value is text.'@en.
-
-  html:dir
-    a owl:DatatypeProperty;
-    html:key 'dir';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has dir attribute'@en;
-    skos:definition """The dir attribute specifies the element's text directionality. The attribute is an enumerated attribute with the following keywords and states: (1) ltr: The contents of the element are explicitly directionally isolated left-to-right text. (2) rtl: The contents of the element are explicitly directionally isolated right-to-left text. (3) auto: The contents of the element are explicitly directionally isolated text, but the direction is to be determined programmatically using the contents of the element (as described below)."""@en.
-
-  html:accesskey
-    a owl:DatatypeProperty;
-    html:key 'accesskey';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has accesskey attribute'@en.
-
-  html:autocapitalize
-    a owl:DatatypeProperty;
-    html:key 'autocapitalize';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has autocapitalize attribute'@en.
-
-  html:autofocus
-    a owl:DatatypeProperty;
-    html:key 'autofocus';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has autofocus attribute'@en.
-
-  html:contenteditable
-    a owl:DatatypeProperty;
-    html:key 'contenteditable';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has contenteditable attribute'@en.
-
-  html:draggable
-    a owl:DatatypeProperty;
-    html:key 'draggable';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has draggable attribute'@en.	
-
-  html:enterkeyhint
-    a owl:DatatypeProperty;
-    html:key 'enterkeyhint';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has enterkeyhint attribute'@en.	
-
-  html:hidden
-    a owl:DatatypeProperty;
-    html:key 'hidden';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has hidden attribute'@en.	
-
-  html:inert
-    a owl:DatatypeProperty;
-    html:key 'inert';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has inert attribute'@en.	
-
-  html:inputmode
-    a owl:DatatypeProperty;
-    html:key 'inputmode';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has inputmode attribute'@en.	
-
-  html:is
-    a owl:DatatypeProperty;
-    html:key 'is';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has is attribute'@en.	
-
-  html:itemid
-    a owl:DatatypeProperty;
-    html:key 'itemid';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has itemid attribute'@en.	
-
-  html:itemprop
-    a owl:DatatypeProperty;
-    html:key 'itemprop';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has itemprop attribute'@en.	
-
-  html:itemref
-    a owl:DatatypeProperty;
-    html:key 'itemref';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has itemref attribute'@en.	
-
-  html:itemscope
-    a owl:DatatypeProperty;
-    html:key 'itemscope';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has itemscope attribute'@en.	
-
-  html:itemtype
-    a owl:DatatypeProperty;
-    html:key 'itemtype';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has itemtype attribute'@en.	
-
-  html:nonce
-    a owl:DatatypeProperty;
-    html:key 'nonce';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has nonce attribute'@en.	
-
-  html:popover
-    a owl:DatatypeProperty;
-    html:key 'popover';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has popover attribute'@en.	
-
-  html:spellcheck
-    a owl:DatatypeProperty;
-    html:key 'spellcheck';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has spellcheck attribute'@en.	
-
-  html:tabindex
-    a owl:DatatypeProperty;
-    html:key 'tabindex';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has tabindex attribute'@en.	
-
-  html:translate
-    a owl:DatatypeProperty;
-    html:key 'translate';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has translate attribute'@en.	
-
-  html:lang
-    a owl:DatatypeProperty;
-    html:key 'lang';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has lang attribute'@en.
-
-  html:resource
-    a owl:DatatypeProperty;
-    html:key 'resource';
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'resource'@en.
-
-  html:class
-    a owl:DatatypeProperty;
-    html:key 'class';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has class'@en.
-
-  html:action
-    a owl:DatatypeProperty;
-    html:key 'action';
-    rdfs:domain html:Form;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'form submission URL'@en.
-
-  html:for
-    a owl:DatatypeProperty;
-    html:key 'for';
-    rdfs:domain html:Label;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'for'@en.
-
-  html:href
-    a owl:DatatypeProperty;
-    html:key 'href';
-    rdfs:domain html:A;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'hyperlink reference'@en.
-  
-  html:rel
-    a owl:DatatypeProperty;
-    html:key 'rel';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:A html:Link)
-    ] ;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'rel attribute'@en.
-    
-  html:media
-    a owl:DatatypeProperty;
-    html:key 'media';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:A html:Area html:Link html:Source html:StyleSheet)
-    ] ;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'media attribute'@en.
+ 
     
   shp:SerializableElement
     a sh:NodeShape;
@@ -1569,70 +1299,7 @@ construct {
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en;
     skos:prefLabel 'the meta element'@en.
 
-  html:http-equiv
-    a owl:DatatypeProperty;
-    html:key 'http-equiv';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Meta;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has http-equiv'@en.
-
-  html:content
-    a owl:DatatypeProperty;
-    html:key 'content';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Meta;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has content'@en.
-
-  html:charset
-    a owl:DatatypeProperty;
-    html:key 'charset';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Meta;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has charset'@en.
-
-  html:id
-    a owl:DatatypeProperty;
-    html:key 'id';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has id'@en.
-
-  html:src
-    a owl:DatatypeProperty;
-    html:key 'src';
-    rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Audio html:Embed html:Iframe html:Img html:Input html:Script html:Source html:Track html:Video)
-    ] ;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has src'@en.
-	
- html:alt
-    a owl:DatatypeProperty;
-    html:key 'alt';
-    rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Area html:Img html:Input)
-    ] ;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has alt'@en.
-	
- html:width
-    a owl:DatatypeProperty;
-    html:key 'width';
-    rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Video)
-    ] ;
-    rdfs:range xsd:string;
-    skos:prefLabel 'has width'@en.	
+  
 
   # Style sheet element (<style>)
 
@@ -2433,15 +2100,6 @@ construct {
     sh:class html:DataCell;
     sh:path rdfs:member.
 
-  html:rowspan
-    a owl:DatatypeProperty;
-    html:key 'rowspan';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Cell;
-    rdfs:range xsd:nonNegativeInteger;
-    skos:prefLabel 'has rowspan'@en.
-
-
   # Data cell element (<td>)
 
   shp:DataCell
@@ -2499,14 +2157,6 @@ construct {
     sh:maxCount 1;
     sh:path html:colspan.
 
-  html:colspan
-    a owl:DatatypeProperty;
-    html:key 'colspan';
-    rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Cell;
-    rdfs:range xsd:nonNegativeInteger;
-    skos:prefLabel 'has colspan'@en.
-
   shp:Cell_rowspan
     a sh:PropertyShape;
     rdfs:comment 'Every cell can have at most one rowspan.'@en;
@@ -2540,38 +2190,6 @@ construct {
     rdfs:subClassOf html:VoidElement;
     skos:definition 'The <input> HTML element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent. The <input> element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes.'@en;
     skos:prefLabel 'the input element'@en.
-
-  html:name
-    a owl:DatatypeProperty;
-    html:key 'name';
-    rdfs:domain html:Input;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'name'@en.
-
-  html:placeholder
-    a owl:DatatypeProperty;
-    html:key 'placeholder';
-    rdfs:domain html:Input;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'placeholder'@en.
-
-  html:required
-    a owl:DatatypeProperty;
-    html:key 'required';
-    rdfs:domain html:Input;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'required'@en.
-
-  html:type
-    a owl:DatatypeProperty;
-    html:key 'type';
-    rdfs:domain html:Input;
-    rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
-    skos:prefLabel 'type'@en.
 
   html:Button
     a owl:Class;
@@ -2715,18 +2333,6 @@ construct {
     skos:definition 'The <template> HTML element is a mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.'@en;
     skos:prefLabel 'the template element'@en.
 
-  html:template
-    a owl:DatatypeProperty;
-    dct:conformsTo section:4.12.3;
-    rdfs:domain html:Template;
-    rdfs:range rdfs:Literal;
-    skos:definition 'Property that links a literal to a template element to declare fragments of HTML that can be inserted into HTML documents.'@en;
-    skos:prefLabel 'has template'@en;
-    skos:scopeNote
-      'An HTML template contains at least one {{variable}}.'@en,
-      'In a rendering, the template element represents nothing.'@en,
-      'The template contents of a template element are not children of the element itself.'@en.
-
   html:Slot
     a owl:Class;
     dct:conformsTo section:4.12.4;
@@ -2743,18 +2349,30 @@ construct {
     skos:definition 'Use the HTML <canvas> element with either the canvas scripting API or the WebGL API to draw graphics and animations.'@en;
     skos:prefLabel 'the canvas element'@en.
 
+  # HTML class-level properties
 
-  # HTML - living standard - 13.1 Writing HTML documents
+  html:attribute
+    a owl:DatatypeProperty;
+    dct:conformsTo section:13.1.2.3;
+    rdfs:domain html:Element;
+    rdfs:range rdfs:Literal;
+    skos:definition "Property that is the parent property of all existing HTML attributes. An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string."@en;
+    skos:prefLabel 'has attribute property'@en.
 
-  # Class-level properties.
-
+  html:fragment
+    a owl:DatatypeProperty;
+    rdfs:domain html:Element;
+    rdfs:range rdf:HTML;
+    skos:definition 'Property that links the html fragment that is represented by an element within a HTML-document to that element.'@en;
+    skos:prefLabel 'fragment property'@en.
+	
   html:key
     a owl:DatatypeProperty;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain owl:DatatypeProperty;
     rdfs:range xsd:string;
     skos:definition 'Property that links the key name of a specific HTML attribute to that HTML attribute.'@en;
-    skos:prefLabel 'has key name'@en.
+    skos:prefLabel 'key property'@en.
 
   html:tag
     a owl:DatatypeProperty;
@@ -2764,5 +2382,1183 @@ construct {
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition 'Property that links the tag name of a specific HTML element to that element.'@en;
-    skos:prefLabel 'has tag name'@en.
+    skos:prefLabel 'tag property'@en.
 
+  html:template
+    a owl:DatatypeProperty;
+    dct:conformsTo section:4.12.3;
+    rdfs:domain html:Template;
+    rdfs:range rdfs:Literal;
+    skos:definition 'Property that links a literal to a template element to declare fragments of HTML that can be inserted into HTML documents.'@en;
+    skos:prefLabel 'template property'@en;
+    skos:scopeNote
+      'An HTML template contains at least one {{variable}}.'@en,
+      'In a rendering, the template element represents nothing.'@en,
+      'The template contents of a template element are not children of the element itself.'@en.
+
+ # HTML attributes
+
+  html:abbr
+    a owl:DatatypeProperty;
+    html:key 'abbr';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Th;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the abbr attribute'@en.
+	
+  html:accept
+    a owl:DatatypeProperty;
+    html:key 'accept';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the accept attribute'@en.
+	
+  html:accept-charset
+    a owl:DatatypeProperty;
+    html:key 'accept-charset';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Form;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the accept-charset attribute'@en.
+
+  html:accesskey
+    a owl:DatatypeProperty;
+    html:key 'accesskey';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the accesskey attribute'@en.
+
+  html:action
+    a owl:DatatypeProperty;
+    html:key 'action';
+    rdfs:domain html:Form;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the action attribute'@en.
+
+ html:allow
+    a owl:DatatypeProperty;
+    html:key 'allow';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Iframe;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the allow attribute'@en.
+
+ html:allowfullscreen
+    a owl:DatatypeProperty;
+    html:key 'allowfullscreen';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Iframe;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the allowfullscreen attribute'@en.
+
+ html:alt
+    a owl:DatatypeProperty;
+    html:key 'alt';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Area html:Img html:Input)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the alt attribute'@en.
+
+  html:as
+    a owl:DatatypeProperty;
+    html:key 'as';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Link ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the as attribute'@en.
+
+  html:async
+    a owl:DatatypeProperty;
+    html:key 'async';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Script ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the async attribute'@en.
+	
+  html:autocapitalize
+    a owl:DatatypeProperty;
+    html:key 'autocapitalize';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the autocapitalize attribute'@en.
+
+  html:autocomplete
+    a owl:DatatypeProperty;
+    html:key 'autocomplete';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Form html:Input html:Select html:Textarea)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the autocomplete attribute'@en.
+
+  html:autofocus
+    a owl:DatatypeProperty;
+    html:key 'autofocus';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the autofocus attribute'@en.
+
+html:autoplay
+    a owl:DatatypeProperty;
+    html:key 'autoplay';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Audio html:Video)
+				 ];
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the autoplay attribute'@en.
+
+html:blocking
+    a owl:DatatypeProperty;
+    html:key 'blocking';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Link html:Script html:Style)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the blocking attribute'@en.
+
+  html:charset
+    a owl:DatatypeProperty;
+    html:key 'charset';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meta;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the charset attribute'@en.
+  
+  html:checked
+    a owl:DatatypeProperty;
+    html:key 'checked';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Input;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the checked attribute'@en.
+	
+  html:cite
+    a owl:DatatypeProperty;
+    html:key 'cite';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Blockquote html:Del html:Ins html:Q)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the cite attribute'@en.
+
+  html:class
+    a owl:DatatypeProperty;
+    html:key 'class';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the class attribute'@en.
+
+  html:color
+    a owl:DatatypeProperty;
+    html:key 'color';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Link;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the color attribute'@en.
+
+  html:cols
+    a owl:DatatypeProperty;
+    html:key 'cols';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Link;
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the color attribute'@en.
+
+  html:colspan
+    a owl:DatatypeProperty;
+    html:key 'colspan';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Cell;
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the colspan attribute'@en.
+
+ html:content
+    a owl:DatatypeProperty;
+    html:key 'content';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meta;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the content attribute'@en.
+
+  html:contenteditable
+    a owl:DatatypeProperty;
+    html:key 'contenteditable';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the contenteditable attribute'@en.
+
+  html:controls
+    a owl:DatatypeProperty;
+    html:key 'controls';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the controls attribute'@en.
+
+ html:coords
+    a owl:DatatypeProperty;
+    html:key 'coords';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Area;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the coords attribute'@en.
+
+ html:crossorigin
+    a owl:DatatypeProperty;
+    html:key 'crossorigin';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Audio html:Img html:Link html:Script html:Video)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the crossorigin attribute'@en.
+
+ html:data
+    a owl:DatatypeProperty;
+    html:key 'data';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the data attribute'@en.
+
+ html:datetime
+    a owl:DatatypeProperty;
+    html:key 'datetime';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Del html:Ins html:Time)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the datetime attribute'@en.
+
+ html:decoding
+    a owl:DatatypeProperty;
+    html:key 'decoding';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Img;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the decoding attribute'@en.
+
+ html:default
+    a owl:DatatypeProperty;
+    html:key 'default';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Track;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the default attribute'@en.
+
+html:defer
+    a owl:DatatypeProperty;
+    html:key 'defer';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Script;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the defer attribute'@en.
+		
+ html:dir
+    a owl:DatatypeProperty;
+    html:key 'dir';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the dir attribute'@en;
+    skos:definition """The dir attribute specifies the element's text directionality. The attribute is an enumerated attribute with the following keywords and states: (1) ltr: The contents of the element are explicitly directionally isolated left-to-right text. (2) rtl: The contents of the element are explicitly directionally isolated right-to-left text. (3) auto: The contents of the element are explicitly directionally isolated text, but the direction is to be determined programmatically using the contents of the element (as described below)."""@en.
+
+ html:dirname
+    a owl:DatatypeProperty;
+    html:key 'dirname';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Input html:Textarea)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the dirname attribute'@en.
+
+ html:disabled
+    a owl:DatatypeProperty;
+    html:key 'disabled';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input html:Optgroup html:Option html:Select html:Textarea html:Fieldset html:Link)
+				 ];
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the disabled attribute'@en.
+
+  html:download
+    a owl:DatatypeProperty;
+    html:key 'download';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	               owl:unionOf (html:A html:Area)
+				   ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the download attribute'@en.	
+	
+  html:draggable
+    a owl:DatatypeProperty;
+    html:key 'draggable';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the draggable attribute'@en.	
+
+  html:enctype
+    a owl:DatatypeProperty;
+    html:key 'enctype';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Form;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the enctype attribute'@en.
+	
+  html:enterkeyhint
+    a owl:DatatypeProperty;
+    html:key 'enterkeyhint';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the enterkeyhint attribute'@en.	
+
+  html:fetchpriority
+    a owl:DatatypeProperty;
+    html:key 'fetchpriority';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Img html:Link html:Script)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the fetchpriority attribute'@en.
+	
+  html:for
+    a owl:DatatypeProperty;
+    html:key 'for';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Label html:Output)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the for attribute'@en.
+
+  html:form
+    a owl:DatatypeProperty;
+    html:key 'form';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Fieldset html:Input html:Object html:Output html:Select html:Textarea)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the form attribute'@en.
+  
+  html:formaction
+    a owl:DatatypeProperty;
+    html:key 'formaction';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the formaction attribute'@en.
+
+ html:formenctype
+    a owl:DatatypeProperty;
+    html:key 'formenctype';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the formenctype attribute'@en.	
+  
+ html:formmethod
+    a owl:DatatypeProperty;
+    html:key 'formmethod';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the formmethod attribute'@en. 
+
+ html:formnovalidate
+    a owl:DatatypeProperty;
+    html:key 'formnovalidate';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input)
+				 ];
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the formnovalidate attribute'@en. 
+
+ html:formtarget
+    a owl:DatatypeProperty;
+    html:key 'formtarget';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Input)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the formtarget attribute'@en. 
+  
+  html:headers
+    a owl:DatatypeProperty;
+    html:key 'headers';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Td html:Th)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the headers attribute'@en.	
+  
+  html:height
+    a owl:DatatypeProperty;
+    html:key 'height';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Source html:Video)
+				 ];
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the height attribute'@en.	
+	
+  html:hidden
+    a owl:DatatypeProperty;
+    html:key 'hidden';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the hidden attribute'@en.	
+
+  html:high
+    a owl:DatatypeProperty;
+    html:key 'high';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meter;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the high attribute'@en.	
+
+  html:href
+    a owl:DatatypeProperty;
+    html:key 'href';
+    rdfs:domain [
+	    rdf:type owl:Class;
+		owl:unionOf (html:A html:Area html:Link html:Base)
+		];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the href attribute'@en.
+
+  html:hreflang
+    a owl:DatatypeProperty;
+    html:key 'hreflang';
+    rdfs:domain [
+	    rdf:type owl:Class;
+		owl:unionOf (html:A html:Link)
+		];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the hreflang attribute'@en.
+
+  html:http-equiv
+    a owl:DatatypeProperty;
+    html:key 'http-equiv';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meta;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the http-equiv attribute'@en.
+
+  html:id
+    a owl:DatatypeProperty;
+    html:key 'id';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the id attribute'@en.
+
+  html:imagesizes
+    a owl:DatatypeProperty;
+    html:key 'imagesizes';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Link;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the imagesizes attribute'@en.
+
+  html:imagesrcset
+    a owl:DatatypeProperty;
+    html:key 'imagesrcset';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Link;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the imagesrcset attribute'@en.
+	
+  html:inert
+    a owl:DatatypeProperty;
+    html:key 'inert';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the inert attribute'@en.	
+
+  html:inputmode
+    a owl:DatatypeProperty;
+    html:key 'inputmode';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the inputmode attribute'@en.	
+
+  html:integrity
+    a owl:DatatypeProperty;
+    html:key 'integrity';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Link html:Script)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the integrity attribute'@en.	
+
+  html:is
+    a owl:DatatypeProperty;
+    html:key 'is';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the is attribute'@en.	
+
+  html:ismap
+    a owl:DatatypeProperty;
+    html:key 'ismap';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Img;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the ismap attribute'@en.	
+	
+  html:itemid
+    a owl:DatatypeProperty;
+    html:key 'itemid';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the itemid attribute'@en.	
+
+  html:itemprop
+    a owl:DatatypeProperty;
+    html:key 'itemprop';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the itemprop attribute'@en.	
+
+  html:itemref
+    a owl:DatatypeProperty;
+    html:key 'itemref';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the itemref attribute'@en.	
+
+  html:itemscope
+    a owl:DatatypeProperty;
+    html:key 'itemscope';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the itemscope attribute'@en.	
+
+  html:itemtype
+    a owl:DatatypeProperty;
+    html:key 'itemtype';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the itemtype attribute'@en.	
+
+  html:kind
+    a owl:DatatypeProperty;
+    html:key 'kind';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Track;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the kind attribute'@en.
+	
+  html:label
+    a owl:DatatypeProperty;
+    html:key 'label';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Optgroup html:Option html:Track)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the label attribute'@en.	
+	
+  html:lang
+    a owl:DatatypeProperty;
+    html:key 'lang';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the lang attribute'@en.
+
+  html:list
+    a owl:DatatypeProperty;
+    html:key 'list';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the list attribute'@en.
+
+  html:loading
+    a owl:DatatypeProperty;
+    html:key 'loading';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Iframe html:Img)
+				 ];
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the loading attribute'@en.
+
+  html:loop
+    a owl:DatatypeProperty;
+    html:key 'loop';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Audio html:Video)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the loop attribute'@en.
+
+  html:low
+    a owl:DatatypeProperty;
+    html:key 'low';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meter;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the low attribute'@en.
+
+  html:max
+    a owl:DatatypeProperty;
+    html:key 'max';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Meter html:Progress)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the max attribute'@en.
+
+  html:maxlength
+    a owl:DatatypeProperty;
+    html:key 'maxlength';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Textarea)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the maxlength attribute'@en.
+
+  html:media
+    a owl:DatatypeProperty;
+    html:key 'media';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:A html:Area html:Link html:Source html:StyleSheet)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the media attribute'@en.
+	
+  html:method
+    a owl:DatatypeProperty;
+    html:key 'method';
+    rdfs:domain html:Form;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the method attribute'@en.
+
+  html:min
+    a owl:DatatypeProperty;
+    html:key 'min';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Meter)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the min attribute'@en.
+
+  html:minlength
+    a owl:DatatypeProperty;
+    html:key 'minlength';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Textarea)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the minlength attribute'@en.
+
+  html:multiple
+    a owl:DatatypeProperty;
+    html:key 'multiple';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Select)
+    ] ;
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the multiple attribute'@en.
+
+  html:muted
+    a owl:DatatypeProperty;
+    html:key 'muted';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Audio html:Video)
+    ] ;
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the muted attribute'@en.
+	
+  html:name
+    a owl:DatatypeProperty;
+    html:key 'name';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Button html:Fieldset html:Input html:Object html:Output html:Select html:Textarea html:Details html:Form html:Iframe html:Object html:Map html:Meta html:Slot)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the name attribute'@en.
+
+  html:nomodule
+    a owl:DatatypeProperty;
+    html:key 'nomodule';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Script;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the nomodule attribute'@en.	
+
+  html:nonce
+    a owl:DatatypeProperty;
+    html:key 'nonce';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the nonce attribute'@en.	
+
+  html:novalidate
+    a owl:DatatypeProperty;
+    html:key 'novalidate';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Form;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the novalidate attribute'@en.	
+
+  html:open
+    a owl:DatatypeProperty;
+    html:key 'open';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Details html:Dialog)
+				 ];
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the open attribute'@en.	
+
+  html:optimum
+    a owl:DatatypeProperty;
+    html:key 'optimum';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Meter;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the optimum attribute'@en.	
+	
+  html:pattern
+    a owl:DatatypeProperty;
+    html:key 'pattern';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the pattern attribute'@en.	
+
+  html:ping
+    a owl:DatatypeProperty;
+    html:key 'ping';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	            owl:unionOf (html:A html:Area)
+				];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the ping attribute'@en.	
+
+  html:placeholder
+    a owl:DatatypeProperty;
+    html:key 'placeholder';
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Input html:Textarea)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the placeholder attribute'@en.
+
+  html:playsinline
+    a owl:DatatypeProperty;
+    html:key 'playsinline';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Video;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the playsinline attribute'@en.	
+
+  html:popover
+    a owl:DatatypeProperty;
+    html:key 'popover';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the popover attribute'@en.	
+
+  html:popovertarget
+    a owl:DatatypeProperty;
+    html:key 'popovertarget';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Input html:Button)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the popovertarget attribute'@en.	
+	
+  html:popovertargetaction
+    a owl:DatatypeProperty;
+    html:key 'popovertargetaction';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain  [a owl:Class;
+	             owl:unionOf (html:Input html:Button)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the popovertargetaction attribute'@en.	
+	
+  html:poster
+    a owl:DatatypeProperty;
+    html:key 'poster';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Video;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the poster attribute'@en.	
+	
+  html:preload
+    a owl:DatatypeProperty;
+    html:key 'preload';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	             owl:unionOf (html:Audio html:Video)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the preload attribute'@en.	
+
+  html:readonly
+    a owl:DatatypeProperty;
+    html:key 'readonly';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Textarea)
+    ] ;
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the readonly attribute'@en.
+
+  html:referrerpolicy
+    a owl:DatatypeProperty;
+    html:key 'referrerpolicy';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:A html:Link html:Area html:Iframe html:Img html:Script)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the referrerpolicy attribute'@en.
+	
+  html:rel
+    a owl:DatatypeProperty;
+    html:key 'rel';
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:A html:Link html:Area)
+    ] ;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the rel attribute'@en.
+
+  html:required
+    a owl:DatatypeProperty;
+    html:key 'required';
+    rdfs:domain  [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Input html:Select html:Textarea)
+    ] ;
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the required attribute'@en.
+
+  html:resource
+    a owl:DatatypeProperty;
+    html:key 'resource';
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the resource attribute'@en.
+
+  html:reversed
+    a owl:DatatypeProperty;
+    html:key 'reversed';
+    rdfs:domain html:Ol;
+    rdfs:range xsd:boolean;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the reversed attribute'@en.
+
+  html:rows
+    a owl:DatatypeProperty;
+    html:key 'rows';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Textarea;
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the rows attribute'@en.
+	
+  html:rowspan
+    a owl:DatatypeProperty;
+    html:key 'rowspan';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Cell;
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the rowspan attribute'@en.
+	
+  html:sandbox
+    a owl:DatatypeProperty;
+    html:key 'sandbox';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Iframe;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the sandbox attribute'@en.
+
+  html:scope
+    a owl:DatatypeProperty;
+    html:key 'scope';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Th;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the scope attribute'@en.	
+
+  html:selected
+    a owl:DatatypeProperty;
+    html:key 'selected';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Option;
+    rdfs:range xsd:boolean;
+    skos:prefLabel 'the selected attribute'@en.	
+
+  html:shape
+    a owl:DatatypeProperty;
+    html:key 'shape';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Area;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the shape attribute'@en.	
+
+  html:size
+    a owl:DatatypeProperty;
+    html:key 'size';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	            owl:unionOf (html:Input html:Select)
+				];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the size attribute'@en.	
+
+  html:sizes
+    a owl:DatatypeProperty;
+    html:key 'sizes';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+	            owl:unionOf (html:Link html:Img html:Source)
+				];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the sizes attribute'@en.	
+
+  html:slot
+    a owl:DatatypeProperty;
+    html:key 'slot';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the slot attribute'@en.	
+
+  html:span
+    a owl:DatatypeProperty;
+    html:key 'span';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain [a owl:Class;
+                 owl:unionOf (html:Col html:Colgroup)
+				 ];
+    rdfs:range xsd:string;
+    skos:prefLabel 'the span attribute'@en.	
+
+  html:spellcheck
+    a owl:DatatypeProperty;
+    html:key 'spellcheck';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the spellcheck attribute'@en.	
+	
+  html:src
+    a owl:DatatypeProperty;
+    html:key 'src';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Audio html:Embed html:Iframe html:Img html:Input html:Script html:Source html:Track html:Video)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the src attribute'@en.
+
+  html:srcdoc
+    a owl:DatatypeProperty;
+    html:key 'srcdoc';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Iframe;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the srcdoc attribute'@en.
+
+  html:srclang
+    a owl:DatatypeProperty;
+    html:key 'srclang';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Track;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the srclang attribute'@en.
+
+  html:srcset
+    a owl:DatatypeProperty;
+    html:key 'srcset';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Img html:Source)
+    ] ;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the srcset attribute'@en.
+
+  html:start
+    a owl:DatatypeProperty;
+    html:key 'start';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Img html:Source)
+    ] ;
+    rdfs:range xsd:integer;
+    skos:prefLabel 'the start attribute'@en.
+
+  html:step
+    a owl:DatatypeProperty;
+    html:key 'step';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the step attribute'@en.
+	
+  html:style
+    a owl:DatatypeProperty;
+    html:key 'style';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the style attribute'@en;
+    skos:definition 'Property that permits the author to directly apply style information to a specific html element. All HTML elements may have the style content attribute set. This is a style attribute as defined by CSS Style Attributes.'@en.
+
+  html:tabindex
+    a owl:DatatypeProperty;
+    html:key 'tabindex';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:integer;
+    skos:prefLabel 'the tabindex attribute'@en.	
+
+  html:target
+    a owl:DatatypeProperty;
+    html:key 'target';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:integer;
+    skos:prefLabel 'the target attribute'@en.	
+	
+  html:title
+    a owl:DatatypeProperty;
+    html:key 'title';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the title attribute'@en;
+    skos:definition 'Property that represents advisory information for the element, such as would be appropriate for a tooltip. On a link, this could be the title or a description of the target resource; on an image, it could be the image credit or a description of the image; on a paragraph, it could be a footnote or commentary on the text; on a citation, it could be further information about the source; on interactive content, it could be a label for, or instructions for, use of the element; and so forth. The value is text.'@en.
+
+  html:translate
+    a owl:DatatypeProperty;
+    html:key 'translate';
+    rdfs:subPropertyOf html:attribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:prefLabel 'the translate attribute'@en.	
+
+  html:type
+    a owl:DatatypeProperty;
+    html:key 'type';
+    rdfs:domain html:Input;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the type attribute'@en.
+
+  html:usemap
+    a owl:DatatypeProperty;
+    html:key 'usemap';
+    rdfs:domain html:Img;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the usemap attribute'@en.
+
+  html:value
+    a owl:DatatypeProperty;
+    html:key 'value';
+    rdfs:domain [a owl:class;
+	             owl:unionOf (html:Button html:Option html:Data html:Input html:Li html:Meter html:Progress)
+				 ];
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the value attribute'@en.
+	
+  html:width
+    a owl:DatatypeProperty;
+    html:key 'width';
+    rdfs:subPropertyOf html:attribute;
+       rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Video)
+    ] ;
+    rdfs:range xsd:nonNegativeInteger;
+    skos:prefLabel 'the width attribute'@en.	
+	
+  html:wrap
+    a owl:DatatypeProperty;
+    html:key 'wrap';
+    rdfs:domain html:Textarea;
+    rdfs:range xsd:string;
+    rdfs:subPropertyOf html:attribute;
+    skos:prefLabel 'the wrap attribute'@en.
