@@ -2575,7 +2575,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:nonNegativeInteger;
-    skos:prefLabel 'the color attribute'@en.
+    skos:prefLabel 'the cols attribute'@en.
 
   html:colspan
     a owl:DatatypeProperty;
