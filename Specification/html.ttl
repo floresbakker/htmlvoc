@@ -3537,7 +3537,7 @@ html:defer
   html:value
     a owl:DatatypeProperty;
     html:key 'value';
-    rdfs:domain [a owl:class;
+    rdfs:domain [a owl:Class;
 	             owl:unionOf (html:Button html:Option html:Data html:Input html:Li html:Meter html:Progress)
 				 ];
     rdfs:range xsd:string;
