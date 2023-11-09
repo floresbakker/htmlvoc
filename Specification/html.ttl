@@ -1,5 +1,4 @@
 prefix dcm: <http://purl.org/dc/dcmitype/>
-prefix dcm: <http://purl.org/dc/dcmitype/>
 prefix dct: <http://purl.org/dc/terms/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix owl: <http://www.w3.org/2002/07/owl#>
@@ -2404,6 +2403,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Th;
     rdfs:range xsd:string;
+	skos:definition "Specifies an abbreviated version of a text, typically used for providing a shortened form or acronym."@en;
     skos:prefLabel 'the abbr attribute'@en.
 	
   html:accept
@@ -2412,6 +2412,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
+    skos:definition "Specifies the types of files that the server accepts through the file input."@en;
     skos:prefLabel 'the accept attribute'@en.
 	
   html:accept-charset
@@ -2420,6 +2421,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:string;
+	skos:definition "Specifies the character encodings that are to be used for form submission."@en;
     skos:prefLabel 'the accept-charset attribute'@en.
 
   html:accesskey
@@ -2428,6 +2430,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+    skos:definition "Defines a keyboard shortcut for accessing an element."@en;
     skos:prefLabel 'the accesskey attribute'@en.
 
   html:action
@@ -2436,6 +2439,7 @@ construct {
     rdfs:domain html:Form;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+    skos:definition "Specifies the URL to which the form's data will be submitted when the form is submitted."@en;
     skos:prefLabel 'the action attribute'@en.
 
  html:allow
@@ -2444,6 +2448,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
+	skos:definition "Used with the <iframe> element to specify a feature policy for the embedded content."@en;
     skos:prefLabel 'the allow attribute'@en.
 
  html:allowfullscreen
@@ -2452,6 +2457,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:boolean;
+	skos:definition "Used with the <iframe> element to allow the embedded content to be displayed in fullscreen mode."@en;
     skos:prefLabel 'the allowfullscreen attribute'@en.
 
  html:alt
@@ -2463,6 +2469,7 @@ construct {
         owl:unionOf (html:Area html:Img html:Input)
     ] ;
     rdfs:range xsd:string;
+	skos:definition "Provides alternative text for an image, describing the content or function of the image."@en;
     skos:prefLabel 'the alt attribute'@en.
 
   html:as
@@ -2471,6 +2478,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link ;
     rdfs:range xsd:string;
+	skos:definition "Specifies the media type (or file type) of a resource referenced by the <link> element."@en;
     skos:prefLabel 'the as attribute'@en.
 
   html:async
@@ -2479,6 +2487,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Script ;
     rdfs:range xsd:string;
+	skos:definition "Indicates that the script should be executed asynchronously as soon as it is available."@en;
     skos:prefLabel 'the async attribute'@en.
 	
   html:autocapitalize
@@ -2487,6 +2496,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Controls whether and how text input is automatically capitalized as it is entered or edited."@en;
     skos:prefLabel 'the autocapitalize attribute'@en.
 
   html:autocomplete
@@ -2497,6 +2507,7 @@ construct {
 	             owl:unionOf (html:Form html:Input html:Select html:Textarea)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies whether a form or text input should have autocomplete enabled."@en;
     skos:prefLabel 'the autocomplete attribute'@en.
 
   html:autofocus
@@ -2505,6 +2516,7 @@ construct {
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that an input element should automatically get focus when the page loads."@en;
     skos:prefLabel 'the autofocus attribute'@en.
 
 html:autoplay
@@ -2515,6 +2527,7 @@ html:autoplay
 	             owl:unionOf (html:Audio html:Video)
 				 ];
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that the audio or video should start playing as soon as it is ready."@en;
     skos:prefLabel 'the autoplay attribute'@en.
 
 html:blocking
@@ -2525,6 +2538,7 @@ html:blocking
 	             owl:unionOf (html:Link html:Script html:Style)
 				 ];
     rdfs:range xsd:string;
+    skos:definition "Indicates that the fetching of a resource should block the loading of the page until the resource is fetched."@en;
     skos:prefLabel 'the blocking attribute'@en.
 
   html:charset
@@ -2533,6 +2547,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
+    skos:definition "Specifies the character encoding used in an external script file."@en;
     skos:prefLabel 'the charset attribute'@en.
   
   html:checked
@@ -2541,6 +2556,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:boolean;
+    skos:definition "Indicates whether a checkbox or radio button is initially selected or checked."@en;
     skos:prefLabel 'the checked attribute'@en.
 	
   html:cite
@@ -2551,6 +2567,7 @@ html:blocking
 	             owl:unionOf (html:Blockquote html:Del html:Ins html:Q)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Contains a URL that provides a citation or reference to a source."@en;
     skos:prefLabel 'the cite attribute'@en.
 
   html:class
@@ -2559,6 +2576,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies one or more class names for an HTML element, which can be used by CSS to style the element."@en;
     skos:prefLabel 'the class attribute'@en.
 
   html:color
@@ -2567,6 +2585,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
+	skos:definition "Specifies the text color of an element's content."@en;
     skos:prefLabel 'the color attribute'@en.
 
   html:cols
@@ -2575,6 +2594,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:nonNegativeInteger;
+	skos:definition "Specifies the visible width of a text area, in average character widths."@en;
     skos:prefLabel 'the cols attribute'@en.
 
   html:colspan
@@ -2583,6 +2603,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Cell;
     rdfs:range xsd:nonNegativeInteger;
+	skos:definition "Specifies the number of columns a table cell should span."@en;
     skos:prefLabel 'the colspan attribute'@en.
 
  html:content
@@ -2591,6 +2612,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
+	skos:definition "Specifies the value associated with the http-equiv or name attribute."@en;
     skos:prefLabel 'the content attribute'@en.
 
   html:contenteditable
@@ -2599,6 +2621,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Indicates whether the content of an element is editable."@en;
     skos:prefLabel 'the contenteditable attribute'@en.
 
   html:controls
@@ -2607,6 +2630,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:boolean;
+	skos:definition "Indicates whether video or audio should display controls (like play, pause, etc.)."@en;
     skos:prefLabel 'the controls attribute'@en.
 
  html:coords
@@ -2615,6 +2639,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Area;
     rdfs:range xsd:string;
+	skos:definition "Specifies the coordinates of the area in an image map."@en;
     skos:prefLabel 'the coords attribute'@en.
 
  html:crossorigin
@@ -2625,6 +2650,7 @@ html:blocking
 	             owl:unionOf (html:Audio html:Img html:Link html:Script html:Video)
 				 ];
     rdfs:range xsd:string;
+    skos:definition "Controls how the element handles crossorigin requests."@en;
     skos:prefLabel 'the crossorigin attribute'@en.
 
  html:data
@@ -2633,6 +2659,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Used to link the element to machine-readable data."@en;
     skos:prefLabel 'the data attribute'@en.
 
  html:datetime
@@ -2643,6 +2670,7 @@ html:blocking
 	             owl:unionOf (html:Del html:Ins html:Time)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies the date and time associated with the element."@en;
     skos:prefLabel 'the datetime attribute'@en.
 
  html:decoding
@@ -2651,6 +2679,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Img;
     rdfs:range xsd:string;
+	skos:definition "Specifies how the browser should decode an image."@en;
     skos:prefLabel 'the decoding attribute'@en.
 
  html:default
@@ -2659,6 +2688,7 @@ html:blocking
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies whether a track should be enabled by default in the media element."@en;
     skos:prefLabel 'the default attribute'@en.
 
 html:defer
@@ -2667,6 +2697,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Script;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that the script should be executed after the page has been parsed."@en;
     skos:prefLabel 'the defer attribute'@en.
 		
  html:dir
@@ -2675,8 +2706,8 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
-    skos:prefLabel 'the dir attribute'@en;
-    skos:definition """The dir attribute specifies the element's text directionality. The attribute is an enumerated attribute with the following keywords and states: (1) ltr: The contents of the element are explicitly directionally isolated left-to-right text. (2) rtl: The contents of the element are explicitly directionally isolated right-to-left text. (3) auto: The contents of the element are explicitly directionally isolated text, but the direction is to be determined programmatically using the contents of the element (as described below)."""@en.
+	skos:definition "Specifies the text direction for the content in an element."@en;
+    skos:prefLabel 'the dir attribute'@en.
 
  html:dirname
     a owl:DatatypeProperty;
@@ -2686,6 +2717,7 @@ html:defer
 	             owl:unionOf (html:Input html:Textarea)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies the name of the directory for the text in an input field."@en;
     skos:prefLabel 'the dirname attribute'@en.
 
  html:disabled
@@ -2696,6 +2728,7 @@ html:defer
 	             owl:unionOf (html:Button html:Input html:Optgroup html:Option html:Select html:Textarea html:Fieldset html:Link)
 				 ];
     rdfs:range xsd:boolean;
+	skos:definition "Indicates whether an element should be disabled or not."@en;
     skos:prefLabel 'the disabled attribute'@en.
 
   html:download
@@ -2706,6 +2739,7 @@ html:defer
 	               owl:unionOf (html:A html:Area)
 				   ];
     rdfs:range xsd:string;
+	skos:definition "Specifies that the target will be downloaded when a user clicks on the hyperlink."@en;
     skos:prefLabel 'the download attribute'@en.	
 	
   html:draggable
@@ -2714,6 +2748,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies whether an element is draggable or not."@en;
     skos:prefLabel 'the draggable attribute'@en.	
 
   html:enctype
@@ -2722,6 +2757,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:string;
+	skos:definition "Specifies the character encoding used in the form data when it is submitted."@en;
     skos:prefLabel 'the enctype attribute'@en.
 	
   html:enterkeyhint
@@ -2730,6 +2766,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies a hint for the type of action that should be taken when the enter key is pressed."@en;
     skos:prefLabel 'the enterkeyhint attribute'@en.	
 
   html:fetchpriority
@@ -2740,6 +2777,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Sets the priority of the fetch operation for the resource."@en;
     skos:prefLabel 'the fetchpriority attribute'@en.
 	
   html:for
@@ -2750,6 +2788,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the form element that the label is associated with."@en;
     skos:prefLabel 'the for attribute'@en.
 
   html:form
@@ -2760,6 +2799,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the form an input element belongs to."@en;
     skos:prefLabel 'the form attribute'@en.
   
   html:formaction
@@ -2770,6 +2810,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the URL for form submission for the input element."@en;
     skos:prefLabel 'the formaction attribute'@en.
 
  html:formenctype
@@ -2780,6 +2821,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the character encoding for the form submission for the input element."@en;
     skos:prefLabel 'the formenctype attribute'@en.	
   
  html:formmethod
@@ -2790,6 +2832,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the HTTP method for form submission for the input element."@en;
     skos:prefLabel 'the formmethod attribute'@en. 
 
  html:formnovalidate
@@ -2800,6 +2843,7 @@ html:defer
 				 ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies that the form should not be validated when submitted."@en;
     skos:prefLabel 'the formnovalidate attribute'@en. 
 
  html:formtarget
@@ -2810,6 +2854,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies where to display the response after submitting the form for the input element."@en;
     skos:prefLabel 'the formtarget attribute'@en. 
   
   html:headers
@@ -2820,6 +2865,7 @@ html:defer
 	             owl:unionOf (html:Td html:Th)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies a space-separated list of header names that are sent with the request."@en;
     skos:prefLabel 'the headers attribute'@en.	
   
   html:height
@@ -2830,6 +2876,7 @@ html:defer
 	             owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Source html:Video)
 				 ];
     rdfs:range xsd:nonNegativeInteger;
+	skos:definition "Specifies the height of the content area of an element."@en;
     skos:prefLabel 'the height attribute'@en.	
 	
   html:hidden
@@ -2838,6 +2885,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies that an element is not yet, or is no longer, relevant."@en;
     skos:prefLabel 'the hidden attribute'@en.	
 
   html:high
@@ -2846,6 +2894,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
+	skos:definition "Specifies the range that is considered the upper limit of the element."@en;
     skos:prefLabel 'the high attribute'@en.	
 
   html:href
@@ -2857,6 +2906,7 @@ html:defer
 		];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the URL of the linked resource."@en;
     skos:prefLabel 'the href attribute'@en.
 
   html:hreflang
@@ -2868,6 +2918,7 @@ html:defer
 		];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the language of the linked resource."@en;
     skos:prefLabel 'the hreflang attribute'@en.
 
   html:http-equiv
@@ -2876,6 +2927,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
+	skos:definition "Provides an HTTP header for the information/value of the content attribute."@en;
     skos:prefLabel 'the http-equiv attribute'@en.
 
   html:id
@@ -2884,6 +2936,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies a unique id for an HTML element."@en;
     skos:prefLabel 'the id attribute'@en.
 
   html:imagesizes
@@ -2892,6 +2945,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
+	skos:definition "Specifies the sizes of the icons for visual media contained in the resource."@en;
     skos:prefLabel 'the imagesizes attribute'@en.
 
   html:imagesrcset
@@ -2900,6 +2954,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
+	skos:definition "Specifies a list of possible images to use for the visual media contained in the resource."@en;
     skos:prefLabel 'the imagesrcset attribute'@en.
 	
   html:inert
@@ -2908,6 +2963,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Indicates that an element and its descendants are not to be rendered or considered interactive."@en;
     skos:prefLabel 'the inert attribute'@en.	
 
   html:inputmode
@@ -2916,6 +2972,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the type of user interface to display for the editing control."@en;
     skos:prefLabel 'the inputmode attribute'@en.	
 
   html:integrity
@@ -2926,6 +2983,7 @@ html:defer
 	             owl:unionOf (html:Link html:Script)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies a cryptographic hash of the resource for integrity checking."@en;
     skos:prefLabel 'the integrity attribute'@en.	
 
   html:is
@@ -2934,6 +2992,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the custom element's local name."@en;
     skos:prefLabel 'the is attribute'@en.	
 
   html:ismap
@@ -2942,6 +3001,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Img;
     rdfs:range xsd:string;
+	skos:definition "Indicates that an image is part of a server-side image map."@en;
     skos:prefLabel 'the ismap attribute'@en.	
 	
   html:itemid
@@ -2950,6 +3010,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies a unique identifier for the item in a list."@en;
     skos:prefLabel 'the itemid attribute'@en.	
 
   html:itemprop
@@ -2958,6 +3019,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the property or properties the element represents."@en;
     skos:prefLabel 'the itemprop attribute'@en.	
 
   html:itemref
@@ -2966,6 +3028,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies additional items that are related to the item in a list."@en;
     skos:prefLabel 'the itemref attribute'@en.	
 
   html:itemscope
@@ -2974,6 +3037,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Creates a new item in the HTML data model."@en;
     skos:prefLabel 'the itemscope attribute'@en.	
 
   html:itemtype
@@ -2982,6 +3046,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the type of the item in a list."@en;
     skos:prefLabel 'the itemtype attribute'@en.	
 
   html:kind
@@ -2990,6 +3055,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:string;
+	skos:definition "Specifies the kind of text track, such as subtitles, captions, or descriptions."@en;
     skos:prefLabel 'the kind attribute'@en.
 	
   html:label
@@ -3000,6 +3066,7 @@ html:defer
 	             owl:unionOf (html:Optgroup html:Option html:Track)
 				 ];
     rdfs:range xsd:string;
+    skos:definition "Specifies a user-readable description for the form element."@en;
     skos:prefLabel 'the label attribute'@en.	
 	
   html:lang
@@ -3008,6 +3075,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the language of the element's content or the value of an input element."@en;
     skos:prefLabel 'the lang attribute'@en.
 
   html:list
@@ -3016,6 +3084,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
+	skos:definition "Refers to a <datalist> element that contains pre-defined options for an <input> element."@en;
     skos:prefLabel 'the list attribute'@en.
 
   html:loading
@@ -3026,6 +3095,7 @@ html:defer
 	             owl:unionOf (html:Iframe html:Img)
 				 ];
     rdfs:range xsd:boolean;
+	skos:definition "Specifies how the browser should load an external resource."@en;
     skos:prefLabel 'the loading attribute'@en.
 
   html:loop
@@ -3036,6 +3106,7 @@ html:defer
 	             owl:unionOf (html:Audio html:Video)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies that the audio or video should play again after it has finished."@en;
     skos:prefLabel 'the loop attribute'@en.
 
   html:low
@@ -3044,6 +3115,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
+	skos:definition "Specifies the range that is considered the lower limit of the element."@en;
     skos:prefLabel 'the low attribute'@en.
 
   html:max
@@ -3055,6 +3127,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the maximum value for an input element."@en;
     skos:prefLabel 'the max attribute'@en.
 
   html:maxlength
@@ -3066,6 +3139,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the maximum number of characters allowed in an input element."@en;
     skos:prefLabel 'the maxlength attribute'@en.
 
   html:media
@@ -3077,6 +3151,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the media type or media query for the linked resource."@en;
     skos:prefLabel 'the media attribute'@en.
 	
   html:method
@@ -3085,6 +3160,7 @@ html:defer
     rdfs:domain html:Form;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the HTTP method for form submission."@en;
     skos:prefLabel 'the method attribute'@en.
 
   html:min
@@ -3096,6 +3172,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the minimum value for an input element."@en;
     skos:prefLabel 'the min attribute'@en.
 
   html:minlength
@@ -3107,6 +3184,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the minimum number of characters required in an input element."@en;
     skos:prefLabel 'the minlength attribute'@en.
 
   html:multiple
@@ -3118,6 +3196,7 @@ html:defer
     ] ;
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Indicates that multiple values can be selected in an input element."@en;
     skos:prefLabel 'the multiple attribute'@en.
 
   html:muted
@@ -3129,6 +3208,7 @@ html:defer
     ] ;
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies that the audio output of the video should be muted."@en;
     skos:prefLabel 'the muted attribute'@en.
 	
   html:name
@@ -3139,6 +3219,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the name of an HTML element, used as a reference when submitting a form or scripting."@en;
     skos:prefLabel 'the name attribute'@en.
 
   html:nomodule
@@ -3147,6 +3228,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Script;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that a script should not be executed in browsers that support ES6 modules."@en;
     skos:prefLabel 'the nomodule attribute'@en.	
 
   html:nonce
@@ -3155,6 +3237,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies a cryptographic nonce that can be used to validate the origin of a script."@en;
     skos:prefLabel 'the nonce attribute'@en.	
 
   html:novalidate
@@ -3163,6 +3246,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that a form should not be validated when submitted."@en;
     skos:prefLabel 'the novalidate attribute'@en.	
 
   html:open
@@ -3173,6 +3257,7 @@ html:defer
 	             owl:unionOf (html:Details html:Dialog)
 				 ];
     rdfs:range xsd:boolean;
+	skos:definition "Indicates whether the details element is open (visible) or not."@en;
     skos:prefLabel 'the open attribute'@en.	
 
   html:optimum
@@ -3181,6 +3266,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
+	skos:definition "Specifies the optimal numeric value for the gauge."@en;
     skos:prefLabel 'the optimum attribute'@en.	
 	
   html:pattern
@@ -3189,6 +3275,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
+	skos:definition "Specifies a regular expression pattern that the input's value must match."@en;
     skos:prefLabel 'the pattern attribute'@en.	
 
   html:ping
@@ -3199,6 +3286,7 @@ html:defer
 	            owl:unionOf (html:A html:Area)
 				];
     rdfs:range xsd:string;
+	skos:definition "Specifies a space-separated list of URLs to which, when the resource is activated, post requests with the element's activation behavior should be sent."@en;
     skos:prefLabel 'the ping attribute'@en.	
 
   html:placeholder
@@ -3209,6 +3297,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies a short hint that describes the expected value of an input element."@en;
     skos:prefLabel 'the placeholder attribute'@en.
 
   html:playsinline
@@ -3217,6 +3306,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Video;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that the video should be played in-line with the other content on the page."@en;
     skos:prefLabel 'the playsinline attribute'@en.	
 
   html:popover
@@ -3225,6 +3315,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies additional information or controls for an element, typically shown as a tooltip or pop-up."@en;
     skos:prefLabel 'the popover attribute'@en.	
 
   html:popovertarget
@@ -3235,6 +3326,7 @@ html:defer
 	             owl:unionOf (html:Input html:Button)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies the target element for a popover, indicating where additional information or controls should be displayed."@en;
     skos:prefLabel 'the popovertarget attribute'@en.	
 	
   html:popovertargetaction
@@ -3245,6 +3337,7 @@ html:defer
 	             owl:unionOf (html:Input html:Button)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies an action associated with a target element for a popover."@en;
     skos:prefLabel 'the popovertargetaction attribute'@en.	
 	
   html:poster
@@ -3253,6 +3346,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Video;
     rdfs:range xsd:string;
+	skos:definition "Specifies an image to be shown while the video is downloading or until the user hits the play button."@en;
     skos:prefLabel 'the poster attribute'@en.	
 	
   html:preload
@@ -3263,6 +3357,7 @@ html:defer
 	             owl:unionOf (html:Audio html:Video)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies how the browser should load the audio or video."@en;
     skos:prefLabel 'the preload attribute'@en.	
 
   html:readonly
@@ -3274,6 +3369,7 @@ html:defer
     ] ;
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies that an input field is read-only and cannot be edited by the user."@en;
     skos:prefLabel 'the readonly attribute'@en.
 
   html:referrerpolicy
@@ -3285,6 +3381,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies which referrer information should be included when making requests."@en;
     skos:prefLabel 'the referrerpolicy attribute'@en.
 	
   html:rel
@@ -3296,6 +3393,7 @@ html:defer
     ] ;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the relationship between the current document and the linked resource."@en;
     skos:prefLabel 'the rel attribute'@en.
 
   html:required
@@ -3307,6 +3405,7 @@ html:defer
     ] ;
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies that an input field must be filled out before submitting the form."@en;
     skos:prefLabel 'the required attribute'@en.
 
   html:resource
@@ -3315,6 +3414,7 @@ html:defer
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the URL of the linked resource when used in a link or area element."@en;
     skos:prefLabel 'the resource attribute'@en.
 
   html:reversed
@@ -3323,6 +3423,7 @@ html:defer
     rdfs:domain html:Ol;
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies that the list order should be descending, instead of ascending."@en;
     skos:prefLabel 'the reversed attribute'@en.
 
   html:rows
@@ -3331,6 +3432,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Textarea;
     rdfs:range xsd:nonNegativeInteger;
+	skos:definition "Specifies the visible number of lines in a text area."@en;
     skos:prefLabel 'the rows attribute'@en.
 	
   html:rowspan
@@ -3339,6 +3441,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Cell;
     rdfs:range xsd:nonNegativeInteger;
+	skos:definition "Specifies the number of rows a table cell should span."@en;
     skos:prefLabel 'the rowspan attribute'@en.
 	
   html:sandbox
@@ -3347,6 +3450,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
+	skos:definition "Enables an extra set of restrictions for the content in an iframe."@en;
     skos:prefLabel 'the sandbox attribute'@en.
 
   html:scope
@@ -3355,6 +3459,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Th;
     rdfs:range xsd:string;
+	skos:definition "Specifies whether a header cell is a header for a column, row, or group of columns or rows."@en;
     skos:prefLabel 'the scope attribute'@en.	
 
   html:selected
@@ -3363,6 +3468,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Option;
     rdfs:range xsd:boolean;
+	skos:definition "Specifies that an option in a dropdown list should be pre-selected when the page loads."@en;
     skos:prefLabel 'the selected attribute'@en.	
 
   html:shape
@@ -3371,6 +3477,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Area;
     rdfs:range xsd:string;
+	skos:definition "Specifies the shape of the hot spot in an image map."@en;
     skos:prefLabel 'the shape attribute'@en.	
 
   html:size
@@ -3381,6 +3488,7 @@ html:defer
 	            owl:unionOf (html:Input html:Select)
 				];
     rdfs:range xsd:string;
+	skos:definition "Specifies the size of the font in a <font> element."@en;
     skos:prefLabel 'the size attribute'@en.	
 
   html:sizes
@@ -3391,6 +3499,7 @@ html:defer
 	            owl:unionOf (html:Link html:Img html:Source)
 				];
     rdfs:range xsd:string;
+	skos:definition "Specifies the sizes of the images for different viewport widths."@en;
     skos:prefLabel 'the sizes attribute'@en.	
 
   html:slot
@@ -3399,6 +3508,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies the name of the slot the element belongs to when used in a shadow DOM."@en;
     skos:prefLabel 'the slot attribute'@en.	
 
   html:span
@@ -3409,6 +3519,7 @@ html:defer
                  owl:unionOf (html:Col html:Colgroup)
 				 ];
     rdfs:range xsd:string;
+	skos:definition "Specifies the number of columns a table cell should span."@en;
     skos:prefLabel 'the span attribute'@en.	
 
   html:spellcheck
@@ -3417,6 +3528,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies whether the browser should check the spelling and grammar of the text in an element."@en;
     skos:prefLabel 'the spellcheck attribute'@en.	
 	
   html:src
@@ -3428,6 +3540,7 @@ html:defer
         owl:unionOf (html:Audio html:Embed html:Iframe html:Img html:Input html:Script html:Source html:Track html:Video)
     ] ;
     rdfs:range xsd:string;
+	skos:definition "Specifies the URL of the media resource."@en;
     skos:prefLabel 'the src attribute'@en.
 
   html:srcdoc
@@ -3436,6 +3549,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
+	skos:definition "Specifies the HTML content of the page to show in an iframe."@en;
     skos:prefLabel 'the srcdoc attribute'@en.
 
   html:srclang
@@ -3444,6 +3558,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:string;
+	skos:definition "Specifies the language of the text track (subtitles or captions) referenced by the <track> element."@en;
     skos:prefLabel 'the srclang attribute'@en.
 
   html:srcset
@@ -3455,6 +3570,7 @@ html:defer
         owl:unionOf (html:Img html:Source)
     ] ;
     rdfs:range xsd:string;
+	skos:definition "Specifies a list of possible images to use for the visual media contained in the resource."@en;
     skos:prefLabel 'the srcset attribute'@en.
 
   html:start
@@ -3466,6 +3582,7 @@ html:defer
         owl:unionOf (html:Img html:Source)
     ] ;
     rdfs:range xsd:integer;
+	skos:definition "Specifies the starting value of a list item."@en;
     skos:prefLabel 'the start attribute'@en.
 
   html:step
@@ -3474,6 +3591,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
+	skos:definition "Specifies the legal number intervals for an input field."@en;
     skos:prefLabel 'the step attribute'@en.
 	
   html:style
@@ -3482,8 +3600,8 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
-    skos:prefLabel 'the style attribute'@en;
-    skos:definition 'Property that permits the author to directly apply style information to a specific html element. All HTML elements may have the style content attribute set. This is a style attribute as defined by CSS Style Attributes.'@en.
+	skos:definition "Specifies inline CSS styles for an element."@en;
+    skos:prefLabel 'the style attribute'@en.
 
   html:tabindex
     a owl:DatatypeProperty;
@@ -3491,6 +3609,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:integer;
+	skos:definition "Specifies the tab order of an element."@en;
     skos:prefLabel 'the tabindex attribute'@en.	
 
   html:target
@@ -3499,6 +3618,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:integer;
+	skos:definition "Specifies where to open the linked document when the link is clicked."@en;
     skos:prefLabel 'the target attribute'@en.	
 	
   html:title
@@ -3507,8 +3627,8 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
-    skos:prefLabel 'the title attribute'@en;
-    skos:definition 'Property that represents advisory information for the element, such as would be appropriate for a tooltip. On a link, this could be the title or a description of the target resource; on an image, it could be the image credit or a description of the image; on a paragraph, it could be a footnote or commentary on the text; on a citation, it could be further information about the source; on interactive content, it could be a label for, or instructions for, use of the element; and so forth. The value is text.'@en.
+	skos:definition "Specifies extra information about an element, often displayed as a tooltip."@en;
+    skos:prefLabel 'the title attribute'@en.
 
   html:translate
     a owl:DatatypeProperty;
@@ -3516,6 +3636,7 @@ html:defer
     rdfs:subPropertyOf html:attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
+	skos:definition "Specifies whether the content of an element should be translated when the page is localized."@en;
     skos:prefLabel 'the translate attribute'@en.	
 
   html:type
@@ -3524,6 +3645,7 @@ html:defer
     rdfs:domain html:Input;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the type of the element, such as the type of an input field."@en;
     skos:prefLabel 'the type attribute'@en.
 
   html:usemap
@@ -3532,6 +3654,7 @@ html:defer
     rdfs:domain html:Img;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the name of a client-side image map to be used with the element."@en;
     skos:prefLabel 'the usemap attribute'@en.
 
   html:value
@@ -3542,6 +3665,7 @@ html:defer
 				 ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies the initial value of an input element."@en;
     skos:prefLabel 'the value attribute'@en.
 	
   html:width
@@ -3553,7 +3677,8 @@ html:defer
         owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Video)
     ] ;
     rdfs:range xsd:nonNegativeInteger;
-    skos:prefLabel 'the width attribute'@en.	
+	skos:definition "Specifies the width of an element."@en;
+    skos:prefLabel 'the width attribute'@en.
 	
   html:wrap
     a owl:DatatypeProperty;
@@ -3561,4 +3686,5 @@ html:defer
     rdfs:domain html:Textarea;
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
+	skos:definition "Specifies how the text in a textarea is to be wrapped when submitted in a form."@en;
     skos:prefLabel 'the wrap attribute'@en.
