@@ -119,7 +119,7 @@ for filename in os.listdir(directory_path+"htmlvoc/Tools/RDF2HTML/Input"):
 
         # Write serialized html to actual html file
         for result in documentQuery:
-            with open(directory_path+"/htmlvoc/Tools/RDF2HTML/Output/"+filename_stem+"-serialized.html", 'w') as file:
+            with open(directory_path+"/htmlvoc/Tools/RDF2HTML/Output/"+filename_stem+"-serialized.html", 'w', encoding='utf-8') as file:
                file.write(result.fragment)
                print ("Document is saved to HTML-format as " + filename_stem+"-serialized.html")
 
