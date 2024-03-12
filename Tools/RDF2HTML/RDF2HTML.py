@@ -74,7 +74,7 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
              
 
 # Get the HTML vocabulary and place it in a string
-html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html.ttl")
+html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html - core.ttl")
 
 # loop through any turtle files in the input directory
 for filename in os.listdir(directory_path+"htmlvoc/Tools/RDF2HTML/Input"):

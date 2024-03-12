@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Rendering</title>
+    <style>
+        /* Style for the container holding form and output box */
+        .container {
+            display: flex;
+            align-items: stretch; /* Make container divs stretch to the height of the tallest content */
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+
+        /* Style for form */
+        .form {
+            flex: 1;
+            margin-right: 10px; /* Adjust as needed */
+        }
+
+        /* Style for output box */
+        .output-box {
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto; /* Add vertical scrollbar if content overflows */
+        }
+
+        /* Style for output container */
+        .output-container {
+            /* Optionally limit max-height to prevent excessive stretching */
+            max-height: 100%; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Semantic HTML Vocabulary Playground</h1>
+    <!-- Container for the first form and its output box -->
+    <div class="container">
+        <!-- First form -->
+        <div class="form">
+            <form action="http://localhost:5000/convert2HTML" method="post">
+                <label for="textInput">RDF</label><br>
+                <textarea id="rdfInput" name="rdf" rows="15" cols="60">{{rdfInput}}</textarea><br>
+                <button type="submit">Convert to HTML</button>
+            </form>
+        </div>
+
+        <!-- Visual output box for the first form (HTML content) -->
+        <div class="output-box">
+            <!-- HTML content -->
+            {% if htmlOutput %}
+            <div class="output-container">
+                <!-- Use the safe filter to render HTML content without HTML escaping -->
+                {{ htmlOutput | safe }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Raw output box for the first form (raw HTML content) -->
+        <div class="output-box">
+            <!-- HTML content -->
+            {% if htmlRawOutput %}
+            <div class="output-container">
+                <!-- show HTML content with HTML escaping -->
+                {{ htmlRawOutput }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Container for the second form and its output box -->
+    <div class="container">
+        <!-- Second form -->
+        <div class="form">
+            <form action="http://localhost:5000/convert2RDF" method="post">
+                <label for="rdf">HTML</label><br>
+                <textarea id="htmlInput" name="html" rows="15" cols="60">{{htmlRawInput}}</textarea><br>
+                <button type="submit">Convert to RDF</button>
+            </form>
+        </div>
+
+        <!-- Visual output box for the second form (HTML content) -->
+        <div class="output-box">
+            <!-- HTML content -->
+            {% if htmlInput %}
+            <div class="output-container">
+                <!-- Use the safe filter to render HTML content without HTML escaping -->
+                {{ htmlInput | safe }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Output box for the second form (text content) -->
+        <div class="output-box">
+            <!-- Text content -->
+            {% if rdfOutput %}
+            <div class="output-container">
+                <!-- Display text output here -->
+                {{ rdfOutput }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,427 @@
+prefix dcm: <http://purl.org/dc/dcmitype/>
+prefix dct: <http://purl.org/dc/terms/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix prov: <http://www.w3.org/ns/prov#>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfa: <http://www.w3.org/ns/rdfa#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix sh: <http://www.w3.org/ns/shacl#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix status: <http://purl.org/adms/status/>
+prefix vann: <http://purl.org/vocab/vann/>
+prefix void: <http://rdfs.org/ns/void#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
+prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+prefix graph: <https://data.rijksfinancien.nl/htmlv/graph/>
+prefix htmlv: <https://data.rijksfinancien.nl/htmlv/model/def/>
+prefix respec: <https://respec.org/model/>
+prefix rule: <https://data.rijksfinancien.nl/htmlv/model/rule/>
+prefix section: <https://data.rijksfinancien.nl/htmlv/id/section/>
+prefix shp: <https://data.rijksfinancien.nl/htmlv/model/shp/>
+prefix standard: <https://data.rijksfinancien.nl/htmlv/id/standard/>
+prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
+
+  htmlv:
+    a
+      owl:Ontology,
+	  respec:Ontology,
+      void:Dataset;
+    dct:conformsTo 'https://datatracker.ietf.org/doc/htmlv/rfc1942'^^xsd:anyURI;
+    dct:created '2021-12-08'^^xsd:date;
+    dct:creator
+      'Flores Bakker',
+      'Rosaline de Haan',
+      'Thomas de Groot',
+      'Wouter Beek';
+    respec:introduction '''
+In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
+
+So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
+
+To address this need, we have pioneered the development of the RDF-based Semantic HTML Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
+   respec:background '''In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'''@en;
+   respec:objective '''In response to these challenges, we introduce the RDF-based semantic HTML Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
+    respec:audience '''This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'''@en;
+    respec:acknowledgements '''This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'''@en;
+    dct:description '''The HTML vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'htmlv:Element', which represents a HTML DOM element and is in fact a subclass of DOM:element, the latter being the class of all DOM elements. Any specific HTML element like 'htmlv:A' (anchor element) or 'htmlv:Body' (body element) is a subclass of the class 'htmlv:Element'. Another fundamental building block of this ontology is the 'htmlv:attribute' datatype property. Any attribute in HTML like 'htmlv:class' or 'htmlv:style' is a subproperty of 'htmlv:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'htmlv:TextElement', where all instantiations contain a htmlv:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a htmlv:TextElement ; htmlv:fragment "Hello world".'. Finally, there are the HTML void elements like 'htmlv:Br' (line break), which are subclass of 'htmlv:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the htmlv:fragment, as contained in the htmlv:html root element of that document. The processing halts the moment the document itself has an htmlv:fragment.'''@en;
+    dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en; 
+    skos:example """
+
+An 'hello world' HTML document:
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>
+			An 'Hello world' HTML page represented in RDF
+		</title>
+		<style> 
+			.italic-text {font-style: italic;}
+		</style>
+		<meta http-equiv="Content-Type" charset="utf-8">
+	</head>
+	<body>
+		Hello world
+	</body>
+	</html>
+	
+This can be rendered in RDF using the HTML vocabulary as follows:
+	
+	@prefix doc: <http://www.example.org/document/> .
+	@prefix htmlv: <https://data.rijksfinancien.nl/htmlv/model/def/> .
+	@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+	doc:1 a htmlv:Document ;
+		rdf:_1 doc:1.15 .
+
+	doc:1.15 a htmlv:Html ;
+		rdf:_1 doc:1.21 ;
+		rdf:_2 doc:1.218 .
+
+	doc:1.163 a htmlv:Meta ;
+		htmlv:charset "utf-8" ;
+		htmlv:http-equiv "Content-Type" .
+
+	doc:1.21 a htmlv:Head ;
+		rdf:_1 doc:1.27 ;
+		rdf:_2 doc:1.93 ;
+		rdf:_3 doc:1.163 .
+
+	doc:1.218 a htmlv:Body ;
+		rdf:_1 doc:1.218.1 .
+
+	doc:1.218.1 a htmlv:TextElement ;
+		htmlv:fragment "Hello world" .
+
+	doc:1.27 a htmlv:Title ;
+		rdf:_1 doc:1.27.1 .
+
+	doc:1.27.1 a htmlv:TextElement ;
+		htmlv:fragment "An 'Hello world' HTML page represented in RDF" .
+
+	doc:1.93 a htmlv:StyleSheet ;
+		rdf:_1 doc:1.93.1 .
+
+	doc:1.93.1 a htmlv:TextElement ;
+		htmlv:fragment " .italic-text {font-style: italic;}" .
+	
+""";
+    dct:language 'iso639-1:en';
+    dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
+    dct:publisher <https://rijksfinancien.nl>;
+    dct:status status:UnderDevelopment;
+    dct:subject 'HTML'@en;
+    dct:title 'Semantic HTML Validation Ontology'@en;
+    dct:source <https://github.com/floresbakker/htmlvoc>;
+    foaf:depiction 'https://www.rijksfinancien.nl/themes/custom/indicia_theme/files/logo-rijksoverheid.svg'^^xsd:anyURI;
+    foaf:homepage 'https://www.rijksfinancien.nl/'^^xsd:anyURI;
+    owl:imports
+      dct:,
+      owl:,
+      prov:,
+      rdf:,
+      rdfs:,
+      sh:,
+      skos:;
+    owl:versionInfo '0.2.0';
+    vann:preferredNamespacePrefix 'html';
+    vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/htmlv/model/def/';
+    void:subSet graph:model;
+    void:uriRegexPattern '^https://data.rijksfinancien.nl/htmlv/model/def/';
+    void:uriSpace 'https://data.rijksfinancien.nl/htmlv/model/def/'^^xsd:anyURI.
+
+  shp:Element
+    a sh:NodeShape;
+    sh:property
+      shp:Element_fragment,
+      shp:Element_attribute,
+      shp:Element_style;
+    sh:targetClass html:Element;
+    skos:prefLabel 'element shape'@en;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Element_fragment
+    a sh:PropertyShape;
+    rdfs:comment 'Every element can have one and only one html fragment.'@en;
+    skos:prefLabel 'has fragment shape'@en;
+    sh:datatype rdf:HTML;
+    sh:path htmlv:fragment;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Element_attribute
+    a sh:PropertyShape;
+    rdfs:comment 'Every element can have one or more attributes.'@en;
+    skos:prefLabel 'has attribute shape'@en;
+    sh:nodeKind sh:Literal;
+    sh:path htmlv:attribute;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Element_style
+    a sh:PropertyShape;
+    rdfs:comment 'Every element can have at most one style attribute.'@en;
+    rdfs:label 'has style attribute'@en;
+    sh:datatype xsd:string;
+    sh:maxCount 1;
+    sh:path htmlv:style;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TextElement
+    a sh:NodeShape;
+    skos:prefLabel 'text element shape'@en;
+    # no rule need as the text value of the text element should be encoded as htmlv:fragment from the start
+    sh:targetClass html:TextElement;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Html
+    a sh:NodeShape;
+    rdfs:comment 'The html element represents the root of an HTML document.'@en;
+    rdfs:label 'html shape'@en;
+    sh:property
+      shp:Html_body,
+      shp:Html_head;
+    sh:targetClass html:Html;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Html_body
+    a sh:PropertyShape;
+    rdfs:comment 'A html root element may have one and only one body element.'@en;
+    rdfs:label 'has body'@en;
+    sh:class htmlv:Body;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Html_head
+    a sh:PropertyShape;
+    rdfs:comment 'An html document, may have one and only one head element, which is the first element of the document.'@en;
+    rdfs:label 'has head'@en;
+    sh:class htmlv:Head;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Head
+    a sh:NodeShape;
+    rdfs:comment 'The head element represents a collection of metadata for an HTML document.'@en;
+    rdfs:label 'head shape'@en;
+    sh:property
+      shp:Head_title,
+      shp:Head_styleSheet;
+    sh:targetClass html:Head;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Head_title
+    a sh:PropertyShape;
+    rdfs:comment 'A head of an html document, may have one title element.'@en;
+    rdfs:label 'has title'@en;
+    sh:class htmlv:Title;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Head_styleSheet
+    a sh:PropertyShape;
+    rdfs:comment 'A head of an html document, may have one embedded style sheet, which is comprised of presentational and formatting instructions for the rest of the document, and the expected input is CSS declarations.'@en;
+    rdfs:label 'has style sheet'@en;
+    sh:class htmlv:StyleSheet;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Title
+    a sh:NodeShape;
+    rdfs:comment 'The title element represents the title of the HTML document.'@en;
+    rdfs:label 'title shape'@en;
+    sh:targetClass html:Title;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Base
+    a sh:NodeShape;
+    rdfs:comment 'The base element represents the base URL to use for all relative URLs in a document.'@en;
+    rdfs:label 'base shape'@en;
+    sh:targetClass html:Base;
+	rdfs:isDefinedBy htmlv:.
+  
+  shp:Link
+    a sh:NodeShape;
+    rdfs:comment 'The link element allows authors to link their document to other resources.'@en;
+    rdfs:label 'link shape'@en;
+    sh:targetClass html:Link;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Meta
+    a sh:NodeShape;
+    rdfs:comment 'The meta element represents represents various kinds of metadata that cannot be expressed using the title, base, link, style, and script elements.'@en;
+    rdfs:label 'meta shape'@en;
+    sh:targetClass html:Meta;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:StyleSheet
+    a sh:NodeShape;
+    rdfs:comment 'A style element is a form of metadata content in a HTML document that sets up the presentation for the rest of the content in the document.'@en;
+    rdfs:label 'style sheet shape'@en;
+    sh:targetClass html:StyleSheet;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Body
+    a sh:NodeShape;
+    rdfs:comment 'The body element represents the contents of the document.'@en;
+    rdfs:label 'body shape'@en;
+    sh:property shp:Body_member;
+    sh:targetClass html:Body;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Body_member
+    a sh:PropertyShape;
+    rdfs:label 'has child element'@en;
+    sh:class htmlv:Element;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Table
+    a sh:NodeShape;
+    rdfs:comment 'A table contains an optional caption element, followed by zero or more colgroup elements, followed optionally by a thead element, followed optionally by a tbody element, followed optionally by a tfoot element.'@en;
+    skos:prefLabel 'table shape'@en;
+    sh:property
+      shp:Table_caption,
+      shp:Table_tbody,
+      shp:Table_tfoot,
+      shp:Table_thead;
+    sh:targetClass html:Table;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Table_caption
+    a sh:PropertyShape;
+    rdfs:comment 'Tables may have a caption.'@en;
+    skos:prefLabel 'has caption shape'@en;
+    sh:class htmlv:Caption;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Caption
+    a sh:NodeShape;
+    rdfs:comment 'A caption element contains flow content, but with no descendant table elements.'@en;
+    skos:prefLabel 'caption shape'@en;
+    sh:targetClass html:Caption;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Table_tbody
+    a sh:PropertyShape;
+    rdfs:comment 'Tables may have zero or more table bodies.'@en;
+    skos:prefLabel 'has table body'@en;
+    sh:class htmlv:TableBody;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Table_tfoot
+    a sh:PropertyShape;
+    rdfs:comment 'Tables may have a footer.'@en;
+    skos:prefLabel 'has table footer shape'@en;
+    sh:class htmlv:TFoot;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Table_thead
+    a sh:PropertyShape;
+    rdfs:comment 'Tables may have a header.'@en;
+    skos:prefLabel 'has table header shape'@en;
+    sh:class htmlv:TableHeader;
+    sh:maxCount 1;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TableBody
+    a sh:NodeShape;
+    rdfs:comment 'A table body element contains zero or more table rows with data cells.'@en;
+    skos:prefLabel 'table body shape'@en;
+    sh:property shp:TableBody_member;
+    sh:targetClass html:TableBody;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TableBody_member
+    a sh:PropertyShape;
+    skos:prefLabel 'has row'@en;
+    sh:class htmlv:Row;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TableHeader
+    a sh:NodeShape;
+    rdfs:comment 'A table head contains zero or more header rows.'@en;
+    skos:prefLabel 'table header shape'@en;
+    sh:property shp:TableHeader_member;
+    sh:targetClass html:TableHeader;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TableHeader_member
+    a sh:PropertyShape;
+    skos:prefLabel 'has header row'@en;
+    sh:class htmlv:Row;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:TableFooter
+    a sh:NodeShape;
+    skos:prefLabel 'table footer shape'@en;
+    sh:targetClass html:TableFooter;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Row
+    a sh:NodeShape;
+    skos:prefLabel 'row shape'@en;
+    sh:property shp:Row_member;
+    sh:targetClass html:Row;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Row_member
+    a sh:PropertyShape;
+    skos:prefLabel 'has data cell'@en;
+    sh:class htmlv:DataCell;
+    sh:path rdfs:member;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:DataCell
+    a sh:NodeShape;
+    rdfs:comment 'A data cell can contain flow content.'@en;
+    skos:prefLabel 'data cell shape'@en;
+    sh:targetClass html:DataCell;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:HeaderCell
+    a sh:NodeShape;
+    rdfs:comment 'A header cell ("<th>" element) contains flow content, but with no header, footer, sectioning content, or heading content descendants.'@en;
+    skos:prefLabel 'header cell shape'@en;
+    sh:targetClass html:HeaderCell;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Cell
+    a sh:NodeShape;
+    skos:prefLabel 'cell shape'@en;
+    sh:property
+      shp:Cell_colspan,
+      shp:Cell_rowspan;
+    sh:targetClass html:Cell;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Cell_colspan
+    a sh:PropertyShape;
+    rdfs:comment 'Every cell can have at most one colspan.'@en;
+    skos:prefLabel 'has colspan'@en;
+    sh:datatype xsd:nonNegativeInteger;
+    sh:maxCount 1;
+    sh:path htmlv:colspan;
+	rdfs:isDefinedBy htmlv:.
+
+  shp:Cell_rowspan
+    a sh:PropertyShape;
+    rdfs:comment 'Every cell can have at most one rowspan.'@en;
+    skos:prefLabel 'has rowspan'@en;
+    sh:datatype xsd:nonNegativeInteger;
+    sh:maxCount 1;
+    sh:path htmlv:rowspan;
+	rdfs:isDefinedBy htmlv:.

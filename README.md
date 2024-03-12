@@ -84,256 +84,122 @@ This table is rendered in a browser as follows:
 Now we can represent the very same document in <i>RDF</i> using the HTML-vocabulary. As it is very cumbersome to do so by hand, a <i>HTML2RDF</i> tool is available in this repository that will do exactly that for you. For further information on this tool and other neat tools, scroll down this Readme file.
 
 ```
-@prefix doc: <http://www.example.org/document/> .
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix doc: <http://www.example.org/document/> . 
+@prefix html: <https://data.rijksfinancien.nl/html/model/def/> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
 
-doc:1 a html:Document ;
-    rdf:_1 doc:2.0 .
+doc:1 a html:Document ; 
+ rdf:_1 doc:2.0 . 
+ 
+doc:2.0 a html:Html ; 
+ rdf:_1 doc:3.0 ; 
+ rdf:_2 doc:4.0 .
 
-doc:2.0 a html:Html ;
-    rdf:_1 doc:2.0.1 ;
-    rdf:_2 doc:3.0 ;
-    rdf:_3 doc:2.0.3 ;
-    rdf:_4 doc:31.0 ;
-    rdf:_5 doc:2.0.5 .
+doc:3.0 a html:Head ; 
+ rdf:_1 doc:4.4 ; 
+ rdf:_2 doc:5.4 .
+ 
+doc:4.0 a html:Body ;  
+ rdf:_1 doc:32.4 .
+ 
+doc:32.4 a html:Table ; 
+ rdf:_1 doc:33.8 ; 
+ rdf:_2 doc:34.8 ; 
+ rdf:_3 doc:41.8 . 
 
-doc:2.0.1 a html:TextElement ;
-    html:fragment "" .
+doc:33.8 a html:Caption ; 
+ rdf:_1 doc:33.8.1 .
 
-doc:2.0.3 a html:TextElement ;
-    html:fragment "" .
+doc:33.8.1 a html:TextElement ; 
+ html:fragment "Example table" . 
 
-doc:2.0.5 a html:TextElement ;
-    html:fragment "" .
+doc:34.8 a html:TableHeader ; 
+ rdf:_1 doc:35.12 . 
 
-doc:3.0 a html:Head ;
-    rdf:_1 doc:3.0.1 ;
-    rdf:_2 doc:4.4 ;
-    rdf:_3 doc:3.0.3 ;
-    rdf:_4 doc:5.4 ;
-    rdf:_5 doc:3.0.5 .
+doc:35.12 a html:Row ; 
+ rdf:_1 doc:36.16 ; 
+ rdf:_2 doc:37.16 ; 
+ rdf:_3 doc:38.16 . 
 
-doc:3.0.1 a html:TextElement ;
-    html:fragment "" .
+doc:36.16 a html:HeaderCell ; 
+ rdf:_1 doc:36.16.1 . 
 
-doc:3.0.3 a html:TextElement ;
-    html:fragment "" .
+doc:36.16.1 a html:TextElement ; 
+ html:fragment "banana" .
 
-doc:3.0.5 a html:TextElement ;
-    html:fragment "" .
+doc:37.16 a html:HeaderCell ; 
+ rdf:_1 doc:37.16.1 .
 
-doc:31.0 a html:Body ;
-    rdf:_1 doc:31.0.1 ;
-    rdf:_2 doc:32.4 ;
-    rdf:_3 doc:31.0.3 .
+doc:37.16.1 a html:TextElement ; 
+ html:fragment "orange" .
 
-doc:31.0.1 a html:TextElement ;
-    html:fragment "" .
+doc:38.16 a html:HeaderCell ; 
+ rdf:_1 doc:38.16.1 .
 
-doc:31.0.3 a html:TextElement ;
-    html:fragment "" .
+doc:38.16.1 a html:TextElement ; 
+ html:fragment "apple" .
 
-doc:32.4 a html:Table ;
-    rdf:_1 doc:32.4.1 ;
-    rdf:_2 doc:33.8 ;
-    rdf:_3 doc:32.4.3 ;
-    rdf:_4 doc:34.8 ;
-    rdf:_5 doc:32.4.5 ;
-    rdf:_6 doc:41.8 ;
-    rdf:_7 doc:32.4.7 .
+doc:4.4 a html:Title ; 
+ rdf:_1 doc:4.4.1 . 
 
-doc:32.4.1 a html:TextElement ;
-    html:fragment "" .
+doc:4.4.1 a html:TextElement ; 
+ html:fragment "Tutorial Document Example" . 
 
-doc:32.4.3 a html:TextElement ;
-    html:fragment "" .
+doc:41.8 a html:TableBody ; 
+ rdf:_1 doc:42.12 ; 
+ rdf:_2 doc:47.12 . 
 
-doc:32.4.5 a html:TextElement ;
-    html:fragment "" .
+doc:42.12 a html:Row ; 
+ rdf:_1 doc:43.16 ; 
+ rdf:_2 doc:44.16 ; 
+ rdf:_3 doc:45.16 .
 
-doc:32.4.7 a html:TextElement ;
-    html:fragment "" .
-
-doc:33.8 a html:Caption ;
-    rdf:_1 doc:33.8.1 .
-
-doc:33.8.1 a html:TextElement ;
-    html:fragment "Example table" .
-
-doc:34.8 a html:TableHeader ;
-    rdf:_1 doc:34.8.1 ;
-    rdf:_2 doc:35.12 ;
-    rdf:_3 doc:34.8.3 .
-
-doc:34.8.1 a html:TextElement ;
-    html:fragment "" .
-
-doc:34.8.3 a html:TextElement ;
-    html:fragment "" .
-
-doc:35.12 a html:DataRow ;
-    rdf:_1 doc:35.12.1 ;
-    rdf:_2 doc:36.16 ;
-    rdf:_3 doc:35.12.3 ;
-    rdf:_4 doc:37.16 ;
-    rdf:_5 doc:35.12.5 ;
-    rdf:_6 doc:38.16 ;
-    rdf:_7 doc:35.12.7 .
-
-doc:35.12.1 a html:TextElement ;
-    html:fragment "" .
-
-doc:35.12.3 a html:TextElement ;
-    html:fragment "" .
-
-doc:35.12.5 a html:TextElement ;
-    html:fragment "" .
-
-doc:35.12.7 a html:TextElement ;
-    html:fragment "" .
-
-doc:36.16 a html:HeaderCell ;
-    rdf:_1 doc:36.16.1 .
-
-doc:36.16.1 a html:TextElement ;
-    html:fragment "banana" .
-
-doc:37.16 a html:HeaderCell ;
-    rdf:_1 doc:37.16.1 .
-
-doc:37.16.1 a html:TextElement ;
-    html:fragment "orange" .
-
-doc:38.16 a html:HeaderCell ;
-    rdf:_1 doc:38.16.1 .
-
-doc:38.16.1 a html:TextElement ;
-    html:fragment "apple" .
-
-doc:4.4 a html:Title ;
-    rdf:_1 doc:4.4.1 .
-
-doc:4.4.1 a html:TextElement ;
-    html:fragment "Tutorial Document Example" .
-
-doc:41.8 a html:TableBody ;
-    rdf:_1 doc:41.8.1 ;
-    rdf:_2 doc:42.12 ;
-    rdf:_3 doc:41.8.3 ;
-    rdf:_4 doc:47.12 ;
-    rdf:_5 doc:41.8.5 .
-
-doc:41.8.1 a html:TextElement ;
-    html:fragment "" .
-
-doc:41.8.3 a html:TextElement ;
-    html:fragment "" .
-
-doc:41.8.5 a html:TextElement ;
-    html:fragment "" .
-
-doc:42.12 a html:DataRow ;
-    rdf:_1 doc:42.12.1 ;
-    rdf:_2 doc:43.16 ;
-    rdf:_3 doc:42.12.3 ;
-    rdf:_4 doc:44.16 ;
-    rdf:_5 doc:42.12.5 ;
-    rdf:_6 doc:45.16 ;
-    rdf:_7 doc:42.12.7 .
-
-doc:42.12.1 a html:TextElement ;
-    html:fragment "" .
-
-doc:42.12.3 a html:TextElement ;
-    html:fragment "" .
-
-doc:42.12.5 a html:TextElement ;
-    html:fragment "" .
-
-doc:42.12.7 a html:TextElement ;
-    html:fragment "" .
-
-doc:43.16 a html:DataCell ;
-    rdf:_1 doc:43.16.1 .
+doc:43.16 a html:DataCell ; 
+ rdf:_1 doc:43.16.1 .
 
 doc:43.16.1 a html:TextElement ;
-    html:fragment "1" .
+ html:fragment "1" .
 
-doc:44.16 a html:DataCell ;
-    rdf:_1 doc:44.16.1 .
+doc:44.16 a html:DataCell ; 
+ rdf:_1 doc:44.16.1 . 
 
-doc:44.16.1 a html:TextElement ;
-    html:fragment "2" .
+doc:44.16.1 a html:TextElement ; 
+ html:fragment "2" . 
 
-doc:45.16 a html:DataCell ;
-    rdf:_1 doc:45.16.1 .
+doc:45.16 a html:DataCell ; 
+ rdf:_1 doc:45.16.1 . 
 
-doc:45.16.1 a html:TextElement ;
-    html:fragment "3" .
+doc:45.16.1 a html:TextElement ; 
+ html:fragment "3" . 
 
-doc:47.12 a html:DataRow ;
-    rdf:_1 doc:47.12.1 ;
-    rdf:_2 doc:48.16 ;
-    rdf:_3 doc:47.12.3 ;
-    rdf:_4 doc:49.16 ;
-    rdf:_5 doc:47.12.5 ;
-    rdf:_6 doc:50.16 ;
-    rdf:_7 doc:47.12.7 .
-
-doc:47.12.1 a html:TextElement ;
-    html:fragment "" .
-
-doc:47.12.3 a html:TextElement ;
-    html:fragment "" .
-
-doc:47.12.5 a html:TextElement ;
-    html:fragment "" .
-
-doc:47.12.7 a html:TextElement ;
-    html:fragment "" .
+doc:47.12 a html:Row ; 
+ rdf:_1 doc:48.16 ; 
+ rdf:_2 doc:49.16 ; 
+ rdf:_3 doc:50.16 . 
 
 doc:48.16 a html:DataCell ;
-    rdf:_1 doc:48.16.1 .
+ rdf:_1 doc:48.16.1 .
 
 doc:48.16.1 a html:TextElement ;
-    html:fragment "a" .
+ html:fragment "a" . 
 
 doc:49.16 a html:DataCell ;
-    rdf:_1 doc:49.16.1 .
+ rdf:_1 doc:49.16.1 . 
 
-doc:49.16.1 a html:TextElement ;
-    html:fragment "b" .
+doc:49.16.1 a html:TextElement ; 
+ html:fragment "b" . 
 
-doc:5.4 a html:StyleSheet ;
-    rdf:_1 doc:5.4.1 .
+doc:5.4 a html:StyleSheet ; 
+ rdf:_1 doc:5.4.1 . 
 
-doc:5.4.1 a html:TextElement ;
-    html:fragment """
-        able {
-            width: 70%;
-            margin: 0 auto;
-            border-collapse: collapse;
-        }
+doc:5.4.1 a html:TextElement ; 
+ html:fragment """\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r """ . 
 
-        caption {
-            text-align: left;
-            font-weight: bold;
-            padding: 10px;
-            background-color: #f2f2f2; /* Light gray */
-        }
+doc:50.16 a html:DataCell ;
+ rdf:_1 doc:50.16.1 . 
 
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd; /* Light gray border */
-        }
-
-        th {
-            background-color: #4CAF50; /* Green */
-            color: white;
-        }
-    """ .
+doc:50.16.1 a html:TextElement ; 
+ html:fragment "c" .
 
 doc:50.16 a html:DataCell ;
     rdf:_1 doc:50.16.1 .
@@ -531,6 +397,7 @@ This repository comes with two, fairly primitive, Python-based tools to handle H
 
 1. HTML2RDF
 2. RDF2HTML
+3. Playground
 
 
 
@@ -583,7 +450,37 @@ C. Run the script in the command prompt by typing:
 python RDF2HTML.py
 ```
 
-D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-file(s). Additionally included are Turtle-file(s) (*.ttl) that contain the serialized 'html:fragment' properties for the very same HTML-document and the HTML-elements it contains. 
+D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-file(s). Additionally included are Turtle-file(s) (*.ttl) that contain the serialized 'html:fragment' properties for the very same HTML-document and the HTML-elements it contains.
+
+## Playground
+
+The tool Playground offers a visual user interface in which a RDF-based representation of an HTML-document can be converted to an actual HTML-document, and an actual HTML-document can be converted to a RDF-based representation of an HTML-document.
+
+![A screenshot of the playground environment](/Examples/Playground.png)
+
+### How to use Playground
+
+A. Install all necessary libraries (in this order):
+
+	1. pip install os 
+	2. pip install pyshacl
+	3. pip install rdflib
+
+NOTE: pyshacl has a dependency with an older RDFlib version. However, for an optimal functioning of the semantic SVG-vocabulary, the most recent release of RDFlib should be used. Hence, it is advised to first install pyshacl and then RDFlib, so that RDFlib is installed having the latest version. This is currently the least instrusive way of handling the dependency, offering accessibility for those not well versed in Python. 
+
+B. Run the script in the command prompt by typing: 
+
+```
+python playground.py
+```
+
+C. Navigate to the URL http://localhost:5000/. Then choose one of two options:
+
+   *Option 1*: Place your RDF-triples representing an HTML-document into the corresponding text area and press the button 'convert to HTML'. The playground will convert the triples to an HTML-document and display this in your browser. This may take some time.
+
+   *Option 2*: Place the HTML-code of your HTML-document into the corresponding text area and press the button 'convert to RDF'. The playground will convert the HTML-document to a RDF-based representation of that document. This should be rather quick.
+
+
 
 ### Known issues
 
