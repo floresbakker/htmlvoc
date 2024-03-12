@@ -456,7 +456,7 @@ D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-f
 
 The tool Playground offers a visual user interface in which a RDF-based representation of an HTML-document can be converted to an actual HTML-document, and an actual HTML-document can be converted to a RDF-based representation of an HTML-document.
 
-![A screenshot of the playground environment](/Examples/Playground.png)
+![A screenshot of the playground environment](/Examples/Playground.PNG)
 
 ### How to use Playground
 
