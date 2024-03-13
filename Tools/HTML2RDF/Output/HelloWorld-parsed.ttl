@@ -15,7 +15,7 @@ doc:1.15 a html:Html ;
     rdf:_3 doc:1.201 .
 
 doc:1.15.2 a html:TextElement ;
-    html:fragment "" .
+    html:fragment " " .
 
 doc:1.201 a html:Body ;
     rdf:_1 doc:1.201.1 .
@@ -31,10 +31,10 @@ doc:1.21 a html:Head ;
     rdf:_5 doc:1.145 .
 
 doc:1.21.2 a html:TextElement ;
-    html:fragment "" .
+    html:fragment " " .
 
 doc:1.21.4 a html:TextElement ;
-    html:fragment "" .
+    html:fragment " " .
 
 doc:1.27 a html:Title ;
     rdf:_1 doc:1.27.1 .

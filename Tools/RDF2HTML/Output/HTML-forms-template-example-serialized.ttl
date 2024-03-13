@@ -27,7 +27,7 @@ doc:1 a html:Document ;
     rdf:_1 doc:1.15 ;
     prov:wasGeneratedBy doc:1-html-document-generation ;
     dom:documentType documentType:html ;
-    html:fragment "<!DOCTYPE html><html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>"^^xsd:string .
+    html:fragment "<!DOCTYPE html><html><head><title></title><style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}</style><meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head><body><form action=\"action_page.php\"><div class=\"container\"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for=\"email\"><b>Email</b></label><input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\"><label for=\"psw\"><b>Password</b></label><input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\"><label for=\"psw-repeat\"><b>Repeat Password</b></label><input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\"><hr><p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p><button class=\"registerbtn\" type=\"submit\">Register</button></div><div class=\"container signin\"><p>Already have an account?<a href=\"#\">Sign in</a>.</p></div></form></body></html>"^^xsd:string .
 
 html:Abbr a owl:Class ;
     dct:conformsTo section:4.5.9 ;
@@ -60,14 +60,6 @@ html:Aside a owl:Class ;
     skos:definition "The <aside> HTML element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes."@en ;
     skos:prefLabel "the aside element"@en ;
     html:tag "aside" .
-
-html:B a owl:Class ;
-    dct:conformsTo section:4.5.21 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <b> HTML element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance. This was formerly known as the Boldface element, and most browsers still draw the text in boldface. However, you should not use <b> for styling text; instead, you should use the CSS font-weight property to create boldface text, or the <strong> element to indicate that text is of special importance."@en ;
-    skos:prefLabel "the b element"@en ;
-    html:tag "b" .
 
 html:Bdi a owl:Class ;
     dct:conformsTo section:4.5.24 ;
@@ -141,14 +133,6 @@ html:Dfn a owl:Class ;
     skos:prefLabel "the dfn element"@en ;
     html:tag "dfn" .
 
-html:Div a owl:Class ;
-    dct:conformsTo section:4.4.15 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <div> HTML element is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element)."@en ;
-    skos:prefLabel "the div element"@en ;
-    html:tag "div" .
-
 html:Dl a owl:Class ;
     dct:conformsTo section:4.4.9 ;
     rdfs:isDefinedBy html: ;
@@ -196,14 +180,6 @@ html:Footer a owl:Class ;
     skos:definition "The <footer> HTML element represents a footer for its nearest sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents."@en ;
     skos:prefLabel "the footer element"@en ;
     html:tag "footer" .
-
-html:H1 a owl:Class ;
-    dct:conformsTo section:4.3.6 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest."@en ;
-    skos:prefLabel "the h1 element"@en ;
-    html:tag "h1" .
 
 html:H2 a owl:Class ;
     dct:conformsTo section:4.3.6 ;
@@ -260,14 +236,6 @@ html:Hgroup a owl:Class ;
     skos:definition "The <hgroup> HTML element represents a multi-level heading for a section of a document. It groups a set of <h1>-<h6> elements."@en ;
     skos:prefLabel "the hgroup element"@en ;
     html:tag "hgroup" .
-
-html:Hr a owl:Class ;
-    dct:conformsTo section:4.4.2 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:VoidElement ;
-    skos:definition "The <hr> HTML element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section."@en ;
-    skos:prefLabel "the hr element"@en ;
-    html:tag "hr" .
 
 html:I a owl:Class ;
     dct:conformsTo section:4.5.20 ;
@@ -332,14 +300,6 @@ html:Noscript a owl:Class ;
     skos:definition "The <noscript> HTML element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser."@en ;
     skos:prefLabel "the noscript element"@en ;
     html:tag "noscript" .
-
-html:P a owl:Class ;
-    dct:conformsTo section:4.4.1 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields."@en ;
-    skos:prefLabel "the p element"@en ;
-    html:tag "p" .
 
 html:Picture a owl:Class ;
     dct:conformsTo section:4.8.1 ;
@@ -1812,58 +1772,195 @@ shp:VoidElement a sh:NodeShape ;
     sh:target target:VoidElement .
 
 doc:1-html-document-generation a prov:Activity ;
-    prov:atTime "2024-03-13T21:45:43.185107+00:00"^^xsd:dateTime ;
+    prov:atTime "2024-03-13T21:45:46.818443+00:00"^^xsd:dateTime ;
     prov:used html:,
         rule:Document .
 
-doc:1.145 a html:Meta ;
+doc:1.1058 a html:Meta ;
     html:charset "utf-8" ;
     html:fragment "<meta charset=\"utf-8\" http-equiv=\"Content-Type\">"^^xsd:string ;
     html:http-equiv "Content-Type" .
 
+doc:1.1113 a html:Body ;
+    rdf:_1 doc:1.1119 ;
+    html:fragment "<body><form action=\"action_page.php\"><div class=\"container\"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for=\"email\"><b>Email</b></label><input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\"><label for=\"psw\"><b>Password</b></label><input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\"><label for=\"psw-repeat\"><b>Repeat Password</b></label><input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\"><hr><p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p><button class=\"registerbtn\" type=\"submit\">Register</button></div><div class=\"container signin\"><p>Already have an account?<a href=\"#\">Sign in</a>.</p></div></form></body>"^^xsd:string .
+
+doc:1.1119 a html:Form ;
+    rdf:_1 doc:1.1150 ;
+    rdf:_2 doc:1.1804 ;
+    html:action "action_page.php" ;
+    html:fragment "<form action=\"action_page.php\"><div class=\"container\"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for=\"email\"><b>Email</b></label><input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\"><label for=\"psw\"><b>Password</b></label><input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\"><label for=\"psw-repeat\"><b>Repeat Password</b></label><input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\"><hr><p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p><button class=\"registerbtn\" type=\"submit\">Register</button></div><div class=\"container signin\"><p>Already have an account?<a href=\"#\">Sign in</a>.</p></div></form>"^^xsd:string .
+
+doc:1.1150 a html:Div ;
+    rdf:_1 doc:1.1173 ;
+    rdf:_10 doc:1.1656 ;
+    rdf:_11 doc:1.1660 ;
+    rdf:_12 doc:1.1739 ;
+    rdf:_2 doc:1.1190 ;
+    rdf:_3 doc:1.1243 ;
+    rdf:_4 doc:1.1247 ;
+    rdf:_5 doc:1.1286 ;
+    rdf:_6 doc:1.1371 ;
+    rdf:_7 doc:1.1411 ;
+    rdf:_8 doc:1.1499 ;
+    rdf:_9 doc:1.1553 ;
+    html:class "container" ;
+    html:fragment "<div class=\"container\"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for=\"email\"><b>Email</b></label><input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\"><label for=\"psw\"><b>Password</b></label><input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\"><label for=\"psw-repeat\"><b>Repeat Password</b></label><input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\"><hr><p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p><button class=\"registerbtn\" type=\"submit\">Register</button></div>"^^xsd:string .
+
+doc:1.1173 a html:H1 ;
+    rdf:_1 doc:1.1173.1 ;
+    html:fragment "<h1>Register</h1>"^^xsd:string .
+
+doc:1.1173.1 a html:TextElement ;
+    html:fragment "Register" .
+
+doc:1.1190 a html:P ;
+    rdf:_1 doc:1.1190.1 ;
+    html:fragment "<p>Please fill in this form to create an account.</p>"^^xsd:string .
+
+doc:1.1190.1 a html:TextElement ;
+    html:fragment "Please fill in this form to create an account." .
+
+doc:1.1243 a html:Hr ;
+    html:fragment "<hr>"^^xsd:string .
+
+doc:1.1247 a html:Label ;
+    rdf:_1 doc:1.1266 ;
+    html:for "email" ;
+    html:fragment "<label for=\"email\"><b>Email</b></label>"^^xsd:string .
+
+doc:1.1266 a html:B ;
+    rdf:_1 doc:1.1266.1 ;
+    html:fragment "<b>Email</b>"^^xsd:string .
+
+doc:1.1266.1 a html:TextElement ;
+    html:fragment "Email" .
+
+doc:1.1286 a html:Input ;
+    html:fragment "<input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\">"^^xsd:string ;
+    html:id "email" ;
+    html:name "email" ;
+    html:placeholder "Enter Email" ;
+    html:required "true" ;
+    html:type "text" .
+
+doc:1.1371 a html:Label ;
+    rdf:_1 doc:1.1388 ;
+    html:for "psw" ;
+    html:fragment "<label for=\"psw\"><b>Password</b></label>"^^xsd:string .
+
+doc:1.1388 a html:B ;
+    rdf:_1 doc:1.1388.1 ;
+    html:fragment "<b>Password</b>"^^xsd:string .
+
+doc:1.1388.1 a html:TextElement ;
+    html:fragment "Password" .
+
+doc:1.1411 a html:Input ;
+    html:fragment "<input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\">"^^xsd:string ;
+    html:id "psw" ;
+    html:name "psw" ;
+    html:placeholder "Enter Password" ;
+    html:required "true" ;
+    html:type "password" .
+
+doc:1.1499 a html:Label ;
+    rdf:_1 doc:1.1523 ;
+    html:for "psw-repeat" ;
+    html:fragment "<label for=\"psw-repeat\"><b>Repeat Password</b></label>"^^xsd:string .
+
 doc:1.15 a html:Html ;
     rdf:_1 doc:1.21 ;
-    rdf:_2 doc:1.15.2 ;
-    rdf:_3 doc:1.201 ;
-    html:fragment "<html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>"^^xsd:string .
+    rdf:_2 doc:1.1113 ;
+    html:fragment "<html><head><title></title><style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}</style><meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head><body><form action=\"action_page.php\"><div class=\"container\"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for=\"email\"><b>Email</b></label><input id=\"email\" name=\"email\" placeholder=\"Enter Email\" required=\"true\" type=\"text\"><label for=\"psw\"><b>Password</b></label><input id=\"psw\" name=\"psw\" placeholder=\"Enter Password\" required=\"true\" type=\"password\"><label for=\"psw-repeat\"><b>Repeat Password</b></label><input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\"><hr><p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p><button class=\"registerbtn\" type=\"submit\">Register</button></div><div class=\"container signin\"><p>Already have an account?<a href=\"#\">Sign in</a>.</p></div></form></body></html>"^^xsd:string .
 
-doc:1.15.2 a html:TextElement ;
-    html:fragment " " .
+doc:1.1523 a html:B ;
+    rdf:_1 doc:1.1523.1 ;
+    html:fragment "<b>Repeat Password</b>"^^xsd:string .
 
-doc:1.201 a html:Body ;
-    rdf:_1 doc:1.201.1 ;
-    html:fragment "<body>Hello world</body>"^^xsd:string .
+doc:1.1523.1 a html:TextElement ;
+    html:fragment "Repeat Password" .
 
-doc:1.201.1 a html:TextElement ;
-    html:fragment "Hello world" .
+doc:1.1553 a html:Input ;
+    html:fragment "<input id=\"psw-repeat\" name=\"psw-repeat\" placeholder=\"Repeat Password\" required=\"true\" type=\"password\">"^^xsd:string ;
+    html:id "psw-repeat" ;
+    html:name "psw-repeat" ;
+    html:placeholder "Repeat Password" ;
+    html:required "true" ;
+    html:type "password" .
+
+doc:1.1656 a html:Hr ;
+    html:fragment "<hr>"^^xsd:string .
+
+doc:1.1660 a html:P ;
+    rdf:_1 doc:1.1660.1 ;
+    rdf:_2 doc:1.1703 ;
+    rdf:_3 doc:1.1660.3 ;
+    html:fragment "<p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p>"^^xsd:string .
+
+doc:1.1660.1 a html:TextElement ;
+    html:fragment "By creating an account you agree to our " .
+
+doc:1.1660.3 a html:TextElement ;
+    html:fragment "." .
+
+doc:1.1703 a html:A ;
+    rdf:_1 doc:1.1703.1 ;
+    html:fragment "<a href=\"#\">Terms & Privacy</a>"^^xsd:string ;
+    html:href "#" .
+
+doc:1.1703.1 a html:TextElement ;
+    html:fragment "Terms & Privacy" .
+
+doc:1.1739 a html:Button ;
+    rdf:_1 doc:1.1739.1 ;
+    html:class "registerbtn" ;
+    html:fragment "<button class=\"registerbtn\" type=\"submit\">Register</button>"^^xsd:string ;
+    html:type "submit" .
+
+doc:1.1739.1 a html:TextElement ;
+    html:fragment "Register" .
+
+doc:1.1804 a html:Div ;
+    rdf:_1 doc:1.1834 ;
+    html:class "container signin" ;
+    html:fragment "<div class=\"container signin\"><p>Already have an account?<a href=\"#\">Sign in</a>.</p></div>"^^xsd:string .
+
+doc:1.1834 a html:P ;
+    rdf:_1 doc:1.1834.1 ;
+    rdf:_2 doc:1.1861 ;
+    rdf:_3 doc:1.1834.3 ;
+    html:fragment "<p>Already have an account?<a href=\"#\">Sign in</a>.</p>"^^xsd:string .
+
+doc:1.1834.1 a html:TextElement ;
+    html:fragment "Already have an account?" .
+
+doc:1.1834.3 a html:TextElement ;
+    html:fragment "." .
+
+doc:1.1861 a html:A ;
+    rdf:_1 doc:1.1861.1 ;
+    html:fragment "<a href=\"#\">Sign in</a>"^^xsd:string ;
+    html:href "#" .
+
+doc:1.1861.1 a html:TextElement ;
+    html:fragment "Sign in" .
 
 doc:1.21 a html:Head ;
     rdf:_1 doc:1.27 ;
-    rdf:_2 doc:1.21.2 ;
-    rdf:_3 doc:1.94 ;
-    rdf:_4 doc:1.21.4 ;
-    rdf:_5 doc:1.145 ;
-    html:fragment "<head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head>"^^xsd:string .
-
-doc:1.21.2 a html:TextElement ;
-    html:fragment " " .
-
-doc:1.21.4 a html:TextElement ;
-    html:fragment " " .
+    rdf:_2 doc:1.42 ;
+    rdf:_3 doc:1.1058 ;
+    html:fragment "<head><title></title><style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}</style><meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head>"^^xsd:string .
 
 doc:1.27 a html:Title ;
-    rdf:_1 doc:1.27.1 ;
-    html:fragment "<title>My first 'Hello world' HTML page represented in RDF</title>"^^xsd:string .
+    html:fragment "<title></title>"^^xsd:string .
 
-doc:1.27.1 a html:TextElement ;
-    html:fragment "My first 'Hello world' HTML page represented in RDF" .
+doc:1.42 a html:StyleSheet ;
+    rdf:_1 doc:1.42.1 ;
+    html:fragment "<style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}</style>"^^xsd:string .
 
-doc:1.94 a html:StyleSheet ;
-    rdf:_1 doc:1.94.1 ;
-    html:fragment "<style> .italic-text {font-style: italic;}</style>"^^xsd:string .
-
-doc:1.94.1 a html:TextElement ;
-    html:fragment " .italic-text {font-style: italic;}" .
+doc:1.42.1 a html:TextElement ;
+    html:fragment "body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}" .
 
 section:13.1 a dcm:Text ;
     rdfs:label "§ 13.1 Writing HTML documents"@en ;
@@ -2578,6 +2675,14 @@ html:Document a owl:Class ;
     skos:definition "An HTML document consists of a tree of elements and text. Each element is denoted in the source by a start tag, such as ‘<body>’, and an end tag, such as ‘</body>’. Tags have to be nested such that elements are all completely within each other, without overlapping. Elements can have attributes, which control how the elements work. The HTML Core Vocabulary defines a set of elements that can be used in a HTML document, along with rules about the ways in which the elements can be nested. HTML user agents (e.g., web browsers) parse a HTML document, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. A HTML document represents a media-independent description of interactive content. A HTML document might be rendered to a screen, or through a speech synthesizer, or on a braille display. To influence exactly how such rendering takes place, authors can use a styling language such as CSS."@en ;
     skos:prefLabel "html document"@en .
 
+html:H1 a owl:Class ;
+    dct:conformsTo section:4.3.6 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest."@en ;
+    skos:prefLabel "the h1 element"@en ;
+    html:tag "h1" .
+
 html:Head a owl:Class ;
     dct:conformsTo section:4.2.1 ;
     rdfs:isDefinedBy html: ;
@@ -2593,14 +2698,6 @@ html:HeaderCell a owl:Class ;
     skos:definition "The <th> element represents a header cell in a table."@en ;
     skos:prefLabel "the th element"@en ;
     html:tag "th" .
-
-html:Label a owl:Class ;
-    dct:conformsTo section:4.10.4 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <label> HTML element represents a caption for an item in a user interface."@en ;
-    skos:prefLabel "the label element"@en ;
-    html:tag "label" .
 
 html:Li a owl:Class ;
     dct:conformsTo section:4.4.8 ;
@@ -2880,6 +2977,22 @@ html:Details a owl:Class ;
     skos:prefLabel "the details element"@en ;
     html:tag "details" .
 
+html:Div a owl:Class ;
+    dct:conformsTo section:4.4.15 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <div> HTML element is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element)."@en ;
+    skos:prefLabel "the div element"@en ;
+    html:tag "div" .
+
+html:Hr a owl:Class ;
+    dct:conformsTo section:4.4.2 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:VoidElement ;
+    skos:definition "The <hr> HTML element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section."@en ;
+    skos:prefLabel "the hr element"@en ;
+    html:tag "hr" .
+
 html:Html a owl:Class ;
     dct:conformsTo section:4.1.1 ;
     rdfs:isDefinedBy html: ;
@@ -2952,6 +3065,14 @@ construct {
   bind(now() as ?activityDateTime)
 }""" .
 
+html:B a owl:Class ;
+    dct:conformsTo section:4.5.21 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <b> HTML element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance. This was formerly known as the Boldface element, and most browsers still draw the text in boldface. However, you should not use <b> for styling text; instead, you should use the CSS font-weight property to create boldface text, or the <strong> element to indicate that text is of special importance."@en ;
+    skos:prefLabel "the b element"@en ;
+    html:tag "b" .
+
 html:Embed a owl:Class ;
     dct:conformsTo section:4.8.6 ;
     rdfs:isDefinedBy html: ;
@@ -2975,6 +3096,22 @@ html:Output a owl:Class ;
     skos:definition "The <output> HTML element is a container element into which a site or app can inject the results of a calculation or the outcome of a user action."@en ;
     skos:prefLabel "the output element"@en ;
     html:tag "output" .
+
+html:P a owl:Class ;
+    dct:conformsTo section:4.4.1 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields."@en ;
+    skos:prefLabel "the p element"@en ;
+    html:tag "p" .
+
+html:Label a owl:Class ;
+    dct:conformsTo section:4.10.4 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <label> HTML element represents a caption for an item in a user interface."@en ;
+    skos:prefLabel "the label element"@en ;
+    html:tag "label" .
 
 html:Option a owl:Class ;
     dct:conformsTo section:4.10.10 ;
@@ -3038,21 +3175,13 @@ html:Source a owl:Class ;
     skos:prefLabel "the source element"@en ;
     html:tag "source" .
 
-html:TextElement a owl:Class ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf dom:Element ;
-    skos:definition "A DOM element that has textual content and that does not contain any HTML Core Vocabulary."@en ;
-    skos:example "A natural language sentence that appears in a table caption."@en,
-        "A numeric value that appears in a table cell."@en ;
-    skos:prefLabel "text element"@en .
-
-html:A a owl:Class ;
-    dct:conformsTo section:4.5.1 ;
+html:Select a owl:Class ;
+    dct:conformsTo section:4.10.7 ;
     rdfs:isDefinedBy html: ;
     rdfs:subClassOf html:Element ;
-    skos:definition "The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address."@en ;
-    skos:prefLabel "the a element"@en ;
-    html:tag "a" .
+    skos:definition "The <select> HTML element represents a control that provides a menu of options:"@en ;
+    skos:prefLabel "the select element"@en ;
+    html:tag "select" .
 
 html:Form a owl:Class ;
     dct:conformsTo section:4.10.3 ;
@@ -3062,13 +3191,13 @@ html:Form a owl:Class ;
     skos:prefLabel "the form element"@en ;
     html:tag "form" .
 
-html:Select a owl:Class ;
-    dct:conformsTo section:4.10.7 ;
+html:A a owl:Class ;
+    dct:conformsTo section:4.5.1 ;
     rdfs:isDefinedBy html: ;
     rdfs:subClassOf html:Element ;
-    skos:definition "The <select> HTML element represents a control that provides a menu of options:"@en ;
-    skos:prefLabel "the select element"@en ;
-    html:tag "select" .
+    skos:definition "The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address."@en ;
+    skos:prefLabel "the a element"@en ;
+    html:tag "a" .
 
 html:Area a owl:Class ;
     dct:conformsTo section:4.8.13 ;
@@ -3117,6 +3246,14 @@ html:Textarea a owl:Class ;
     skos:definition "The <textarea> HTML element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form."@en ;
     skos:prefLabel "the textarea element"@en ;
     html:tag "textarea" .
+
+html:TextElement a owl:Class ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf dom:Element ;
+    skos:definition "A DOM element that has textual content and that does not contain any HTML Core Vocabulary."@en ;
+    skos:example "A natural language sentence that appears in a table caption."@en,
+        "A numeric value that appears in a table cell."@en ;
+    skos:prefLabel "text element"@en .
 
 html:Img a owl:Class ;
     dct:conformsTo section:4.8.3 ;

@@ -24,10 +24,63 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 doc:1 a html:Document ;
-    rdf:_1 doc:1.15 ;
+    rdf:_1 doc:2.0 ;
     prov:wasGeneratedBy doc:1-html-document-generation ;
     dom:documentType documentType:html ;
-    html:fragment "<!DOCTYPE html><html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>"^^xsd:string .
+    html:fragment """<!DOCTYPE html><html>
+<head>
+<title>Tutorial Document Example</title>
+<style>
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<table>
+<caption>Example table</caption>
+<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>"""^^xsd:string .
 
 html:Abbr a owl:Class ;
     dct:conformsTo section:4.5.9 ;
@@ -92,14 +145,6 @@ html:Br a owl:Class ;
     skos:definition "The <br> HTML element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant."@en ;
     skos:prefLabel "the br element"@en ;
     html:tag "br" .
-
-html:Caption a owl:Class ;
-    dct:conformsTo section:4.9.2 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The caption element represents the title of the table that is its parent, if it has a parent and that is a table element."@en ;
-    skos:prefLabel "the caption element"@en ;
-    html:tag "caption" .
 
 html:Cite a owl:Class ;
     dct:conformsTo section:4.5.6 ;
@@ -357,14 +402,6 @@ html:Pre a owl:Class ;
     skos:prefLabel "the pre element"@en ;
     html:tag "pre" .
 
-html:Row a owl:Class ;
-    dct:conformsTo section:4.9.8 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <tr> element represents a row of cells in a table."@en ;
-    skos:prefLabel "the tr element"@en ;
-    html:tag "tr" .
-
 html:Rp a owl:Class ;
     dct:conformsTo section:4.5.12 ;
     rdfs:isDefinedBy html: ;
@@ -469,22 +506,6 @@ html:Sup a owl:Class ;
     skos:prefLabel "the sup element"@en ;
     html:tag "sup" .
 
-html:Table a owl:Class ;
-    dct:conformsTo section:4.9.1 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap."@en ;
-    skos:prefLabel "the table element"@en ;
-    html:tag "table" .
-
-html:TableBody a owl:Class ;
-    dct:conformsTo section:4.9.5 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The table body (<tbody> element) represents a block of rows that consist of a body of data for the parent table."@en ;
-    skos:prefLabel "the tbody element"@en ;
-    html:tag "tbody" .
-
 html:TableFooter a owl:Class ;
     dct:conformsTo section:4.9.7 ;
     rdfs:isDefinedBy html: ;
@@ -492,14 +513,6 @@ html:TableFooter a owl:Class ;
     skos:definition "The table footer (<tfoot> element) represents the block of rows that consist of the column summaries (footers) for the parent table."@en ;
     skos:prefLabel "the tfoot element"@en ;
     html:tag "tfoot" .
-
-html:TableHeader a owl:Class ;
-    dct:conformsTo section:4.9.6 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The table header (<thead> element) represents the block of rows that consist of the column labels (headers) for the parent table."@en ;
-    skos:prefLabel "the thead element"@en ;
-    html:tag "thead" .
 
 html:U a owl:Class ;
     dct:conformsTo section:4.5.22 ;
@@ -1812,58 +1825,486 @@ shp:VoidElement a sh:NodeShape ;
     sh:target target:VoidElement .
 
 doc:1-html-document-generation a prov:Activity ;
-    prov:atTime "2024-03-13T21:45:43.185107+00:00"^^xsd:dateTime ;
+    prov:atTime "2024-03-13T21:45:50.224450+00:00"^^xsd:dateTime ;
     prov:used html:,
         rule:Document .
 
-doc:1.145 a html:Meta ;
-    html:charset "utf-8" ;
-    html:fragment "<meta charset=\"utf-8\" http-equiv=\"Content-Type\">"^^xsd:string ;
-    html:http-equiv "Content-Type" .
+doc:2.0 a html:Html ;
+    rdf:_1 doc:2.0.1 ;
+    rdf:_2 doc:3.0 ;
+    rdf:_3 doc:2.0.3 ;
+    rdf:_4 doc:31.0 ;
+    rdf:_5 doc:2.0.5 ;
+    html:fragment """<html>
+<head>
+<title>Tutorial Document Example</title>
+<style>
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
 
-doc:1.15 a html:Html ;
-    rdf:_1 doc:1.21 ;
-    rdf:_2 doc:1.15.2 ;
-    rdf:_3 doc:1.201 ;
-    html:fragment "<html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>"^^xsd:string .
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
 
-doc:1.15.2 a html:TextElement ;
-    html:fragment " " .
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
 
-doc:1.201 a html:Body ;
-    rdf:_1 doc:1.201.1 ;
-    html:fragment "<body>Hello world</body>"^^xsd:string .
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<table>
+<caption>Example table</caption>
+<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>"""^^xsd:string .
 
-doc:1.201.1 a html:TextElement ;
-    html:fragment "Hello world" .
+doc:2.0.1 a html:TextElement ;
+    html:fragment """
+""" .
 
-doc:1.21 a html:Head ;
-    rdf:_1 doc:1.27 ;
-    rdf:_2 doc:1.21.2 ;
-    rdf:_3 doc:1.94 ;
-    rdf:_4 doc:1.21.4 ;
-    rdf:_5 doc:1.145 ;
-    html:fragment "<head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\" http-equiv=\"Content-Type\"></head>"^^xsd:string .
+doc:2.0.3 a html:TextElement ;
+    html:fragment """
+""" .
 
-doc:1.21.2 a html:TextElement ;
-    html:fragment " " .
+doc:2.0.5 a html:TextElement ;
+    html:fragment """
+""" .
 
-doc:1.21.4 a html:TextElement ;
-    html:fragment " " .
+doc:3.0 a html:Head ;
+    rdf:_1 doc:3.0.1 ;
+    rdf:_2 doc:4.4 ;
+    rdf:_3 doc:3.0.3 ;
+    rdf:_4 doc:5.4 ;
+    rdf:_5 doc:3.0.5 ;
+    html:fragment """<head>
+<title>Tutorial Document Example</title>
+<style>
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
 
-doc:1.27 a html:Title ;
-    rdf:_1 doc:1.27.1 ;
-    html:fragment "<title>My first 'Hello world' HTML page represented in RDF</title>"^^xsd:string .
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
 
-doc:1.27.1 a html:TextElement ;
-    html:fragment "My first 'Hello world' HTML page represented in RDF" .
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
 
-doc:1.94 a html:StyleSheet ;
-    rdf:_1 doc:1.94.1 ;
-    html:fragment "<style> .italic-text {font-style: italic;}</style>"^^xsd:string .
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    </style>
+</head>"""^^xsd:string .
 
-doc:1.94.1 a html:TextElement ;
-    html:fragment " .italic-text {font-style: italic;}" .
+doc:3.0.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:3.0.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:3.0.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:31.0 a html:Body ;
+    rdf:_1 doc:31.0.1 ;
+    rdf:_2 doc:32.4 ;
+    rdf:_3 doc:31.0.3 ;
+    html:fragment """<body>
+<table>
+<caption>Example table</caption>
+<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>
+</body>"""^^xsd:string .
+
+doc:31.0.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:31.0.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:32.4 a html:Table ;
+    rdf:_1 doc:32.4.1 ;
+    rdf:_2 doc:33.8 ;
+    rdf:_3 doc:32.4.3 ;
+    rdf:_4 doc:34.8 ;
+    rdf:_5 doc:32.4.5 ;
+    rdf:_6 doc:41.8 ;
+    rdf:_7 doc:32.4.7 ;
+    html:fragment """<table>
+<caption>Example table</caption>
+<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>"""^^xsd:string .
+
+doc:32.4.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:32.4.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:32.4.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:32.4.7 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:33.8 a html:Caption ;
+    rdf:_1 doc:33.8.1 ;
+    html:fragment "<caption>Example table</caption>"^^xsd:string .
+
+doc:33.8.1 a html:TextElement ;
+    html:fragment "Example table" .
+
+doc:34.8 a html:TableHeader ;
+    rdf:_1 doc:34.8.1 ;
+    rdf:_2 doc:35.12 ;
+    rdf:_3 doc:34.8.3 ;
+    html:fragment """<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>"""^^xsd:string .
+
+doc:34.8.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:34.8.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:35.12 a html:Row ;
+    rdf:_1 doc:35.12.1 ;
+    rdf:_2 doc:36.16 ;
+    rdf:_3 doc:35.12.3 ;
+    rdf:_4 doc:37.16 ;
+    rdf:_5 doc:35.12.5 ;
+    rdf:_6 doc:38.16 ;
+    rdf:_7 doc:35.12.7 ;
+    html:fragment """<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>"""^^xsd:string .
+
+doc:35.12.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:35.12.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:35.12.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:35.12.7 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:36.16 a html:HeaderCell ;
+    rdf:_1 doc:36.16.1 ;
+    html:fragment "<th>banana</th>"^^xsd:string .
+
+doc:36.16.1 a html:TextElement ;
+    html:fragment "banana" .
+
+doc:37.16 a html:HeaderCell ;
+    rdf:_1 doc:37.16.1 ;
+    html:fragment "<th>orange</th>"^^xsd:string .
+
+doc:37.16.1 a html:TextElement ;
+    html:fragment "orange" .
+
+doc:38.16 a html:HeaderCell ;
+    rdf:_1 doc:38.16.1 ;
+    html:fragment "<th>apple</th>"^^xsd:string .
+
+doc:38.16.1 a html:TextElement ;
+    html:fragment "apple" .
+
+doc:4.4 a html:Title ;
+    rdf:_1 doc:4.4.1 ;
+    html:fragment "<title>Tutorial Document Example</title>"^^xsd:string .
+
+doc:4.4.1 a html:TextElement ;
+    html:fragment "Tutorial Document Example" .
+
+doc:41.8 a html:TableBody ;
+    rdf:_1 doc:41.8.1 ;
+    rdf:_2 doc:42.12 ;
+    rdf:_3 doc:41.8.3 ;
+    rdf:_4 doc:47.12 ;
+    rdf:_5 doc:41.8.5 ;
+    html:fragment """<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>"""^^xsd:string .
+
+doc:41.8.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:41.8.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:41.8.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:42.12 a html:Row ;
+    rdf:_1 doc:42.12.1 ;
+    rdf:_2 doc:43.16 ;
+    rdf:_3 doc:42.12.3 ;
+    rdf:_4 doc:44.16 ;
+    rdf:_5 doc:42.12.5 ;
+    rdf:_6 doc:45.16 ;
+    rdf:_7 doc:42.12.7 ;
+    html:fragment """<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>"""^^xsd:string .
+
+doc:42.12.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:42.12.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:42.12.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:42.12.7 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:43.16 a html:DataCell ;
+    rdf:_1 doc:43.16.1 ;
+    html:fragment "<td>1</td>"^^xsd:string .
+
+doc:43.16.1 a html:TextElement ;
+    html:fragment "1" .
+
+doc:44.16 a html:DataCell ;
+    rdf:_1 doc:44.16.1 ;
+    html:fragment "<td>2</td>"^^xsd:string .
+
+doc:44.16.1 a html:TextElement ;
+    html:fragment "2" .
+
+doc:45.16 a html:DataCell ;
+    rdf:_1 doc:45.16.1 ;
+    html:fragment "<td>3</td>"^^xsd:string .
+
+doc:45.16.1 a html:TextElement ;
+    html:fragment "3" .
+
+doc:47.12 a html:Row ;
+    rdf:_1 doc:47.12.1 ;
+    rdf:_2 doc:48.16 ;
+    rdf:_3 doc:47.12.3 ;
+    rdf:_4 doc:49.16 ;
+    rdf:_5 doc:47.12.5 ;
+    rdf:_6 doc:50.16 ;
+    rdf:_7 doc:47.12.7 ;
+    html:fragment """<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>"""^^xsd:string .
+
+doc:47.12.1 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:47.12.3 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:47.12.5 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:47.12.7 a html:TextElement ;
+    html:fragment """
+""" .
+
+doc:48.16 a html:DataCell ;
+    rdf:_1 doc:48.16.1 ;
+    html:fragment "<td>a</td>"^^xsd:string .
+
+doc:48.16.1 a html:TextElement ;
+    html:fragment "a" .
+
+doc:49.16 a html:DataCell ;
+    rdf:_1 doc:49.16.1 ;
+    html:fragment "<td>b</td>"^^xsd:string .
+
+doc:49.16.1 a html:TextElement ;
+    html:fragment "b" .
+
+doc:5.4 a html:StyleSheet ;
+    rdf:_1 doc:5.4.1 ;
+    html:fragment """<style>
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    </style>"""^^xsd:string .
+
+doc:5.4.1 a html:TextElement ;
+    html:fragment """
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+    """ .
+
+doc:50.16 a html:DataCell ;
+    rdf:_1 doc:50.16.1 ;
+    html:fragment "<td>c</td>"^^xsd:string .
+
+doc:50.16.1 a html:TextElement ;
+    html:fragment "c" .
 
 section:13.1 a dcm:Text ;
     rdfs:label "§ 13.1 Writing HTML documents"@en ;
@@ -2531,6 +2972,14 @@ html:Body a owl:Class ;
     skos:prefLabel "the body element"@en ;
     html:tag "body" .
 
+html:Caption a owl:Class ;
+    dct:conformsTo section:4.9.2 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The caption element represents the title of the table that is its parent, if it has a parent and that is a table element."@en ;
+    skos:prefLabel "the caption element"@en ;
+    html:tag "caption" .
+
 html:Col a owl:Class ;
     dct:conformsTo section:4.9.4 ;
     rdfs:isDefinedBy html: ;
@@ -2555,14 +3004,6 @@ html:Data a owl:Class ;
     skos:prefLabel "the data element"@en ;
     html:tag "data" .
 
-html:DataCell a owl:Class ;
-    dct:conformsTo section:4.9.9 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The data cell (<td> element) represents a cell in a table that contains some unspecified form of data."@en ;
-    skos:prefLabel "the td element"@en ;
-    html:tag "td" .
-
 html:Dialog a owl:Class ;
     dct:conformsTo section:4.11.4 ;
     rdfs:isDefinedBy html: ;
@@ -2585,14 +3026,6 @@ html:Head a owl:Class ;
     skos:definition "The <head> HTML element contains machine-readable information (metadata) about the document, like its title, scripts, and style sheets."@en ;
     skos:prefLabel "the head element"@en ;
     html:tag "head" .
-
-html:HeaderCell a owl:Class ;
-    dct:conformsTo section:4.9.10 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf html:Element ;
-    skos:definition "The <th> element represents a header cell in a table."@en ;
-    skos:prefLabel "the th element"@en ;
-    html:tag "th" .
 
 html:Label a owl:Class ;
     dct:conformsTo section:4.10.4 ;
@@ -2641,6 +3074,30 @@ html:Slot a owl:Class ;
     skos:definition "The <slot> HTML element - part of the Web Components technology suite - is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together."@en ;
     skos:prefLabel "the slot element"@en ;
     html:tag "slot" .
+
+html:Table a owl:Class ;
+    dct:conformsTo section:4.9.1 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap."@en ;
+    skos:prefLabel "the table element"@en ;
+    html:tag "table" .
+
+html:TableBody a owl:Class ;
+    dct:conformsTo section:4.9.5 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The table body (<tbody> element) represents a block of rows that consist of a body of data for the parent table."@en ;
+    skos:prefLabel "the tbody element"@en ;
+    html:tag "tbody" .
+
+html:TableHeader a owl:Class ;
+    dct:conformsTo section:4.9.6 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The table header (<thead> element) represents the block of rows that consist of the column labels (headers) for the parent table."@en ;
+    skos:prefLabel "the thead element"@en ;
+    html:tag "thead" .
 
 html:Template a owl:Class ;
     dct:conformsTo section:4.12.3 ;
@@ -2976,13 +3433,21 @@ html:Output a owl:Class ;
     skos:prefLabel "the output element"@en ;
     html:tag "output" .
 
-html:Option a owl:Class ;
-    dct:conformsTo section:4.10.10 ;
+html:Row a owl:Class ;
+    dct:conformsTo section:4.9.8 ;
     rdfs:isDefinedBy html: ;
     rdfs:subClassOf html:Element ;
-    skos:definition "The <option> HTML element is used to define an item contained in a <select>, an <optgroup>, or a <datalist> element. As such, <option> can represent menu items in popups and other lists of items in an HTML document."@en ;
-    skos:prefLabel "the option element"@en ;
-    html:tag "option" .
+    skos:definition "The <tr> element represents a row of cells in a table."@en ;
+    skos:prefLabel "the tr element"@en ;
+    html:tag "tr" .
+
+html:HeaderCell a owl:Class ;
+    dct:conformsTo section:4.9.10 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <th> element represents a header cell in a table."@en ;
+    skos:prefLabel "the th element"@en ;
+    html:tag "th" .
 
 html:Meta a owl:Class ;
     dct:conformsTo section:4.2.5 ;
@@ -2991,6 +3456,14 @@ html:Meta a owl:Class ;
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en ;
     skos:prefLabel "the meta element"@en ;
     html:tag "meta" .
+
+html:Option a owl:Class ;
+    dct:conformsTo section:4.10.10 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The <option> HTML element is used to define an item contained in a <select>, an <optgroup>, or a <datalist> element. As such, <option> can represent menu items in popups and other lists of items in an HTML document."@en ;
+    skos:prefLabel "the option element"@en ;
+    html:tag "option" .
 
 html:Object a owl:Class ;
     dct:conformsTo section:4.8.7 ;
@@ -3038,14 +3511,6 @@ html:Source a owl:Class ;
     skos:prefLabel "the source element"@en ;
     html:tag "source" .
 
-html:TextElement a owl:Class ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf dom:Element ;
-    skos:definition "A DOM element that has textual content and that does not contain any HTML Core Vocabulary."@en ;
-    skos:example "A natural language sentence that appears in a table caption."@en,
-        "A numeric value that appears in a table cell."@en ;
-    skos:prefLabel "text element"@en .
-
 html:A a owl:Class ;
     dct:conformsTo section:4.5.1 ;
     rdfs:isDefinedBy html: ;
@@ -3053,6 +3518,14 @@ html:A a owl:Class ;
     skos:definition "The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address."@en ;
     skos:prefLabel "the a element"@en ;
     html:tag "a" .
+
+html:DataCell a owl:Class ;
+    dct:conformsTo section:4.9.9 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf html:Element ;
+    skos:definition "The data cell (<td> element) represents a cell in a table that contains some unspecified form of data."@en ;
+    skos:prefLabel "the td element"@en ;
+    html:tag "td" .
 
 html:Form a owl:Class ;
     dct:conformsTo section:4.10.3 ;
@@ -3149,6 +3622,14 @@ html:Input a owl:Class ;
     skos:definition "The <input> HTML element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent. The <input> element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes."@en ;
     skos:prefLabel "the input element"@en ;
     html:tag "input" .
+
+html:TextElement a owl:Class ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf dom:Element ;
+    skos:definition "A DOM element that has textual content and that does not contain any HTML Core Vocabulary."@en ;
+    skos:example "A natural language sentence that appears in a table caption."@en,
+        "A numeric value that appears in a table cell."@en ;
+    skos:prefLabel "text element"@en .
 
 standard:html a dct:Standard ;
     dct:created "2021-11-09"^^xsd:date ;

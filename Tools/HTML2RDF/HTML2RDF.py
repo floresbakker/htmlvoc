@@ -120,14 +120,11 @@ for filename in os.listdir(directory_path+"htmlvoc/Tools/HTML2RDF/Input"):
                       # write to graph that the child element is of type TextElement
                       g.add((doc[child_id], RDF.type, html["TextElement"]))
                       
-                      # empty content (of type None) in html needs to be converted to empty string
-                      if element.string == None: 
-                          text_fragment = "" 
-                      else:
-                          text_fragment = element.string
+                      # Get the text content of the current text element and preserve exact indentation and whitespaces
+                      text_content = str(child)
                       
                       # write string content of the text element to the graph
-                      g.add((doc[child_id], html["fragment"], Literal(text_fragment)))
+                      g.add((doc[child_id], html["fragment"], Literal(text_content)))
 
         # write the resulting graph to file
         g.serialize(destination=directory_path+"htmlvoc/Tools/HTML2RDF/Output/" + filename_stem + "-parsed.ttl", format="turtle")
