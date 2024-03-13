@@ -30,6 +30,13 @@
         .output-container {
             /* Optionally limit max-height to prevent excessive stretching */
             max-height: 100%; /* Adjust as needed */
+            white-space: pre-wrap; /* Preserve line breaks */
+            font-family: monospace; /* Use a monospace font for better alignment */
+        }
+
+        /* Style for RDF triples */
+        .triple {
+            margin-bottom: 5px; /* Adjust spacing between triples */
         }
     </style>
 </head>
@@ -54,6 +61,11 @@
                 <!-- Use the safe filter to render HTML content without HTML escaping -->
                 {{ htmlOutput | safe }}
             </div>
+            {% else %}
+            <div class="output-container">
+                
+                Rendered HTML output is shown here
+            </div>
             {% endif %}
         </div>
 
@@ -63,7 +75,12 @@
             {% if htmlRawOutput %}
             <div class="output-container">
                 <!-- show HTML content with HTML escaping -->
-                {{ htmlRawOutput }}
+{{ htmlRawOutput }}
+            </div>
+            {% else %}
+            <div class="output-container">
+                
+                Raw HTML output code is shown here
             </div>
             {% endif %}
         </div>
@@ -88,18 +105,29 @@
                 <!-- Use the safe filter to render HTML content without HTML escaping -->
                 {{ htmlInput | safe }}
             </div>
+            {% else %}
+            <div class="output-container">
+                
+                Rendered HTML input is shown here
+            </div>
             {% endif %}
         </div>
 
         <!-- Output box for the second form (text content) -->
         <div class="output-box">
-            <!-- Text content -->
-            {% if rdfOutput %}
-            <div class="output-container">
-                <!-- Display text output here -->
-                {{ rdfOutput }}
-            </div>
-            {% endif %}
+          <!-- Text content -->
+          {% if rdfOutput %}
+          <div class="output-container">
+            {% for triple in rdfOutput %}
+            <div class="triple">{{ triple }}</div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="output-container">
+                
+                RDF output code is shown here
+          </div>
+          {% endif %}
         </div>
     </div>
 </body>

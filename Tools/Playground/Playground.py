@@ -29,7 +29,7 @@ def readStringFromFile(file_path):
 html_vocabulary = readStringFromFile(directory_path + "htmlvoc/Specification/html - core.ttl")
 example_rdf_code = """### Enter here your RDF-code (turtle-format). 
                            
-### For example: \n""" + readStringFromFile(directory_path + "htmlvoc/Examples/HTML-table-template-example-parsed.ttl")
+### For example: \n""" + readStringFromFile(directory_path + "htmlvoc/Examples/HTML-table-template-example.ttl")
 example_html_code = """<!-- Enter here your HTML-code. 
 
 For example: --> \n""" + readStringFromFile(directory_path + "htmlvoc/Examples/HTML-table-template-example.html")
@@ -122,7 +122,7 @@ def convert_to_html():
     serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="turtle")
     html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
     print("HTML fragment =", html_fragment)
-    return render_template('index.html', htmlOutput='<iframe srcdoc="'+html_fragment+'" width="100%" height="600" frameborder="0"></iframe>', htmlRawOutput=html_fragment, rdfInput=text)
+    return render_template('index.html', htmlOutput=html_fragment, htmlRawOutput=html_fragment, rdfInput=text)
 
 @app.route('/convert2RDF', methods=['POST'])
 def convert_to_rdf():
@@ -216,12 +216,12 @@ def convert_to_rdf():
                       g.add((doc[child_id], html["fragment"], Literal(text_fragment)))
 
         # return the resulting triples
-        triples = g.serialize(format="turtle")
+        triples = g.serialize(format="turtle",normalize=True).split('\n\n\n')
         return render_template('index.html', rdfOutput=triples, htmlInput = htmlInput, htmlRawInput = htmlInput)
 
 @app.route('/')
 def index():
-    return render_template('index.html', htmlOutput="HTML output image is shown here", htmlRawOutput= "HTML output code is shown here", htmlInput="HTML input image is shown here", rdfOutput="RDF output code is shown here", rdfInput=example_rdf_code, htmlRawInput=example_html_code)
+    return render_template('index.html', rdfInput=example_rdf_code, htmlRawInput=example_html_code)
 
 if __name__ == '__main__':
     app.run()
