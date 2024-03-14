@@ -9,7 +9,7 @@ The HTML2RDF script offers a simple way of transforming an HTML-document into a 
 """
 
 from bs4 import BeautifulSoup
-from bs4.element import Tag, NavigableString
+from bs4.element import Tag, NavigableString, Comment, CData
 from rdflib import Graph, Namespace, Literal, RDF
 import os
 
@@ -111,7 +111,7 @@ for filename in os.listdir(directory_path+"htmlvoc/Tools/HTML2RDF/Input"):
                       g.add((doc[element_id], rdf["_" + str(member_count)], doc[child_id]))
                       
                     # if the child is an text element, create a unique identifier based on sourceline and sourcepos of its parent and the sequence position of the child within the parent, as the html-parser does not have sourceline and sourcepos available as attributes for text elements.
-                    elif isinstance(child, NavigableString):
+                    elif isinstance(child, NavigableString) and not isinstance(child, Comment):
                       child_id = str(element.sourceline) + "." + str(element.sourcepos) + "." + str(member_count) # string elements do not have sourceline or sourcepos, hence we look at their parent to establish an id and add the sequence position of the child
                       
                       # write to graph that the parent element has a child with a certain sequence position
@@ -125,6 +125,48 @@ for filename in os.listdir(directory_path+"htmlvoc/Tools/HTML2RDF/Input"):
                       
                       # write string content of the text element to the graph
                       g.add((doc[child_id], html["fragment"], Literal(text_content)))
+                      
+                    elif isinstance(child, Comment):
+                      child_id = str(element.sourceline) + "." + str(element.sourcepos) + "." + str(member_count) # string elements do not have sourceline or sourcepos, hence we look at their parent to establish an id and add the sequence position of the child
+                      child_text_id = child_id + '-text'
+                      # write to graph that the parent element has a child with a certain sequence position
+                      g.add((doc[element_id], rdf["_" + str(member_count)], doc[child_id]))  
+                      
+                      # write to graph that the child element is of type TextElement
+                      g.add((doc[child_id], RDF.type, html["Comment"]))
+                      
+                      # write to graph that the child element 'Comment' has a child 'TextElement''
+                      g.add((doc[child_id], rdf["_1"], doc[child_text_id]))
+                      
+                      # write to graph that the grand child element is of type TextElement
+                      g.add((doc[child_text_id], RDF.type, html["TextElement"]))
+                      
+                      # Get the text content of the current text element and preserve exact indentation and whitespaces
+                      text_content = str(child)
+                      
+                      # write string content of the text element to the graph
+                      g.add((doc[child_text_id], html["fragment"], Literal(text_content)))
+                      
+                    elif isinstance(child, CData):
+                      child_id = str(element.sourceline) + "." + str(element.sourcepos) + "." + str(member_count) # string elements do not have sourceline or sourcepos, hence we look at their parent to establish an id and add the sequence position of the child
+                      child_text_id = child_id + '-text'
+                      # write to graph that the parent element has a child with a certain sequence position
+                      g.add((doc[element_id], rdf["_" + str(member_count)], doc[child_id]))  
+                        
+                      # write to graph that the child element is of type TextElement
+                      g.add((doc[child_id], RDF.type, html["CDATA"]))
+                      
+                      # write to graph that the child element 'CDATA' has a child 'TextElement''
+                      g.add((doc[child_id], rdf["_1"], doc[child_text_id]))
+                        
+                      # write to graph that the grand child element is of type TextElement
+                      g.add((doc[child_text_id], RDF.type, html["TextElement"]))
+                        
+                      # Get the text content of the current text element and preserve exact indentation and whitespaces
+                      text_content = str(child)
+                        
+                      # write string content of the text element to the graph
+                      g.add((doc[child_text_id], html["fragment"], Literal(text_content)))
 
         # write the resulting graph to file
         g.serialize(destination=directory_path+"htmlvoc/Tools/HTML2RDF/Output/" + filename_stem + "-parsed.ttl", format="turtle")
