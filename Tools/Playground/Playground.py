@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 import rdflib
 from rdflib import Graph, Namespace, Literal, RDF
 import pyshacl
@@ -112,6 +112,8 @@ def iteratePyShacl(shaclgraph, serializable_graph):
                     return html.fragment
 
 
+
+
 @app.route('/convert2HTML', methods=['POST'])
 def convert_to_html():
     text = request.form['rdf']   
@@ -121,8 +123,11 @@ def convert_to_html():
     serializable_graph_string = html_vocabulary + triples
     serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="turtle")
     html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
-    print("HTML fragment =", html_fragment)
-    return render_template('index.html', htmlOutput=html_fragment, htmlRawOutput=html_fragment, rdfInput=text)
+    filepath = directory_path+"htmlvoc/Tools/Playground/static/output.html"
+    src_filepath = url_for('static', filename='output.html')
+    with open(filepath, 'w', encoding='utf-8') as file:
+       file.write(html_fragment)
+    return render_template('index.html', htmlOutput='<iframe src='+ src_filepath + ' width="100%" height="600"></iframe>', htmlRawOutput=html_fragment, rdfInput=text)
 
 @app.route('/convert2RDF', methods=['POST'])
 def convert_to_rdf():
@@ -256,7 +261,15 @@ def convert_to_rdf():
 
         # return the resulting triples
         triples = g.serialize(format="turtle",normalize=True).split('\n\n\n')
-        return render_template('index.html', rdfOutput=triples, htmlInput = htmlInput, htmlRawInput = htmlInput)
+        filepath = directory_path+"htmlvoc/Tools/Playground/static/input.html"
+        src_filepath = url_for('static', filename='input.html')
+        with open(filepath, 'w', encoding='utf-8') as file:
+           file.write(htmlInput)
+        return render_template('index.html', rdfOutput=triples, htmlInput='<iframe src='+ src_filepath + ' width="100%" height="600"></iframe>', htmlRawInput = htmlInput)
+
+@app.route('/output')
+def output():
+    return render_template('output.html')
 
 @app.route('/')
 def index():
