@@ -16,7 +16,7 @@ prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix graph: <https://data.rijksfinancien.nl/html/graph/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix respec: <https://respec.org/model/>
+prefix respec: <https://respec.org/model/def/>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
 prefix section: <https://data.rijksfinancien.nl/html/id/section/>
 prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>

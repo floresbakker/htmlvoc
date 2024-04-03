@@ -4,12 +4,15 @@ from rdflib import Graph, Namespace, Literal, RDF
 import pyshacl
 from bs4 import BeautifulSoup
 from bs4.element import Tag, NavigableString, Comment, CData
-
+import os
 
 app = Flask(__name__)
 
+# Get the current working directory in which the Playground.py file is located.
+current_dir = os.getcwd()
+
 # Set the path to the desired standard directory. 
-directory_path = "C:/Users/Administrator/Documents/Branches/"
+directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 
 # namespace declaration
 html = Namespace("https://data.rijksfinancien.nl/html/model/def/")
@@ -26,13 +29,13 @@ def readStringFromFile(file_path):
             file_content = file.read()
     return file_content
 
-html_vocabulary = readStringFromFile(directory_path + "htmlvoc/Specification/html - core.ttl")
+html_vocabulary = readStringFromFile(directory_path + "/htmlvoc/Specification/html - core.ttl")
 example_rdf_code = """### Enter here your RDF-code (turtle-format). 
                            
-### For example: \n""" + readStringFromFile(directory_path + "htmlvoc/Examples/HTML-table-template-example.ttl")
+### For example: \n""" + readStringFromFile(directory_path + "/htmlvoc/Examples/HTML-table-template-example.ttl")
 example_html_code = """<!-- Enter here your HTML-code. 
 
-For example: --> \n""" + readStringFromFile(directory_path + "htmlvoc/Examples/HTML-table-template-example.html")
+For example: --> \n""" + readStringFromFile(directory_path + "/htmlvoc/Examples/HTML-table-template-example.html")
 
 def generate_element_id(element):
     # generate an identifier for an element in the xml
@@ -123,7 +126,7 @@ def convert_to_html():
     serializable_graph_string = html_vocabulary + triples
     serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="turtle")
     html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
-    filepath = directory_path+"htmlvoc/Tools/Playground/static/output.html"
+    filepath = directory_path+"/htmlvoc/Tools/Playground/static/output.html"
     src_filepath = url_for('static', filename='output.html')
     with open(filepath, 'w', encoding='utf-8') as file:
        file.write(html_fragment)
@@ -141,7 +144,7 @@ def convert_to_rdf():
         g.bind("doc", doc)
 
         # fill graph with html vocabulary
-        html_graph = Graph().parse(directory_path+"htmlvoc/Specification/html - core.ttl" , format="ttl")
+        html_graph = Graph().parse(directory_path+"/htmlvoc/Specification/html - core.ttl" , format="ttl")
 
         # string for query to establish IRI of a 'tag' HTML element
         tagquerystring = '''
@@ -261,7 +264,7 @@ def convert_to_rdf():
 
         # return the resulting triples
         triples = g.serialize(format="turtle",normalize=True).split('\n\n\n')
-        filepath = directory_path+"htmlvoc/Tools/Playground/static/input.html"
+        filepath = directory_path+"/htmlvoc/Tools/Playground/static/input.html"
         src_filepath = url_for('static', filename='input.html')
         with open(filepath, 'w', encoding='utf-8') as file:
            file.write(htmlInput)
