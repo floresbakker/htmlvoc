@@ -17,8 +17,11 @@ import rdflib
 import os
 rdflib.NORMALIZE_LITERALS = False #see bug https://github.com/RDFLib/rdflib/issues/2475
 
+# Get the current working directory in which the RDF2HTML.py file is located.
+current_dir = os.getcwd()
+
 # Set the path to the desired standard directory. 
-directory_path = "C:/Users/Administrator/Documents/Branches/"
+directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 
 # Function to read a graph (as a string) from a file 
 def readGraphFromFile(file_path):
@@ -74,12 +77,12 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
              
 
 # Get the HTML vocabulary and place it in a string
-html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html - core.ttl")
+html_vocabulary = readGraphFromFile(directory_path + "/htmlvoc/Specification/html - core.ttl")
 
 # loop through any turtle files in the input directory
-for filename in os.listdir(directory_path+"htmlvoc/Tools/RDF2HTML/Input"):
+for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
     if filename.endswith(".ttl"):
-        file_path = os.path.join(directory_path+"htmlvoc/Tools/RDF2HTML/Input", filename)
+        file_path = os.path.join(directory_path+"/htmlvoc/Tools/RDF2HTML/Input", filename)
         
         # Establish the stem of the file name for reuse in newly created files
         filename_stem = os.path.splitext(filename)[0]
