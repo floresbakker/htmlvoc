@@ -45,7 +45,7 @@ To address this need, we have pioneered the development of the RDF-based Semanti
    respec:objective '''In response to these challenges, we introduce the RDF-based semantic HTML Core Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Core Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
     respec:audience '''This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'''@en;
     respec:acknowledgements '''This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'''@en;
-    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of DOM:element, the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:TextElement', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:TextElement ; html:fragment "Hello world".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
+    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of DOM:element, the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text ; html:fragment "Hello world".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
     dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en; 
     skos:example """
 
@@ -92,19 +92,19 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 	doc:1.218 a html:Body ;
 		rdf:_1 doc:1.218.1 .
 
-	doc:1.218.1 a html:TextElement ;
+	doc:1.218.1 a html:Text ;
 		html:fragment "Hello world" .
 
 	doc:1.27 a html:Title ;
 		rdf:_1 doc:1.27.1 .
 
-	doc:1.27.1 a html:TextElement ;
+	doc:1.27.1 a html:Text ;
 		html:fragment "An 'Hello world' HTML page represented in RDF" .
 
 	doc:1.93 a html:StyleSheet ;
 		rdf:_1 doc:1.93.1 .
 
-	doc:1.93.1 a html:TextElement ;
+	doc:1.93.1 a html:Text ;
 		html:fragment " .italic-text {font-style: italic;}" .
 	
 """;
@@ -930,7 +930,12 @@ section:4.8.16
 
 # HTML - living standard - 4.13 - Custom elements
 
-### work in progress
+  section:4.13.3
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#custom-elements-core-concepts'^^xsd:anyURI;
+    skos:prefLabel '§ 4.13.3 Core concepts'@en;
+    rdfs:isDefinedBy html:.
 
 # HTML - living standard - 4.14 - Common idioms without dedicated elements
 
@@ -951,6 +956,13 @@ section:4.8.16
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#writing'^^xsd:anyURI;
     rdfs:label '§ 13.1 Writing HTML documents'@en;
+    rdfs:isDefinedBy html:.
+
+  section:13.1.1
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/multipage/syntax.html#the-doctype'^^xsd:anyURI;
+    skos:prefLabel '§ 13.1.1 The DOCTYPE'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2
@@ -1058,7 +1070,8 @@ section:4.8.16
 
   target:SerializableElement
     a sh:SPARQLTarget;
-    sh:select '''prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+    sh:select '''
+prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -1086,14 +1099,16 @@ select $this {
       ?childElement html:fragment [].
     }
   }
-}''';
+}
+''';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_HTML_Element
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
-    sh:construct '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:construct '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -1139,7 +1154,8 @@ construct {
       ?fragments,
       # close tag and cast as HTML snippet
       '</',?tag,'>'),xsd:string) as ?fragment)
-}''';
+}
+''';
     rdfs:isDefinedBy html:.
 
 # Void element
@@ -1283,13 +1299,13 @@ construct {
     concat(
       # open tag CDATA
       '<![CDATA[', 
-	  # text
-	  ?fragments,
+      # text
+      ?fragments,
       # close tag and cast as HTML snippet
       ']]>'),xsd:string) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
-	
+
 # Comment
 
   shp:Comment
@@ -1354,8 +1370,8 @@ construct {
     concat(
       # open tag comment
       '<!--', 
-	  # text
-	  ?fragments,
+      # text
+      ?fragments,
       # close tag and cast as HTML snippet
       '-->'),xsd:string) as ?fragment)
 }''';
@@ -1363,15 +1379,15 @@ construct {
 
 # Text element
 
-  html:TextElement
+  html:Text
     a owl:Class;
-    rdfs:subClassOf dom:Element;
-	dct:conformsTo section:13.1.3;
-    skos:definition 'A DOM element that has textual content and that does not contain any HTML Core Vocabulary.'@en;
+    rdfs:subClassOf dom:Text;
+    dct:conformsTo section:13.1.3;
+    skos:definition 'Textual content that does not contain any HTML Core Vocabulary.'@en;
     skos:example
       'A numeric value that appears in a table cell.'@en,
       'A natural language sentence that appears in a table caption.'@en;
-    skos:prefLabel 'text element'@en;
+    skos:prefLabel 'text'@en;
     rdfs:isDefinedBy html:.
 
 # HTML - living standard - 4.1 Document element
@@ -1382,31 +1398,23 @@ construct {
     a sh:NodeShape;
     sh:description 'A HTML document contains a required documenttype HTML and a root HTML element.'@en;
     sh:name 'HTML Document'@en;
-    sh:property
-      shp:Document_documentType,
-      shp:Document_root;
     sh:rule rule:Document;
     sh:target target:Document;
     rdfs:isDefinedBy html:.
 
   html:Document
     a owl:Class;
+    rdfs:subClassOf dom:Document;
     owl:equivalentClass html:documentRestriction;
     dct:conformsTo section:13.1;
     skos:definition 'An HTML document consists of a tree of elements and text. Each element is denoted in the source by a start tag, such as ‘<body>’, and an end tag, such as ‘</body>’. Tags have to be nested such that elements are all completely within each other, without overlapping. Elements can have attributes, which control how the elements work. The HTML Core Vocabulary defines a set of elements that can be used in a HTML document, along with rules about the ways in which the elements can be nested. HTML user agents (e.g., web browsers) parse a HTML document, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. A HTML document represents a media-independent description of interactive content. A HTML document might be rendered to a screen, or through a speech synthesizer, or on a braille display. To influence exactly how such rendering takes place, authors can use a styling language such as CSS.'@en;
     skos:prefLabel 'html document'@en;
     rdfs:isDefinedBy html:.
 
-  html:documentRestriction
-    a owl:Restriction;
-    owl:hasValue documentType:html;
-    owl:onProperty dom:documentType;
-    skos:prefLabel 'html document type restriction'@en;
-    rdfs:isDefinedBy html:.
-
   target:Document
     a sh:SPARQLTarget;
-    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:select '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 select $this {
   $this a html:Document.
   filter not exists {
@@ -1428,9 +1436,7 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 construct {
-  $this
-    dom:documentType documentType:html;
-    html:fragment ?fragmentDocument;
+  $this html:fragment ?fragmentDocument;
     prov:wasGeneratedBy ?activity.
   ?activity
     a prov:Activity;
@@ -1439,35 +1445,79 @@ construct {
       html: , # HTML Ontology
       rule:Document.
 } where {
-  $this ?member ?root.
+  $this rdf:_1 ?documentTypeDeclaration;
+        rdf:_2 ?root.
+  ?documentTypeDeclaration rdf:type html:DocumentTypeDeclaration;
+                           html:fragment ?fragmentDocType.
   ?root rdf:type html:Html;
         html:fragment ?fragmentRoot.
-  bind(strdt(concat('<!DOCTYPE html>',str(?fragmentRoot)),xsd:string) as ?fragmentDocument)
+  bind(concat(str(?fragmentDocType),str(?fragmentRoot)) as ?fragmentDocument)
   bind(iri(concat(str($this),'-html-document-generation')) as ?activity)
   bind(now() as ?activityDateTime)
 }''';
     rdfs:isDefinedBy html:.
 
-  shp:Document_documentType
-    a sh:PropertyShape;
-    rdfs:comment 'An HTML document contains excactly one document type with value ‘HTML’.'@en;
-    rdfs:label 'has document type HTML'@en;
-    sh:hasValue documentType:html;
-    sh:minCount 1;
-    sh:maxCount 1;
-    sh:path dom:documentType;
+# DocumentType
+
+  shp:DocumentTypeDeclaration
+    a sh:NodeShape;
+    skos:prefLabel 'DocumentType Declaration shape'@en;
+    sh:rule rule:Serialize_HTML_fragment_DocumentTypeDeclaration;
+    sh:target target:DocumentTypeDeclaration;
     rdfs:isDefinedBy html:.
 
-  shp:Document_root
-    a sh:PropertyShape;
-    rdfs:comment 'The <html> tag is the root of the HTML document and a container for all other HTML elements (except for the <!DOCTYPE> tag). A HTML document contains no less and no more than one html tag.'@en;
-    rdfs:label 'has root element html'@en;
-    sh:class html:Html;
-    sh:minCount 1;
-    sh:maxCount 1;
-    sh:path rdfs:member;
+  target:DocumentTypeDeclaration
+    a sh:SPARQLTarget;
+    sh:select '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select $this {
+  $this a/rdfs:subClassOf* html:DocumentTypeDeclaration.
+  filter not exists {
+    $this html:fragment [].
+  }
+}''';
     rdfs:isDefinedBy html:.
 
+  html:DocumentTypeDeclaration
+    a owl:Class;
+    dct:conformsTo section:13.1.1;
+    rdfs:subClassOf dom:DocumentType;
+    skos:definition 'A DOCTYPE declaration is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
+    skos:prefLabel 'the DOCTYPE'@en;
+    skos:example'''<!DOCTYPE html>'''@en;
+    rdfs:isDefinedBy html:.
+
+  rule:Serialize_HTML_fragment_DocumentTypeDeclaration
+    a sh:SPARQLRule;
+    rdfs:comment 'A rule that creates an HTML fragment for an HTML DocumentType Declaration.'@en;
+    skos:prefLabel 'HTML DocumentType Declaration fragment serialisation rule'@en;
+    sh:construct '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+construct {
+
+  # create the HTML-fragment for the HTML-element to be serialized.
+  $this html:fragment ?fragment.
+} where {
+
+  # get document type name 
+  $this html:documentTypeName ?documentTypeName.
+  
+  # Create the HTML fragment of this HTML element by combining everything retrieved above.
+  bind(strdt(
+    concat(
+      # open tag comment
+      '<!DOCTYPE ', 
+      # text
+      ?documentTypeName,
+      # close tag and cast as HTML snippet
+      '>'),xsd:string) as ?fragment)
+}''';
+    rdfs:isDefinedBy html:.
 
   # HTML root element (<html>)
 
@@ -1476,7 +1526,8 @@ construct {
     dct:conformsTo section:4.1.1;
     html:tag 'html';
     rdfs:subClassOf html:Element;
-    skos:definition 'The <html> HTML element represents the root (top-level element) of an HTML document, so it is also referred to as the root element. All other elements must be descendants of this element.'@en;
+    rdfs:subClassOf dom:DocumentElement;
+    skos:definition 'The <html> HTML element represents the root (top-level element) of an HTML document, so it is also referred to as the root element or document element. All other elements must be descendants of this element.'@en;
     skos:prefLabel 'the html element'@en;
     rdfs:isDefinedBy html:.
 
@@ -2550,9 +2601,11 @@ construct {
 
   html:fragment
     a owl:DatatypeProperty;
-    rdfs:domain html:Element;
+    rdfs:domain [a owl:Class;
+                owl:unionOf (html:Element html:VoidElement html:Text)
+                ];
     rdfs:range rdf:HTML;
-    skos:definition 'Property that links the html fragment that is represented by an element within a HTML-document to that element.'@en;
+    skos:definition 'Property that links the html fragment that is represented by an HTML element, a void element or text element within a HTML-document, to that element.'@en;
     skos:prefLabel 'fragment property'@en;
     rdfs:isDefinedBy html:.
 
