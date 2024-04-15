@@ -13,7 +13,6 @@ prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
-prefix graph: <https://data.rijksfinancien.nl/html/graph/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix respec: <https://respec.org/model/def/>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
@@ -134,7 +133,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     owl:versionInfo '0.2.0';
     vann:preferredNamespacePrefix 'html';
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
-    void:subSet graph:model;
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
 

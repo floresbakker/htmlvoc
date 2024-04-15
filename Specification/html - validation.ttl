@@ -13,17 +13,8 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
-prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
-prefix graph: <https://data.rijksfinancien.nl/htmlv/graph/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix htmlv: <https://data.rijksfinancien.nl/htmlv/model/def/>
-prefix respec: <https://respec.org/model/>
-prefix rule: <https://data.rijksfinancien.nl/htmlv/model/rule/>
-prefix section: <https://data.rijksfinancien.nl/htmlv/id/section/>
 prefix shp: <https://data.rijksfinancien.nl/htmlv/model/shp/>
-prefix standard: <https://data.rijksfinancien.nl/htmlv/id/standard/>
-prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
 
 #html: {
   shp:Element
@@ -34,23 +25,25 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
       shp:Element_style;
     sh:targetClass html:Element;
     skos:prefLabel 'element shape'@en;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Element_fragment
     a sh:PropertyShape;
     rdfs:comment 'Every element can have one and only one html fragment.'@en;
     skos:prefLabel 'has fragment shape'@en;
     sh:datatype rdf:HTML;
-    sh:path htmlv:fragment;
-    rdfs:isDefinedBy htmlv:.
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:path html:fragment;
+    rdfs:isDefinedBy html:.
 
   shp:Element_attribute
     a sh:PropertyShape;
     rdfs:comment 'Every element can have one or more attributes.'@en;
     skos:prefLabel 'has attribute shape'@en;
-    sh:nodeKind sh:Literal;
-    sh:path htmlv:attribute;
-    rdfs:isDefinedBy htmlv:.
+    sh:datatype xsd:string;
+    sh:path html:attribute;
+    rdfs:isDefinedBy html:.
 
   shp:Element_style
     a sh:PropertyShape;
@@ -58,15 +51,15 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     rdfs:label 'has style attribute'@en;
     sh:datatype xsd:string;
     sh:maxCount 1;
-    sh:path htmlv:style;
-    rdfs:isDefinedBy htmlv:.
+    sh:path html:style;
+    rdfs:isDefinedBy html:.
 
-  shp:TextElement
+  shp:Text
     a sh:NodeShape;
     skos:prefLabel 'text element shape'@en;
-    # no rule need as the text value of the text element should be encoded as htmlv:fragment from the start
-    sh:targetClass html:TextElement;
-    rdfs:isDefinedBy htmlv:.
+    # no rule need as the text value of the text element should be encoded as html:fragment from the start
+    sh:targetClass html:Text;
+    rdfs:isDefinedBy html:.
 
   shp:Html
     a sh:NodeShape;
@@ -76,25 +69,25 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
       shp:Html_body,
       shp:Html_head;
     sh:targetClass html:Html;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Html_body
     a sh:PropertyShape;
     rdfs:comment 'A html root element may have one and only one body element.'@en;
     rdfs:label 'has body'@en;
-    sh:class htmlv:Body;
+    sh:class html:Body;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Html_head
     a sh:PropertyShape;
     rdfs:comment 'An html document, may have one and only one head element, which is the first element of the document.'@en;
     rdfs:label 'has head'@en;
-    sh:class htmlv:Head;
+    sh:class html:Head;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Head
     a sh:NodeShape;
@@ -104,60 +97,60 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
       shp:Head_title,
       shp:Head_styleSheet;
     sh:targetClass html:Head;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Head_title
     a sh:PropertyShape;
     rdfs:comment 'A head of an html document, may have one title element.'@en;
     rdfs:label 'has title'@en;
-    sh:class htmlv:Title;
+    sh:class html:Title;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Head_styleSheet
     a sh:PropertyShape;
     rdfs:comment 'A head of an html document, may have one embedded style sheet, which is comprised of presentational and formatting instructions for the rest of the document, and the expected input is CSS declarations.'@en;
     rdfs:label 'has style sheet'@en;
-    sh:class htmlv:StyleSheet;
+    sh:class html:StyleSheet;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Title
     a sh:NodeShape;
     rdfs:comment 'The title element represents the title of the HTML document.'@en;
     rdfs:label 'title shape'@en;
     sh:targetClass html:Title;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Base
     a sh:NodeShape;
     rdfs:comment 'The base element represents the base URL to use for all relative URLs in a document.'@en;
     rdfs:label 'base shape'@en;
     sh:targetClass html:Base;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Link
     a sh:NodeShape;
     rdfs:comment 'The link element allows authors to link their document to other resources.'@en;
     rdfs:label 'link shape'@en;
     sh:targetClass html:Link;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Meta
     a sh:NodeShape;
     rdfs:comment 'The meta element represents represents various kinds of metadata that cannot be expressed using the title, base, link, style, and script elements.'@en;
     rdfs:label 'meta shape'@en;
     sh:targetClass html:Meta;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:StyleSheet
     a sh:NodeShape;
     rdfs:comment 'A style element is a form of metadata content in a HTML document that sets up the presentation for the rest of the content in the document.'@en;
     rdfs:label 'style sheet shape'@en;
     sh:targetClass html:StyleSheet;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Body
     a sh:NodeShape;
@@ -165,14 +158,14 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     rdfs:label 'body shape'@en;
     sh:property shp:Body_member;
     sh:targetClass html:Body;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Body_member
     a sh:PropertyShape;
     rdfs:label 'has child element'@en;
-    sh:class htmlv:Element;
+    sh:class html:Element;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Table
     a sh:NodeShape;
@@ -184,49 +177,49 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
       shp:Table_tfoot,
       shp:Table_thead;
     sh:targetClass html:Table;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Table_caption
     a sh:PropertyShape;
     rdfs:comment 'Tables may have a caption.'@en;
     skos:prefLabel 'has caption shape'@en;
-    sh:class htmlv:Caption;
+    sh:class html:Caption;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Caption
     a sh:NodeShape;
     rdfs:comment 'A caption element contains flow content, but with no descendant table elements.'@en;
     skos:prefLabel 'caption shape'@en;
     sh:targetClass html:Caption;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Table_tbody
     a sh:PropertyShape;
     rdfs:comment 'Tables may have zero or more table bodies.'@en;
     skos:prefLabel 'has table body'@en;
-    sh:class htmlv:TableBody;
+    sh:class html:TableBody;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Table_tfoot
     a sh:PropertyShape;
     rdfs:comment 'Tables may have a footer.'@en;
     skos:prefLabel 'has table footer shape'@en;
-    sh:class htmlv:TFoot;
+    sh:class html:TFoot;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Table_thead
     a sh:PropertyShape;
     rdfs:comment 'Tables may have a header.'@en;
     skos:prefLabel 'has table header shape'@en;
-    sh:class htmlv:TableHeader;
+    sh:class html:TableHeader;
     sh:maxCount 1;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:TableBody
     a sh:NodeShape;
@@ -234,14 +227,14 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     skos:prefLabel 'table body shape'@en;
     sh:property shp:TableBody_member;
     sh:targetClass html:TableBody;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:TableBody_member
     a sh:PropertyShape;
     skos:prefLabel 'has row'@en;
-    sh:class htmlv:Row;
+    sh:class html:Row;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:TableHeader
     a sh:NodeShape;
@@ -249,48 +242,48 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     skos:prefLabel 'table header shape'@en;
     sh:property shp:TableHeader_member;
     sh:targetClass html:TableHeader;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:TableHeader_member
     a sh:PropertyShape;
     skos:prefLabel 'has header row'@en;
-    sh:class htmlv:Row;
+    sh:class html:Row;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:TableFooter
     a sh:NodeShape;
     skos:prefLabel 'table footer shape'@en;
     sh:targetClass html:TableFooter;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Row
     a sh:NodeShape;
     skos:prefLabel 'row shape'@en;
     sh:property shp:Row_member;
     sh:targetClass html:Row;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Row_member
     a sh:PropertyShape;
     skos:prefLabel 'has data cell'@en;
-    sh:class htmlv:DataCell;
+    sh:class html:DataCell;
     sh:path rdfs:member;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:DataCell
     a sh:NodeShape;
     rdfs:comment 'A data cell can contain flow content.'@en;
     skos:prefLabel 'data cell shape'@en;
     sh:targetClass html:DataCell;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:HeaderCell
     a sh:NodeShape;
     rdfs:comment 'A header cell ("<th>" element) contains flow content, but with no header, footer, sectioning content, or heading content descendants.'@en;
     skos:prefLabel 'header cell shape'@en;
     sh:targetClass html:HeaderCell;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Cell
     a sh:NodeShape;
@@ -299,7 +292,7 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
       shp:Cell_colspan,
       shp:Cell_rowspan;
     sh:targetClass html:Cell;
-    rdfs:isDefinedBy htmlv:.
+    rdfs:isDefinedBy html:.
 
   shp:Cell_colspan
     a sh:PropertyShape;
@@ -307,8 +300,8 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     skos:prefLabel 'has colspan'@en;
     sh:datatype xsd:nonNegativeInteger;
     sh:maxCount 1;
-    sh:path htmlv:colspan;
-    rdfs:isDefinedBy htmlv:.
+    sh:path html:colspan;
+    rdfs:isDefinedBy html:.
 
   shp:Cell_rowspan
     a sh:PropertyShape;
@@ -316,6 +309,6 @@ prefix target: <https://data.rijksfinancien.nl/htmlv/model/target/>
     skos:prefLabel 'has rowspan'@en;
     sh:datatype xsd:nonNegativeInteger;
     sh:maxCount 1;
-    sh:path htmlv:rowspan;
-    rdfs:isDefinedBy htmlv:.
+    sh:path html:rowspan;
+    rdfs:isDefinedBy html:.
 #}
