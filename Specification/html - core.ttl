@@ -12,7 +12,6 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix graph: <https://data.rijksfinancien.nl/html/graph/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
@@ -1086,41 +1085,25 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   target:SerializableElement
     a sh:SPARQLTarget;
+    rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child elements all have an HTML fragment already.'@en;
     sh:select '''
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
-# Select the HTML element for which there does not yet exist an HTML
-# fragment, with the additional requirement that each and any
-# underlying child element contains an HTML fragment.
 select $this {
-  # Any DOM element (`dom:Element`) that is known not to be a void element
-  # (html:VoidElement).
   $this a/rdfs:subClassOf* dom:Element.
+  filter not exists { $this html:fragment []. }
   filter not exists {
-    $this a/rdfs:subClassOf html:VoidElement.
-  }
-  # The HTML element must not have an HTML fragment yet.
-  filter not exists {
-    $this html:fragment [].
-  }
-  # The HTML element may not contain one or more child elements that lack an
-  # HTML fragment.
-  minus {
-    $this ?member ?childElement.
-    ?childElement a/rdfs:subClassOf* dom:Element.
-    filter not exists {
-      ?childElement html:fragment [].
-    }
+    $this ?member ?child.
+    filter not exists { ?child html:fragment []. }
+    ?child a/rdfs:subClassOf* dom:Element.
   }
 }''';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_HTML_Element
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
+    rdfs:comment 'Create the HTML fragment for an HTML element.'@en;
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
@@ -1129,17 +1112,13 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-
-  # Get the HTML tag of the HTML-element to be serialized.
   $this a/html:tag ?tag.
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any.
   {
-    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
+    select (group_concat(distinct ?attribute) as ?attributes) {
       $this ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
@@ -1152,23 +1131,20 @@ construct {
       {
         select ?member ?fragment {
           $this ?member ?element.
-          ?element html:fragment ?fragment.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?element html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
 
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
+  # Create the HTML fragment for this HTML element, by combining everything retrieved above.
   bind(strdt(
     concat(
-      # open tag and include any attributes if there are any
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
-      # retrieved html content of children html elements
-      ?fragments,
-      # close tag and cast as HTML snippet
-      '</',?tag,'>'),xsd:string) as ?fragment)
+      # Void elements have neither content nor a closing tag.
+      if(?fragments='','',concat(?fragments,'</',?tag,'>'))),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1178,21 +1154,7 @@ construct {
   shp:VoidElement
     a sh:NodeShape;
     skos:prefLabel 'void element shape'@en;
-    sh:rule rule:Serialize_HTML_fragment_Void_Element;
-    sh:target target:VoidElement;
-    rdfs:isDefinedBy html:.
-
-  target:VoidElement
-    a sh:SPARQLTarget;
-    sh:select '''
-prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select $this {
-  $this a/rdfs:subClassOf* html:VoidElement.
-  filter not exists {
-    $this html:fragment [].
-  }
-}''';
+    sh:target html:VoidElement;
     rdfs:isDefinedBy html:.
 
   html:VoidElement
@@ -1203,45 +1165,6 @@ select $this {
       '<br>'@en,
       '<hr>'@en;
     skos:prefLabel 'void element'@en;
-    rdfs:isDefinedBy html:.
-
-  rule:Serialize_HTML_fragment_Void_Element
-    a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML Void element.'@en;
-    skos:prefLabel 'HTML void element fragment serialisation rule'@en;
-    sh:construct '''
-prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
-construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
-  $this html:fragment ?fragment.
-} where {
-
-  # Get the HTML tag of the HTML-element to be serialized.
-  $this a/html:tag ?tag.
-
-  # Get the (possibly empty) sequence of HTML attributes, if there are any. Void elements can have attributes.
-  {
-    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
-      $this ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
-    }
-  }
-
-  # Void elements do not have content or children so no need to fetch them.
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag and include any attributes if there are any
-      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>'
-      ),xsd:string) as ?fragment)
-}''';
     rdfs:isDefinedBy html:.
 
 
@@ -1259,12 +1182,9 @@ construct {
     sh:select '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
 select $this {
   $this a/rdfs:subClassOf* html:CDATA.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1296,7 +1216,6 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
   # Get the (possibly empty) sequence of child element fragments, if there are any.
@@ -1312,16 +1231,7 @@ construct {
       }
     }
   }
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag CDATA
-      '<![CDATA[',
-      # text
-      ?fragments,
-      # close tag and cast as HTML snippet
-      ']]>'),xsd:string) as ?fragment)
+  bind(strdt(concat('<![CDATA[',?fragments,']]>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1342,9 +1252,7 @@ prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
   $this a/rdfs:subClassOf* html:Comment.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1368,7 +1276,6 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
   # Get the (possibly empty) sequence of child element fragments, if there are any.
@@ -1377,23 +1284,14 @@ construct {
       {
         select ?member ?fragment {
           $this ?member ?element.
-          ?element html:fragment ?fragment.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?element html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag comment
-      '<!--',
-      # text
-      ?fragments,
-      # close tag and cast as HTML snippet
-      '-->'),xsd:string) as ?fragment)
+  bind(strdt(concat('<!--',?fragments,'-->'),xsd:string) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1437,12 +1335,9 @@ construct {
     a sh:SPARQLTarget;
     sh:select '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-
 select $this {
   $this a html:Document.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1451,31 +1346,33 @@ select $this {
     rdfs:comment 'A rule that creates the upper HTML fragment for an HTML document and connects it with the previously generated tree of serialized HTML elements and their HTML fragments.'@en;
     rdfs:label 'HTML document generation rule'@en;
     sh:construct '''
-prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix prov: <http://www.w3.org/ns/prov#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-  $this html:fragment ?fragmentDocument;
+  $this
+    html:fragment ?fragmentDocument;
     prov:wasGeneratedBy ?activity.
   ?activity
     a prov:Activity;
     prov:atTime ?activityDateTime;
     prov:used
-      html: , # HTML Ontology
+      html:,
       rule:Document.
 } where {
-  $this rdf:_1 ?documentTypeDeclaration;
-        rdf:_2 ?root.
-  ?documentTypeDeclaration a html:DocumentTypeDeclaration;
-                           html:fragment ?fragmentDocType.
-  ?root a html:Html;
-        html:fragment ?fragmentRoot.
+  $this
+    rdf:_1 ?documentTypeDeclaration;
+    rdf:_2 ?root.
+  ?documentTypeDeclaration
+    a html:DocumentTypeDeclaration;
+    html:fragment ?fragmentDocType.
+  ?root
+    a html:Html;
+    html:fragment ?fragmentRoot.
   bind(concat(str(?fragmentDocType),str(?fragmentRoot)) as ?fragmentDocument)
   bind(iri(concat(str($this),'-html-document-generation')) as ?activity)
   bind(now() as ?activityDateTime)
@@ -1497,12 +1394,9 @@ construct {
     sh:select '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
 select $this {
   $this a/rdfs:subClassOf* html:DocumentTypeDeclaration.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1522,25 +1416,11 @@ select $this {
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
 construct {
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-  # get document type name
   $this html:documentTypeName ?documentTypeName.
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag comment
-      '<!DOCTYPE ',
-      # text
-      ?documentTypeName,
-      # close tag and cast as HTML snippet
-      '>'),xsd:string) as ?fragment)
+  bind(strdt(concat('<!DOCTYPE ',?documentTypeName,'>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
