@@ -73,9 +73,14 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   doc:1
     a html:Document;
-    rdf:_1 doc:1.15.
+    rdf:_1 doc:1.1;
+    rdf:_2 doc:1.2.
 
-  doc:1.15
+  doc:1.1
+    a html:DocumentType;
+    html:documentTypeName 'html'.
+
+  doc:1.2
     a html:Html;
     rdf:_1 doc:1.21;
     rdf:_2 doc:1.218.
@@ -1401,10 +1406,10 @@ construct {
       rule:Document.
 } where {
   $this
-    rdf:_1 ?documentTypeDeclaration;
+    rdf:_1 ?documentType;
     rdf:_2 ?root.
-  ?documentTypeDeclaration
-    a html:DocumentTypeDeclaration;
+  ?documentType
+    a html:DocumentType;
     html:fragment ?fragmentDocType.
   ?root
     a html:Html;
@@ -1418,37 +1423,37 @@ construct {
 
   # DocumentType
 
-  shp:DocumentTypeDeclaration
+  shp:DocumentType
     a sh:NodeShape;
-    skos:prefLabel 'DocumentType Declaration shape'@en;
-    sh:rule rule:Serialize_HTML_fragment_DocumentTypeDeclaration;
-    sh:target target:DocumentTypeDeclaration;
+    skos:prefLabel 'DocumentType shape'@en;
+    sh:rule rule:Serialize_HTML_fragment_DocumentType;
+    sh:target target:DocumentType;
     rdfs:isDefinedBy html:.
 
-  target:DocumentTypeDeclaration
+  target:DocumentType
     a sh:SPARQLTarget;
     sh:select '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
-  $this a/rdfs:subClassOf* html:DocumentTypeDeclaration.
+  $this a/rdfs:subClassOf* html:DocumentType.
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
-  html:DocumentTypeDeclaration
+  html:DocumentType
     a owl:Class;
     dct:conformsTo section:13.1.1;
     rdfs:subClassOf dom:DocumentType;
-    skos:definition 'A DOCTYPE declaration is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
+    skos:definition 'A DOCTYPE is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
     skos:prefLabel 'the DOCTYPE'@en;
     skos:example'''<!DOCTYPE html>'''@en;
     rdfs:isDefinedBy html:.
 
-  rule:Serialize_HTML_fragment_DocumentTypeDeclaration
+  rule:Serialize_HTML_fragment_DocumentType
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML DocumentType Declaration.'@en;
-    skos:prefLabel 'HTML DocumentType Declaration fragment serialisation rule'@en;
+    rdfs:comment 'A rule that creates an HTML fragment for an HTML DocumentType.'@en;
+    skos:prefLabel 'HTML DocumentType fragment serialisation rule'@en;
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -2541,7 +2546,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.3;
     html:tag 'template';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:Element;
     skos:definition 'The <template> HTML element is a mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.'@en;
     skos:prefLabel 'the template element'@en;
     rdfs:isDefinedBy html:.
@@ -2582,11 +2587,15 @@ construct {
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
-          ( html:Element
+          ( html:Document
+            html:DocumentType
+            html:Element
             html:Text
-            html:VoidElement ) ];
+            html:CDATASection
+            html:Comment
+            ) ];
     rdfs:range rdf:HTML;
-    skos:definition 'Property that links the html fragment that is represented by an HTML element, a void element or text element within a HTML-document, to that element.'@en;
+    skos:definition 'Property that links the html fragment to a node in a document, representing the HTML document itself or the document type, HTML element, text, CDATA section or comment within that HTML-document. '@en;
     skos:prefLabel 'fragment property'@en;
     rdfs:isDefinedBy html:.
 
