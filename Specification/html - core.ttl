@@ -12,9 +12,7 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
-prefix graph: <https://data.rijksfinancien.nl/html/graph/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix respec: <https://respec.org/model/def/>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
@@ -23,6 +21,7 @@ prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
 prefix standard: <https://data.rijksfinancien.nl/html/id/standard/>
 prefix target: <https://data.rijksfinancien.nl/html/model/target/>
 
+#html: {
   html:
     a
       owl:Ontology,
@@ -41,73 +40,80 @@ In today's fast-paced business landscape, organizations grapple with the formida
 So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
 
 To address this need, we have pioneered the development of the RDF-based Semantic HTML Core Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
-   respec:background '''In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'''@en;
-   respec:objective '''In response to these challenges, we introduce the RDF-based semantic HTML Core Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Core Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'''@en;
-    respec:audience '''This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'''@en;
-    respec:acknowledgements '''This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'''@en;
-    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of DOM:element, the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text ; html:fragment "Hello world".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
-    dct:abstract '''This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'''@en; 
-    skos:example """
-
+    respec:background 'In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'@en;
+    respec:objective 'In response to these challenges, we introduce the RDF-based semantic HTML Core Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Core Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'@en;
+    respec:audience 'This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'@en;
+    respec:acknowledgements 'This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'@en;
+    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of 'dom:Element', the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text; html:fragment "Hello, World!".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
+    dct:abstract 'This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'@en;
+    skos:example '''
 An 'hello world' HTML document:
 
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>
-			An 'Hello world' HTML page represented in RDF
-		</title>
-		<style> 
-			.italic-text {font-style: italic;}
-		</style>
-		<meta http-equiv="Content-Type" charset="utf-8">
-	</head>
-	<body>
-		Hello world
-	</body>
-	</html>
-	
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>
+        An 'hello world' HTML page represented in RDF
+      </title>
+      <style>
+        .italic-text {font-style: italic;}
+      </style>
+      <meta http-equiv="Content-Type" charset="utf-8">
+    </head>
+    <body>
+      Hello, World!
+    </body>
+  </html>
+
 This can be rendered in RDF using the HTML Core Vocabulary as follows:
-	
-	@prefix doc: <http://www.example.org/document/> .
-	@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
-	@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-	doc:1 a html:Document ;
-		rdf:_1 doc:1.15 .
+  prefix doc: <http://www.example.org/document/>
+  prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+  prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-	doc:1.15 a html:Html ;
-		rdf:_1 doc:1.21 ;
-		rdf:_2 doc:1.218 .
+  doc:1
+    a html:Document;
+    rdf:_1 doc:1.15.
 
-	doc:1.163 a html:Meta ;
-		html:charset "utf-8" ;
-		html:http-equiv "Content-Type" .
+  doc:1.15
+    a html:Html;
+    rdf:_1 doc:1.21;
+    rdf:_2 doc:1.218.
 
-	doc:1.21 a html:Head ;
-		rdf:_1 doc:1.27 ;
-		rdf:_2 doc:1.93 ;
-		rdf:_3 doc:1.163 .
+  doc:1.163
+    a html:Meta;
+    html:charset "utf-8";
+    html:http-equiv "Content-Type".
 
-	doc:1.218 a html:Body ;
-		rdf:_1 doc:1.218.1 .
+  doc:1.21
+    a html:Head;
+    rdf:_1 doc:1.27;
+    rdf:_2 doc:1.93;
+    rdf:_3 doc:1.163.
 
-	doc:1.218.1 a html:Text ;
-		html:fragment "Hello world" .
+  doc:1.218
+    a html:Body;
+    rdf:_1 doc:1.218.1.
 
-	doc:1.27 a html:Title ;
-		rdf:_1 doc:1.27.1 .
+  doc:1.218.1
+    a html:Text;
+    html:fragment "Hello, World!".
 
-	doc:1.27.1 a html:Text ;
-		html:fragment "An 'Hello world' HTML page represented in RDF" .
+  doc:1.27
+    a html:Title;
+    rdf:_1 doc:1.27.1.
 
-	doc:1.93 a html:StyleSheet ;
-		rdf:_1 doc:1.93.1 .
+  doc:1.27.1
+    a html:Text;
+    html:fragment "An 'hello world' HTML page represented in RDF".
 
-	doc:1.93.1 a html:Text ;
-		html:fragment " .italic-text {font-style: italic;}" .
-	
-""";
+  doc:1.93
+    a html:StyleSheet;
+    rdf:_1 doc:1.93.1.
+
+  doc:1.93.1
+    a html:Text;
+    html:fragment ".italic-text {font-style: italic;}".''';
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
     dct:publisher <https://rijksfinancien.nl>;
@@ -127,7 +133,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     owl:versionInfo '0.2.0';
     vann:preferredNamespacePrefix 'html';
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
-    void:subSet graph:model;
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
 
@@ -207,7 +212,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.3 - Sections
+  # HTML - living standard - 4.3 - Sections
 
   section:4.3.1
     a dcm:Text;
@@ -280,7 +285,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.4 - Grouping content
+  # HTML - living standard - 4.4 - Grouping content
 
   section:4.4.1
     a dcm:Text;
@@ -388,7 +393,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.5 - Text-level semantics
+  # HTML - living standard - 4.5 - Text-level semantics
 
   section:4.5.1
     a dcm:Text;
@@ -586,11 +591,13 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel '§ 4.5.28 The wbr element'@en;
     rdfs:isDefinedBy html:.
 
-# HTML - living standard - 4.6 - Links
 
-### work in progress
+  # HTML - living standard - 4.6 - Links
 
-# HTML - living standard - 4.7 - Edits
+  ### work in progress
+
+
+  # HTML - living standard - 4.7 - Edits
 
   section:4.7.1
     a dcm:Text;
@@ -607,7 +614,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.8 - Embedded content
+  # HTML - living standard - 4.8 - Embedded content
 
   section:4.8.1
     a dcm:Text;
@@ -616,84 +623,92 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel '§ 4.8.1 The picture element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.2
+  section:4.8.2
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-source-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.2 The source element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.3
+  section:4.8.3
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-img-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.3 The img element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.5
+  section:4.8.5
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-iframe-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.5 The iframe element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.6
+  section:4.8.6
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-embed-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.6 The embed element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.7
+  section:4.8.7
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-object-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.7 The object element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.8
+  section:4.8.8
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-video-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.8 The video element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.9
+  section:4.8.9
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-audio-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.9 The audio element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.10
+  section:4.8.10
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-track-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.10 The track element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.12
+  section:4.8.12
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-map-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.12 The map element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.13
+  section:4.8.13
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-area-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.13 The area element'@en;
     rdfs:isDefinedBy html:.
 
-section:4.8.16
+  section:4.8.15
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#mathml';
+    skos:prefLabel '§ 4.8.15 MathML'@en;
+    rdfs:isDefinedBy html:.
+
+  section:4.8.16
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#svg-0';
     skos:prefLabel '§ 4.8.16 SVG'@en;
     rdfs:isDefinedBy html:.
 
-# HTML - living standard - 4.9 - Tabular data
+
+  # HTML - living standard - 4.9 - Tabular data
 
   section:4.9.1
     a dcm:Text;
@@ -766,7 +781,7 @@ section:4.8.16
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.10 - Forms
+  # HTML - living standard - 4.10 - Forms
 
   section:4.10.3
     a dcm:Text;
@@ -890,7 +905,7 @@ section:4.8.16
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.12 - Scripting
+  # HTML - living standard - 4.12 - Scripting
 
   section:4.12.1
     a dcm:Text;
@@ -928,7 +943,7 @@ section:4.8.16
     rdfs:isDefinedBy html:.
 
 
-# HTML - living standard - 4.13 - Custom elements
+  # HTML - living standard - 4.13 - Custom elements
 
   section:4.13.3
     a dcm:Text;
@@ -937,19 +952,23 @@ section:4.8.16
     skos:prefLabel '§ 4.13.3 Core concepts'@en;
     rdfs:isDefinedBy html:.
 
-# HTML - living standard - 4.14 - Common idioms without dedicated elements
 
-### work in progress
+  # HTML - living standard - 4.14 - Common idioms without dedicated elements
 
-# HTML - living standard - 4.15 - Disabled elements
+  ### work in progress
 
-### work in progress
 
-# HTML - living standard - 4.16 - Matching HTML elements using selectors and CSS
+  # HTML - living standard - 4.15 - Disabled elements
 
-### work in progress
+  ### work in progress
 
-# HTML - living standard - 13.1 - Writing HTML documents
+
+  # HTML - living standard - 4.16 - Matching HTML elements using selectors and CSS
+
+  ### work in progress
+
+
+  # HTML - living standard - 13.1 - Writing HTML documents
 
   section:13.1
     a dcm:Text;
@@ -1049,9 +1068,10 @@ section:4.8.16
     skos:prefLabel '§ 13.1.6 Comments'@en;
     rdfs:isDefinedBy html:.
 
-# HTML - living standard - 3.2 Elements
 
- # HTML element (<TAG>…</TAG>)
+  # HTML - living standard - 3.2 Elements
+
+  # HTML element (<TAG>…</TAG>)
 
   html:Element
     a owl:Class;
@@ -1060,7 +1080,39 @@ section:4.8.16
     skos:definition 'An HTML element in the Document Object Model (DOM) represents a thing; that is, it has intrinsic meaning, also known as semantics. An element consists of an HTML start tag and an HTML end tag and has value content. An HTML start tag consists of a "smaller than" character ("<") and a tag name, followed by a "greater than" character (">"). An HTML end tag consists of a "smaller than" character ("<"), a slash ("/") and a tag name, followed by a "greater than" character (">"). The value content of an element can be arbitrarily complex.'@en;
     skos:prefLabel 'HTML DOM element'@en;
     rdfs:isDefinedBy html:.
- 
+
+  html:NormalElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-NormalElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'Exclusionary definition: the elements that are neither (1) void elements, (2) the template element, (3) raw text elements, (4) escapable raw text elements, nor (5) foreign elements.'@en;
+    skos:prefLabel 'normal element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:RawTextElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-RawTextElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element where the text inside is treated as raw text and not parsed as HTML.'@en;
+    skos:prefLabel 'raw text element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:EscapableRawTextElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-EscapableRawTextElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element where the text inside is treated as raw text and not parsed as HTML, but character references can still be escaped within their text content.'@en;
+    skos:prefLabel 'escapable raw text element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ForeignElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-ForeignElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element from a namespace other than the HTML namespace.'@en;
+    skos:prefLabel 'foreign element'@en;
+    rdfs:isDefinedBy html:.
+
   shp:SerializableElement
     a sh:NodeShape;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
@@ -1070,42 +1122,25 @@ section:4.8.16
 
   target:SerializableElement
     a sh:SPARQLTarget;
+    rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child elements all have an HTML fragment already.'@en;
     sh:select '''
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
-# Select the HTML element for which there does not yet exist an HTML
-# fragment, with the additional requirement that each and any
-# underlying child element contains an HTML fragment.
 select $this {
-  # Any DOM element (`dom:Element`) that is known not to be a void element
-  # (html:VoidElement).
   $this a/rdfs:subClassOf* dom:Element.
+  filter not exists { $this html:fragment []. }
   filter not exists {
-    $this a/rdfs:subClassOf html:VoidElement.
+    $this ?member ?child.
+    filter not exists { ?child html:fragment []. }
+    ?child a/rdfs:subClassOf* dom:Element.
   }
-  # The HTML element must not have an HTML fragment yet.
-  filter not exists {
-    $this html:fragment [].
-  }
-  # The HTML element may not contain one or more child elements that lack an
-  # HTML fragment.
-  minus {
-    $this ?member ?childElement.
-    ?childElement a/rdfs:subClassOf* dom:Element.
-    filter not exists {
-      ?childElement html:fragment [].
-    }
-  }
-}
-''';
+}''';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_HTML_Element
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML element.'@en;
+    rdfs:comment 'Create the HTML fragment for an HTML element.'@en;
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
@@ -1114,17 +1149,13 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-
-  # Get the HTML tag of the HTML-element to be serialized.
   $this a/html:tag ?tag.
 
   # Get the (possibly empty) sequence of HTML attributes, if there are any.
   {
-    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
+    select (group_concat(distinct ?attribute) as ?attributes) {
       $this ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
@@ -1137,46 +1168,30 @@ construct {
       {
         select ?member ?fragment {
           $this ?member ?element.
-          ?element html:fragment ?fragment.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?element html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
 
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
+  # Create the HTML fragment for this HTML element, by combining everything retrieved above.
   bind(strdt(
     concat(
-      # open tag and include any attributes if there are any
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
-      # retrieved html content of children html elements
-      ?fragments,
-      # close tag and cast as HTML snippet
-      '</',?tag,'>'),xsd:string) as ?fragment)
-}
-''';
+      # Void elements have neither content nor a closing tag.
+      if(?fragments='','',concat(?fragments,'</',?tag,'>'))),rdf:HTML) as ?fragment)
+}''';
     rdfs:isDefinedBy html:.
 
-# Void element
+
+  # Void element
 
   shp:VoidElement
     a sh:NodeShape;
     skos:prefLabel 'void element shape'@en;
-    sh:rule rule:Serialize_HTML_fragment_Void_Element;
-    sh:target target:VoidElement;
-    rdfs:isDefinedBy html:.
-
-  target:VoidElement
-    a sh:SPARQLTarget;
-    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select $this {
-  $this a/rdfs:subClassOf* html:VoidElement.
-  filter not exists {
-    $this html:fragment [].
-  }
-}''';
+    sh:target html:VoidElement;
     rdfs:isDefinedBy html:.
 
   html:VoidElement
@@ -1189,45 +1204,8 @@ select $this {
     skos:prefLabel 'void element'@en;
     rdfs:isDefinedBy html:.
 
-  rule:Serialize_HTML_fragment_Void_Element
-    a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML Void element.'@en;
-    skos:prefLabel 'HTML void element fragment serialisation rule'@en;
-    sh:construct '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
-  $this html:fragment ?fragment.
-} where {
-
-  # Get the HTML tag of the HTML-element to be serialized.
-  $this a/html:tag ?tag.
-
-  # Get the (possibly empty) sequence of HTML attributes, if there are any. Void elements can have attributes.
-  {
-    select (group_concat(distinct ?attribute;separator=' ') as ?attributes) {
-      $this ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
-    }
-  }
-
-  # Void elements do not have content or children so no need to fetch them.
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag and include any attributes if there are any
-      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>'
-      ),xsd:string) as ?fragment)
-}''';
-    rdfs:isDefinedBy html:.
-
-# CDATA section
+  # CDATA section
 
   shp:CDATASection
     a sh:NodeShape;
@@ -1238,13 +1216,12 @@ construct {
 
   target:CDATASection
     a sh:SPARQLTarget;
-    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:select '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
   $this a/rdfs:subClassOf* html:CDATA.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1269,17 +1246,15 @@ select $this {
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML CDATA section.'@en;
     skos:prefLabel 'HTML CDATA section fragment serialisation rule'@en;
-    sh:construct '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:construct '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-
   # Get the (possibly empty) sequence of child element fragments, if there are any.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
@@ -1293,20 +1268,12 @@ construct {
       }
     }
   }
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag CDATA
-      '<![CDATA[', 
-      # text
-      ?fragments,
-      # close tag and cast as HTML snippet
-      ']]>'),xsd:string) as ?fragment)
+  bind(strdt(concat('<![CDATA[',?fragments,']]>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
-# Comment
+
+  # Comment
 
   shp:Comment
     a sh:NodeShape;
@@ -1317,13 +1284,12 @@ construct {
 
   target:Comment
     a sh:SPARQLTarget;
-    sh:select '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:select '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
   $this a/rdfs:subClassOf* html:Comment.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1340,44 +1306,34 @@ select $this {
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML comment.'@en;
     skos:prefLabel 'HTML comment fragment serialisation rule'@en;
-    sh:construct '''prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    sh:construct '''
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-
   # Get the (possibly empty) sequence of child element fragments, if there are any.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
         select ?member ?fragment {
           $this ?member ?element.
-          ?element html:fragment ?fragment.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?element html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
-
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag comment
-      '<!--', 
-      # text
-      ?fragments,
-      # close tag and cast as HTML snippet
-      '-->'),xsd:string) as ?fragment)
+  bind(strdt(concat('<!--',?fragments,'-->'),xsd:string) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
-# Text element
+
+  # Text element
 
   html:Text
     a owl:Class;
@@ -1390,9 +1346,10 @@ construct {
     skos:prefLabel 'text'@en;
     rdfs:isDefinedBy html:.
 
-# HTML - living standard - 4.1 Document element
 
-# Document
+  # HTML - living standard - 4.1 Document element
+
+  # Document
 
   shp:Document
     a sh:NodeShape;
@@ -1417,9 +1374,7 @@ construct {
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 select $this {
   $this a html:Document.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1427,37 +1382,41 @@ select $this {
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates the upper HTML fragment for an HTML document and connects it with the previously generated tree of serialized HTML elements and their HTML fragments.'@en;
     rdfs:label 'HTML document generation rule'@en;
-    sh:construct '''prefix documentType: <https://data.rijksfinancien.nl/dom/model/id/documentType/>
-prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+    sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix prov: <http://www.w3.org/ns/prov#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
 construct {
-  $this html:fragment ?fragmentDocument;
+  $this
+    html:fragment ?fragmentDocument;
     prov:wasGeneratedBy ?activity.
   ?activity
     a prov:Activity;
     prov:atTime ?activityDateTime;
     prov:used
-      html: , # HTML Ontology
+      html:,
       rule:Document.
 } where {
-  $this rdf:_1 ?documentTypeDeclaration;
-        rdf:_2 ?root.
-  ?documentTypeDeclaration rdf:type html:DocumentTypeDeclaration;
-                           html:fragment ?fragmentDocType.
-  ?root rdf:type html:Html;
-        html:fragment ?fragmentRoot.
+  $this
+    rdf:_1 ?documentTypeDeclaration;
+    rdf:_2 ?root.
+  ?documentTypeDeclaration
+    a html:DocumentTypeDeclaration;
+    html:fragment ?fragmentDocType.
+  ?root
+    a html:Html;
+    html:fragment ?fragmentRoot.
   bind(concat(str(?fragmentDocType),str(?fragmentRoot)) as ?fragmentDocument)
   bind(iri(concat(str($this),'-html-document-generation')) as ?activity)
   bind(now() as ?activityDateTime)
 }''';
     rdfs:isDefinedBy html:.
 
-# DocumentType
+
+  # DocumentType
 
   shp:DocumentTypeDeclaration
     a sh:NodeShape;
@@ -1473,9 +1432,7 @@ prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
   $this a/rdfs:subClassOf* html:DocumentTypeDeclaration.
-  filter not exists {
-    $this html:fragment [].
-  }
+  filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1495,29 +1452,14 @@ select $this {
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
 construct {
-
-  # create the HTML-fragment for the HTML-element to be serialized.
   $this html:fragment ?fragment.
 } where {
-
-  # get document type name 
   $this html:documentTypeName ?documentTypeName.
-  
-  # Create the HTML fragment of this HTML element by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      # open tag comment
-      '<!DOCTYPE ', 
-      # text
-      ?documentTypeName,
-      # close tag and cast as HTML snippet
-      '>'),xsd:string) as ?fragment)
+  bind(strdt(concat('<!DOCTYPE ',?documentTypeName,'>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
+
 
   # HTML root element (<html>)
 
@@ -1525,11 +1467,13 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.1.1;
     html:tag 'html';
-    rdfs:subClassOf html:Element;
-    rdfs:subClassOf dom:DocumentElement;
+    rdfs:subClassOf
+      dom:DocumentElement,
+      html:NormalElement;
     skos:definition 'The <html> HTML element represents the root (top-level element) of an HTML document, so it is also referred to as the root element or document element. All other elements must be descendants of this element.'@en;
     skos:prefLabel 'the html element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.2 Document metadata
 
@@ -1539,10 +1483,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.2.1;
     html:tag 'head';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <head> HTML element contains machine-readable information (metadata) about the document, like its title, scripts, and style sheets.'@en;
     skos:prefLabel 'the head element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Title (<title>)
 
@@ -1550,7 +1495,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.2.2;
     html:tag 'title';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The Title (<title> element) defines a document its title that is shown in a browser title bar or a page tab. It only contains text; tags within the element are ignored.'@en;
     skos:prefLabel 'the title element'@en;
     rdfs:isDefinedBy html:.
@@ -1563,7 +1508,7 @@ construct {
     skos:definition 'The <base> HTML element specifies the base URL to use for all relative URLs in a document. There can be only one <base> element in a document.'@en;
     skos:prefLabel 'the base element'@en;
     rdfs:isDefinedBy html:.
-    
+
   html:Link
     a owl:Class;
     dct:conformsTo section:4.2.4;
@@ -1572,6 +1517,7 @@ construct {
     skos:definition 'The link element allows authors to link their document to other resources.'@en;
     skos:prefLabel 'the link element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Meta element (<meta>)
 
@@ -1582,7 +1528,8 @@ construct {
     rdfs:subClassOf html:VoidElement;
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en;
     skos:prefLabel 'the meta element'@en;
-    rdfs:isDefinedBy html:.  
+    rdfs:isDefinedBy html:.
+
 
   # Style sheet element (<style>)
 
@@ -1590,10 +1537,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.2.6;
     html:tag 'style';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:RawTextElement;
     skos:definition 'The <style> HTML element contains style information for a document, or part of a document. It embeds a CSS style sheet, which is applied to the contents of the document containing the <style> element.'@en;
     skos:prefLabel 'the style element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.3 Sections
 
@@ -1603,10 +1551,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.2;
     html:tag 'article';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <article> HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.'@en;
     skos:prefLabel 'the article element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Body element (<body>)
 
@@ -1614,7 +1563,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.1;
     html:tag 'body';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <body> HTML element is the second element in a root html element. It contains the contents of the document.'@en;
     skos:prefLabel 'the body element'@en;
     rdfs:isDefinedBy html:.
@@ -1623,7 +1572,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.3;
     html:tag 'section';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <section> HTML element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. Sections should always have a heading, with very few exceptions."@en;
     skos:prefLabel 'the section element'@en;
     rdfs:isDefinedBy html:.
@@ -1632,7 +1581,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.4;
     html:tag 'nav';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <nav> HTML element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.'@en;
     skos:prefLabel 'the nav element'@en;
     rdfs:isDefinedBy html:.
@@ -1641,7 +1590,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.5;
     html:tag 'aside';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <aside> HTML element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes."@en;
     skos:prefLabel 'the aside element'@en;
     rdfs:isDefinedBy html:.
@@ -1650,7 +1599,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h1';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h1 element'@en;
     rdfs:isDefinedBy html:.
@@ -1659,7 +1608,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h2';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h2 element'@en;
     rdfs:isDefinedBy html:.
@@ -1668,7 +1617,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h3';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h3 element'@en;
     rdfs:isDefinedBy html:.
@@ -1677,7 +1626,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h4';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h4 element'@en;
     rdfs:isDefinedBy html:.
@@ -1686,7 +1635,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h5';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h5 element'@en;
     rdfs:isDefinedBy html:.
@@ -1695,7 +1644,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.6;
     html:tag 'h6';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h6 element'@en;
     rdfs:isDefinedBy html:.
@@ -1704,7 +1653,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.7;
     html:tag 'hgroup';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <hgroup> HTML element represents a multi-level heading for a section of a document. It groups a set of <h1>-<h6> elements.'@en;
     skos:prefLabel 'the hgroup element'@en;
     rdfs:isDefinedBy html:.
@@ -1713,7 +1662,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.8;
     html:tag 'header';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <header> HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.'@en;
     skos:prefLabel 'the header element'@en;
     rdfs:isDefinedBy html:.
@@ -1722,7 +1671,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.9;
     html:tag 'footer';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <footer> HTML element represents a footer for its nearest sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents.'@en;
     skos:prefLabel 'the footer element'@en;
     rdfs:isDefinedBy html:.
@@ -1731,10 +1680,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.3.10;
     html:tag 'address';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <address> HTML element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.'@en;
     skos:prefLabel 'the address element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.4 Grouping
 
@@ -1742,7 +1692,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.1;
     html:tag 'p';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields.'@en;
     skos:prefLabel 'the p element'@en;
     rdfs:isDefinedBy html:.
@@ -1760,7 +1710,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.3;
     html:tag 'pre';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <pre> HTML element represents preformatted text which is to be presented exactly as written in the HTML file. The text is typically rendered using a non-proportional, or monospaced, font. Whitespace inside this element is displayed as written.'@en;
     skos:prefLabel 'the pre element'@en;
     rdfs:isDefinedBy html:.
@@ -1769,7 +1719,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.4;
     html:tag 'blockquote';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <blockquote> HTML element indicates that the enclosed text is an extended quotation. Usually, this is rendered visually by indentation (see Notes for how to change it). A URL for the source of the quotation may be given using the cite attribute, while a text representation of the source can be given using the <cite> element.'@en;
     skos:prefLabel 'the blockquote element'@en;
     rdfs:isDefinedBy html:.
@@ -1778,7 +1728,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.5;
     html:tag 'ol';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ol> HTML element represents an ordered list of items - typically rendered as a numbered list.'@en;
     skos:prefLabel 'the ol element'@en;
     rdfs:isDefinedBy html:.
@@ -1787,7 +1737,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.6;
     html:tag 'ul';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ul> HTML element represents an unordered list of items, typically rendered as a bulleted list.'@en;
     skos:prefLabel 'the ul element'@en;
     rdfs:isDefinedBy html:.
@@ -1796,7 +1746,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.7;
     html:tag 'menu';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <menu> HTML element is a semantic alternative to <ul>. It represents an unordered list of items (represented by <li> elements), each of these represent a link or other command that the user can activate.'@en;
     skos:prefLabel 'the menu element'@en;
     rdfs:isDefinedBy html:.
@@ -1814,7 +1764,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.9;
     html:tag 'dl';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dl> HTML element represents a description list. The element encloses a list of groups of terms (specified using the <dt> element) and descriptions (provided by <dd> elements). Common uses for this element are to implement a glossary or to display metadata (a list of key-value pairs).'@en;
     skos:prefLabel 'the dl element'@en;
     rdfs:isDefinedBy html:.
@@ -1823,7 +1773,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.10;
     html:tag 'dt';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dt> HTML element specifies a term in a description or definition list, and as such must be used inside a <dl> element. It is usually followed by a <dd> element; however, multiple <dt> elements in a row indicate several terms that are all defined by the immediate next <dd> element.'@en;
     skos:prefLabel 'the dt element'@en;
     rdfs:isDefinedBy html:.
@@ -1832,7 +1782,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.11;
     html:tag 'dd';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dd> HTML element provides the description, definition, or value for the preceding term (<dt>) in a description list (<dl>).'@en;
     skos:prefLabel 'the dd element'@en;
     rdfs:isDefinedBy html:.
@@ -1841,7 +1791,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.12;
     html:tag 'figure';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <figure> HTML element represents self-contained content, potentially with an optional caption, which is specified using the <figcaption> element. The figure, its caption, and its contents are referenced as a single unit.'@en;
     skos:prefLabel 'the figure element'@en;
     rdfs:isDefinedBy html:.
@@ -1850,7 +1800,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.13;
     html:tag 'figcaption';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <figcaption> HTML element represents a caption or legend describing the rest of the contents of its parent <figure> element.'@en;
     skos:prefLabel 'the figcaption element'@en;
     rdfs:isDefinedBy html:.
@@ -1859,7 +1809,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.14;
     html:tag 'main';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <main> HTML element represents the dominant content of the <body> of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.'@en;
     skos:prefLabel 'the main element'@en;
     rdfs:isDefinedBy html:.
@@ -1868,10 +1818,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.4.15;
     html:tag 'div';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <div> HTML element is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element).'@en;
     skos:prefLabel 'the div element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.5 Text-level semantics
 
@@ -1879,7 +1830,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.1;
     html:tag 'a';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.'@en;
     skos:prefLabel 'the a element'@en;
     rdfs:isDefinedBy html:.
@@ -1888,7 +1839,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.2;
     html:tag 'em';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <em> HTML element marks text that has stress emphasis. The <em> element can be nested, with each level of nesting indicating a greater degree of emphasis.'@en;
     skos:prefLabel 'the em element'@en;
     rdfs:isDefinedBy html:.
@@ -1897,7 +1848,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.3;
     html:tag 'strong';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. Browsers typically render the contents in bold type.'@en;
     skos:prefLabel 'the strong element'@en;
     rdfs:isDefinedBy html:.
@@ -1906,7 +1857,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.4;
     html:tag 'small';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <small> HTML element represents side-comments and small print, like copyright and legal text, independent of its styled presentation. By default, it renders text within it one font-size smaller, such as from small to x-small.'@en;
     skos:prefLabel 'the small element'@en;
     rdfs:isDefinedBy html:.
@@ -1915,7 +1866,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.5;
     html:tag 's';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <s> HTML element renders text with a strikethrough, or a line through it. Use the <s> element to represent things that are no longer relevant or no longer accurate. However, <s> is not appropriate when indicating document edits; for that, use the <del> and <ins> elements, as appropriate.'@en;
     skos:prefLabel 'the s element'@en;
     rdfs:isDefinedBy html:.
@@ -1924,7 +1875,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.6;
     html:tag 'cite';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <cite> HTML element is used to describe a reference to a cited creative work, and must include the title of that work. The reference may be in an abbreviated form according to context-appropriate conventions related to citation metadata.'@en;
     skos:prefLabel 'the cite element'@en;
     rdfs:isDefinedBy html:.
@@ -1933,7 +1884,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.7;
     html:tag 'q';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <q> HTML element indicates that the enclosed text is a short inline quotation. Most modern browsers implement this by surrounding the text in quotation marks. This element is intended for short quotations that don't require paragraph breaks; for long quotations use the <blockquote> element."@en;
     skos:prefLabel 'the q element'@en;
     rdfs:isDefinedBy html:.
@@ -1942,7 +1893,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.8;
     html:tag 'dfn';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dfn> HTML element is used to indicate the term being defined within the context of a definition phrase or sentence. The <p> element, the <dt>/<dd> pairing, or the <section> element which is the nearest ancestor of the <dfn> is considered to be the definition of the term.'@en;
     skos:prefLabel 'the dfn element'@en;
     rdfs:isDefinedBy html:.
@@ -1951,7 +1902,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.9;
     html:tag 'abbr';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <abbr> HTML element represents an abbreviation or acronym; the optional title attribute can provide an expansion or description for the abbreviation. If present, title must contain this full description and nothing else.'@en;
     skos:prefLabel 'the abbr element'@en;
     rdfs:isDefinedBy html:.
@@ -1960,7 +1911,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.10;
     html:tag 'ruby';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ruby> HTML element represents small annotations that are rendered above, below, or next to base text, usually used for showing the pronunciation of East Asian characters. It can also be used for annotating other kinds of text, but this usage is less common.'@en;
     skos:prefLabel 'the ruby element'@en;
     rdfs:isDefinedBy html:.
@@ -1969,7 +1920,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.11;
     html:tag 'rt';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <rt> HTML element specifies the ruby text component of a ruby annotation, which is used to provide pronunciation, translation, or transliteration information for East Asian typography. The <rt> element must always be contained within a <ruby> element.'@en;
     skos:prefLabel 'the rt element'@en;
     rdfs:isDefinedBy html:.
@@ -1978,7 +1929,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.12;
     html:tag 'rp';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <rp> HTML element is used to provide fall-back parentheses for browsers that do not support display of ruby annotations using the <ruby> element. One <rp> element should enclose each of the opening and closing parentheses that wrap the <rt> element that contains the annotation's text."@en;
     skos:prefLabel 'the rp element'@en;
     rdfs:isDefinedBy html:.
@@ -1987,7 +1938,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.13;
     html:tag 'data';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <data> HTML element links a given piece of content with a machine-readable translation. If the content is time- or date-related, the <time> element must be used.'@en;
     skos:prefLabel 'the data element'@en;
     rdfs:isDefinedBy html:.
@@ -1996,7 +1947,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.14;
     html:tag 'time';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <time> HTML element represents a specific period in time. It may include the datetime attribute to translate dates into machine-readable format, allowing for better search engine results or custom features such as reminders.'@en;
     skos:prefLabel 'the time element'@en;
     rdfs:isDefinedBy html:.
@@ -2005,7 +1956,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.15;
     html:tag 'code';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <code> HTML element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. By default, the content text is displayed using the user agent's default monospace font."@en;
     skos:prefLabel 'the code element'@en;
     rdfs:isDefinedBy html:.
@@ -2014,7 +1965,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.16;
     html:tag 'var';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <var> HTML element represents the name of a variable in a mathematical expression or a programming context. It's typically presented using an italicized version of the current typeface, although that behavior is browser-dependent."@en;
     skos:prefLabel 'the var element'@en;
     rdfs:isDefinedBy html:.
@@ -2023,7 +1974,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.17;
     html:tag 'samp';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <samp> HTML element is used to enclose inline text which represents sample (or quoted) output from a computer program. Its contents are typically rendered using the browser's default monospaced font (such as Courier or Lucida Console)."@en;
     skos:prefLabel 'the samp element'@en;
     rdfs:isDefinedBy html:.
@@ -2032,7 +1983,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.18;
     html:tag 'kbd';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <kbd> HTML element represents a span of inline text denoting textual user input from a keyboard, voice input, or any other text entry device. By convention, the user agent defaults to rendering the contents of a <kbd> element using its default monospace font, although this is not mandated by the HTML standard.'@en;
     skos:prefLabel 'the kbd element'@en;
     rdfs:isDefinedBy html:.
@@ -2041,7 +1992,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.19;
     html:tag 'sub';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <sub> HTML element specifies inline text which should be displayed as subscript for solely typographical reasons. Subscripts are typically rendered with a lowered baseline using smaller text.'@en;
     skos:prefLabel 'the sub element'@en;
     rdfs:isDefinedBy html:.
@@ -2050,7 +2001,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.19;
     html:tag 'sup';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <sup> HTML element specifies inline text which should be displayed as superscript for solely typographical reasons. Superscripts are typically rendered with half a character above the normal line, and are sometimes rendered in a smaller font.'@en;
     skos:prefLabel 'the sup element'@en;
     rdfs:isDefinedBy html:.
@@ -2059,7 +2010,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.20;
     html:tag 'i';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <i> HTML element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others. Historically, these have been presented using italicized type, which is the original source of the <i> naming of this element.'@en;
     skos:prefLabel 'the i element'@en;
     rdfs:isDefinedBy html:.
@@ -2068,7 +2019,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.21;
     html:tag 'b';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <b> HTML element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance. This was formerly known as the Boldface element, and most browsers still draw the text in boldface. However, you should not use <b> for styling text; instead, you should use the CSS font-weight property to create boldface text, or the <strong> element to indicate that text is of special importance."@en;
     skos:prefLabel 'the b element'@en;
     rdfs:isDefinedBy html:.
@@ -2077,7 +2028,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.22;
     html:tag 'u';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <u> HTML element represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation. This is rendered by default as a simple solid underline, but may be altered using CSS.'@en;
     skos:prefLabel 'the u element'@en;
     rdfs:isDefinedBy html:.
@@ -2086,7 +2037,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.23;
     html:tag 'mark';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance or importance in the enclosing context."@en;
     skos:prefLabel 'the mark element'@en;
     rdfs:isDefinedBy html:.
@@ -2095,7 +2046,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.24;
     html:tag 'bdi';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <bdi> HTML element tells the browser's bidirectional algorithm to treat the text it contains in isolation from its surrounding text. It's particularly useful when a website dynamically inserts some text and doesn't know the directionality of the text being inserted."@en;
     skos:prefLabel 'the bdi element'@en;
     rdfs:isDefinedBy html:.
@@ -2104,7 +2055,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.25;
     html:tag 'bdo';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <bdo> HTML element overrides the current directionality of text, so that the text within is rendered in a different direction.'@en;
     skos:prefLabel 'the bdo element'@en;
     rdfs:isDefinedBy html:.
@@ -2113,7 +2064,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.5.26;
     html:tag 'span';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <span> HTML element is a generic inline container for phrasing content, which does not inherently represent anything. It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. It should be used only when no other semantic element is appropriate. <span> is very much like a <div> element, but <div> is a block-level element whereas a <span> is an inline element.'@en;
     skos:prefLabel 'the span element'@en;
     rdfs:isDefinedBy html:.
@@ -2136,9 +2087,11 @@ construct {
     skos:prefLabel 'the wbr element'@en;
     rdfs:isDefinedBy html:.
 
+
   # HTML - living standard - 4.6 Links
 
   ### work in progress
+
 
   # HTML - living standard - 4.7 Edits
 
@@ -2146,7 +2099,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.7.1;
     html:tag 'ins';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ins> HTML element represents a range of text that has been added to a document. You can use the <del> element to similarly represent a range of text that has been deleted from the document.'@en;
     skos:prefLabel 'the ins element'@en;
     rdfs:isDefinedBy html:.
@@ -2155,10 +2108,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.7.2;
     html:tag 'del';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <del> HTML element represents a range of text that has been deleted from a document. This can be used when rendering "track changes" or source code diff information, for example. The <ins> element can be used for the opposite purpose: to indicate text that has been added to the document.'@en;
     skos:prefLabel 'the del element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.8 Embedded content
 
@@ -2166,7 +2120,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.1;
     html:tag 'picture';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <picture> HTML element contains zero or more <source> elements and one <img> element to offer alternative versions of an image for different display/device scenarios.'@en;
     skos:prefLabel 'the picture element'@en;
     rdfs:isDefinedBy html:.
@@ -2193,7 +2147,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.5;
     html:tag 'iframe';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <iframe> HTML element represents a nested browsing context, embedding another HTML page into the current one.'@en;
     skos:prefLabel 'the iframe element'@en;
     rdfs:isDefinedBy html:.
@@ -2211,7 +2165,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.7;
     html:tag 'object';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <object> HTML element represents an external resource, which can be treated as an image, a nested browsing context, or a resource to be handled by a plugin.'@en;
     skos:prefLabel 'the object element'@en;
     rdfs:isDefinedBy html:.
@@ -2220,7 +2174,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.8;
     html:tag 'video';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the <audio> element may provide a more appropriate user experience.'@en;
     skos:prefLabel 'the video element'@en;
     rdfs:isDefinedBy html:.
@@ -2229,7 +2183,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.9;
     html:tag 'audio';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <audio> HTML element is used to embed sound content in documents. It may contain one or more audio sources, represented using the src attribute or the <source> element: the browser will choose the most suitable one. It can also be the destination for streamed media, using a MediaStream.'@en;
     skos:prefLabel 'the audio element'@en;
     rdfs:isDefinedBy html:.
@@ -2247,7 +2201,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.8.12;
     html:tag 'map';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <map> HTML element is used with <area> elements to define an image map (a clickable link area).'@en;
     skos:prefLabel 'the map element'@en;
     rdfs:isDefinedBy html:.
@@ -2261,14 +2215,24 @@ construct {
     skos:prefLabel 'the area element'@en;
     rdfs:isDefinedBy html:.
 
+  html:MathML
+    a owl:Class;
+    dct:conformsTo section:4.8.15;
+    html:tag 'math';
+    rdfs:subClassOf html:ForeignElement;
+    skos:definition 'The <math> HTML element is a container for MathML content.'@en;
+    skos:prefLabel 'the math element'@en;
+    rdfs:isDefinedBy html:.
+
   html:SVG
     a owl:Class;
     dct:conformsTo section:4.8.16;
     html:tag 'svg';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:ForeignElement;
     skos:definition 'The <svg> HTML element is a container for SVG graphics. SVG allows for three types of graphics: vector graphic shapes (e.g., paths consisting of straight lines and curves), images, and text.'@en;
     skos:prefLabel 'the svg element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.9 Tabular data
 
@@ -2278,10 +2242,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.1;
     html:tag 'table';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap.'@en;
     skos:prefLabel 'the table element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Caption element (<caption>)
 
@@ -2289,7 +2254,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.2;
     html:tag 'caption';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The caption element represents the title of the table that is its parent, if it has a parent and that is a table element.'@en;
     skos:prefLabel 'the caption element'@en;
     rdfs:isDefinedBy html:.
@@ -2297,7 +2262,7 @@ construct {
   html:Colgroup a owl:Class;
     dct:conformsTo section:4.9.3;
     html:tag 'colgroup';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <colgroup> HTML element defines a group of columns within a table.'@en;
     skos:prefLabel 'the colgroup element'@en;
     rdfs:isDefinedBy html:.
@@ -2310,16 +2275,18 @@ construct {
     skos:prefLabel 'the col element'@en;
     rdfs:isDefinedBy html:.
 
+
   # Table body element (<tbody>)
 
   html:TableBody
     a owl:Class;
     dct:conformsTo section:4.9.5;
     html:tag 'tbody';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The table body (<tbody> element) represents a block of rows that consist of a body of data for the parent table.'@en;
     skos:prefLabel 'the tbody element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Table header element (<thead>)
 
@@ -2327,10 +2294,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.6;
     html:tag 'thead';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The table header (<thead> element) represents the block of rows that consist of the column labels (headers) for the parent table.'@en;
     skos:prefLabel 'the thead element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Table footer element (<tfoot>)
 
@@ -2338,10 +2306,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.7;
     html:tag 'tfoot';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The table footer (<tfoot> element) represents the block of rows that consist of the column summaries (footers) for the parent table.'@en;
     skos:prefLabel 'the tfoot element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Row element (<tr>)
 
@@ -2349,10 +2318,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.8;
     html:tag 'tr';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <tr> element represents a row of cells in a table.'@en;
     skos:prefLabel 'the tr element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Data cell element (<td>)
 
@@ -2360,10 +2330,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.9;
     html:tag 'td';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The data cell (<td> element) represents a cell in a table that contains some unspecified form of data.'@en;
     skos:prefLabel 'the td element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Header cell element (<th>)
 
@@ -2371,19 +2342,21 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.9.10;
     html:tag 'th';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <th> element represents a header cell in a table.'@en;
     skos:prefLabel 'the th element'@en;
     rdfs:isDefinedBy html:.
+
 
   # Cell element (<td>)
 
   html:Cell
     a owl:Class;
     owl:unionOf (html:DataCell html:HeaderCell);
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:prefLabel 'cell element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.10 Forms
 
@@ -2391,15 +2364,16 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.3;
     html:tag 'form';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <form> HTML element represents a document section containing interactive controls for submitting information.'@en;
     skos:prefLabel 'the form element'@en;
     rdfs:isDefinedBy html:.
 
-  html:Label a owl:Class;
+  html:Label
+    a owl:Class;
     dct:conformsTo section:4.10.4;
     html:tag 'label';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <label> HTML element represents a caption for an item in a user interface.'@en;
     skos:prefLabel 'the label element'@en;
     rdfs:isDefinedBy html:.
@@ -2417,7 +2391,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.6;
     html:tag 'button';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <button> HTML element represents a clickable button, used to submit forms or anywhere in a document for accessible, standard button functionality.'@en;
     skos:prefLabel 'the button element'@en;
     rdfs:isDefinedBy html:.
@@ -2426,7 +2400,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.7;
     html:tag 'select';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <select> HTML element represents a control that provides a menu of options:'@en;
     skos:prefLabel 'the select element'@en;
     rdfs:isDefinedBy html:.
@@ -2435,7 +2409,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.8;
     html:tag 'datalist';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <datalist> HTML element contains a set of <option> elements that represent the permissible or recommended options available to choose from within other controls.'@en;
     skos:prefLabel 'the datalist element'@en;
     rdfs:isDefinedBy html:.
@@ -2444,7 +2418,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.9;
     html:tag 'optgroup';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <optgroup> HTML element creates a grouping of options within a <select> element.'@en;
     skos:prefLabel 'the optgroup element'@en;
     rdfs:isDefinedBy html:.
@@ -2453,7 +2427,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.10;
     html:tag 'option';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <option> HTML element is used to define an item contained in a <select>, an <optgroup>, or a <datalist> element. As such, <option> can represent menu items in popups and other lists of items in an HTML document.'@en;
     skos:prefLabel 'the option element'@en;
     rdfs:isDefinedBy html:.
@@ -2462,7 +2436,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.11;
     html:tag 'textarea';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The <textarea> HTML element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.'@en;
     skos:prefLabel 'the textarea element'@en;
     rdfs:isDefinedBy html:.
@@ -2471,7 +2445,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.12;
     html:tag 'output';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <output> HTML element is a container element into which a site or app can inject the results of a calculation or the outcome of a user action.'@en;
     skos:prefLabel 'the output element'@en;
     rdfs:isDefinedBy html:.
@@ -2480,7 +2454,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.13;
     html:tag 'progress';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <progress> HTML element displays an indicator showing the completion progress of a task, typically displayed as a progress bar.'@en;
     skos:prefLabel 'the progress element'@en;
     rdfs:isDefinedBy html:.
@@ -2489,7 +2463,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.14;
     html:tag 'meter';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <meter> HTML element represents either a scalar value within a known range or a fractional value.'@en;
     skos:prefLabel 'the meter element'@en;
     rdfs:isDefinedBy html:.
@@ -2498,7 +2472,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.15;
     html:tag 'fieldset';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.'@en;
     skos:prefLabel 'the fieldset element'@en;
     rdfs:isDefinedBy html:.
@@ -2507,10 +2481,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.16;
     html:tag 'legend';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <legend> HTML element represents a caption for the content of its parent <fieldset>.'@en;
     skos:prefLabel 'the legend element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.11 Interactive elements
 
@@ -2518,7 +2493,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.11.1;
     html:tag 'details';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <details> HTML element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state. A summary or label must be provided using the <summary> element.'@en;
     skos:prefLabel 'the details element'@en;
     rdfs:isDefinedBy html:.
@@ -2527,7 +2502,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.11.2;
     html:tag 'summary';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition "The <summary> HTML element specifies a summary, caption, or legend for a <details> element's disclosure box. Clicking the <summary> element toggles the state of the parent <details> element open and closed."@en;
     skos:prefLabel 'the summary element'@en;
     rdfs:isDefinedBy html:.
@@ -2536,10 +2511,11 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.11.4;
     html:tag 'dialog';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dialog> HTML element represents a dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.'@en;
     skos:prefLabel 'the dialog element'@en;
     rdfs:isDefinedBy html:.
+
 
   # HTML - living standard - 4.12 Scripting
 
@@ -2547,7 +2523,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.1;
     html:tag 'script';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:RawTextElement;
     skos:definition "The <script> HTML element is used to embed executable code or data; this is typically used to embed or refer to JavaScript code. The <script> element can also be used with other languages, such as WebGL's GLSL shader programming language and JSON."@en;
     skos:prefLabel 'the script element'@en;
     rdfs:isDefinedBy html:.
@@ -2556,7 +2532,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.2;
     html:tag 'noscript';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <noscript> HTML element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.'@en;
     skos:prefLabel 'the noscript element'@en;
     rdfs:isDefinedBy html:.
@@ -2565,7 +2541,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.3;
     html:tag 'template';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <template> HTML element is a mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.'@en;
     skos:prefLabel 'the template element'@en;
     rdfs:isDefinedBy html:.
@@ -2574,7 +2550,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.4;
     html:tag 'slot';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <slot> HTML element - part of the Web Components technology suite - is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together.'@en;
     skos:prefLabel 'the slot element'@en;
     rdfs:isDefinedBy html:.
@@ -2583,15 +2559,17 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.5;
     html:tag 'canvas';
-    rdfs:subClassOf html:Element;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'Use the HTML <canvas> element with either the canvas scripting API or the WebGL API to draw graphics and animations.'@en;
     skos:prefLabel 'the canvas element'@en;
     rdfs:isDefinedBy html:.
 
+
   # HTML class-level properties
 
   html:attribute
-    a owl:DatatypeProperty;
+    a owl:DatatypeProperty, 
+    dom:Attribute;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
@@ -2601,9 +2579,12 @@ construct {
 
   html:fragment
     a owl:DatatypeProperty;
-    rdfs:domain [a owl:Class;
-                owl:unionOf (html:Element html:VoidElement html:Text)
-                ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Element
+            html:Text
+            html:VoidElement ) ];
     rdfs:range rdf:HTML;
     skos:definition 'Property that links the html fragment that is represented by an HTML element, a void element or text element within a HTML-document, to that element.'@en;
     skos:prefLabel 'fragment property'@en;
@@ -2641,6 +2622,7 @@ construct {
       'In a rendering, the template element represents nothing.'@en,
       'The template contents of a template element are not children of the element itself.'@en;
     rdfs:isDefinedBy html:.
+
 
  # HTML attributes
 
@@ -2718,10 +2700,12 @@ construct {
     a owl:DatatypeProperty;
     html:key 'alt';
     rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Area html:Img html:Input)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Area
+            html:Img
+            html:Input ) ];
     rdfs:range xsd:string;
     skos:definition "Provides alternative text for an image, describing the content or function of the image."@en;
     skos:prefLabel 'the alt attribute'@en;
@@ -2731,7 +2715,7 @@ construct {
     a owl:DatatypeProperty;
     html:key 'as';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Link ;
+    rdfs:domain html:Link;
     rdfs:range xsd:string;
     skos:definition "Specifies the media type (or file type) of a resource referenced by the <link> element."@en;
     skos:prefLabel 'the as attribute'@en;
@@ -2741,7 +2725,7 @@ construct {
     a owl:DatatypeProperty;
     html:key 'async';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain html:Script ;
+    rdfs:domain html:Script;
     rdfs:range xsd:string;
     skos:definition "Indicates that the script should be executed asynchronously as soon as it is available."@en;
     skos:prefLabel 'the async attribute'@en;
@@ -2761,9 +2745,13 @@ construct {
     a owl:DatatypeProperty;
     html:key 'autocomplete';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Form html:Input html:Select html:Textarea)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Form
+            html:Input
+            html:Select
+            html:Textarea ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies whether a form or text input should have autocomplete enabled."@en;
     skos:prefLabel 'the autocomplete attribute'@en;
@@ -2779,25 +2767,30 @@ construct {
     skos:prefLabel 'the autofocus attribute'@en;
     rdfs:isDefinedBy html:.
 
-html:autoplay
+  html:autoplay
     a owl:DatatypeProperty;
     html:key 'autoplay';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Audio html:Video)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Video ) ];
     rdfs:range xsd:boolean;
     skos:definition "Specifies that the audio or video should start playing as soon as it is ready."@en;
     skos:prefLabel 'the autoplay attribute'@en;
     rdfs:isDefinedBy html:.
 
-html:blocking
+  html:blocking
     a owl:DatatypeProperty;
     html:key 'blocking';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Link html:Script html:Style)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Link
+            html:Script
+            html:Style ) ];
     rdfs:range xsd:string;
     skos:definition "Indicates that the fetching of a resource should block the loading of the page until the resource is fetched."@en;
     skos:prefLabel 'the blocking attribute'@en;
@@ -2812,7 +2805,7 @@ html:blocking
     skos:definition "Specifies the character encoding used in an external script file."@en;
     skos:prefLabel 'the charset attribute'@en;
     rdfs:isDefinedBy html:.
-  
+
   html:checked
     a owl:DatatypeProperty;
     html:key 'checked';
@@ -2827,9 +2820,13 @@ html:blocking
     a owl:DatatypeProperty;
     html:key 'cite';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Blockquote html:Del html:Ins html:Q)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Blockquote
+            html:Del
+            html:Ins
+            html:Q ) ];
     rdfs:range xsd:string;
     skos:definition "Contains a URL that provides a citation or reference to a source."@en;
     skos:prefLabel 'the cite attribute'@en;
@@ -2905,7 +2902,7 @@ html:blocking
     skos:prefLabel 'the controls attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:coords
+  html:coords
     a owl:DatatypeProperty;
     html:key 'coords';
     rdfs:subPropertyOf html:attribute;
@@ -2915,19 +2912,24 @@ html:blocking
     skos:prefLabel 'the coords attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:crossorigin
+  html:crossorigin
     a owl:DatatypeProperty;
     html:key 'crossorigin';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Audio html:Img html:Link html:Script html:Video)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Img
+            html:Link
+            html:Script
+            html:Video ) ];
     rdfs:range xsd:string;
     skos:definition "Controls how the element handles crossorigin requests."@en;
     skos:prefLabel 'the crossorigin attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:data
+  html:data
     a owl:DatatypeProperty;
     html:key 'data';
     rdfs:subPropertyOf html:attribute;
@@ -2937,19 +2939,22 @@ html:blocking
     skos:prefLabel 'the data attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:datetime
+  html:datetime
     a owl:DatatypeProperty;
     html:key 'datetime';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Del html:Ins html:Time)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Del
+            html:Ins
+            html:Time ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the date and time associated with the element."@en;
     skos:prefLabel 'the datetime attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:decoding
+  html:decoding
     a owl:DatatypeProperty;
     html:key 'decoding';
     rdfs:subPropertyOf html:attribute;
@@ -2959,7 +2964,7 @@ html:blocking
     skos:prefLabel 'the decoding attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:default
+  html:default
     a owl:DatatypeProperty;
     html:key 'default';
     rdfs:subPropertyOf html:attribute;
@@ -2969,7 +2974,7 @@ html:blocking
     skos:prefLabel 'the default attribute'@en;
     rdfs:isDefinedBy html:.
 
-html:defer
+  html:defer
     a owl:DatatypeProperty;
     html:key 'defer';
     rdfs:subPropertyOf html:attribute;
@@ -2979,7 +2984,7 @@ html:defer
     skos:prefLabel 'the defer attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:dir
+  html:dir
     a owl:DatatypeProperty;
     html:key 'dir';
     rdfs:subPropertyOf html:attribute;
@@ -2989,25 +2994,35 @@ html:defer
     skos:prefLabel 'the dir attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:dirname
+  html:dirname
     a owl:DatatypeProperty;
     html:key 'dirname';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Input html:Textarea)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Textarea ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the name of the directory for the text in an input field."@en;
     skos:prefLabel 'the dirname attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:disabled
+  html:disabled
     a owl:DatatypeProperty;
     html:key 'disabled';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input html:Optgroup html:Option html:Select html:Textarea html:Fieldset html:Link)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input
+            html:Optgroup
+            html:Option
+            html:Select
+            html:Textarea
+            html:Fieldset
+            html:Link ) ];
     rdfs:range xsd:boolean;
     skos:definition "Indicates whether an element should be disabled or not."@en;
     skos:prefLabel 'the disabled attribute'@en;
@@ -3017,13 +3032,15 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'download';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	               owl:unionOf (html:A html:Area)
-				   ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies that the target will be downloaded when a user clicks on the hyperlink."@en;
     skos:prefLabel 'the download attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:draggable
     a owl:DatatypeProperty;
@@ -3033,7 +3050,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies whether an element is draggable or not."@en;
     skos:prefLabel 'the draggable attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:enctype
     a owl:DatatypeProperty;
@@ -3053,26 +3070,31 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies a hint for the type of action that should be taken when the enter key is pressed."@en;
     skos:prefLabel 'the enterkeyhint attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:fetchpriority
     a owl:DatatypeProperty;
     html:key 'fetchpriority';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Img html:Link html:Script)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Img
+            html:Link
+            html:Script ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Sets the priority of the fetch operation for the resource."@en;
     skos:prefLabel 'the fetchpriority attribute'@en;
     rdfs:isDefinedBy html:.
-	
+
   html:for
     a owl:DatatypeProperty;
     html:key 'for';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Label html:Output)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Label
+            html:Output ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the form element that the label is associated with."@en;
@@ -3082,98 +3104,125 @@ html:defer
   html:form
     a owl:DatatypeProperty;
     html:key 'form';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Fieldset html:Input html:Object html:Output html:Select html:Textarea)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Fieldset
+            html:Input
+            html:Object
+            html:Output
+            html:Select
+            html:Textarea ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the form an input element belongs to."@en;
     skos:prefLabel 'the form attribute'@en;
     rdfs:isDefinedBy html:.
-  
+
   html:formaction
     a owl:DatatypeProperty;
     html:key 'formaction';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the URL for form submission for the input element."@en;
     skos:prefLabel 'the formaction attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:formenctype
+  html:formenctype
     a owl:DatatypeProperty;
     html:key 'formenctype';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the character encoding for the form submission for the input element."@en;
     skos:prefLabel 'the formenctype attribute'@en;
-    rdfs:isDefinedBy html:.	
-  
- html:formmethod
+    rdfs:isDefinedBy html:.
+
+  html:formmethod
     a owl:DatatypeProperty;
     html:key 'formmethod';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the HTTP method for form submission for the input element."@en;
     skos:prefLabel 'the formmethod attribute'@en;
-    rdfs:isDefinedBy html:. 
+    rdfs:isDefinedBy html:.
 
- html:formnovalidate
+  html:formnovalidate
     a owl:DatatypeProperty;
     html:key 'formnovalidate';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies that the form should not be validated when submitted."@en;
     skos:prefLabel 'the formnovalidate attribute'@en;
-    rdfs:isDefinedBy html:. 
+    rdfs:isDefinedBy html:.
 
- html:formtarget
+  html:formtarget
     a owl:DatatypeProperty;
     html:key 'formtarget';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Input)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies where to display the response after submitting the form for the input element."@en;
     skos:prefLabel 'the formtarget attribute'@en;
-    rdfs:isDefinedBy html:. 
+    rdfs:isDefinedBy html:.
 
   html:headers
     a owl:DatatypeProperty;
     html:key 'headers';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Td html:Th)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Td
+            html:Th ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies a space-separated list of header names that are sent with the request."@en;
     skos:prefLabel 'the headers attribute'@en;
-    rdfs:isDefinedBy html:.	
-  
+    rdfs:isDefinedBy html:.
+
   html:height
     a owl:DatatypeProperty;
     html:key 'height';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Source html:Video)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Canvas
+            html:Embed
+            html:Iframe
+            html:Img
+            html:Input
+            html:Object
+            html:Source
+            html:Video ) ];
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the height of the content area of an element."@en;
     skos:prefLabel 'the height attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:hidden
     a owl:DatatypeProperty;
@@ -3183,7 +3232,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies that an element is not yet, or is no longer, relevant."@en;
     skos:prefLabel 'the hidden attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:high
     a owl:DatatypeProperty;
@@ -3193,15 +3242,18 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the range that is considered the upper limit of the element."@en;
     skos:prefLabel 'the high attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:href
     a owl:DatatypeProperty;
     html:key 'href';
-    rdfs:domain [
-	    rdf:type owl:Class;
-		owl:unionOf (html:A html:Area html:Link html:Base)
-		];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area
+            html:Base
+            html:Link ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the URL of the linked resource."@en;
@@ -3211,10 +3263,11 @@ html:defer
   html:hreflang
     a owl:DatatypeProperty;
     html:key 'hreflang';
-    rdfs:domain [
-	    rdf:type owl:Class;
-		owl:unionOf (html:A html:Link)
-		];
+    rdfs:domain
+      [ a owl:Class;
+       owl:unionOf
+         ( html:A
+           html:Link ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the language of the linked resource."@en;
@@ -3269,7 +3322,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Indicates that an element and its descendants are not to be rendered or considered interactive."@en;
     skos:prefLabel 'the inert attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:inputmode
     a owl:DatatypeProperty;
@@ -3279,19 +3332,21 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the type of user interface to display for the editing control."@en;
     skos:prefLabel 'the inputmode attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:integrity
     a owl:DatatypeProperty;
     html:key 'integrity';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Link html:Script)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Link
+            html:Script ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies a cryptographic hash of the resource for integrity checking."@en;
     skos:prefLabel 'the integrity attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:is
     a owl:DatatypeProperty;
@@ -3301,7 +3356,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the custom element's local name."@en;
     skos:prefLabel 'the is attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:ismap
     a owl:DatatypeProperty;
@@ -3311,7 +3366,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Indicates that an image is part of a server-side image map."@en;
     skos:prefLabel 'the ismap attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:itemid
     a owl:DatatypeProperty;
@@ -3321,7 +3376,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies a unique identifier for the item in a list."@en;
     skos:prefLabel 'the itemid attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:itemprop
     a owl:DatatypeProperty;
@@ -3331,7 +3386,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the property or properties the element represents."@en;
     skos:prefLabel 'the itemprop attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:itemref
     a owl:DatatypeProperty;
@@ -3341,7 +3396,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies additional items that are related to the item in a list."@en;
     skos:prefLabel 'the itemref attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:itemscope
     a owl:DatatypeProperty;
@@ -3351,7 +3406,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Creates a new item in the HTML data model."@en;
     skos:prefLabel 'the itemscope attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:itemtype
     a owl:DatatypeProperty;
@@ -3361,7 +3416,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the type of the item in a list."@en;
     skos:prefLabel 'the itemtype attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:kind
     a owl:DatatypeProperty;
@@ -3377,13 +3432,16 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'label';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Optgroup html:Option html:Track)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Optgroup
+            html:Option
+            html:Track ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies a user-readable description for the form element."@en;
     skos:prefLabel 'the label attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:lang
     a owl:DatatypeProperty;
@@ -3409,9 +3467,11 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'loading';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Iframe html:Img)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Iframe
+            html:Img ) ];
     rdfs:range xsd:boolean;
     skos:definition "Specifies how the browser should load an external resource."@en;
     skos:prefLabel 'the loading attribute'@en;
@@ -3421,9 +3481,11 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'loop';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Audio html:Video)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Video ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies that the audio or video should play again after it has finished."@en;
     skos:prefLabel 'the loop attribute'@en;
@@ -3442,10 +3504,12 @@ html:defer
   html:max
     a owl:DatatypeProperty;
     html:key 'max';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Meter html:Progress)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Meter
+            html:Progress ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the maximum value for an input element."@en;
@@ -3455,10 +3519,11 @@ html:defer
   html:maxlength
     a owl:DatatypeProperty;
     html:key 'maxlength';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Textarea)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Textarea ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the maximum number of characters allowed in an input element."@en;
@@ -3468,10 +3533,14 @@ html:defer
   html:media
     a owl:DatatypeProperty;
     html:key 'media';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:A html:Area html:Link html:Source html:StyleSheet)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area
+            html:Link
+            html:Source
+            html:StyleSheet ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the media type or media query for the linked resource."@en;
@@ -3491,10 +3560,11 @@ html:defer
   html:min
     a owl:DatatypeProperty;
     html:key 'min';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Meter)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Meter ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the minimum value for an input element."@en;
@@ -3504,10 +3574,11 @@ html:defer
   html:minlength
     a owl:DatatypeProperty;
     html:key 'minlength';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Textarea)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Textarea ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the minimum number of characters required in an input element."@en;
@@ -3517,10 +3588,11 @@ html:defer
   html:multiple
     a owl:DatatypeProperty;
     html:key 'multiple';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Select)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Select ) ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Indicates that multiple values can be selected in an input element."@en;
@@ -3530,22 +3602,36 @@ html:defer
   html:muted
     a owl:DatatypeProperty;
     html:key 'muted';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Audio html:Video)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Video ) ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies that the audio output of the video should be muted."@en;
     skos:prefLabel 'the muted attribute'@en;
     rdfs:isDefinedBy html:.
-	
+
   html:name
     a owl:DatatypeProperty;
     html:key 'name';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Fieldset html:Input html:Object html:Output html:Select html:Textarea html:Details html:Form html:Iframe html:Object html:Map html:Meta html:Slot)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Details
+            html:Fieldset
+            html:Form
+            html:Iframe
+            html:Input
+            html:Map
+            html:Meta
+            html:Object
+            html:Output
+            html:Select
+            html:Slot
+            html:Textarea ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the name of an HTML element, used as a reference when submitting a form or scripting."@en;
@@ -3560,7 +3646,7 @@ html:defer
     rdfs:range xsd:boolean;
     skos:definition "Specifies that a script should not be executed in browsers that support ES6 modules."@en;
     skos:prefLabel 'the nomodule attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:nonce
     a owl:DatatypeProperty;
@@ -3570,7 +3656,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies a cryptographic nonce that can be used to validate the origin of a script."@en;
     skos:prefLabel 'the nonce attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:novalidate
     a owl:DatatypeProperty;
@@ -3580,19 +3666,21 @@ html:defer
     rdfs:range xsd:boolean;
     skos:definition "Specifies that a form should not be validated when submitted."@en;
     skos:prefLabel 'the novalidate attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:open
     a owl:DatatypeProperty;
     html:key 'open';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Details html:Dialog)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Details
+            html:Dialog ) ];
     rdfs:range xsd:boolean;
     skos:definition "Indicates whether the details element is open (visible) or not."@en;
     skos:prefLabel 'the open attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:optimum
     a owl:DatatypeProperty;
@@ -3602,8 +3690,8 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the optimal numeric value for the gauge."@en;
     skos:prefLabel 'the optimum attribute'@en;
-    rdfs:isDefinedBy html:.	
-	
+    rdfs:isDefinedBy html:.
+
   html:pattern
     a owl:DatatypeProperty;
     html:key 'pattern';
@@ -3612,26 +3700,30 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies a regular expression pattern that the input's value must match."@en;
     skos:prefLabel 'the pattern attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:ping
     a owl:DatatypeProperty;
     html:key 'ping';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	            owl:unionOf (html:A html:Area)
-				];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies a space-separated list of URLs to which, when the resource is activated, post requests with the element's activation behavior should be sent."@en;
     skos:prefLabel 'the ping attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:placeholder
     a owl:DatatypeProperty;
     html:key 'placeholder';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Input html:Textarea)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Textarea ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies a short hint that describes the expected value of an input element."@en;
@@ -3646,7 +3738,7 @@ html:defer
     rdfs:range xsd:boolean;
     skos:definition "Specifies that the video should be played in-line with the other content on the page."@en;
     skos:prefLabel 'the playsinline attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:popover
     a owl:DatatypeProperty;
@@ -3656,31 +3748,35 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies additional information or controls for an element, typically shown as a tooltip or pop-up."@en;
     skos:prefLabel 'the popover attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:popovertarget
     a owl:DatatypeProperty;
     html:key 'popovertarget';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Input html:Button)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Input ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the target element for a popover, indicating where additional information or controls should be displayed."@en;
     skos:prefLabel 'the popovertarget attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:popovertargetaction
     a owl:DatatypeProperty;
     html:key 'popovertargetaction';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain  [a owl:Class;
-	             owl:unionOf (html:Input html:Button)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Button ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies an action associated with a target element for a popover."@en;
     skos:prefLabel 'the popovertargetaction attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:poster
     a owl:DatatypeProperty;
@@ -3690,27 +3786,30 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies an image to be shown while the video is downloading or until the user hits the play button."@en;
     skos:prefLabel 'the poster attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:preload
     a owl:DatatypeProperty;
     html:key 'preload';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Audio html:Video)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Video ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies how the browser should load the audio or video."@en;
     skos:prefLabel 'the preload attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:readonly
     a owl:DatatypeProperty;
     html:key 'readonly';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Textarea)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Textarea ) ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies that an input field is read-only and cannot be edited by the user."@en;
@@ -3720,10 +3819,15 @@ html:defer
   html:referrerpolicy
     a owl:DatatypeProperty;
     html:key 'referrerpolicy';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:A html:Link html:Area html:Iframe html:Img html:Script)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area
+            html:Iframe
+            html:Img
+            html:Link
+            html:Script ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies which referrer information should be included when making requests."@en;
@@ -3733,10 +3837,12 @@ html:defer
   html:rel
     a owl:DatatypeProperty;
     html:key 'rel';
-    rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:A html:Link html:Area)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:A
+            html:Area
+            html:Link ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the relationship between the current document and the linked resource."@en;
@@ -3746,10 +3852,12 @@ html:defer
   html:required
     a owl:DatatypeProperty;
     html:key 'required';
-    rdfs:domain  [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Input html:Select html:Textarea)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Select
+            html:Textarea ) ];
     rdfs:range xsd:boolean;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies that an input field must be filled out before submitting the form."@en;
@@ -3814,7 +3922,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies whether a header cell is a header for a column, row, or group of columns or rows."@en;
     skos:prefLabel 'the scope attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:selected
     a owl:DatatypeProperty;
@@ -3824,7 +3932,7 @@ html:defer
     rdfs:range xsd:boolean;
     skos:definition "Specifies that an option in a dropdown list should be pre-selected when the page loads."@en;
     skos:prefLabel 'the selected attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:shape
     a owl:DatatypeProperty;
@@ -3834,31 +3942,36 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the shape of the hot spot in an image map."@en;
     skos:prefLabel 'the shape attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:size
     a owl:DatatypeProperty;
     html:key 'size';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	            owl:unionOf (html:Input html:Select)
-				];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Input
+            html:Select ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the size of the font in a <font> element."@en;
     skos:prefLabel 'the size attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:sizes
     a owl:DatatypeProperty;
     html:key 'sizes';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-	            owl:unionOf (html:Link html:Img html:Source)
-				];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Img
+            html:Link
+            html:Source ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the sizes of the images for different viewport widths."@en;
     skos:prefLabel 'the sizes attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:slot
     a owl:DatatypeProperty;
@@ -3868,19 +3981,21 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies the name of the slot the element belongs to when used in a shadow DOM."@en;
     skos:prefLabel 'the slot attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:span
     a owl:DatatypeProperty;
     html:key 'span';
     rdfs:subPropertyOf html:attribute;
-    rdfs:domain [a owl:Class;
-                 owl:unionOf (html:Col html:Colgroup)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+          owl:unionOf
+            ( html:Col
+              html:Colgroup ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the number of columns a table cell should span."@en;
     skos:prefLabel 'the span attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:spellcheck
     a owl:DatatypeProperty;
@@ -3890,16 +4005,24 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies whether the browser should check the spelling and grammar of the text in an element."@en;
     skos:prefLabel 'the spellcheck attribute'@en;
-    rdfs:isDefinedBy html:.	
-	
+    rdfs:isDefinedBy html:.
+
   html:src
     a owl:DatatypeProperty;
     html:key 'src';
     rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Audio html:Embed html:Iframe html:Img html:Input html:Script html:Source html:Track html:Video)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Audio
+            html:Embed
+            html:Iframe
+            html:Img
+            html:Input
+            html:Script
+            html:Source
+            html:Track
+            html:Video ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies the URL of the media resource."@en;
     skos:prefLabel 'the src attribute'@en;
@@ -3929,10 +4052,11 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'srcset';
     rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Img html:Source)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Img
+            html:Source ) ];
     rdfs:range xsd:string;
     skos:definition "Specifies a list of possible images to use for the visual media contained in the resource."@en;
     skos:prefLabel 'the srcset attribute'@en;
@@ -3942,10 +4066,11 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'start';
     rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Img html:Source)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Img
+            html:Source ) ];
     rdfs:range xsd:integer;
     skos:definition "Specifies the starting value of a list item."@en;
     skos:prefLabel 'the start attribute'@en;
@@ -3979,7 +4104,7 @@ html:defer
     rdfs:range xsd:integer;
     skos:definition "Specifies the tab order of an element."@en;
     skos:prefLabel 'the tabindex attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:target
     a owl:DatatypeProperty;
@@ -3989,7 +4114,7 @@ html:defer
     rdfs:range xsd:integer;
     skos:definition "Specifies where to open the linked document when the link is clicked."@en;
     skos:prefLabel 'the target attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:title
     a owl:DatatypeProperty;
@@ -4009,7 +4134,7 @@ html:defer
     rdfs:range xsd:string;
     skos:definition "Specifies whether the content of an element should be translated when the page is localized."@en;
     skos:prefLabel 'the translate attribute'@en;
-    rdfs:isDefinedBy html:.	
+    rdfs:isDefinedBy html:.
 
   html:type
     a owl:DatatypeProperty;
@@ -4034,9 +4159,16 @@ html:defer
   html:value
     a owl:DatatypeProperty;
     html:key 'value';
-    rdfs:domain [a owl:Class;
-	             owl:unionOf (html:Button html:Option html:Data html:Input html:Li html:Meter html:Progress)
-				 ];
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Button
+            html:Data
+            html:Input
+            html:Li
+            html:Meter
+            html:Option
+            html:Progress ) ];
     rdfs:range xsd:string;
     rdfs:subPropertyOf html:attribute;
     skos:definition "Specifies the initial value of an input element."@en;
@@ -4047,10 +4179,16 @@ html:defer
     a owl:DatatypeProperty;
     html:key 'width';
     rdfs:subPropertyOf html:attribute;
-       rdfs:domain [
-        rdf:type owl:Class ;
-        owl:unionOf (html:Canvas html:Embed html:Iframe html:Img html:Input html:Object html:Video)
-    ] ;
+    rdfs:domain
+      [ a owl:Class;
+        owl:unionOf
+          ( html:Canvas
+            html:Embed
+            html:Iframe
+            html:Img
+            html:Input
+            html:Object
+            html:Video ) ];
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the width of an element."@en;
     skos:prefLabel 'the width attribute'@en;
@@ -4065,3 +4203,4 @@ html:defer
     skos:definition "Specifies how the text in a textarea is to be wrapped when submitted in a form."@en;
     skos:prefLabel 'the wrap attribute'@en;
     rdfs:isDefinedBy html:.
+#}
