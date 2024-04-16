@@ -1201,8 +1201,8 @@ construct {
 
   html:VoidElement
     a owl:Class;
-    rdfs:subClassOf dom:Element;
-    skos:definition 'A DOM element whose content model never allows it to have contents under any circumstances. Void elements can have attributes.'@en;
+    rdfs:subClassOf html:Element;
+    skos:definition 'A HTML element whose content model never allows it to have contents under any circumstances. Void elements can have attributes.'@en;
     skos:example
       '<br>'@en,
       '<hr>'@en;
