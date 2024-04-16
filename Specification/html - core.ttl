@@ -693,6 +693,13 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel '§ 4.8.13 The area element'@en;
     rdfs:isDefinedBy html:.
 
+  section:4.8.15
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#mathml';
+    skos:prefLabel '§ 4.8.15 MathML'@en;
+    rdfs:isDefinedBy html:.
+
   section:4.8.16
     a dcm:Text;
     dct:isPartOf standard:html;
@@ -1076,10 +1083,34 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:NormalElement
     a owl:Class;
-    dct:conformsTo section:13.1.2;
+    dct:conformsTo section:13.1.2-NormalElements;
     rdfs:subClassOf html:Element;
-    skos:definition 'Execlusionary definition: the elements that are neither (1) void elements, (2) the template element, (3) raw text elements, (4) escapable raw text elements, nor (5) foreign elements.'@en;
+    skos:definition 'Exclusionary definition: the elements that are neither (1) void elements, (2) the template element, (3) raw text elements, (4) escapable raw text elements, nor (5) foreign elements.'@en;
     skos:prefLabel 'normal element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:RawTextElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-RawTextElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element where the text inside is treated as raw text and not parsed as HTML.'@en;
+    skos:prefLabel 'raw text element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:EscapableRawTextElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-EscapableRawTextElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element where the text inside is treated as raw text and not parsed as HTML, but character references can still be escaped within their text content.'@en;
+    skos:prefLabel 'escapable raw text element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ForeignElement
+    a owl:Class;
+    dct:conformsTo section:13.1.2-ForeignElements;
+    rdfs:subClassOf html:Element;
+    skos:definition 'HTML element from a namespace other than the HTML namespace.'@en;
+    skos:prefLabel 'foreign element'@en;
     rdfs:isDefinedBy html:.
 
   shp:SerializableElement
@@ -1464,7 +1495,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.2.2;
     html:tag 'title';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The Title (<title> element) defines a document its title that is shown in a browser title bar or a page tab. It only contains text; tags within the element are ignored.'@en;
     skos:prefLabel 'the title element'@en;
     rdfs:isDefinedBy html:.
@@ -1506,7 +1537,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.2.6;
     html:tag 'style';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:RawTextElement;
     skos:definition 'The <style> HTML element contains style information for a document, or part of a document. It embeds a CSS style sheet, which is applied to the contents of the document containing the <style> element.'@en;
     skos:prefLabel 'the style element'@en;
     rdfs:isDefinedBy html:.
@@ -2184,11 +2215,20 @@ construct {
     skos:prefLabel 'the area element'@en;
     rdfs:isDefinedBy html:.
 
+  html:MathML
+    a owl:Class;
+    dct:conformsTo section:4.8.15;
+    html:tag 'math';
+    rdfs:subClassOf html:ForeignElement;
+    skos:definition 'The <math> HTML element is a container for MathML content.'@en;
+    skos:prefLabel 'the math element'@en;
+    rdfs:isDefinedBy html:.
+
   html:SVG
     a owl:Class;
     dct:conformsTo section:4.8.16;
     html:tag 'svg';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:ForeignElement;
     skos:definition 'The <svg> HTML element is a container for SVG graphics. SVG allows for three types of graphics: vector graphic shapes (e.g., paths consisting of straight lines and curves), images, and text.'@en;
     skos:prefLabel 'the svg element'@en;
     rdfs:isDefinedBy html:.
@@ -2396,7 +2436,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.11;
     html:tag 'textarea';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The <textarea> HTML element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.'@en;
     skos:prefLabel 'the textarea element'@en;
     rdfs:isDefinedBy html:.
@@ -2483,7 +2523,7 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.1;
     html:tag 'script';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:RawTextElement;
     skos:definition "The <script> HTML element is used to embed executable code or data; this is typically used to embed or refer to JavaScript code. The <script> element can also be used with other languages, such as WebGL's GLSL shader programming language and JSON."@en;
     skos:prefLabel 'the script element'@en;
     rdfs:isDefinedBy html:.
@@ -2528,7 +2568,8 @@ construct {
   # HTML class-level properties
 
   html:attribute
-    a owl:DatatypeProperty;
+    a owl:DatatypeProperty, 
+    dom:Attribute;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
