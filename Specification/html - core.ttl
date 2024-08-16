@@ -1331,7 +1331,7 @@ construct {
     sh:targetClass html:CustomElement;
     rdfs:isDefinedBy html:.
 
- html:CustomElement
+  html:CustomElement
     a owl:Class;
     rdfs:subClassOf html:Element;
     dct:conformsTo section:4.13.3;
@@ -2900,7 +2900,7 @@ construct {
 
   html:attribute
     a owl:DatatypeProperty,
-    dom:Attribute;
+      dom:Attribute;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
@@ -3021,7 +3021,7 @@ construct {
     skos:prefLabel 'the action attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:allow
+  html:allow
     a owl:DatatypeProperty;
     html:key 'allow';
     rdf:type html:Attribute;
@@ -3031,7 +3031,7 @@ construct {
     skos:prefLabel 'the allow attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:allowfullscreen
+  html:allowfullscreen
     a owl:DatatypeProperty;
     html:key 'allowfullscreen';
     rdf:type html:Attribute;
@@ -3041,7 +3041,7 @@ construct {
     skos:prefLabel 'the allowfullscreen attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:alt
+  html:alt
     a owl:DatatypeProperty;
     html:key 'alt';
     rdf:type html:Attribute;
@@ -3217,7 +3217,7 @@ construct {
     skos:prefLabel 'the colspan attribute'@en;
     rdfs:isDefinedBy html:.
 
- html:content
+  html:content
     a owl:DatatypeProperty;
     html:key 'content';
     rdf:type html:Attribute;
