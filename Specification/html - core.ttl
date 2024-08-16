@@ -1714,15 +1714,7 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
 
 construct {
-  $this
-    html:fragment ?fragmentDocument;
-    prov:wasGeneratedBy ?activity.
-  ?activity
-    a prov:Activity;
-    prov:atTime ?activityDateTime;
-    prov:used
-      html:,
-      rule:Document.
+  $this html:fragment ?fragmentDocument.
 } where {
   $this
     rdf:_1 ?documentType;
@@ -1734,8 +1726,6 @@ construct {
     a html:Html;
     html:fragment ?fragmentRoot.
   bind(concat(str(?fragmentDocType),str(?fragmentRoot)) as ?fragmentDocument)
-  bind(iri(concat(str($this),'-html-document-generation')) as ?activity)
-  bind(now() as ?activityDateTime)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -2909,7 +2899,7 @@ construct {
   # HTML class-level properties
 
   html:attribute
-    a owl:DatatypeProperty, 
+    a owl:DatatypeProperty,
     dom:Attribute;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
