@@ -73,9 +73,14 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   doc:1
     a html:Document;
-    rdf:_1 doc:1.15.
+    rdf:_1 doc:1.1;
+    rdf:_2 doc:1.2.
 
-  doc:1.15
+  doc:1.1
+    a html:DocumentType;
+    html:documentTypeName 'html'.
+
+  doc:1.2
     a html:Html;
     rdf:_1 doc:1.21;
     rdf:_2 doc:1.218.
@@ -155,7 +160,84 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:source 'https://html.spec.whatwg.org/#elements'^^xsd:anyURI;
     skos:prefLabel '§ 3.2 Elements'@en;
     rdfs:isDefinedBy html:.
+    
+  section:3.2.5.2
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#kinds-of-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2 Kinds of content'@en;
+    rdfs:isDefinedBy html:.    
 
+  section:3.2.5.2.1
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#metadata-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.1 Metadata content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.2
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#flow-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.2 Flow content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.3
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#sectioning-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.3 Sectioning content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.4
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#heading-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.4 Heading content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.5
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#phrasing-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.5 Phrasing content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.6
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#embedded-content-2'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.6 Metadata content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.7
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#interactive-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.7 Interactive content'@en;
+    rdfs:isDefinedBy html:.
+
+  section:3.2.5.2.8
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#palpable-content'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.8 Palpable content'@en;
+    rdfs:isDefinedBy html:.    
+
+  section:3.2.5.2.9
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#script-supporting-elements'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.2.9 Script-supporting elements'@en;
+    rdfs:isDefinedBy html:.   
+
+  section:3.2.5.3
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#transparent-content-models'^^xsd:anyURI;
+    skos:prefLabel '§ 3.2.5.3 Transparant content models'@en;
+    rdfs:isDefinedBy html:. 
+    
 
   # HTML - living standard - 4.1 - The document element
 
@@ -388,9 +470,16 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
   section:4.4.15
     a dcm:Text;
     dct:isPartOf standard:html;
-    dct:source 'https://html.spec.whatwg.org/#the-div-element'^^xsd:anyURI;
-    skos:prefLabel '§ 4.4.15 The div element'@en;
+    dct:source 'https://html.spec.whatwg.org/#the-search-element'^^xsd:anyURI;
+    skos:prefLabel '§ 4.4.15 The search element'@en;
     rdfs:isDefinedBy html:.
+
+  section:4.4.16
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#the-div-element'^^xsd:anyURI;
+    skos:prefLabel '§ 4.4.16 The div element'@en;
+    rdfs:isDefinedBy html:.    
 
 
   # HTML - living standard - 4.5 - Text-level semantics
@@ -783,6 +872,13 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   # HTML - living standard - 4.10 - Forms
 
+  section:4.10.2
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#categories'^^xsd:anyURI;
+    skos:prefLabel '§ 4.10.2 Categories'@en;
+    rdfs:isDefinedBy html:.
+
   section:4.10.3
     a dcm:Text;
     dct:isPartOf standard:html;
@@ -966,7 +1062,25 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
   # HTML - living standard - 4.16 - Matching HTML elements using selectors and CSS
 
   ### work in progress
-
+  
+  
+  # HTML - living standard - 8.1.8 - Events
+  
+  section:8.1.8
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#events'^^xsd:anyURI;
+    rdfs:label '§ 8.1.8 Events'@en;
+    rdfs:isDefinedBy html:.
+  
+  # HTML - living standard - 8.1.8.1 Event handlers
+  
+  section:8.1.8.1
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#event-handler-attributes'^^xsd:anyURI;
+    rdfs:label '§ 8.1.8.1 Event handlers'@en;
+    rdfs:isDefinedBy html:.
 
   # HTML - living standard - 13.1 - Writing HTML documents
 
@@ -1068,6 +1182,12 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel '§ 13.1.6 Comments'@en;
     rdfs:isDefinedBy html:.
 
+  section:4.13.3
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#custom-elements-core-concepts'^^xsd:anyURI;
+    skos:prefLabel '§ 4.13.3 Core concepts'@en;
+    rdfs:isDefinedBy html:.
 
   # HTML - living standard - 3.2 Elements
 
@@ -1196,12 +1316,59 @@ construct {
 
   html:VoidElement
     a owl:Class;
-    rdfs:subClassOf dom:Element;
-    skos:definition 'A DOM element whose content model never allows it to have contents under any circumstances. Void elements can have attributes.'@en;
+    rdfs:subClassOf html:Element;
+    skos:definition 'A HTML element whose content model never allows it to have contents under any circumstances. Void elements can have attributes.'@en;
     skos:example
       '<br>'@en,
       '<hr>'@en;
     skos:prefLabel 'void element'@en;
+    rdfs:isDefinedBy html:.
+
+ shp:CustomElement
+    a sh:NodeShape;
+    skos:prefLabel 'Custom element shape'@en;
+    sh:rule rule:Serialize_HTML_fragment_CustomElement;
+    sh:targetClass html:CustomElement;
+    rdfs:isDefinedBy html:.
+
+ html:CustomElement
+    a owl:Class;
+    rdfs:subClassOf html:Element;
+    dct:conformsTo section:4.13.3;
+    skos:definition 'A custom element is an element that is custom. Informally, this means that its constructor and prototype are defined by the author, instead of by the user agent. This author-supplied constructor function is called the custom element constructor. Two distinct types of custom elements can be defined: An autonomous custom element, which is defined with no extends option. These types of custom elements have a local name equal to their defined name. A customized built-in element, which is defined with an extends option. These types of custom elements have a local name equal to the value passed in their extends option, and their defined name is used as the value of the is attribute, which therefore must be a valid custom element name.'@en;
+    skos:prefLabel 'custom HTML element'@en;
+    skos:example """
+    
+    ex:someFlagIconElement rdf:type ex:FlagIcon.
+    ex:FlagIcon rdf:type html:CustomElement;
+                html:tag 'flag-icon';
+                html:extends html:Element;
+                rdfs:isDefinedBy ex:.  
+                
+    """;
+    rdfs:isDefinedBy html:.
+
+  rule:Serialize_HTML_fragment_CustomElement
+    a sh:SPARQLRule;
+    rdfs:comment 'A rule that creates an HTML fragment for a custom element.'@en;
+    skos:prefLabel 'Custom element fragment serialisation rule'@en;
+    sh:construct '''
+
+prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+construct {
+
+  $this rdfs:subClassOf  html:CustomElement.
+  
+} where {
+
+ # Condition is already met via the target, hence empty where clause
+
+}
+''';
     rdfs:isDefinedBy html:.
 
 
@@ -1345,6 +1512,163 @@ construct {
       'A natural language sentence that appears in a table caption.'@en;
     skos:prefLabel 'text'@en;
     rdfs:isDefinedBy html:.
+    
+  # Content category
+
+  html:ContentCategory 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:Element;
+    dct:conformsTo section:3.2.5.2;
+    skos:definition 'Each element in HTML falls into zero or more categories that group elements with similar characteristics together.'@en;
+    skos:prefLabel 'content category'@en;
+    skos:note 'Some elements also fall into other categories, which are defined in other parts of this specification.';
+    rdfs:isDefinedBy html:.
+    
+  html:MetadataContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.1;
+    skos:definition 'Metadata content is content that sets up the presentation or behavior of the rest of the content, or that sets up the relationship of the document with other documents, or that conveys other "out of band" information.'@en;
+    skos:prefLabel 'Metadata content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:FlowContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.2;
+    skos:definition 'Most elements that are used in the body of documents and applications are categorized as flow content.'@en;
+    skos:prefLabel 'Flow content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:SectioningContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.3;
+    skos:definition 'Sectioning content is content that defines the scope of header and footer elements.'@en;
+    skos:prefLabel 'Sectioning content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:HeadingContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.4;
+    skos:definition 'Heading content defines the heading of a section (whether explicitly marked up using sectioning content elements, or implied by the heading content itself).'@en;
+    skos:prefLabel 'Heading content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:PhrasingContent rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.5;
+    skos:definition 'Phrasing content is the text of the document, as well as elements that mark up that text at the intra-paragraph level. Runs of phrasing content form paragraphs.'@en;
+    skos:prefLabel 'Phrasing content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:EmbeddedContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.6;
+    skos:definition 'Embedded content is content that imports another resource into the document, or content from another vocabulary that is inserted into the document.'@en;
+    skos:prefLabel 'Embedded content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:InteractiveContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.7;
+    skos:definition 'Interactive content is content that is specifically intended for user interaction.'@en;
+    skos:prefLabel 'Interactive content'@en;
+    rdfs:isDefinedBy html:.
+
+  html:PalpableContent 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.8;
+    skos:definition 'As a general rule, elements whose content model allows any flow content or phrasing content should have at least one node in its contents that is palpable content and that does not have the hidden attribute specified.'@en;
+    skos:note 'Palpable content makes an element non-empty by providing either some descendant non-empty text, or else something users can hear (audio elements) or view (video, img, or canvas elements) or otherwise interact with (for example, interactive form controls).';
+    skos:prefLabel 'Palpable content'@en;
+    rdfs:isDefinedBy html:.
+    
+  html:ScriptSupportingElement
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.9;
+    skos:definition 'Script-supporting elements are those that do not represent anything themselves (i.e. they are not rendered), but are used to support scripts, e.g. to provide functionality for the user.'@en;
+    skos:prefLabel 'Script-supporting element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:FormAssociatedElement
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'A number of the elements are form-associated elements, which means they can have a form owner.'@en;
+    skos:prefLabel 'form-associated element'@en;
+    rdfs:isDefinedBy html:.  
+
+  html:ListedElement 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:FormAssociatedElement;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'Denotes elements that are listed in the form.elements and fieldset.elements APIs. These elements also have a form content attribute, and a matching form IDL attribute, that allow authors to specify an explicit form owner.'@en;
+    skos:prefLabel 'listed element'@en;
+    rdfs:isDefinedBy html:.    
+
+  html:SubmittableElement 
+    rdf:type owl:Class;
+    rdfs:subClassOf html:FormAssociatedElement;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'Denotes elements that can be used for constructing the entry list when a form element is submitted.'@en;
+    skos:prefLabel 'submittable element'@en;
+    rdfs:isDefinedBy html:.  
+
+  html:ResettableElement
+    rdf:type owl:Class;
+    rdfs:subClassOf html:FormAssociatedElement;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'Denotes elements that can be affected when a form element is reset.'@en;
+    skos:prefLabel 'resettable element'@en;
+    rdfs:isDefinedBy html:.  
+    
+  html:AutocapitalizeInheritingElement
+    rdf:type owl:Class;
+    rdfs:subClassOf html:FormAssociatedElement;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'Denotes elements that inherit the autocapitalize attribute from their form owner.'@en;
+    skos:prefLabel 'autocapitalize-inheriting element'@en;
+    rdfs:isDefinedBy html:.      
+
+  html:LabelableElement
+    rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:4.10.2;
+    skos:definition 'Some elements, not all of them form-associated, are categorized as labelable elements. These are elements that can be associated with a label element.'@en;
+    skos:prefLabel 'labelable element'@en;
+    rdfs:isDefinedBy html:. 
+   
+  html:Attribute
+    rdf:type owl:Class;
+    rdfs:subClassOf dom:Attribute;
+    dct:conformsTo section:13.1.2.3;
+    skos:definition """An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string."""@en;
+    skos:prefLabel 'attribute'@en;
+    rdfs:isDefinedBy html:.  
+
+  html:GlobalAttribute
+    rdf:type owl:Class;
+    rdfs:subClassOf html:Attribute;
+    dct:conformsTo section:3.2.6;
+    skos:definition 'An attribute that is common to and may be specified on all HTML elements (even those not defined in this specification).'@en;
+    skos:note 'Global attributes are only defined by this specification as attributes for HTML elements. When this specification refers to elements having these attributes, elements from namespaces that are not defined as having these attributes must not be considered as being elements with these attributes.'@en;
+    skos:prefLabel 'global attribute'@en;
+    rdfs:isDefinedBy html:. 
+    
+  html:EventHandlerContentAttribute
+    rdf:type owl:Class;
+    rdfs:subClassOf html:Attribute;
+    dct:conformsTo section:8.1.8.1;
+    skos:definition 'An event handler content attribute is a content attribute for a specific event handler. The name of the content attribute is the same as the name of the event handler.'@en;
+    skos:note 'Event handler content attributes, when specified, must contain valid JavaScript code which, when parsed, would match the FunctionBody production after automatic semicolon insertion.'@en;
+    skos:prefLabel 'event handler content attribute'@en;
+    rdfs:isDefinedBy html:.     
 
 
   # HTML - living standard - 4.1 Document element
@@ -1393,10 +1717,10 @@ construct {
   $this html:fragment ?fragmentDocument.
 } where {
   $this
-    rdf:_1 ?documentTypeDeclaration;
+    rdf:_1 ?documentType;
     rdf:_2 ?root.
-  ?documentTypeDeclaration
-    a html:DocumentTypeDeclaration;
+  ?documentType
+    a html:DocumentType;
     html:fragment ?fragmentDocType.
   ?root
     a html:Html;
@@ -1408,37 +1732,37 @@ construct {
 
   # DocumentType
 
-  shp:DocumentTypeDeclaration
+  shp:DocumentType
     a sh:NodeShape;
-    skos:prefLabel 'DocumentType Declaration shape'@en;
-    sh:rule rule:Serialize_HTML_fragment_DocumentTypeDeclaration;
-    sh:target target:DocumentTypeDeclaration;
+    skos:prefLabel 'DocumentType shape'@en;
+    sh:rule rule:Serialize_HTML_fragment_DocumentType;
+    sh:target target:DocumentType;
     rdfs:isDefinedBy html:.
 
-  target:DocumentTypeDeclaration
+  target:DocumentType
     a sh:SPARQLTarget;
     sh:select '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select $this {
-  $this a/rdfs:subClassOf* html:DocumentTypeDeclaration.
+  $this a/rdfs:subClassOf* html:DocumentType.
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
-  html:DocumentTypeDeclaration
+  html:DocumentType
     a owl:Class;
     dct:conformsTo section:13.1.1;
     rdfs:subClassOf dom:DocumentType;
-    skos:definition 'A DOCTYPE declaration is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
+    skos:definition 'A DOCTYPE is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
     skos:prefLabel 'the DOCTYPE'@en;
     skos:example'''<!DOCTYPE html>'''@en;
     rdfs:isDefinedBy html:.
 
-  rule:Serialize_HTML_fragment_DocumentTypeDeclaration
+  rule:Serialize_HTML_fragment_DocumentType
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for an HTML DocumentType Declaration.'@en;
-    skos:prefLabel 'HTML DocumentType Declaration fragment serialisation rule'@en;
+    rdfs:comment 'A rule that creates an HTML fragment for an HTML DocumentType.'@en;
+    skos:prefLabel 'HTML DocumentType fragment serialisation rule'@en;
     sh:construct '''
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -1455,11 +1779,11 @@ construct {
 
   html:Html
     a owl:Class;
-    dct:conformsTo section:4.1.1;
-    html:tag 'html';
     rdfs:subClassOf
       dom:DocumentElement,
       html:NormalElement;
+    dct:conformsTo section:4.1.1;
+    html:tag 'html';
     skos:definition 'The <html> HTML element represents the root (top-level element) of an HTML document, so it is also referred to as the root element or document element. All other elements must be descendants of this element.'@en;
     skos:prefLabel 'the html element'@en;
     rdfs:isDefinedBy html:.
@@ -1483,39 +1807,45 @@ construct {
 
   html:Title
     a owl:Class;
+    rdfs:subClassOf html:EscapableRawTextElement, html:MetadataContent;
     dct:conformsTo section:4.2.2;
     html:tag 'title';
-    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The Title (<title> element) defines a document its title that is shown in a browser title bar or a page tab. It only contains text; tags within the element are ignored.'@en;
     skos:prefLabel 'the title element'@en;
     rdfs:isDefinedBy html:.
 
   html:Base
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:MetadataContent;
     dct:conformsTo section:4.2.3;
     html:tag 'base';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <base> HTML element specifies the base URL to use for all relative URLs in a document. There can be only one <base> element in a document.'@en;
     skos:prefLabel 'the base element'@en;
     rdfs:isDefinedBy html:.
 
   html:Link
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:MetadataContent;
     dct:conformsTo section:4.2.4;
     html:tag 'link';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The link element allows authors to link their document to other resources.'@en;
     skos:prefLabel 'the link element'@en;
     rdfs:isDefinedBy html:.
 
+  html:PhrasingContent rdf:type owl:Class;
+    rdfs:subClassOf html:ContentCategory;
+    dct:conformsTo section:3.2.5.2.5;
+    skos:definition 'Phrasing content is the text of the document, as well as elements that mark up that text at the intra-paragraph level. Runs of phrasing content form paragraphs.'@en;
+    skos:prefLabel 'Phrasing content'@en;
+    rdfs:isDefinedBy html:.
 
   # Meta element (<meta>)
 
   html:Meta
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:MetadataContent;    
     dct:conformsTo section:4.2.5;
     html:tag 'meta';
-    rdfs:subClassOf html:VoidElement;
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en;
     skos:prefLabel 'the meta element'@en;
     rdfs:isDefinedBy html:.
@@ -1525,13 +1855,12 @@ construct {
 
   html:StyleSheet
     a owl:Class;
+    rdfs:subClassOf html:RawTextElement, html:MetadataContent;      
     dct:conformsTo section:4.2.6;
     html:tag 'style';
-    rdfs:subClassOf html:RawTextElement;
     skos:definition 'The <style> HTML element contains style information for a document, or part of a document. It embeds a CSS style sheet, which is applied to the contents of the document containing the <style> element.'@en;
     skos:prefLabel 'the style element'@en;
     rdfs:isDefinedBy html:.
-
 
   # HTML - living standard - 4.3 Sections
 
@@ -1539,9 +1868,9 @@ construct {
 
   html:Article
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
     dct:conformsTo section:4.3.2;
     html:tag 'article';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <article> HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.'@en;
     skos:prefLabel 'the article element'@en;
     rdfs:isDefinedBy html:.
@@ -1560,117 +1889,117 @@ construct {
 
   html:Section
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
     dct:conformsTo section:4.3.3;
     html:tag 'section';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <section> HTML element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. Sections should always have a heading, with very few exceptions."@en;
     skos:prefLabel 'the section element'@en;
     rdfs:isDefinedBy html:.
 
   html:Nav
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
     dct:conformsTo section:4.3.4;
     html:tag 'nav';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <nav> HTML element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.'@en;
     skos:prefLabel 'the nav element'@en;
     rdfs:isDefinedBy html:.
 
   html:Aside
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;    
     dct:conformsTo section:4.3.5;
     html:tag 'aside';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <aside> HTML element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes."@en;
     skos:prefLabel 'the aside element'@en;
     rdfs:isDefinedBy html:.
 
   html:H1
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;    
     dct:conformsTo section:4.3.6;
     html:tag 'h1';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h1 element'@en;
     rdfs:isDefinedBy html:.
 
   html:H2
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;       
     dct:conformsTo section:4.3.6;
     html:tag 'h2';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h2 element'@en;
     rdfs:isDefinedBy html:.
 
   html:H3
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;       
     dct:conformsTo section:4.3.6;
     html:tag 'h3';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h3 element'@en;
     rdfs:isDefinedBy html:.
 
   html:H4
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;       
     dct:conformsTo section:4.3.6;
     html:tag 'h4';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h4 element'@en;
     rdfs:isDefinedBy html:.
 
   html:H5
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;       
     dct:conformsTo section:4.3.6;
     html:tag 'h5';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h5 element'@en;
     rdfs:isDefinedBy html:.
 
   html:H6
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;       
     dct:conformsTo section:4.3.6;
     html:tag 'h6';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
     skos:prefLabel 'the h6 element'@en;
     rdfs:isDefinedBy html:.
 
   html:Hgroup
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;     
     dct:conformsTo section:4.3.7;
     html:tag 'hgroup';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <hgroup> HTML element represents a multi-level heading for a section of a document. It groups a set of <h1>-<h6> elements.'@en;
     skos:prefLabel 'the hgroup element'@en;
     rdfs:isDefinedBy html:.
 
   html:Header
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;     
     dct:conformsTo section:4.3.8;
     html:tag 'header';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <header> HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.'@en;
     skos:prefLabel 'the header element'@en;
     rdfs:isDefinedBy html:.
 
   html:Footer
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;     
     dct:conformsTo section:4.3.9;
     html:tag 'footer';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <footer> HTML element represents a footer for its nearest sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents.'@en;
     skos:prefLabel 'the footer element'@en;
     rdfs:isDefinedBy html:.
 
   html:Address
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;       
     dct:conformsTo section:4.3.10;
     html:tag 'address';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <address> HTML element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.'@en;
     skos:prefLabel 'the address element'@en;
     rdfs:isDefinedBy html:.
@@ -1680,63 +2009,63 @@ construct {
 
   html:P
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;      
     dct:conformsTo section:4.4.1;
     html:tag 'p';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields.'@en;
     skos:prefLabel 'the p element'@en;
     rdfs:isDefinedBy html:.
 
   html:Hr
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent;
     dct:conformsTo section:4.4.2;
     html:tag 'hr';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <hr> HTML element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section.'@en;
     skos:prefLabel 'the hr element'@en;
     rdfs:isDefinedBy html:.
 
   html:Pre
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;         
     dct:conformsTo section:4.4.3;
     html:tag 'pre';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <pre> HTML element represents preformatted text which is to be presented exactly as written in the HTML file. The text is typically rendered using a non-proportional, or monospaced, font. Whitespace inside this element is displayed as written.'@en;
     skos:prefLabel 'the pre element'@en;
     rdfs:isDefinedBy html:.
 
   html:Blockquote
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;         
     dct:conformsTo section:4.4.4;
     html:tag 'blockquote';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <blockquote> HTML element indicates that the enclosed text is an extended quotation. Usually, this is rendered visually by indentation (see Notes for how to change it). A URL for the source of the quotation may be given using the cite attribute, while a text representation of the source can be given using the <cite> element.'@en;
     skos:prefLabel 'the blockquote element'@en;
     rdfs:isDefinedBy html:.
 
   html:Ol
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent;        
     dct:conformsTo section:4.4.5;
     html:tag 'ol';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ol> HTML element represents an ordered list of items - typically rendered as a numbered list.'@en;
     skos:prefLabel 'the ol element'@en;
     rdfs:isDefinedBy html:.
 
   html:Ul
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent;      
     dct:conformsTo section:4.4.6;
     html:tag 'ul';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ul> HTML element represents an unordered list of items, typically rendered as a bulleted list.'@en;
     skos:prefLabel 'the ul element'@en;
     rdfs:isDefinedBy html:.
 
   html:Menu
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent;
     dct:conformsTo section:4.4.7;
     html:tag 'menu';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <menu> HTML element is a semantic alternative to <ul>. It represents an unordered list of items (represented by <li> elements), each of these represent a link or other command that the user can activate.'@en;
     skos:prefLabel 'the menu element'@en;
     rdfs:isDefinedBy html:.
@@ -1752,63 +2081,72 @@ construct {
 
   html:Dl
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent;    
     dct:conformsTo section:4.4.9;
     html:tag 'dl';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dl> HTML element represents a description list. The element encloses a list of groups of terms (specified using the <dt> element) and descriptions (provided by <dd> elements). Common uses for this element are to implement a glossary or to display metadata (a list of key-value pairs).'@en;
     skos:prefLabel 'the dl element'@en;
     rdfs:isDefinedBy html:.
 
   html:Dt
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.10;
     html:tag 'dt';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dt> HTML element specifies a term in a description or definition list, and as such must be used inside a <dl> element. It is usually followed by a <dd> element; however, multiple <dt> elements in a row indicate several terms that are all defined by the immediate next <dd> element.'@en;
     skos:prefLabel 'the dt element'@en;
     rdfs:isDefinedBy html:.
 
   html:Dd
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.4.11;
     html:tag 'dd';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dd> HTML element provides the description, definition, or value for the preceding term (<dt>) in a description list (<dl>).'@en;
     skos:prefLabel 'the dd element'@en;
     rdfs:isDefinedBy html:.
 
   html:Figure
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;    
     dct:conformsTo section:4.4.12;
     html:tag 'figure';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <figure> HTML element represents self-contained content, potentially with an optional caption, which is specified using the <figcaption> element. The figure, its caption, and its contents are referenced as a single unit.'@en;
     skos:prefLabel 'the figure element'@en;
     rdfs:isDefinedBy html:.
 
   html:Figcaption
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.4.13;
     html:tag 'figcaption';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <figcaption> HTML element represents a caption or legend describing the rest of the contents of its parent <figure> element.'@en;
     skos:prefLabel 'the figcaption element'@en;
     rdfs:isDefinedBy html:.
 
   html:Main
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;     
     dct:conformsTo section:4.4.14;
     html:tag 'main';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <main> HTML element represents the dominant content of the <body> of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.'@en;
     skos:prefLabel 'the main element'@en;
     rdfs:isDefinedBy html:.
 
+  html:Search
+    a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;    
+    dct:conformsTo section:4.4.15;
+    html:tag 'search';
+    skos:definition 'The <search> element represents a part of a document or application that contains a set of form controls or other content related to performing a search or filtering operation. This could be a search of the web site or application; a way of searching or filtering search results on the current web page; or a global or Internet-wide search function.'@en;
+    skos:prefLabel 'the search element'@en;
+    rdfs:isDefinedBy html:.
+
   html:Div
     a owl:Class;
-    dct:conformsTo section:4.4.15;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;    
+    dct:conformsTo section:4.4.16;
     html:tag 'div';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <div> HTML element is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element).'@en;
     skos:prefLabel 'the div element'@en;
     rdfs:isDefinedBy html:.
@@ -1818,261 +2156,261 @@ construct {
 
   html:A
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;        
     dct:conformsTo section:4.5.1;
     html:tag 'a';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.'@en;
     skos:prefLabel 'the a element'@en;
     rdfs:isDefinedBy html:.
 
   html:Em
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.2;
     html:tag 'em';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <em> HTML element marks text that has stress emphasis. The <em> element can be nested, with each level of nesting indicating a greater degree of emphasis.'@en;
     skos:prefLabel 'the em element'@en;
     rdfs:isDefinedBy html:.
 
   html:Strong
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.3;
     html:tag 'strong';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. Browsers typically render the contents in bold type.'@en;
     skos:prefLabel 'the strong element'@en;
     rdfs:isDefinedBy html:.
 
   html:Small
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.4;
     html:tag 'small';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <small> HTML element represents side-comments and small print, like copyright and legal text, independent of its styled presentation. By default, it renders text within it one font-size smaller, such as from small to x-small.'@en;
     skos:prefLabel 'the small element'@en;
     rdfs:isDefinedBy html:.
 
   html:S
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.5;
     html:tag 's';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <s> HTML element renders text with a strikethrough, or a line through it. Use the <s> element to represent things that are no longer relevant or no longer accurate. However, <s> is not appropriate when indicating document edits; for that, use the <del> and <ins> elements, as appropriate.'@en;
     skos:prefLabel 'the s element'@en;
     rdfs:isDefinedBy html:.
 
   html:Cite
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.6;
     html:tag 'cite';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <cite> HTML element is used to describe a reference to a cited creative work, and must include the title of that work. The reference may be in an abbreviated form according to context-appropriate conventions related to citation metadata.'@en;
     skos:prefLabel 'the cite element'@en;
     rdfs:isDefinedBy html:.
 
   html:Q
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.7;
     html:tag 'q';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <q> HTML element indicates that the enclosed text is a short inline quotation. Most modern browsers implement this by surrounding the text in quotation marks. This element is intended for short quotations that don't require paragraph breaks; for long quotations use the <blockquote> element."@en;
     skos:prefLabel 'the q element'@en;
     rdfs:isDefinedBy html:.
 
   html:Dfn
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.8;
     html:tag 'dfn';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dfn> HTML element is used to indicate the term being defined within the context of a definition phrase or sentence. The <p> element, the <dt>/<dd> pairing, or the <section> element which is the nearest ancestor of the <dfn> is considered to be the definition of the term.'@en;
     skos:prefLabel 'the dfn element'@en;
     rdfs:isDefinedBy html:.
 
   html:Abbr
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.9;
     html:tag 'abbr';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <abbr> HTML element represents an abbreviation or acronym; the optional title attribute can provide an expansion or description for the abbreviation. If present, title must contain this full description and nothing else.'@en;
     skos:prefLabel 'the abbr element'@en;
     rdfs:isDefinedBy html:.
 
   html:Ruby
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.5.10;
     html:tag 'ruby';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ruby> HTML element represents small annotations that are rendered above, below, or next to base text, usually used for showing the pronunciation of East Asian characters. It can also be used for annotating other kinds of text, but this usage is less common.'@en;
     skos:prefLabel 'the ruby element'@en;
     rdfs:isDefinedBy html:.
 
   html:Rt
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.5.11;
     html:tag 'rt';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <rt> HTML element specifies the ruby text component of a ruby annotation, which is used to provide pronunciation, translation, or transliteration information for East Asian typography. The <rt> element must always be contained within a <ruby> element.'@en;
     skos:prefLabel 'the rt element'@en;
     rdfs:isDefinedBy html:.
 
   html:Rp
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.5.12;
     html:tag 'rp';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <rp> HTML element is used to provide fall-back parentheses for browsers that do not support display of ruby annotations using the <ruby> element. One <rp> element should enclose each of the opening and closing parentheses that wrap the <rt> element that contains the annotation's text."@en;
     skos:prefLabel 'the rp element'@en;
     rdfs:isDefinedBy html:.
 
   html:Data
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.13;
     html:tag 'data';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <data> HTML element links a given piece of content with a machine-readable translation. If the content is time- or date-related, the <time> element must be used.'@en;
     skos:prefLabel 'the data element'@en;
     rdfs:isDefinedBy html:.
 
   html:Time
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.14;
     html:tag 'time';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <time> HTML element represents a specific period in time. It may include the datetime attribute to translate dates into machine-readable format, allowing for better search engine results or custom features such as reminders.'@en;
     skos:prefLabel 'the time element'@en;
     rdfs:isDefinedBy html:.
 
   html:Code
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.15;
     html:tag 'code';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <code> HTML element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. By default, the content text is displayed using the user agent's default monospace font."@en;
     skos:prefLabel 'the code element'@en;
     rdfs:isDefinedBy html:.
 
   html:Var
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.16;
     html:tag 'var';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <var> HTML element represents the name of a variable in a mathematical expression or a programming context. It's typically presented using an italicized version of the current typeface, although that behavior is browser-dependent."@en;
     skos:prefLabel 'the var element'@en;
     rdfs:isDefinedBy html:.
 
   html:Samp
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.17;
     html:tag 'samp';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <samp> HTML element is used to enclose inline text which represents sample (or quoted) output from a computer program. Its contents are typically rendered using the browser's default monospaced font (such as Courier or Lucida Console)."@en;
     skos:prefLabel 'the samp element'@en;
     rdfs:isDefinedBy html:.
 
   html:Kbd
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.18;
     html:tag 'kbd';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <kbd> HTML element represents a span of inline text denoting textual user input from a keyboard, voice input, or any other text entry device. By convention, the user agent defaults to rendering the contents of a <kbd> element using its default monospace font, although this is not mandated by the HTML standard.'@en;
     skos:prefLabel 'the kbd element'@en;
     rdfs:isDefinedBy html:.
 
   html:Sub
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.19;
     html:tag 'sub';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <sub> HTML element specifies inline text which should be displayed as subscript for solely typographical reasons. Subscripts are typically rendered with a lowered baseline using smaller text.'@en;
     skos:prefLabel 'the sub element'@en;
     rdfs:isDefinedBy html:.
 
   html:Sup
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.19;
     html:tag 'sup';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <sup> HTML element specifies inline text which should be displayed as superscript for solely typographical reasons. Superscripts are typically rendered with half a character above the normal line, and are sometimes rendered in a smaller font.'@en;
     skos:prefLabel 'the sup element'@en;
     rdfs:isDefinedBy html:.
 
   html:I
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.20;
     html:tag 'i';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <i> HTML element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others. Historically, these have been presented using italicized type, which is the original source of the <i> naming of this element.'@en;
     skos:prefLabel 'the i element'@en;
     rdfs:isDefinedBy html:.
 
   html:B
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.21;
     html:tag 'b';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <b> HTML element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance. This was formerly known as the Boldface element, and most browsers still draw the text in boldface. However, you should not use <b> for styling text; instead, you should use the CSS font-weight property to create boldface text, or the <strong> element to indicate that text is of special importance."@en;
     skos:prefLabel 'the b element'@en;
     rdfs:isDefinedBy html:.
 
   html:U
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.22;
     html:tag 'u';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <u> HTML element represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation. This is rendered by default as a simple solid underline, but may be altered using CSS.'@en;
     skos:prefLabel 'the u element'@en;
     rdfs:isDefinedBy html:.
 
   html:Mark
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.23;
     html:tag 'mark';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance or importance in the enclosing context."@en;
     skos:prefLabel 'the mark element'@en;
     rdfs:isDefinedBy html:.
 
   html:Bdi
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.24;
     html:tag 'bdi';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <bdi> HTML element tells the browser's bidirectional algorithm to treat the text it contains in isolation from its surrounding text. It's particularly useful when a website dynamically inserts some text and doesn't know the directionality of the text being inserted."@en;
     skos:prefLabel 'the bdi element'@en;
     rdfs:isDefinedBy html:.
 
   html:Bdo
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.25;
     html:tag 'bdo';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <bdo> HTML element overrides the current directionality of text, so that the text within is rendered in a different direction.'@en;
     skos:prefLabel 'the bdo element'@en;
     rdfs:isDefinedBy html:.
 
   html:Span
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;       
     dct:conformsTo section:4.5.26;
     html:tag 'span';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <span> HTML element is a generic inline container for phrasing content, which does not inherently represent anything. It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. It should be used only when no other semantic element is appropriate. <span> is very much like a <div> element, but <div> is a block-level element whereas a <span> is an inline element.'@en;
     skos:prefLabel 'the span element'@en;
     rdfs:isDefinedBy html:.
 
   html:Br
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;       
     dct:conformsTo section:4.5.27;
     html:tag 'br';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <br> HTML element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant.'@en;
     skos:prefLabel 'the br element'@en;
     rdfs:isDefinedBy html:.
 
   html:Wbr
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;       
     dct:conformsTo section:4.5.28;
     html:tag 'wbr';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <wbr> HTML element represents a word break opportunity - a position within text where the browser may optionally break a line, though its line-breaking rules would not otherwise create a break at that location.'@en;
     skos:prefLabel 'the wbr element'@en;
     rdfs:isDefinedBy html:.
@@ -2087,18 +2425,18 @@ construct {
 
   html:Ins
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.7.1;
     html:tag 'ins';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <ins> HTML element represents a range of text that has been added to a document. You can use the <del> element to similarly represent a range of text that has been deleted from the document.'@en;
     skos:prefLabel 'the ins element'@en;
     rdfs:isDefinedBy html:.
 
   html:Del
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;      
     dct:conformsTo section:4.7.2;
     html:tag 'del';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <del> HTML element represents a range of text that has been deleted from a document. This can be used when rendering "track changes" or source code diff information, for example. The <ins> element can be used for the opposite purpose: to indicate text that has been added to the document.'@en;
     skos:prefLabel 'the del element'@en;
     rdfs:isDefinedBy html:.
@@ -2108,72 +2446,72 @@ construct {
 
   html:Picture
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;      
     dct:conformsTo section:4.8.1;
     html:tag 'picture';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <picture> HTML element contains zero or more <source> elements and one <img> element to offer alternative versions of an image for different display/device scenarios.'@en;
     skos:prefLabel 'the picture element'@en;
     rdfs:isDefinedBy html:.
 
   html:Source
     a owl:Class;
+    rdfs:subClassOf html:VoidElement;    
     dct:conformsTo section:4.8.2;
     html:tag 'source';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <source> HTML element specifies multiple media resources for the <picture>, the <audio> element, or the <video> element. It is an empty element, meaning that it has no content and does not have a closing tag. It is commonly used to offer the same media content in multiple file formats in order to provide compatibility with a broad range of browsers given their differing support for image file formats and media file formats.'@en;
     skos:prefLabel 'the source element'@en;
     rdfs:isDefinedBy html:.
 
   html:Img
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:FormAssociatedElement, html:PalpableContent;      
     dct:conformsTo section:4.8.3;
     html:tag 'img';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <img> HTML element embeds an image into the document.'@en;
     skos:prefLabel 'the img element'@en;
     rdfs:isDefinedBy html:.
 
   html:Iframe
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:InteractiveContent, html:PalpableContent;     
     dct:conformsTo section:4.8.5;
     html:tag 'iframe';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <iframe> HTML element represents a nested browsing context, embedding another HTML page into the current one.'@en;
     skos:prefLabel 'the iframe element'@en;
     rdfs:isDefinedBy html:.
 
   html:Embed
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:InteractiveContent, html:PalpableContent;         
     dct:conformsTo section:4.8.6;
     html:tag 'embed';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <embed> HTML element embeds external content at the specified point in the document. This content is provided by an external application or other source of interactive content such as a browser plug-in.'@en;
     skos:prefLabel 'the embed element'@en;
     rdfs:isDefinedBy html:.
 
   html:Object
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:ListedElement, html:PalpableContent;         
     dct:conformsTo section:4.8.7;
     html:tag 'object';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <object> HTML element represents an external resource, which can be treated as an image, a nested browsing context, or a resource to be handled by a plugin.'@en;
     skos:prefLabel 'the object element'@en;
     rdfs:isDefinedBy html:.
 
   html:Video
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;       
     dct:conformsTo section:4.8.8;
     html:tag 'video';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the <audio> element may provide a more appropriate user experience.'@en;
     skos:prefLabel 'the video element'@en;
     rdfs:isDefinedBy html:.
 
   html:Audio
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent;   
     dct:conformsTo section:4.8.9;
     html:tag 'audio';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <audio> HTML element is used to embed sound content in documents. It may contain one or more audio sources, represented using the src attribute or the <source> element: the browser will choose the most suitable one. It can also be the destination for streamed media, using a MediaStream.'@en;
     skos:prefLabel 'the audio element'@en;
     rdfs:isDefinedBy html:.
@@ -2189,15 +2527,16 @@ construct {
 
   html:Map
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;     
     dct:conformsTo section:4.8.12;
     html:tag 'map';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <map> HTML element is used with <area> elements to define an image map (a clickable link area).'@en;
     skos:prefLabel 'the map element'@en;
     rdfs:isDefinedBy html:.
 
   html:Area
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;     
     dct:conformsTo section:4.8.13;
     html:tag 'area';
     rdfs:subClassOf html:VoidElement;
@@ -2207,18 +2546,18 @@ construct {
 
   html:MathML
     a owl:Class;
+    rdfs:subClassOf html:ForeignElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;     
     dct:conformsTo section:4.8.15;
     html:tag 'math';
-    rdfs:subClassOf html:ForeignElement;
     skos:definition 'The <math> HTML element is a container for MathML content.'@en;
     skos:prefLabel 'the math element'@en;
     rdfs:isDefinedBy html:.
 
   html:SVG
     a owl:Class;
+    rdfs:subClassOf html:ForeignElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;    
     dct:conformsTo section:4.8.16;
     html:tag 'svg';
-    rdfs:subClassOf html:ForeignElement;
     skos:definition 'The <svg> HTML element is a container for SVG graphics. SVG allows for three types of graphics: vector graphic shapes (e.g., paths consisting of straight lines and curves), images, and text.'@en;
     skos:prefLabel 'the svg element'@en;
     rdfs:isDefinedBy html:.
@@ -2230,9 +2569,9 @@ construct {
 
   html:Table
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;    
     dct:conformsTo section:4.9.1;
     html:tag 'table';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap.'@en;
     skos:prefLabel 'the table element'@en;
     rdfs:isDefinedBy html:.
@@ -2250,9 +2589,9 @@ construct {
     rdfs:isDefinedBy html:.
 
   html:Colgroup a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;  
     dct:conformsTo section:4.9.3;
     html:tag 'colgroup';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <colgroup> HTML element defines a group of columns within a table.'@en;
     skos:prefLabel 'the colgroup element'@en;
     rdfs:isDefinedBy html:.
@@ -2342,8 +2681,7 @@ construct {
 
   html:Cell
     a owl:Class;
-    owl:unionOf (html:DataCell html:HeaderCell);
-    rdfs:subClassOf html:NormalElement;
+    owl:unionOf (html:DataCell html:HeaderCell); 
     skos:prefLabel 'cell element'@en;
     rdfs:isDefinedBy html:.
 
@@ -2352,15 +2690,16 @@ construct {
 
   html:Form
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;    
     dct:conformsTo section:4.10.3;
     html:tag 'form';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <form> HTML element represents a document section containing interactive controls for submitting information.'@en;
     skos:prefLabel 'the form element'@en;
     rdfs:isDefinedBy html:.
 
   html:Label
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:PalpableContent    ;
     dct:conformsTo section:4.10.4;
     html:tag 'label';
     rdfs:subClassOf html:NormalElement;
@@ -2370,6 +2709,7 @@ construct {
 
   html:Input
     a owl:Class;
+    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;
     dct:conformsTo section:4.10.5;
     html:tag 'input';
     rdfs:subClassOf html:VoidElement;
@@ -2379,6 +2719,7 @@ construct {
 
   html:Button
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
     dct:conformsTo section:4.10.6;
     html:tag 'button';
     rdfs:subClassOf html:NormalElement;
@@ -2388,18 +2729,18 @@ construct {
 
   html:Select
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;    
     dct:conformsTo section:4.10.7;
     html:tag 'select';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <select> HTML element represents a control that provides a menu of options:'@en;
     skos:prefLabel 'the select element'@en;
     rdfs:isDefinedBy html:.
 
   html:Datalist
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent;    
     dct:conformsTo section:4.10.8;
     html:tag 'datalist';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <datalist> HTML element contains a set of <option> elements that represent the permissible or recommended options available to choose from within other controls.'@en;
     skos:prefLabel 'the datalist element'@en;
     rdfs:isDefinedBy html:.
@@ -2424,9 +2765,9 @@ construct {
 
   html:Textarea
     a owl:Class;
+    rdfs:subClassOf html:EscapableRawTextElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;     
     dct:conformsTo section:4.10.11;
     html:tag 'textarea';
-    rdfs:subClassOf html:EscapableRawTextElement;
     skos:definition 'The <textarea> HTML element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.'@en;
     skos:prefLabel 'the textarea element'@en;
     rdfs:isDefinedBy html:.
@@ -2435,16 +2776,16 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.12;
     html:tag 'output';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:ListedElement, html:LabelableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;   
     skos:definition 'The <output> HTML element is a container element into which a site or app can inject the results of a calculation or the outcome of a user action.'@en;
     skos:prefLabel 'the output element'@en;
     rdfs:isDefinedBy html:.
 
   html:Progress
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:LabelableElement, html:PalpableContent;    
     dct:conformsTo section:4.10.13;
     html:tag 'progress';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <progress> HTML element displays an indicator showing the completion progress of a task, typically displayed as a progress bar.'@en;
     skos:prefLabel 'the progress element'@en;
     rdfs:isDefinedBy html:.
@@ -2453,25 +2794,25 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.14;
     html:tag 'meter';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:LabelableElement, html:PalpableContent;  
     skos:definition 'The <meter> HTML element represents either a scalar value within a known range or a fractional value.'@en;
     skos:prefLabel 'the meter element'@en;
     rdfs:isDefinedBy html:.
 
   html:Fieldset
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:ListedElement, html:AutocapitalizeInheritingElement, html:PalpableContent;    
     dct:conformsTo section:4.10.15;
     html:tag 'fieldset';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.'@en;
     skos:prefLabel 'the fieldset element'@en;
     rdfs:isDefinedBy html:.
 
   html:Legend
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.10.16;
     html:tag 'legend';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <legend> HTML element represents a caption for the content of its parent <fieldset>.'@en;
     skos:prefLabel 'the legend element'@en;
     rdfs:isDefinedBy html:.
@@ -2481,27 +2822,27 @@ construct {
 
   html:Details
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:InteractiveContent, html:PalpableContent;      
     dct:conformsTo section:4.11.1;
     html:tag 'details';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <details> HTML element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state. A summary or label must be provided using the <summary> element.'@en;
     skos:prefLabel 'the details element'@en;
     rdfs:isDefinedBy html:.
 
   html:Summary
     a owl:Class;
+    rdfs:subClassOf html:NormalElement;    
     dct:conformsTo section:4.11.2;
     html:tag 'summary';
-    rdfs:subClassOf html:NormalElement;
     skos:definition "The <summary> HTML element specifies a summary, caption, or legend for a <details> element's disclosure box. Clicking the <summary> element toggles the state of the parent <details> element open and closed."@en;
     skos:prefLabel 'the summary element'@en;
     rdfs:isDefinedBy html:.
 
   html:Dialog
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent;    
     dct:conformsTo section:4.11.4;
     html:tag 'dialog';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <dialog> HTML element represents a dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.'@en;
     skos:prefLabel 'the dialog element'@en;
     rdfs:isDefinedBy html:.
@@ -2511,27 +2852,27 @@ construct {
 
   html:Script
     a owl:Class;
+    rdfs:subClassOf html:RawTextElement, html:MetadataContent, html:FlowContent, html:PhrasingContent, html:ScriptSupportingElement;
     dct:conformsTo section:4.12.1;
     html:tag 'script';
-    rdfs:subClassOf html:RawTextElement;
     skos:definition "The <script> HTML element is used to embed executable code or data; this is typically used to embed or refer to JavaScript code. The <script> element can also be used with other languages, such as WebGL's GLSL shader programming language and JSON."@en;
     skos:prefLabel 'the script element'@en;
     rdfs:isDefinedBy html:.
 
   html:Noscript
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:MetadataContent, html:FlowContent, html:PhrasingContent;    
     dct:conformsTo section:4.12.2;
     html:tag 'noscript';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <noscript> HTML element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.'@en;
     skos:prefLabel 'the noscript element'@en;
     rdfs:isDefinedBy html:.
 
   html:Template
     a owl:Class;
+    rdfs:subClassOf html:Element, html:MetadataContent, html:FlowContent, html:PhrasingContent, html:ScriptSupportingElement;    
     dct:conformsTo section:4.12.3;
     html:tag 'template';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <template> HTML element is a mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.'@en;
     skos:prefLabel 'the template element'@en;
     rdfs:isDefinedBy html:.
@@ -2540,16 +2881,16 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.4;
     html:tag 'slot';
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent;  
     skos:definition 'The <slot> HTML element - part of the Web Components technology suite - is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together.'@en;
     skos:prefLabel 'the slot element'@en;
     rdfs:isDefinedBy html:.
 
   html:Canvas
     a owl:Class;
+    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;    
     dct:conformsTo section:4.12.5;
     html:tag 'canvas';
-    rdfs:subClassOf html:NormalElement;
     skos:definition 'Use the HTML <canvas> element with either the canvas scripting API or the WebGL API to draw graphics and animations.'@en;
     skos:prefLabel 'the canvas element'@en;
     rdfs:isDefinedBy html:.
@@ -2567,16 +2908,28 @@ construct {
     skos:prefLabel 'has attribute property'@en;
     rdfs:isDefinedBy html:.
 
+  html:extends
+    a owl:ObjectProperty;
+    rdfs:domain html:CustomElement;
+    rdfs:range html:Element;
+    skos:definition "Specifies the element that is extended by the custom element."@en;
+    skos:prefLabel 'extends'@en;
+    rdfs:isDefinedBy html:.
+
   html:fragment
     a owl:DatatypeProperty;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
-          ( html:Element
+          ( html:Document
+            html:DocumentType
+            html:Element
             html:Text
-            html:VoidElement ) ];
+            html:CDATASection
+            html:Comment
+            ) ];
     rdfs:range rdf:HTML;
-    skos:definition 'Property that links the html fragment that is represented by an HTML element, a void element or text element within a HTML-document, to that element.'@en;
+    skos:definition 'Property that links the html fragment to a node in a document, representing the HTML document itself or the document type, HTML element, text, CDATA section or comment within that HTML-document. '@en;
     skos:prefLabel 'fragment property'@en;
     rdfs:isDefinedBy html:.
 
@@ -2591,6 +2944,7 @@ construct {
 
   html:tag
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf dom:localName;
     dct:conformsTo
       section:13.1.2.1,
       section:13.1.2.2;
@@ -2614,12 +2968,13 @@ construct {
     rdfs:isDefinedBy html:.
 
 
+
  # HTML attributes
 
   html:abbr
     a owl:DatatypeProperty;
     html:key 'abbr';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Th;
     rdfs:range xsd:string;
     skos:definition "Specifies an abbreviated version of a text, typically used for providing a shortened form or acronym."@en;
@@ -2629,7 +2984,7 @@ construct {
   html:accept
     a owl:DatatypeProperty;
     html:key 'accept';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
     skos:definition "Specifies the types of files that the server accepts through the file input."@en;
@@ -2639,7 +2994,7 @@ construct {
   html:accept-charset
     a owl:DatatypeProperty;
     html:key 'accept-charset';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:string;
     skos:definition "Specifies the character encodings that are to be used for form submission."@en;
@@ -2649,7 +3004,7 @@ construct {
   html:accesskey
     a owl:DatatypeProperty;
     html:key 'accesskey';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Defines a keyboard shortcut for accessing an element."@en;
@@ -2661,7 +3016,7 @@ construct {
     html:key 'action';
     rdfs:domain html:Form;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the URL to which the form's data will be submitted when the form is submitted."@en;
     skos:prefLabel 'the action attribute'@en;
     rdfs:isDefinedBy html:.
@@ -2669,7 +3024,7 @@ construct {
  html:allow
     a owl:DatatypeProperty;
     html:key 'allow';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
     skos:definition "Used with the <iframe> element to specify a feature policy for the embedded content."@en;
@@ -2679,7 +3034,7 @@ construct {
  html:allowfullscreen
     a owl:DatatypeProperty;
     html:key 'allowfullscreen';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:boolean;
     skos:definition "Used with the <iframe> element to allow the embedded content to be displayed in fullscreen mode."@en;
@@ -2689,7 +3044,7 @@ construct {
  html:alt
     a owl:DatatypeProperty;
     html:key 'alt';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2704,7 +3059,7 @@ construct {
   html:as
     a owl:DatatypeProperty;
     html:key 'as';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
     skos:definition "Specifies the media type (or file type) of a resource referenced by the <link> element."@en;
@@ -2714,7 +3069,7 @@ construct {
   html:async
     a owl:DatatypeProperty;
     html:key 'async';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Script;
     rdfs:range xsd:string;
     skos:definition "Indicates that the script should be executed asynchronously as soon as it is available."@en;
@@ -2724,7 +3079,7 @@ construct {
   html:autocapitalize
     a owl:DatatypeProperty;
     html:key 'autocapitalize';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Controls whether and how text input is automatically capitalized as it is entered or edited."@en;
@@ -2734,7 +3089,7 @@ construct {
   html:autocomplete
     a owl:DatatypeProperty;
     html:key 'autocomplete';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2750,7 +3105,7 @@ construct {
   html:autofocus
     a owl:DatatypeProperty;
     html:key 'autofocus';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that an input element should automatically get focus when the page loads."@en;
@@ -2760,7 +3115,7 @@ construct {
   html:autoplay
     a owl:DatatypeProperty;
     html:key 'autoplay';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2774,7 +3129,7 @@ construct {
   html:blocking
     a owl:DatatypeProperty;
     html:key 'blocking';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2789,7 +3144,7 @@ construct {
   html:charset
     a owl:DatatypeProperty;
     html:key 'charset';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
     skos:definition "Specifies the character encoding used in an external script file."@en;
@@ -2799,7 +3154,7 @@ construct {
   html:checked
     a owl:DatatypeProperty;
     html:key 'checked';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:boolean;
     skos:definition "Indicates whether a checkbox or radio button is initially selected or checked."@en;
@@ -2809,7 +3164,7 @@ construct {
   html:cite
     a owl:DatatypeProperty;
     html:key 'cite';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2825,7 +3180,7 @@ construct {
   html:class
     a owl:DatatypeProperty;
     html:key 'class';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies one or more class names for an HTML element, which can be used by CSS to style the element."@en;
@@ -2835,7 +3190,7 @@ construct {
   html:color
     a owl:DatatypeProperty;
     html:key 'color';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
     skos:definition "Specifies the text color of an element's content."@en;
@@ -2845,7 +3200,7 @@ construct {
   html:cols
     a owl:DatatypeProperty;
     html:key 'cols';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the visible width of a text area, in average character widths."@en;
@@ -2855,7 +3210,7 @@ construct {
   html:colspan
     a owl:DatatypeProperty;
     html:key 'colspan';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Cell;
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the number of columns a table cell should span."@en;
@@ -2865,7 +3220,7 @@ construct {
  html:content
     a owl:DatatypeProperty;
     html:key 'content';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
     skos:definition "Specifies the value associated with the http-equiv or name attribute."@en;
@@ -2875,7 +3230,7 @@ construct {
   html:contenteditable
     a owl:DatatypeProperty;
     html:key 'contenteditable';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Indicates whether the content of an element is editable."@en;
@@ -2885,7 +3240,7 @@ construct {
   html:controls
     a owl:DatatypeProperty;
     html:key 'controls';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:boolean;
     skos:definition "Indicates whether video or audio should display controls (like play, pause, etc.)."@en;
@@ -2895,7 +3250,7 @@ construct {
   html:coords
     a owl:DatatypeProperty;
     html:key 'coords';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Area;
     rdfs:range xsd:string;
     skos:definition "Specifies the coordinates of the area in an image map."@en;
@@ -2905,7 +3260,7 @@ construct {
   html:crossorigin
     a owl:DatatypeProperty;
     html:key 'crossorigin';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2922,7 +3277,7 @@ construct {
   html:data
     a owl:DatatypeProperty;
     html:key 'data';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Used to link the element to machine-readable data."@en;
@@ -2932,7 +3287,7 @@ construct {
   html:datetime
     a owl:DatatypeProperty;
     html:key 'datetime';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -2947,7 +3302,7 @@ construct {
   html:decoding
     a owl:DatatypeProperty;
     html:key 'decoding';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Img;
     rdfs:range xsd:string;
     skos:definition "Specifies how the browser should decode an image."@en;
@@ -2957,7 +3312,7 @@ construct {
   html:default
     a owl:DatatypeProperty;
     html:key 'default';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:boolean;
     skos:definition "Specifies whether a track should be enabled by default in the media element."@en;
@@ -2967,7 +3322,7 @@ construct {
   html:defer
     a owl:DatatypeProperty;
     html:key 'defer';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Script;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that the script should be executed after the page has been parsed."@en;
@@ -2977,7 +3332,7 @@ construct {
   html:dir
     a owl:DatatypeProperty;
     html:key 'dir';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the text direction for the content in an element."@en;
@@ -2987,7 +3342,7 @@ construct {
   html:dirname
     a owl:DatatypeProperty;
     html:key 'dirname';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3001,7 +3356,7 @@ construct {
   html:disabled
     a owl:DatatypeProperty;
     html:key 'disabled';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3021,7 +3376,7 @@ construct {
   html:download
     a owl:DatatypeProperty;
     html:key 'download';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3035,7 +3390,7 @@ construct {
   html:draggable
     a owl:DatatypeProperty;
     html:key 'draggable';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies whether an element is draggable or not."@en;
@@ -3045,7 +3400,7 @@ construct {
   html:enctype
     a owl:DatatypeProperty;
     html:key 'enctype';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:string;
     skos:definition "Specifies the character encoding used in the form data when it is submitted."@en;
@@ -3055,7 +3410,7 @@ construct {
   html:enterkeyhint
     a owl:DatatypeProperty;
     html:key 'enterkeyhint';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies a hint for the type of action that should be taken when the enter key is pressed."@en;
@@ -3072,7 +3427,7 @@ construct {
             html:Link
             html:Script ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Sets the priority of the fetch operation for the resource."@en;
     skos:prefLabel 'the fetchpriority attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3086,7 +3441,7 @@ construct {
           ( html:Label
             html:Output ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the form element that the label is associated with."@en;
     skos:prefLabel 'the for attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3105,7 +3460,7 @@ construct {
             html:Select
             html:Textarea ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the form an input element belongs to."@en;
     skos:prefLabel 'the form attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3119,7 +3474,7 @@ construct {
           ( html:Button
             html:Input ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the URL for form submission for the input element."@en;
     skos:prefLabel 'the formaction attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3133,7 +3488,7 @@ construct {
           ( html:Button
             html:Input ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the character encoding for the form submission for the input element."@en;
     skos:prefLabel 'the formenctype attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3147,7 +3502,7 @@ construct {
           ( html:Button
             html:Input ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the HTTP method for form submission for the input element."@en;
     skos:prefLabel 'the formmethod attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3161,7 +3516,7 @@ construct {
           ( html:Button
             html:Input ) ];
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies that the form should not be validated when submitted."@en;
     skos:prefLabel 'the formnovalidate attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3175,7 +3530,7 @@ construct {
           ( html:Button
             html:Input ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies where to display the response after submitting the form for the input element."@en;
     skos:prefLabel 'the formtarget attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3183,7 +3538,7 @@ construct {
   html:headers
     a owl:DatatypeProperty;
     html:key 'headers';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3197,7 +3552,7 @@ construct {
   html:height
     a owl:DatatypeProperty;
     html:key 'height';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3217,7 +3572,7 @@ construct {
   html:hidden
     a owl:DatatypeProperty;
     html:key 'hidden';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies that an element is not yet, or is no longer, relevant."@en;
@@ -3227,7 +3582,7 @@ construct {
   html:high
     a owl:DatatypeProperty;
     html:key 'high';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
     skos:definition "Specifies the range that is considered the upper limit of the element."@en;
@@ -3245,7 +3600,7 @@ construct {
             html:Base
             html:Link ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the URL of the linked resource."@en;
     skos:prefLabel 'the href attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3259,7 +3614,7 @@ construct {
          ( html:A
            html:Link ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the language of the linked resource."@en;
     skos:prefLabel 'the hreflang attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3267,7 +3622,7 @@ construct {
   html:http-equiv
     a owl:DatatypeProperty;
     html:key 'http-equiv';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meta;
     rdfs:range xsd:string;
     skos:definition "Provides an HTTP header for the information/value of the content attribute."@en;
@@ -3277,7 +3632,7 @@ construct {
   html:id
     a owl:DatatypeProperty;
     html:key 'id';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies a unique id for an HTML element."@en;
@@ -3287,7 +3642,7 @@ construct {
   html:imagesizes
     a owl:DatatypeProperty;
     html:key 'imagesizes';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
     skos:definition "Specifies the sizes of the icons for visual media contained in the resource."@en;
@@ -3297,7 +3652,7 @@ construct {
   html:imagesrcset
     a owl:DatatypeProperty;
     html:key 'imagesrcset';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Link;
     rdfs:range xsd:string;
     skos:definition "Specifies a list of possible images to use for the visual media contained in the resource."@en;
@@ -3307,7 +3662,7 @@ construct {
   html:inert
     a owl:DatatypeProperty;
     html:key 'inert';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Indicates that an element and its descendants are not to be rendered or considered interactive."@en;
@@ -3317,7 +3672,7 @@ construct {
   html:inputmode
     a owl:DatatypeProperty;
     html:key 'inputmode';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the type of user interface to display for the editing control."@en;
@@ -3327,7 +3682,7 @@ construct {
   html:integrity
     a owl:DatatypeProperty;
     html:key 'integrity';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3341,7 +3696,7 @@ construct {
   html:is
     a owl:DatatypeProperty;
     html:key 'is';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the custom element's local name."@en;
@@ -3351,7 +3706,7 @@ construct {
   html:ismap
     a owl:DatatypeProperty;
     html:key 'ismap';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Img;
     rdfs:range xsd:string;
     skos:definition "Indicates that an image is part of a server-side image map."@en;
@@ -3361,7 +3716,7 @@ construct {
   html:itemid
     a owl:DatatypeProperty;
     html:key 'itemid';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies a unique identifier for the item in a list."@en;
@@ -3371,7 +3726,7 @@ construct {
   html:itemprop
     a owl:DatatypeProperty;
     html:key 'itemprop';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the property or properties the element represents."@en;
@@ -3381,7 +3736,7 @@ construct {
   html:itemref
     a owl:DatatypeProperty;
     html:key 'itemref';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies additional items that are related to the item in a list."@en;
@@ -3391,7 +3746,7 @@ construct {
   html:itemscope
     a owl:DatatypeProperty;
     html:key 'itemscope';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Creates a new item in the HTML data model."@en;
@@ -3401,7 +3756,7 @@ construct {
   html:itemtype
     a owl:DatatypeProperty;
     html:key 'itemtype';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the type of the item in a list."@en;
@@ -3411,7 +3766,7 @@ construct {
   html:kind
     a owl:DatatypeProperty;
     html:key 'kind';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:string;
     skos:definition "Specifies the kind of text track, such as subtitles, captions, or descriptions."@en;
@@ -3421,7 +3776,7 @@ construct {
   html:label
     a owl:DatatypeProperty;
     html:key 'label';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3436,7 +3791,7 @@ construct {
   html:lang
     a owl:DatatypeProperty;
     html:key 'lang';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the language of the element's content or the value of an input element."@en;
@@ -3446,7 +3801,7 @@ construct {
   html:list
     a owl:DatatypeProperty;
     html:key 'list';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
     skos:definition "Refers to a <datalist> element that contains pre-defined options for an <input> element."@en;
@@ -3456,7 +3811,7 @@ construct {
   html:loading
     a owl:DatatypeProperty;
     html:key 'loading';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3470,7 +3825,7 @@ construct {
   html:loop
     a owl:DatatypeProperty;
     html:key 'loop';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3484,7 +3839,7 @@ construct {
   html:low
     a owl:DatatypeProperty;
     html:key 'low';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
     skos:definition "Specifies the range that is considered the lower limit of the element."@en;
@@ -3501,7 +3856,7 @@ construct {
             html:Meter
             html:Progress ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the maximum value for an input element."@en;
     skos:prefLabel 'the max attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3515,7 +3870,7 @@ construct {
           ( html:Input
             html:Textarea ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the maximum number of characters allowed in an input element."@en;
     skos:prefLabel 'the maxlength attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3532,7 +3887,7 @@ construct {
             html:Source
             html:StyleSheet ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the media type or media query for the linked resource."@en;
     skos:prefLabel 'the media attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3542,7 +3897,7 @@ construct {
     html:key 'method';
     rdfs:domain html:Form;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the HTTP method for form submission."@en;
     skos:prefLabel 'the method attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3556,7 +3911,7 @@ construct {
           ( html:Input
             html:Meter ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the minimum value for an input element."@en;
     skos:prefLabel 'the min attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3570,7 +3925,7 @@ construct {
           ( html:Input
             html:Textarea ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the minimum number of characters required in an input element."@en;
     skos:prefLabel 'the minlength attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3584,7 +3939,7 @@ construct {
           ( html:Input
             html:Select ) ];
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Indicates that multiple values can be selected in an input element."@en;
     skos:prefLabel 'the multiple attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3598,7 +3953,7 @@ construct {
           ( html:Audio
             html:Video ) ];
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies that the audio output of the video should be muted."@en;
     skos:prefLabel 'the muted attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3623,7 +3978,7 @@ construct {
             html:Slot
             html:Textarea ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the name of an HTML element, used as a reference when submitting a form or scripting."@en;
     skos:prefLabel 'the name attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3631,7 +3986,7 @@ construct {
   html:nomodule
     a owl:DatatypeProperty;
     html:key 'nomodule';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Script;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that a script should not be executed in browsers that support ES6 modules."@en;
@@ -3641,7 +3996,7 @@ construct {
   html:nonce
     a owl:DatatypeProperty;
     html:key 'nonce';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies a cryptographic nonce that can be used to validate the origin of a script."@en;
@@ -3651,7 +4006,7 @@ construct {
   html:novalidate
     a owl:DatatypeProperty;
     html:key 'novalidate';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Form;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that a form should not be validated when submitted."@en;
@@ -3661,7 +4016,7 @@ construct {
   html:open
     a owl:DatatypeProperty;
     html:key 'open';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3675,7 +4030,7 @@ construct {
   html:optimum
     a owl:DatatypeProperty;
     html:key 'optimum';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Meter;
     rdfs:range xsd:string;
     skos:definition "Specifies the optimal numeric value for the gauge."@en;
@@ -3685,7 +4040,7 @@ construct {
   html:pattern
     a owl:DatatypeProperty;
     html:key 'pattern';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
     skos:definition "Specifies a regular expression pattern that the input's value must match."@en;
@@ -3695,7 +4050,7 @@ construct {
   html:ping
     a owl:DatatypeProperty;
     html:key 'ping';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3715,7 +4070,7 @@ construct {
           ( html:Input
             html:Textarea ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies a short hint that describes the expected value of an input element."@en;
     skos:prefLabel 'the placeholder attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3723,7 +4078,7 @@ construct {
   html:playsinline
     a owl:DatatypeProperty;
     html:key 'playsinline';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Video;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that the video should be played in-line with the other content on the page."@en;
@@ -3733,7 +4088,7 @@ construct {
   html:popover
     a owl:DatatypeProperty;
     html:key 'popover';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies additional information or controls for an element, typically shown as a tooltip or pop-up."@en;
@@ -3743,7 +4098,7 @@ construct {
   html:popovertarget
     a owl:DatatypeProperty;
     html:key 'popovertarget';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3757,7 +4112,7 @@ construct {
   html:popovertargetaction
     a owl:DatatypeProperty;
     html:key 'popovertargetaction';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3771,7 +4126,7 @@ construct {
   html:poster
     a owl:DatatypeProperty;
     html:key 'poster';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Video;
     rdfs:range xsd:string;
     skos:definition "Specifies an image to be shown while the video is downloading or until the user hits the play button."@en;
@@ -3781,7 +4136,7 @@ construct {
   html:preload
     a owl:DatatypeProperty;
     html:key 'preload';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3801,7 +4156,7 @@ construct {
           ( html:Input
             html:Textarea ) ];
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies that an input field is read-only and cannot be edited by the user."@en;
     skos:prefLabel 'the readonly attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3819,7 +4174,7 @@ construct {
             html:Link
             html:Script ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies which referrer information should be included when making requests."@en;
     skos:prefLabel 'the referrerpolicy attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3834,7 +4189,7 @@ construct {
             html:Area
             html:Link ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the relationship between the current document and the linked resource."@en;
     skos:prefLabel 'the rel attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3849,7 +4204,7 @@ construct {
             html:Select
             html:Textarea ) ];
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies that an input field must be filled out before submitting the form."@en;
     skos:prefLabel 'the required attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3859,7 +4214,7 @@ construct {
     html:key 'resource';
     rdfs:domain html:Element;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the URL of the linked resource when used in a link or area element."@en;
     skos:prefLabel 'the resource attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3869,7 +4224,7 @@ construct {
     html:key 'reversed';
     rdfs:domain html:Ol;
     rdfs:range xsd:boolean;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies that the list order should be descending, instead of ascending."@en;
     skos:prefLabel 'the reversed attribute'@en;
     rdfs:isDefinedBy html:.
@@ -3877,7 +4232,7 @@ construct {
   html:rows
     a owl:DatatypeProperty;
     html:key 'rows';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Textarea;
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the visible number of lines in a text area."@en;
@@ -3887,7 +4242,7 @@ construct {
   html:rowspan
     a owl:DatatypeProperty;
     html:key 'rowspan';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Cell;
     rdfs:range xsd:nonNegativeInteger;
     skos:definition "Specifies the number of rows a table cell should span."@en;
@@ -3897,7 +4252,7 @@ construct {
   html:sandbox
     a owl:DatatypeProperty;
     html:key 'sandbox';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
     skos:definition "Enables an extra set of restrictions for the content in an iframe."@en;
@@ -3907,7 +4262,7 @@ construct {
   html:scope
     a owl:DatatypeProperty;
     html:key 'scope';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Th;
     rdfs:range xsd:string;
     skos:definition "Specifies whether a header cell is a header for a column, row, or group of columns or rows."@en;
@@ -3917,7 +4272,7 @@ construct {
   html:selected
     a owl:DatatypeProperty;
     html:key 'selected';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Option;
     rdfs:range xsd:boolean;
     skos:definition "Specifies that an option in a dropdown list should be pre-selected when the page loads."@en;
@@ -3927,7 +4282,7 @@ construct {
   html:shape
     a owl:DatatypeProperty;
     html:key 'shape';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Area;
     rdfs:range xsd:string;
     skos:definition "Specifies the shape of the hot spot in an image map."@en;
@@ -3937,7 +4292,7 @@ construct {
   html:size
     a owl:DatatypeProperty;
     html:key 'size';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3951,7 +4306,7 @@ construct {
   html:sizes
     a owl:DatatypeProperty;
     html:key 'sizes';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -3966,7 +4321,7 @@ construct {
   html:slot
     a owl:DatatypeProperty;
     html:key 'slot';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the name of the slot the element belongs to when used in a shadow DOM."@en;
@@ -3976,7 +4331,7 @@ construct {
   html:span
     a owl:DatatypeProperty;
     html:key 'span';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
           owl:unionOf
@@ -3990,7 +4345,7 @@ construct {
   html:spellcheck
     a owl:DatatypeProperty;
     html:key 'spellcheck';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies whether the browser should check the spelling and grammar of the text in an element."@en;
@@ -4000,7 +4355,7 @@ construct {
   html:src
     a owl:DatatypeProperty;
     html:key 'src';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -4021,7 +4376,7 @@ construct {
   html:srcdoc
     a owl:DatatypeProperty;
     html:key 'srcdoc';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Iframe;
     rdfs:range xsd:string;
     skos:definition "Specifies the HTML content of the page to show in an iframe."@en;
@@ -4031,7 +4386,7 @@ construct {
   html:srclang
     a owl:DatatypeProperty;
     html:key 'srclang';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Track;
     rdfs:range xsd:string;
     skos:definition "Specifies the language of the text track (subtitles or captions) referenced by the <track> element."@en;
@@ -4041,7 +4396,7 @@ construct {
   html:srcset
     a owl:DatatypeProperty;
     html:key 'srcset';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -4055,7 +4410,7 @@ construct {
   html:start
     a owl:DatatypeProperty;
     html:key 'start';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -4069,7 +4424,7 @@ construct {
   html:step
     a owl:DatatypeProperty;
     html:key 'step';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Input;
     rdfs:range xsd:string;
     skos:definition "Specifies the legal number intervals for an input field."@en;
@@ -4079,7 +4434,7 @@ construct {
   html:style
     a owl:DatatypeProperty;
     html:key 'style';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies inline CSS styles for an element."@en;
@@ -4089,7 +4444,7 @@ construct {
   html:tabindex
     a owl:DatatypeProperty;
     html:key 'tabindex';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:integer;
     skos:definition "Specifies the tab order of an element."@en;
@@ -4099,7 +4454,7 @@ construct {
   html:target
     a owl:DatatypeProperty;
     html:key 'target';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain html:Element;
     rdfs:range xsd:integer;
     skos:definition "Specifies where to open the linked document when the link is clicked."@en;
@@ -4109,7 +4464,7 @@ construct {
   html:title
     a owl:DatatypeProperty;
     html:key 'title';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies extra information about an element, often displayed as a tooltip."@en;
@@ -4119,7 +4474,7 @@ construct {
   html:translate
     a owl:DatatypeProperty;
     html:key 'translate';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies whether the content of an element should be translated when the page is localized."@en;
@@ -4131,7 +4486,7 @@ construct {
     html:key 'type';
     rdfs:domain html:Input;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the type of the element, such as the type of an input field."@en;
     skos:prefLabel 'the type attribute'@en;
     rdfs:isDefinedBy html:.
@@ -4141,7 +4496,7 @@ construct {
     html:key 'usemap';
     rdfs:domain html:Img;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the name of a client-side image map to be used with the element."@en;
     skos:prefLabel 'the usemap attribute'@en;
     rdfs:isDefinedBy html:.
@@ -4160,7 +4515,7 @@ construct {
             html:Option
             html:Progress ) ];
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies the initial value of an input element."@en;
     skos:prefLabel 'the value attribute'@en;
     rdfs:isDefinedBy html:.
@@ -4168,7 +4523,7 @@ construct {
   html:width
     a owl:DatatypeProperty;
     html:key 'width';
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
@@ -4189,8 +4544,801 @@ construct {
     html:key 'wrap';
     rdfs:domain html:Textarea;
     rdfs:range xsd:string;
-    rdfs:subPropertyOf html:attribute;
+    rdf:type html:Attribute;
     skos:definition "Specifies how the text in a textarea is to be wrapped when submitted in a form."@en;
     skos:prefLabel 'the wrap attribute'@en;
     rdfs:isDefinedBy html:.
+    
+  html:writingsuggestions
+    a owl:DatatypeProperty;
+    html:key 'writingsuggestions';
+    rdf:type html:GlobalAttribute;    
+    rdfs:domain html:NormalElement;
+    rdfs:range xsd:boolean;
+    skos:definition "Specifies whether writing suggestions should be offered on this element."@en;
+    skos:prefLabel 'the writingsuggestions attribute'@en;
+    rdfs:isDefinedBy html:.    
+
+# Event content handler attributes 
+
+  html:onafterprint
+    a owl:DatatypeProperty;
+    html:key 'onafterprint';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the afterprint event handler for a Window object."@en;
+    skos:prefLabel 'the onafterprint attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onauxclick
+    a owl:DatatypeProperty;
+    html:key 'onauxclick';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the auxclick event handler."@en;
+    skos:prefLabel 'the onauxclick attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onbeforeinput
+    a owl:DatatypeProperty;
+    html:key 'onbeforeinput';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the beforeinput event handler."@en;
+    skos:prefLabel 'the onbeforeinput attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onbeforematch
+    a owl:DatatypeProperty;
+    html:key 'onbeforematch';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the beforematch event handler."@en;
+    skos:prefLabel 'the onbeforematch attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onbeforeprint
+    a owl:DatatypeProperty;
+    html:key 'onbeforeprint';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the beforeprint event handler for a Window object."@en;
+    skos:prefLabel 'the onbeforeprint attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onbeforeunload
+    a owl:DatatypeProperty;
+    html:key 'onbeforeunload';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the beforeunload event handler for a Window object."@en;
+    skos:prefLabel 'the onbeforeunload attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onbeforetoggle
+    a owl:DatatypeProperty;
+    html:key 'onbeforetoggle';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the beforetoggle event handler."@en;
+    skos:prefLabel 'the onbeforetoggle attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onblur
+    a owl:DatatypeProperty;
+    html:key 'onblur';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the blur event handler."@en;
+    skos:prefLabel 'the onblur attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncancel
+    a owl:DatatypeProperty;
+    html:key 'oncancel';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the cancel event handler."@en;
+    skos:prefLabel 'the oncancel attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncanplay
+    a owl:DatatypeProperty;
+    html:key 'oncanplay';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the canplay event handler."@en;
+    skos:prefLabel 'the oncanplay attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncanplaythrough
+    a owl:DatatypeProperty;
+    html:key 'oncanplaythrough';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the canplaythrough event handler."@en;
+    skos:prefLabel 'the oncanplaythrough attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onchange
+    a owl:DatatypeProperty;
+    html:key 'onchange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the change event handler."@en;
+    skos:prefLabel 'the onchange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onclick
+    a owl:DatatypeProperty;
+    html:key 'onclick';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the click event handler."@en;
+    skos:prefLabel 'the onclick attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onclose
+    a owl:DatatypeProperty;
+    html:key 'onclose';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the close event handler."@en;
+    skos:prefLabel 'the onclose attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncontextlost
+    a owl:DatatypeProperty;
+    html:key 'oncontextlost';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the contextlost event handler."@en;
+    skos:prefLabel 'the oncontextlost attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncontextmenu
+    a owl:DatatypeProperty;
+    html:key 'oncontextmenu';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the contextmenu event handler."@en;
+    skos:prefLabel 'the oncontextmenu attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncontextrestored
+    a owl:DatatypeProperty;
+    html:key 'oncontextrestored';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the contextrestored event handler."@en;
+    skos:prefLabel 'the oncontextrestored attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncopy
+    a owl:DatatypeProperty;
+    html:key 'oncopy';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the copy event handler."@en;
+    skos:prefLabel 'the oncopy attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncuechange
+    a owl:DatatypeProperty;
+    html:key 'oncuechange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the cuechange event handler."@en;
+    skos:prefLabel 'the oncuechange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oncut
+    a owl:DatatypeProperty;
+    html:key 'oncut';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the cut event handler."@en;
+    skos:prefLabel 'the oncut attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondblclick
+    a owl:DatatypeProperty;
+    html:key 'ondblclick';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dblclick event handler."@en;
+    skos:prefLabel 'the ondblclick attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondrag
+    a owl:DatatypeProperty;
+    html:key 'ondrag';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the drag event handler."@en;
+    skos:prefLabel 'the ondrag attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragend
+    a owl:DatatypeProperty;
+    html:key 'ondragend';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragend event handler."@en;
+    skos:prefLabel 'the ondragend attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragenter
+    a owl:DatatypeProperty;
+    html:key 'ondragenter';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragenter event handler."@en;
+    skos:prefLabel 'the ondragenter attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragexit
+    a owl:DatatypeProperty;
+    html:key 'ondragexit';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragexit event handler."@en;
+    skos:prefLabel 'the ondragexit attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragleave
+    a owl:DatatypeProperty;
+    html:key 'ondragleave';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragleave event handler."@en;
+    skos:prefLabel 'the ondragleave attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragover
+    a owl:DatatypeProperty;
+    html:key 'ondragover';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragover event handler."@en;
+    skos:prefLabel 'the ondragover attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondragstart
+    a owl:DatatypeProperty;
+    html:key 'ondragstart';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the dragstart event handler."@en;
+    skos:prefLabel 'the ondragstart attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondrop
+    a owl:DatatypeProperty;
+    html:key 'ondrop';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the drop event handler."@en;
+    skos:prefLabel 'the ondrop attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ondurationchange
+    a owl:DatatypeProperty;
+    html:key 'ondurationchange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the durationchange event handler."@en;
+    skos:prefLabel 'the ondurationchange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onemptied
+    a owl:DatatypeProperty;
+    html:key 'onemptied';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the emptied event handler."@en;
+    skos:prefLabel 'the onemptied attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onended
+    a owl:DatatypeProperty;
+    html:key 'onended';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the ended event handler."@en;
+    skos:prefLabel 'the onended attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onerror
+    a owl:DatatypeProperty;
+    html:key 'onerror';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the error event handler."@en;
+    skos:prefLabel 'the onerror attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onfocus
+    a owl:DatatypeProperty;
+    html:key 'onfocus';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the focus event handler."@en;
+    skos:prefLabel 'the onfocus attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onformdata
+    a owl:DatatypeProperty;
+    html:key 'onformdata';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the formdata event handler."@en;
+    skos:prefLabel 'the onformdata attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oninput
+    a owl:DatatypeProperty;
+    html:key 'oninput';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the input event handler."@en;
+    skos:prefLabel 'the oninput attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:oninvalid
+    a owl:DatatypeProperty;
+    html:key 'oninvalid';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the invalid event handler."@en;
+    skos:prefLabel 'the oninvalid attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onkeydown
+    a owl:DatatypeProperty;
+    html:key 'onkeydown';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the keydown event handler."@en;
+    skos:prefLabel 'the onkeydown attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onkeypress
+    a owl:DatatypeProperty;
+    html:key 'onkeypress';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the keypress event handler."@en;
+    skos:prefLabel 'the onkeypress attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onkeyup
+    a owl:DatatypeProperty;
+    html:key 'onkeyup';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the keyup event handler."@en;
+    skos:prefLabel 'the onkeyup attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onlanguagechange
+    a owl:DatatypeProperty;
+    html:key 'onlanguagechange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the languagechange event handler for a Window object."@en;
+    skos:prefLabel 'the onlanguagechange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onload
+    a owl:DatatypeProperty;
+    html:key 'onload';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the load event handler."@en;
+    skos:prefLabel 'the onload attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onloadeddata
+    a owl:DatatypeProperty;
+    html:key 'onloadeddata';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the loadeddata event handler."@en;
+    skos:prefLabel 'the onloadeddata attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onloadedmetadata
+    a owl:DatatypeProperty;
+    html:key 'onloadedmetadata';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the loadedmetadata event handler."@en;
+    skos:prefLabel 'the onloadedmetadata attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onloadstart
+    a owl:DatatypeProperty;
+    html:key 'onloadstart';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the loadstart event handler."@en;
+    skos:prefLabel 'the onloadstart attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmessage
+    a owl:DatatypeProperty;
+    html:key 'onmessage';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the message event handler."@en;
+    skos:prefLabel 'the onmessage attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmessageerror
+    a owl:DatatypeProperty;
+    html:key 'onmessageerror';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the messageerror event handler for a Window object."@en;
+    skos:prefLabel 'the onmessageerror attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmousedown
+    a owl:DatatypeProperty;
+    html:key 'onmousedown';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mousedown event handler."@en;
+    skos:prefLabel 'the onmousedown attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmouseenter
+    a owl:DatatypeProperty;
+    html:key 'onmouseenter';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mouseenter event handler."@en;
+    skos:prefLabel 'the onmouseenter attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmouseleave
+    a owl:DatatypeProperty;
+    html:key 'onmouseleave';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mouseleave event handler."@en;
+    skos:prefLabel 'the onmouseleave attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmousemove
+    a owl:DatatypeProperty;
+    html:key 'onmousemove';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mousemove event handler."@en;
+    skos:prefLabel 'the onmousemove attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmouseout
+    a owl:DatatypeProperty;
+    html:key 'onmouseout';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mouseout event handler."@en;
+    skos:prefLabel 'the onmouseout attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmouseover
+    a owl:DatatypeProperty;
+    html:key 'onmouseover';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mouseover event handler."@en;
+    skos:prefLabel 'the onmouseover attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmouseup
+    a owl:DatatypeProperty;
+    html:key 'onmouseup';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mouseup event handler."@en;
+    skos:prefLabel 'the onmouseup attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onmousewheel
+    a owl:DatatypeProperty;
+    html:key 'onmousewheel';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the mousewheel event handler."@en;
+    skos:prefLabel 'the onmousewheel attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onpause
+    a owl:DatatypeProperty;
+    html:key 'onpause';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the pause event handler."@en;
+    skos:prefLabel 'the onpause attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onplay
+    a owl:DatatypeProperty;
+    html:key 'onplay';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the play event handler."@en;
+    skos:prefLabel 'the onplay attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onplaying
+    a owl:DatatypeProperty;
+    html:key 'onplaying';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the playing event handler."@en;
+    skos:prefLabel 'the onplaying attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onprogress
+    a owl:DatatypeProperty;
+    html:key 'onprogress';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the progress event handler."@en;
+    skos:prefLabel 'the onprogress attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onratechange
+    a owl:DatatypeProperty;
+    html:key 'onratechange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the ratechange event handler."@en;
+    skos:prefLabel 'the onratechange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onreset
+    a owl:DatatypeProperty;
+    html:key 'onreset';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the reset event handler."@en;
+    skos:prefLabel 'the onreset attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onresize
+    a owl:DatatypeProperty;
+    html:key 'onresize';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the resize event handler."@en;
+    skos:prefLabel 'the onresize attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onscroll
+    a owl:DatatypeProperty;
+    html:key 'onscroll';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the scroll event handler."@en;
+    skos:prefLabel 'the onscroll attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onscrollend
+    a owl:DatatypeProperty;
+    html:key 'onscrollend';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the scrollend event handler."@en;
+    skos:prefLabel 'the onscrollend attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onsecuritypolicyviolation
+    a owl:DatatypeProperty;
+    html:key 'onsecuritypolicyviolation';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the securitypolicyviolation event handler."@en;
+    skos:prefLabel 'the onsecuritypolicyviolation attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onseeked
+    a owl:DatatypeProperty;
+    html:key 'onseeked';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the seeked event handler."@en;
+    skos:prefLabel 'the onseeked attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onseeking
+    a owl:DatatypeProperty;
+    html:key 'onseeking';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the seeking event handler."@en;
+    skos:prefLabel 'the onseeking attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onselect
+    a owl:DatatypeProperty;
+    html:key 'onselect';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the select event handler."@en;
+    skos:prefLabel 'the onselect attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onslotchange
+    a owl:DatatypeProperty;
+    html:key 'onslotchange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the slotchange event handler."@en;
+    skos:prefLabel 'the onslotchange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onstalled
+    a owl:DatatypeProperty;
+    html:key 'onstalled';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the stalled event handler."@en;
+    skos:prefLabel 'the onstalled attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onstorage
+    a owl:DatatypeProperty;
+    html:key 'onstorage';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Window;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the storage event handler for a Window object."@en;
+    skos:prefLabel 'the onstorage attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onsubmit
+    a owl:DatatypeProperty;
+    html:key 'onsubmit';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the submit event handler."@en;
+    skos:prefLabel 'the onsubmit attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onsuspend
+    a owl:DatatypeProperty;
+    html:key 'onsuspend';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the suspend event handler."@en;
+    skos:prefLabel 'the onsuspend attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ontimeupdate
+    a owl:DatatypeProperty;
+    html:key 'ontimeupdate';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the timeupdate event handler."@en;
+    skos:prefLabel 'the ontimeupdate attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:ontoggle
+    a owl:DatatypeProperty;
+    html:key 'ontoggle';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the toggle event handler."@en;
+    skos:prefLabel 'the ontoggle attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onvolumechange
+    a owl:DatatypeProperty;
+    html:key 'onvolumechange';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the volumechange event handler."@en;
+    skos:prefLabel 'the onvolumechange attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onwaiting
+    a owl:DatatypeProperty;
+    html:key 'onwaiting';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the waiting event handler."@en;
+    skos:prefLabel 'the onwaiting attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onwheel
+    a owl:DatatypeProperty;
+    html:key 'onwheel';
+    rdf:type html:EventHandlerContentAttribute;    
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the wheel event handler."@en;
+    skos:prefLabel 'the onwheel attribute'@en;
+    rdfs:isDefinedBy html:.
+
 #}
