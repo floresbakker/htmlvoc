@@ -1279,12 +1279,12 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:prefixes html:;
     sh:select '''
 select $this {
-  $this a/rdfs:subClassOf* dom:Element.
+  $this a/rdfs:subClassOf* html:Element.
   filter not exists { $this html:fragment []. }
   filter not exists {
     $this ?member ?child.
     filter not exists { ?child html:fragment []. }
-    ?child a/rdfs:subClassOf* dom:Element.
+    ?child a/rdfs:subClassOf* html:Element.
   }
 }''';
     rdfs:isDefinedBy html:.
