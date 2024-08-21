@@ -1284,7 +1284,8 @@ select $this {
   filter not exists {
     $this ?member ?child.
     filter not exists { ?child html:fragment []. }
-    ?child a/rdfs:subClassOf* html:Element.
+    values ?class { html:Comment html:Element html:Text }
+    ?child a/rdfs:subClassOf* ?class.
   }
 }''';
     rdfs:isDefinedBy html:.
@@ -1299,7 +1300,6 @@ construct {
   $this html:fragment ?fragment.
 } where {
   $this a/html:tag ?tag.
-
   # Get the (possibly empty) sequence of HTML attributes, if there are any.
   {
     select (group_concat(distinct ?attribute) as ?attributes) {
@@ -1308,21 +1308,19 @@ construct {
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
     }
   }
-
-  # Get the (possibly empty) sequence of child element fragments, if there are any.
+  # Get the (possibly empty) sequence of child node fragments, if there are any.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
         select ?member ?fragment {
-          $this ?member ?element.
+          $this ?member ?node.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?element html:fragment ?fragment.
+          ?node html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
-
   # Create the HTML fragment for this HTML element, by combining everything retrieved above.
   bind(strdt(
     concat(
@@ -1439,9 +1437,9 @@ construct {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
         select ?member ?fragment {
-          $this ?member ?element.
-          ?element html:fragment ?fragment.
+          $this ?member ?node.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?node html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
@@ -1483,28 +1481,28 @@ select $this {
   rule:Serialize_HTML_fragment_Comment
     a sh:SPARQLRule;
     rdfs:comment 'A rule that creates an HTML fragment for an HTML comment.'@en;
+    rdfs:isDefinedBy html:;
     skos:prefLabel 'HTML comment fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
   $this html:fragment ?fragment.
 } where {
-  # Get the (possibly empty) sequence of child element fragments, if there are any.
+  # Get the (possibly empty) sequence of child HTML nodes.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
         select ?member ?fragment {
-          $this ?member ?element.
+          $this ?member ?node.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?element html:fragment ?fragment.
+          ?node html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
     }
   }
-  bind(strdt(concat('<!--',?fragments,'-->'),xsd:string) as ?fragment)
-}''';
-    rdfs:isDefinedBy html:.
+  bind(strdt(concat('<!--',?fragments,'-->'),rdf:HTML) as ?fragment)
+}'''.
 
 
   # Text element
@@ -1716,18 +1714,16 @@ select $this {
     sh:prefixes html:;
     sh:construct '''
 construct {
-  $this html:fragment ?fragmentDocument.
+  $this html:fragment ?fragment.
 } where {
   $this
-    rdf:_1 ?documentType;
-    rdf:_2 ?root.
-  ?documentType
-    a html:DocumentType;
-    html:fragment ?fragmentDocType.
-  ?root
-    a html:Html;
-    html:fragment ?fragmentRoot.
-  bind(concat(str(?fragmentDocType),str(?fragmentRoot)) as ?fragmentDocument)
+    rdf:_1
+      [ a html:DocumentType;
+        html:fragment ?fragment1 ];
+    rdf:_2
+      [ a html:Html;
+        html:fragment ?fragment2 ].
+  bind(strdt(concat(str(?fragment1),str(?fragment2)),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1757,7 +1753,7 @@ select $this {
     rdfs:subClassOf dom:DocumentType;
     skos:definition 'A DOCTYPE is a required preamble. When omitted, browsers tend to use a different rendering mode that is incompatible with some specifications. Including the DOCTYPE in a document ensures that the browser makes a best-effort attempt at following the relevant specifications.'@en;
     skos:prefLabel 'the DOCTYPE'@en;
-    skos:example'''<!DOCTYPE html>'''@en;
+    skos:example'<!DOCTYPE html>';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_DocumentType
@@ -1769,8 +1765,8 @@ select $this {
 construct {
   $this html:fragment ?fragment.
 } where {
-  $this html:documentTypeName ?documentTypeName.
-  bind(strdt(concat('<!DOCTYPE ',?documentTypeName,'>'),rdf:HTML) as ?fragment)
+  $this html:documentTypeName ?name.
+  bind(strdt(concat('<!DOCTYPE ',?name,'>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
