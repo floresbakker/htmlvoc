@@ -1284,7 +1284,7 @@ select $this {
   filter not exists {
     $this ?member ?child.
     filter not exists { ?child html:fragment []. }
-    values ?class { html:Comment html:Element html:Text }
+    values ?class { html:CDATASection html:Comment html:Element html:Text }
     ?child a/rdfs:subClassOf* ?class.
   }
 }''';
@@ -1401,12 +1401,12 @@ construct {
     sh:prefixes html:;
     sh:select '''
 select $this {
-  $this a/rdfs:subClassOf* html:CDATA.
+  $this a/rdfs:subClassOf* html:CDATASection.
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
 
-  html:CDATA
+  html:CDATASection
     a owl:Class;
     rdfs:subClassOf dom:CDATASection;
     dct:conformsTo section:13.1.5;
@@ -2917,12 +2917,12 @@ construct {
     rdfs:domain
       [ a owl:Class;
         owl:unionOf
-          ( html:Document
+          ( html:CDATASection
+            html:Comment
+            html:Document
             html:DocumentType
             html:Element
             html:Text
-            html:CDATASection
-            html:Comment
             ) ];
     rdfs:range rdf:HTML;
     skos:definition 'Property that links the html fragment to a node in a document, representing the HTML document itself or the document type, HTML element, text, CDATA section or comment within that HTML-document. '@en;
