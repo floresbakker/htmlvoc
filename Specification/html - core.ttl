@@ -12,6 +12,7 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
+prefix aria: <http://www.w3.org/ns/wai-aria/>
 prefix decl: <https://data.rijksfinancien.nl/html/id/decl/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
@@ -138,6 +139,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       skos:;
     owl:versionInfo '0.2.0';
     sh:declare
+      decl:aria,
       decl:dom,
       decl:html,
       decl:prov,
@@ -148,6 +150,10 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
+
+  decl:aria
+    sh:prefix "aria";
+    sh:namespace "http://www.w3.org/ns/wai-aria/"^^xsd:anyURI.
 
   decl:dom
     sh:prefix "dom";
@@ -1522,7 +1528,6 @@ construct {
 
   html:ContentCategory
     rdf:type owl:Class;
-    rdfs:subClassOf html:Element;
     dct:conformsTo section:3.2.5.2;
     skos:definition 'Each element in HTML falls into zero or more categories that group elements with similar characteristics together.'@en;
     skos:prefLabel 'content category'@en;
@@ -1532,6 +1537,7 @@ construct {
   html:MetadataContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (html:Base html:Link html:Meta html:Noscript html:Script html:Style html:Template html:Title);
     dct:conformsTo section:3.2.5.2.1;
     skos:definition 'Metadata content is content that sets up the presentation or behavior of the rest of the content, or that sets up the relationship of the document with other documents, or that conveys other "out of band" information.'@en;
     skos:prefLabel 'Metadata content'@en;
@@ -1540,6 +1546,87 @@ construct {
   html:FlowContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (
+                  [owl:intersectionOf (html:Area [rdf:type owl:Restriction;
+                                                    owl:someValuesFrom html:Map ;
+                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                   ] 
+                                         )]
+                  [owl:unionOf(
+                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ; 
+                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                                    owl:onProperty  html:itemprop]
+                                                                )] 
+
+                                    [owl:intersectionOf (html:Link [owl:unionOf(
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "dns-prefetch"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "modulepreload"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "pingback"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "preconnect"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "prefetch"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "preload"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "stylesheet"^^xsd:string]
+                                                                                 )]   
+                                                                )]
+                                )] 
+                  [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ; 
+                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                    owl:onProperty  html:itemprop]
+                                                )]    
+                  [owl:intersectionOf (html:Main [owl:unionOf (
+                                                                   [rdf:type owl:Restriction;
+                                                                    owl:someValuesFrom html:Html ;
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                                    ]
+
+                                                                   [rdf:type owl:Restriction;
+                                                                    owl:someValuesFrom html:Body ;
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                                    ]
+                                                                    
+                                                                   [rdf:type owl:Restriction;
+                                                                    owl:someValuesFrom html:Div ;
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                                    ]
+
+                                                                   [rdf:type owl:Restriction;
+                                                                    owl:someValuesFrom html:CustomElement ;
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]                                                                    
+                                                                    ]
+                                                                    
+                                                                   [rdf:type owl:Restriction;
+                                                                    owl:someValuesFrom [ owl:intersectionOf (html:Form [owl:complementOf [rdf:type owl:Restriction ; 
+                                                                                                                                          owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                                                                                                          owl:onProperty  aria:aria-label]
+                                                                                                                        ])
+                                                                                       ];
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                                    ]
+                                                               )
+                                                     ])
+                   ]                                                
+     html:A html:Abbr html:Address html:Article html:Aside html:Audio html:B html:Bdi html:Bdo html:Blockquote html:Br html:Button html:Canvas html:Cite html:Code html:Data html:Datalist html:Del html:Details html:Dfn html:Dialog html:Div html:Dl html:Em html:Embed html:Fieldset html:Figure html:Footer html:Form html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 html:Header html:Hgroup html:Hr html:I html:Iframe html:Img html:Input html:Ins html:Kbd html:Label html:Map html:Mark html:MathML html:Menu html:Meter html:Nav html:Noscript html:Object html:Ol html:Output html:P html:Picture html:Pre html:Progress html:Q html:Ruby html:S html:Samp html:Script html:Search html:Section html:Select html:Slot html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Table html:Template html:Textarea html:Time html:U html:Ul html:Var html:Video html:Wbr html:CustomElement html:Text);
     dct:conformsTo section:3.2.5.2.2;
     skos:definition 'Most elements that are used in the body of documents and applications are categorized as flow content.'@en;
     skos:prefLabel 'Flow content'@en;
@@ -1548,6 +1635,7 @@ construct {
   html:SectioningContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (html:Article html:Aside html:Nav html:Section);
     dct:conformsTo section:3.2.5.2.3;
     skos:definition 'Sectioning content is content that defines the scope of header and footer elements.'@en;
     skos:prefLabel 'Sectioning content'@en;
@@ -1556,6 +1644,11 @@ construct {
   html:HeadingContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 [ owl:intersectionOf 
+                                                                    (html:Hgroup [rdf:type owl:Restriction;
+                                                                                  owl:someValuesFrom [owl:unionOf (html:H1 html:H2 html:H3 html:H4 html:H5 html:H6)];
+                                                                                  owl:onProperty rdfs:member])
+    ]);  
     dct:conformsTo section:3.2.5.2.4;
     skos:definition 'Heading content defines the heading of a section (whether explicitly marked up using sectioning content elements, or implied by the heading content itself).'@en;
     skos:prefLabel 'Heading content'@en;
@@ -1563,6 +1656,55 @@ construct {
 
   html:PhrasingContent rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (
+                    [owl:intersectionOf (html:Area [rdf:type owl:Restriction;
+                                                    owl:someValuesFrom html:Map ;
+                                                    owl:onProperty [owl:inverseOf rdfs:member]
+                                                   ] 
+                                         )]
+                    [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ; 
+                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                    owl:onProperty  html:itemprop]
+                                                )]
+                    [owl:unionOf(
+                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ; 
+                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                                    owl:onProperty  html:itemprop]
+                                                                )] 
+
+                                    [owl:intersectionOf (html:Link [owl:unionOf(
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "dns-prefetch"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "modulepreload"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "pingback"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "preconnect"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "prefetch"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "preload"^^xsd:string]
+
+                                                                                 [rdf:type owl:Restriction;
+                                                                                  owl:onProperty html:rel;
+                                                                                  owl:hasValue "stylesheet"^^xsd:string]
+                                                                                 )]   
+                                                                )]
+                                )]
+    html:A html:Abbr html:Audio html:B html:Bdi html:Bdo html:Br html:Button html:Canvas html:Cite html:Code html:Data html:Datalist html:Del html:Dfn html:Em html:Embed html:I html:Iframe html:Img html:Input html:Ins html:Kbd html:Label html:Map html:Mark html:MathML html:Meter html:Noscript html:Object html:Output html:Picture html:Progress html:Q html:Ruby html:S html:Samp html:Script html:Select html:Slot html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Template html:Textarea html:Time html:U html:Var html:Video html:Wbr html:CustomElement html:Text);
     dct:conformsTo section:3.2.5.2.5;
     skos:definition 'Phrasing content is the text of the document, as well as elements that mark up that text at the intra-paragraph level. Runs of phrasing content form paragraphs.'@en;
     skos:prefLabel 'Phrasing content'@en;
@@ -1571,6 +1713,7 @@ construct {
   html:EmbeddedContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (html:Audio html:Canvas html:Embed html:Iframe html:Img html:MathML html:Object html:SVG html:Video);
     dct:conformsTo section:3.2.5.2.6;
     skos:definition 'Embedded content is content that imports another resource into the document, or content from another vocabulary that is inserted into the document.'@en;
     skos:prefLabel 'Embedded content'@en;
@@ -1579,6 +1722,29 @@ construct {
   html:InteractiveContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf ( 
+    [owl:intersectionOf (html:A [rdf:type owl:Restriction ; 
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                 owl:onProperty  html:href]
+                                )] 
+    [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ; 
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                     owl:onProperty  html:controls]
+                                )]      
+    [owl:intersectionOf (html:Img [rdf:type owl:Restriction ; 
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                   owl:onProperty  html:usemap]
+                                )] 
+    [owl:intersectionOf (html:Input [owl:complementOf [rdf:type owl:Restriction;
+                                                       owl:onProperty html:type;
+                                                       owl:hasValue "hidden"^^xsd:string]
+                                     ]    
+                                )]
+    [owl:intersectionOf (html:Video [rdf:type owl:Restriction ; 
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                   owl:onProperty  html:controls]
+                                )]                                 
+    html:Button html:Details html:Embed html:Iframe html:Label html:Select html:Textarea);
     dct:conformsTo section:3.2.5.2.7;
     skos:definition 'Interactive content is content that is specifically intended for user interaction.'@en;
     skos:prefLabel 'Interactive content'@en;
@@ -1587,6 +1753,39 @@ construct {
   html:PalpableContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (
+                 [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ; 
+                                                  owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                  owl:onProperty  html:controls]
+                                )] 
+                 [owl:intersectionOf (html:Input [owl:complementOf [rdf:type owl:Restriction;
+                                                  owl:onProperty html:type;
+                                                  owl:hasValue "hidden"^^xsd:string]
+                                     ]    
+                                )]
+                 [owl:intersectionOf (html:Menu [rdf:type owl:Restriction;
+                                                 owl:someValuesFrom html:Li;
+                                                 owl:onProperty rdfs:member]
+                                     )]
+                 [owl:intersectionOf (html:Ol   [rdf:type owl:Restriction;
+                                                 owl:someValuesFrom html:Li;
+                                                 owl:onProperty rdfs:member]
+                                     )]                                      
+                 [owl:intersectionOf (html:Ul   [rdf:type owl:Restriction;
+                                                 owl:someValuesFrom html:Li;
+                                                 owl:onProperty rdfs:member]
+                                     )]    
+                 [owl:intersectionOf (html:Dl   [owl:intersectionOf (
+                                                                     [rdf:type owl:Restriction;
+                                                                     owl:someValuesFrom html:Dt;
+                                                                     owl:onProperty rdfs:member]
+                                                                     
+                                                                     [rdf:type owl:Restriction;
+                                                                     owl:someValuesFrom html:Dd;
+                                                                     owl:onProperty rdfs:member]
+                                                                    )]
+                                     )]                                       
+    html:A html:Abbr html:Address html:Article html:Aside html:B html:Bdi html:Bdo html:Blockquote html:Button html:Canvas html:Cite html:Code html:Data html:Del html:Details html:Dfn html:Div  html:Em html:Embed html:Fieldset html:Figure html:Footer html:Form html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 html:Header html:Hgroup html:I html:Iframe html:Img html:Ins html:Kbd html:Label html:Main html:Map html:Mark html:MathML html:Meter html:Nav html:Object html:Output html:P html:Picture html:Pre html:Progress html:Q html:Ruby html:S html:Samp html:Search html:Section html:Select html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Table html:Textarea html:Time html:U html:Var html:Video html:CustomElement html:Text);
     dct:conformsTo section:3.2.5.2.8;
     skos:definition 'As a general rule, elements whose content model allows any flow content or phrasing content should have at least one node in its contents that is palpable content and that does not have the hidden attribute specified.'@en;
     skos:note 'Palpable content makes an element non-empty by providing either some descendant non-empty text, or else something users can hear (audio elements) or view (video, img, or canvas elements) or otherwise interact with (for example, interactive form controls).';
@@ -1596,6 +1795,7 @@ construct {
   html:ScriptSupportingElement
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
+    owl:unionOf (html:Script html:Template);
     dct:conformsTo section:3.2.5.2.9;
     skos:definition 'Script-supporting elements are those that do not represent anything themselves (i.e. they are not rendered), but are used to support scripts, e.g. to provide functionality for the user.'@en;
     skos:prefLabel 'Script-supporting element'@en;
@@ -1803,7 +2003,7 @@ construct {
 
   html:Title
     a owl:Class;
-    rdfs:subClassOf html:EscapableRawTextElement, html:MetadataContent;
+    rdfs:subClassOf html:EscapableRawTextElement;
     dct:conformsTo section:4.2.2;
     html:tag 'title';
     skos:definition 'The Title (<title> element) defines a document its title that is shown in a browser title bar or a page tab. It only contains text; tags within the element are ignored.'@en;
@@ -1812,7 +2012,7 @@ construct {
 
   html:Base
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:MetadataContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.2.3;
     html:tag 'base';
     skos:definition 'The <base> HTML element specifies the base URL to use for all relative URLs in a document. There can be only one <base> element in a document.'@en;
@@ -1821,7 +2021,7 @@ construct {
 
   html:Link
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:MetadataContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.2.4;
     html:tag 'link';
     skos:definition 'The link element allows authors to link their document to other resources.'@en;
@@ -1839,7 +2039,7 @@ construct {
 
   html:Meta
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:MetadataContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.2.5;
     html:tag 'meta';
     skos:definition "The <meta> HTML element can represent document-level metadata with the name attribute, pragma directives with the http-equiv attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for transmission over the network or for disk storage) with the charset attribute."@en;
@@ -1851,7 +2051,7 @@ construct {
 
   html:StyleSheet
     a owl:Class;
-    rdfs:subClassOf html:RawTextElement, html:MetadataContent;
+    rdfs:subClassOf html:RawTextElement;
     dct:conformsTo section:4.2.6;
     html:tag 'style';
     skos:definition 'The <style> HTML element contains style information for a document, or part of a document. It embeds a CSS style sheet, which is applied to the contents of the document containing the <style> element.'@en;
@@ -1864,7 +2064,7 @@ construct {
 
   html:Article
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.2;
     html:tag 'article';
     skos:definition 'The <article> HTML element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, a user-submitted comment, an interactive widget or gadget, or any other independent item of content.'@en;
@@ -1885,7 +2085,7 @@ construct {
 
   html:Section
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.3;
     html:tag 'section';
     skos:definition "The <section> HTML element represents a generic standalone section of a document, which doesn't have a more specific semantic element to represent it. Sections should always have a heading, with very few exceptions."@en;
@@ -1894,7 +2094,7 @@ construct {
 
   html:Nav
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.4;
     html:tag 'nav';
     skos:definition 'The <nav> HTML element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents. Common examples of navigation sections are menus, tables of contents, and indexes.'@en;
@@ -1903,7 +2103,7 @@ construct {
 
   html:Aside
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:SectioningContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.5;
     html:tag 'aside';
     skos:definition "The <aside> HTML element represents a portion of a document whose content is only indirectly related to the document's main content. Asides are frequently presented as sidebars or call-out boxes."@en;
@@ -1912,7 +2112,7 @@ construct {
 
   html:H1
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h1';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1921,7 +2121,7 @@ construct {
 
   html:H2
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h2';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1930,7 +2130,7 @@ construct {
 
   html:H3
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h3';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1939,7 +2139,7 @@ construct {
 
   html:H4
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h4';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1948,7 +2148,7 @@ construct {
 
   html:H5
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h5';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1957,7 +2157,7 @@ construct {
 
   html:H6
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.6;
     html:tag 'h6';
     skos:definition 'The <h1> to <h6> HTML elements represent six levels of section headings. <h1> is the highest section level and <h6> is the lowest.'@en;
@@ -1966,7 +2166,7 @@ construct {
 
   html:Hgroup
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:HeadingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.7;
     html:tag 'hgroup';
     skos:definition 'The <hgroup> HTML element represents a multi-level heading for a section of a document. It groups a set of <h1>-<h6> elements.'@en;
@@ -1975,7 +2175,7 @@ construct {
 
   html:Header
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.8;
     html:tag 'header';
     skos:definition 'The <header> HTML element represents introductory content, typically a group of introductory or navigational aids. It may contain some heading elements but also a logo, a search form, an author name, and other elements.'@en;
@@ -1984,7 +2184,7 @@ construct {
 
   html:Footer
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.9;
     html:tag 'footer';
     skos:definition 'The <footer> HTML element represents a footer for its nearest sectioning content or sectioning root element. A <footer> typically contains information about the author of the section, copyright data or links to related documents.'@en;
@@ -1993,7 +2193,7 @@ construct {
 
   html:Address
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.3.10;
     html:tag 'address';
     skos:definition 'The <address> HTML element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.'@en;
@@ -2005,7 +2205,7 @@ construct {
 
   html:P
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.1;
     html:tag 'p';
     skos:definition 'The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields.'@en;
@@ -2014,7 +2214,7 @@ construct {
 
   html:Hr
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.4.2;
     html:tag 'hr';
     skos:definition 'The <hr> HTML element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section.'@en;
@@ -2023,7 +2223,7 @@ construct {
 
   html:Pre
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.3;
     html:tag 'pre';
     skos:definition 'The <pre> HTML element represents preformatted text which is to be presented exactly as written in the HTML file. The text is typically rendered using a non-proportional, or monospaced, font. Whitespace inside this element is displayed as written.'@en;
@@ -2032,7 +2232,7 @@ construct {
 
   html:Blockquote
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.4;
     html:tag 'blockquote';
     skos:definition 'The <blockquote> HTML element indicates that the enclosed text is an extended quotation. Usually, this is rendered visually by indentation (see Notes for how to change it). A URL for the source of the quotation may be given using the cite attribute, while a text representation of the source can be given using the <cite> element.'@en;
@@ -2041,7 +2241,7 @@ construct {
 
   html:Ol
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.5;
     html:tag 'ol';
     skos:definition 'The <ol> HTML element represents an ordered list of items - typically rendered as a numbered list.'@en;
@@ -2050,7 +2250,7 @@ construct {
 
   html:Ul
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.6;
     html:tag 'ul';
     skos:definition 'The <ul> HTML element represents an unordered list of items, typically rendered as a bulleted list.'@en;
@@ -2059,7 +2259,7 @@ construct {
 
   html:Menu
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.7;
     html:tag 'menu';
     skos:definition 'The <menu> HTML element is a semantic alternative to <ul>. It represents an unordered list of items (represented by <li> elements), each of these represent a link or other command that the user can activate.'@en;
@@ -2077,7 +2277,7 @@ construct {
 
   html:Dl
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.9;
     html:tag 'dl';
     skos:definition 'The <dl> HTML element represents a description list. The element encloses a list of groups of terms (specified using the <dt> element) and descriptions (provided by <dd> elements). Common uses for this element are to implement a glossary or to display metadata (a list of key-value pairs).'@en;
@@ -2104,7 +2304,7 @@ construct {
 
   html:Figure
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.12;
     html:tag 'figure';
     skos:definition 'The <figure> HTML element represents self-contained content, potentially with an optional caption, which is specified using the <figcaption> element. The figure, its caption, and its contents are referenced as a single unit.'@en;
@@ -2122,7 +2322,7 @@ construct {
 
   html:Main
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.14;
     html:tag 'main';
     skos:definition 'The <main> HTML element represents the dominant content of the <body> of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.'@en;
@@ -2131,7 +2331,7 @@ construct {
 
   html:Search
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.15;
     html:tag 'search';
     skos:definition 'The <search> element represents a part of a document or application that contains a set of form controls or other content related to performing a search or filtering operation. This could be a search of the web site or application; a way of searching or filtering search results on the current web page; or a global or Internet-wide search function.'@en;
@@ -2140,7 +2340,7 @@ construct {
 
   html:Div
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.4.16;
     html:tag 'div';
     skos:definition 'The <div> HTML element is the generic container for flow content. It has no effect on the content or layout until styled in some way using CSS (e.g. styling is directly applied to it, or some kind of layout model like Flexbox is applied to its parent element).'@en;
@@ -2152,7 +2352,7 @@ construct {
 
   html:A
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.1;
     html:tag 'a';
     skos:definition 'The <a> HTML element (or anchor element), with its href attribute, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.'@en;
@@ -2161,7 +2361,7 @@ construct {
 
   html:Em
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.2;
     html:tag 'em';
     skos:definition 'The <em> HTML element marks text that has stress emphasis. The <em> element can be nested, with each level of nesting indicating a greater degree of emphasis.'@en;
@@ -2170,7 +2370,7 @@ construct {
 
   html:Strong
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.3;
     html:tag 'strong';
     skos:definition 'The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. Browsers typically render the contents in bold type.'@en;
@@ -2179,7 +2379,7 @@ construct {
 
   html:Small
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.4;
     html:tag 'small';
     skos:definition 'The <small> HTML element represents side-comments and small print, like copyright and legal text, independent of its styled presentation. By default, it renders text within it one font-size smaller, such as from small to x-small.'@en;
@@ -2188,7 +2388,7 @@ construct {
 
   html:S
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.5;
     html:tag 's';
     skos:definition 'The <s> HTML element renders text with a strikethrough, or a line through it. Use the <s> element to represent things that are no longer relevant or no longer accurate. However, <s> is not appropriate when indicating document edits; for that, use the <del> and <ins> elements, as appropriate.'@en;
@@ -2197,7 +2397,7 @@ construct {
 
   html:Cite
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.6;
     html:tag 'cite';
     skos:definition 'The <cite> HTML element is used to describe a reference to a cited creative work, and must include the title of that work. The reference may be in an abbreviated form according to context-appropriate conventions related to citation metadata.'@en;
@@ -2206,7 +2406,7 @@ construct {
 
   html:Q
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.7;
     html:tag 'q';
     skos:definition "The <q> HTML element indicates that the enclosed text is a short inline quotation. Most modern browsers implement this by surrounding the text in quotation marks. This element is intended for short quotations that don't require paragraph breaks; for long quotations use the <blockquote> element."@en;
@@ -2215,7 +2415,7 @@ construct {
 
   html:Dfn
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.8;
     html:tag 'dfn';
     skos:definition 'The <dfn> HTML element is used to indicate the term being defined within the context of a definition phrase or sentence. The <p> element, the <dt>/<dd> pairing, or the <section> element which is the nearest ancestor of the <dfn> is considered to be the definition of the term.'@en;
@@ -2224,7 +2424,7 @@ construct {
 
   html:Abbr
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.9;
     html:tag 'abbr';
     skos:definition 'The <abbr> HTML element represents an abbreviation or acronym; the optional title attribute can provide an expansion or description for the abbreviation. If present, title must contain this full description and nothing else.'@en;
@@ -2233,7 +2433,7 @@ construct {
 
   html:Ruby
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.10;
     html:tag 'ruby';
     skos:definition 'The <ruby> HTML element represents small annotations that are rendered above, below, or next to base text, usually used for showing the pronunciation of East Asian characters. It can also be used for annotating other kinds of text, but this usage is less common.'@en;
@@ -2260,7 +2460,7 @@ construct {
 
   html:Data
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.13;
     html:tag 'data';
     skos:definition 'The <data> HTML element links a given piece of content with a machine-readable translation. If the content is time- or date-related, the <time> element must be used.'@en;
@@ -2269,7 +2469,7 @@ construct {
 
   html:Time
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.14;
     html:tag 'time';
     skos:definition 'The <time> HTML element represents a specific period in time. It may include the datetime attribute to translate dates into machine-readable format, allowing for better search engine results or custom features such as reminders.'@en;
@@ -2278,7 +2478,7 @@ construct {
 
   html:Code
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.15;
     html:tag 'code';
     skos:definition "The <code> HTML element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. By default, the content text is displayed using the user agent's default monospace font."@en;
@@ -2287,7 +2487,7 @@ construct {
 
   html:Var
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.16;
     html:tag 'var';
     skos:definition "The <var> HTML element represents the name of a variable in a mathematical expression or a programming context. It's typically presented using an italicized version of the current typeface, although that behavior is browser-dependent."@en;
@@ -2296,7 +2496,7 @@ construct {
 
   html:Samp
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.17;
     html:tag 'samp';
     skos:definition "The <samp> HTML element is used to enclose inline text which represents sample (or quoted) output from a computer program. Its contents are typically rendered using the browser's default monospaced font (such as Courier or Lucida Console)."@en;
@@ -2305,7 +2505,7 @@ construct {
 
   html:Kbd
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.18;
     html:tag 'kbd';
     skos:definition 'The <kbd> HTML element represents a span of inline text denoting textual user input from a keyboard, voice input, or any other text entry device. By convention, the user agent defaults to rendering the contents of a <kbd> element using its default monospace font, although this is not mandated by the HTML standard.'@en;
@@ -2314,7 +2514,7 @@ construct {
 
   html:Sub
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.19;
     html:tag 'sub';
     skos:definition 'The <sub> HTML element specifies inline text which should be displayed as subscript for solely typographical reasons. Subscripts are typically rendered with a lowered baseline using smaller text.'@en;
@@ -2323,7 +2523,7 @@ construct {
 
   html:Sup
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.19;
     html:tag 'sup';
     skos:definition 'The <sup> HTML element specifies inline text which should be displayed as superscript for solely typographical reasons. Superscripts are typically rendered with half a character above the normal line, and are sometimes rendered in a smaller font.'@en;
@@ -2332,7 +2532,7 @@ construct {
 
   html:I
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.20;
     html:tag 'i';
     skos:definition 'The <i> HTML element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others. Historically, these have been presented using italicized type, which is the original source of the <i> naming of this element.'@en;
@@ -2341,7 +2541,7 @@ construct {
 
   html:B
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.21;
     html:tag 'b';
     skos:definition "The <b> HTML element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance. This was formerly known as the Boldface element, and most browsers still draw the text in boldface. However, you should not use <b> for styling text; instead, you should use the CSS font-weight property to create boldface text, or the <strong> element to indicate that text is of special importance."@en;
@@ -2350,7 +2550,7 @@ construct {
 
   html:U
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.22;
     html:tag 'u';
     skos:definition 'The <u> HTML element represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation. This is rendered by default as a simple solid underline, but may be altered using CSS.'@en;
@@ -2359,7 +2559,7 @@ construct {
 
   html:Mark
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.23;
     html:tag 'mark';
     skos:definition "The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance or importance in the enclosing context."@en;
@@ -2368,7 +2568,7 @@ construct {
 
   html:Bdi
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.24;
     html:tag 'bdi';
     skos:definition "The <bdi> HTML element tells the browser's bidirectional algorithm to treat the text it contains in isolation from its surrounding text. It's particularly useful when a website dynamically inserts some text and doesn't know the directionality of the text being inserted."@en;
@@ -2377,7 +2577,7 @@ construct {
 
   html:Bdo
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.25;
     html:tag 'bdo';
     skos:definition 'The <bdo> HTML element overrides the current directionality of text, so that the text within is rendered in a different direction.'@en;
@@ -2386,7 +2586,7 @@ construct {
 
   html:Span
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.5.26;
     html:tag 'span';
     skos:definition 'The <span> HTML element is a generic inline container for phrasing content, which does not inherently represent anything. It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. It should be used only when no other semantic element is appropriate. <span> is very much like a <div> element, but <div> is a block-level element whereas a <span> is an inline element.'@en;
@@ -2395,7 +2595,7 @@ construct {
 
   html:Br
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.5.27;
     html:tag 'br';
     skos:definition 'The <br> HTML element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant.'@en;
@@ -2404,7 +2604,7 @@ construct {
 
   html:Wbr
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.5.28;
     html:tag 'wbr';
     skos:definition 'The <wbr> HTML element represents a word break opportunity - a position within text where the browser may optionally break a line, though its line-breaking rules would not otherwise create a break at that location.'@en;
@@ -2421,7 +2621,7 @@ construct {
 
   html:Ins
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.7.1;
     html:tag 'ins';
     skos:definition 'The <ins> HTML element represents a range of text that has been added to a document. You can use the <del> element to similarly represent a range of text that has been deleted from the document.'@en;
@@ -2430,7 +2630,7 @@ construct {
 
   html:Del
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.7.2;
     html:tag 'del';
     skos:definition 'The <del> HTML element represents a range of text that has been deleted from a document. This can be used when rendering "track changes" or source code diff information, for example. The <ins> element can be used for the opposite purpose: to indicate text that has been added to the document.'@en;
@@ -2442,7 +2642,7 @@ construct {
 
   html:Picture
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.1;
     html:tag 'picture';
     skos:definition 'The <picture> HTML element contains zero or more <source> elements and one <img> element to offer alternative versions of an image for different display/device scenarios.'@en;
@@ -2460,7 +2660,7 @@ construct {
 
   html:Img
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:FormAssociatedElement, html:PalpableContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.8.3;
     html:tag 'img';
     skos:definition 'The <img> HTML element embeds an image into the document.'@en;
@@ -2469,7 +2669,7 @@ construct {
 
   html:Iframe
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:InteractiveContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.5;
     html:tag 'iframe';
     skos:definition 'The <iframe> HTML element represents a nested browsing context, embedding another HTML page into the current one.'@en;
@@ -2478,7 +2678,7 @@ construct {
 
   html:Embed
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:InteractiveContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.6;
     html:tag 'embed';
     skos:definition 'The <embed> HTML element embeds external content at the specified point in the document. This content is provided by an external application or other source of interactive content such as a browser plug-in.'@en;
@@ -2487,7 +2687,7 @@ construct {
 
   html:Object
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:ListedElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.7;
     html:tag 'object';
     skos:definition 'The <object> HTML element represents an external resource, which can be treated as an image, a nested browsing context, or a resource to be handled by a plugin.'@en;
@@ -2496,7 +2696,7 @@ construct {
 
   html:Video
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.8;
     html:tag 'video';
     skos:definition 'The <video> HTML element embeds a media player which supports video playback into the document. You can use <video> for audio content as well, but the <audio> element may provide a more appropriate user experience.'@en;
@@ -2505,7 +2705,7 @@ construct {
 
   html:Audio
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.9;
     html:tag 'audio';
     skos:definition 'The <audio> HTML element is used to embed sound content in documents. It may contain one or more audio sources, represented using the src attribute or the <source> element: the browser will choose the most suitable one. It can also be the destination for streamed media, using a MediaStream.'@en;
@@ -2523,7 +2723,7 @@ construct {
 
   html:Map
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.8.12;
     html:tag 'map';
     skos:definition 'The <map> HTML element is used with <area> elements to define an image map (a clickable link area).'@en;
@@ -2532,7 +2732,7 @@ construct {
 
   html:Area
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.8.13;
     html:tag 'area';
     rdfs:subClassOf html:VoidElement;
@@ -2542,7 +2742,7 @@ construct {
 
   html:MathML
     a owl:Class;
-    rdfs:subClassOf html:ForeignElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;
+    rdfs:subClassOf html:ForeignElement;
     dct:conformsTo section:4.8.15;
     html:tag 'math';
     skos:definition 'The <math> HTML element is a container for MathML content.'@en;
@@ -2551,7 +2751,7 @@ construct {
 
   html:SVG
     a owl:Class;
-    rdfs:subClassOf html:ForeignElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;
+    rdfs:subClassOf html:ForeignElement;
     dct:conformsTo section:4.8.16;
     html:tag 'svg';
     skos:definition 'The <svg> HTML element is a container for SVG graphics. SVG allows for three types of graphics: vector graphic shapes (e.g., paths consisting of straight lines and curves), images, and text.'@en;
@@ -2565,7 +2765,7 @@ construct {
 
   html:Table
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.9.1;
     html:tag 'table';
     skos:definition 'A table (<table> element) represents data with more than one dimension.  Tables have rows, columns, and cells given by their descendants.  The rows and columns form a grid; a table its cells must completely cover that grid without overlap.'@en;
@@ -2585,7 +2785,7 @@ construct {
     rdfs:isDefinedBy html:.
 
   html:Colgroup a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.9.3;
     html:tag 'colgroup';
     skos:definition 'The <colgroup> HTML element defines a group of columns within a table.'@en;
@@ -2686,7 +2886,7 @@ construct {
 
   html:Form
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.3;
     html:tag 'form';
     skos:definition 'The <form> HTML element represents a document section containing interactive controls for submitting information.'@en;
@@ -2695,7 +2895,7 @@ construct {
 
   html:Label
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:PalpableContent    ;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.4;
     html:tag 'label';
     rdfs:subClassOf html:NormalElement;
@@ -2705,7 +2905,7 @@ construct {
 
   html:Input
     a owl:Class;
-    rdfs:subClassOf html:VoidElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.10.5;
     html:tag 'input';
     rdfs:subClassOf html:VoidElement;
@@ -2715,7 +2915,7 @@ construct {
 
   html:Button
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.6;
     html:tag 'button';
     rdfs:subClassOf html:NormalElement;
@@ -2725,7 +2925,7 @@ construct {
 
   html:Select
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.7;
     html:tag 'select';
     skos:definition 'The <select> HTML element represents a control that provides a menu of options:'@en;
@@ -2734,7 +2934,7 @@ construct {
 
   html:Datalist
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.8;
     html:tag 'datalist';
     skos:definition 'The <datalist> HTML element contains a set of <option> elements that represent the permissible or recommended options available to choose from within other controls.'@en;
@@ -2761,7 +2961,7 @@ construct {
 
   html:Textarea
     a owl:Class;
-    rdfs:subClassOf html:EscapableRawTextElement, html:FlowContent, html:PhrasingContent, html:InteractiveContent, html:ListedElement, html:LabelableElement, html:SubmittableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
+    rdfs:subClassOf html:EscapableRawTextElement;
     dct:conformsTo section:4.10.11;
     html:tag 'textarea';
     skos:definition 'The <textarea> HTML element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.'@en;
@@ -2772,14 +2972,14 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.12;
     html:tag 'output';
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:ListedElement, html:LabelableElement, html:ResettableElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <output> HTML element is a container element into which a site or app can inject the results of a calculation or the outcome of a user action.'@en;
     skos:prefLabel 'the output element'@en;
     rdfs:isDefinedBy html:.
 
   html:Progress
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:LabelableElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.13;
     html:tag 'progress';
     skos:definition 'The <progress> HTML element displays an indicator showing the completion progress of a task, typically displayed as a progress bar.'@en;
@@ -2790,14 +2990,14 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.10.14;
     html:tag 'meter';
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:LabelableElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <meter> HTML element represents either a scalar value within a known range or a fractional value.'@en;
     skos:prefLabel 'the meter element'@en;
     rdfs:isDefinedBy html:.
 
   html:Fieldset
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:ListedElement, html:AutocapitalizeInheritingElement, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.10.15;
     html:tag 'fieldset';
     skos:definition 'The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.'@en;
@@ -2818,7 +3018,7 @@ construct {
 
   html:Details
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:InteractiveContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.11.1;
     html:tag 'details';
     skos:definition 'The <details> HTML element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state. A summary or label must be provided using the <summary> element.'@en;
@@ -2836,7 +3036,7 @@ construct {
 
   html:Dialog
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.11.4;
     html:tag 'dialog';
     skos:definition 'The <dialog> HTML element represents a dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.'@en;
@@ -2848,7 +3048,7 @@ construct {
 
   html:Script
     a owl:Class;
-    rdfs:subClassOf html:RawTextElement, html:MetadataContent, html:FlowContent, html:PhrasingContent, html:ScriptSupportingElement;
+    rdfs:subClassOf html:RawTextElement;
     dct:conformsTo section:4.12.1;
     html:tag 'script';
     skos:definition "The <script> HTML element is used to embed executable code or data; this is typically used to embed or refer to JavaScript code. The <script> element can also be used with other languages, such as WebGL's GLSL shader programming language and JSON."@en;
@@ -2857,7 +3057,7 @@ construct {
 
   html:Noscript
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:MetadataContent, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.12.2;
     html:tag 'noscript';
     skos:definition 'The <noscript> HTML element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.'@en;
@@ -2866,7 +3066,7 @@ construct {
 
   html:Template
     a owl:Class;
-    rdfs:subClassOf html:Element, html:MetadataContent, html:FlowContent, html:PhrasingContent, html:ScriptSupportingElement;
+    rdfs:subClassOf html:Element;
     dct:conformsTo section:4.12.3;
     html:tag 'template';
     skos:definition 'The <template> HTML element is a mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.'@en;
@@ -2877,14 +3077,14 @@ construct {
     a owl:Class;
     dct:conformsTo section:4.12.4;
     html:tag 'slot';
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <slot> HTML element - part of the Web Components technology suite - is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together.'@en;
     skos:prefLabel 'the slot element'@en;
     rdfs:isDefinedBy html:.
 
   html:Canvas
     a owl:Class;
-    rdfs:subClassOf html:NormalElement, html:FlowContent, html:PhrasingContent, html:EmbeddedContent, html:PalpableContent;
+    rdfs:subClassOf html:NormalElement;
     dct:conformsTo section:4.12.5;
     html:tag 'canvas';
     skos:definition 'Use the HTML <canvas> element with either the canvas scripting API or the WebGL API to draw graphics and animations.'@en;
