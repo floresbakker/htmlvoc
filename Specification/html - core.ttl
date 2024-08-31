@@ -1392,6 +1392,27 @@ construct {
 }''';
     rdfs:isDefinedBy html:.
 
+  html:AutonomousCustomElement
+    a owl:Class;
+    rdfs:subClassOf html:CustomElement;
+    owl:equivalentClass [rdf:type owl:Restriction;
+                         owl:someValuesFrom [owl:intersectionOf (html:Element [owl:complementOf [owl:unionOf (html:NormalElement html:RawTextElement html:EscapableRawTextElement html:ForeignElement html:VoidElement html:CustomizedBuiltInElement)]])];
+                         owl:onProperty html:extends];
+    dct:conformsTo section:4.13.3;                         
+    skos:definition 'An autonomous custom element is a custom HTML element that is defined with no extends option. These types of custom elements have a local name equal to their defined name.'@en;
+    skos:prefLabel 'autonomous custom element'@en;
+    rdfs:isDefinedBy html:.
+
+  html:CustomizedBuiltInElement
+    a owl:Class;
+    rdfs:subClassOf html:CustomElement;
+    owl:equivalentClass [rdf:type owl:Restriction;
+                         owl:someValuesFrom [owl:unionOf (html:NormalElement html:RawTextElement html:EscapableRawTextElement html:ForeignElement html:VoidElement)];
+                         owl:onProperty html:extends];
+    dct:conformsTo section:4.13.3;                         
+    skos:definition 'A customized built-in element is a custom HTML element that is defined with an extends option. These types of custom elements have a local name equal to the value passed in their extends option, and their defined name is used as the value of the is attribute, which therefore must be a valid custom element name.'@en;
+    skos:prefLabel 'customized built-in element'@en;
+    rdfs:isDefinedBy html:.                         
 
   # CDATA section
 
@@ -1865,6 +1886,22 @@ construct {
     skos:note 'Global attributes are only defined by this specification as attributes for HTML elements. When this specification refers to elements having these attributes, elements from namespaces that are not defined as having these attributes must not be considered as being elements with these attributes.'@en;
     skos:prefLabel 'global attribute'@en;
     rdfs:isDefinedBy html:.
+    
+  html:CustomDataAttribute
+    rdf:type owl:Class;
+    rdfs:subClassOf html:Attribute;
+    owl:equivalentClass [a owl:Restriction ;
+                         owl:onProperty html:key ;
+                         owl:allValuesFrom [
+                                             a rdfs:Datatype ;
+                                             owl:onDatatype xsd:string ;
+                                             owl:withRestrictions ([ xsd:pattern "^data-[a-z_:][a-z0-9_.:-]*$" ])
+                                           ]
+    ];
+    dct:conformsTo section:3.2.6;
+    skos:definition 'A custom data attribute is an attribute in no namespace whose name starts with the string "data-", has at least one character after the hyphen, is XML-compatible, and contains no ASCII upper alphas.'@en;
+    skos:prefLabel 'custom data attribute'@en;
+    rdfs:isDefinedBy html:.    
 
   html:EventHandlerContentAttribute
     rdf:type owl:Class;
