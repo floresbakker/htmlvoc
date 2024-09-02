@@ -16,6 +16,8 @@ prefix aria: <http://www.w3.org/ns/wai-aria/>
 prefix decl: <https://data.rijksfinancien.nl/html/id/decl/>
 prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
 prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+prefix htmlf: <https://data.rijksfinancien.nl/html/model/function/>
+prefix param: <https://data.rijksfinancien.nl/html/model/parameter/>
 prefix respec: <https://respec.org/model/def/>
 prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
 prefix section: <https://data.rijksfinancien.nl/html/id/section/>
@@ -142,6 +144,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       decl:aria,
       decl:dom,
       decl:html,
+      decl:htmlf,
       decl:prov,
       decl:rdf,
       decl:rdfs,
@@ -150,31 +153,27 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
-
   decl:aria
     sh:prefix "aria";
     sh:namespace "http://www.w3.org/ns/wai-aria/"^^xsd:anyURI.
-
   decl:dom
     sh:prefix "dom";
     sh:namespace "https://data.rijksfinancien.nl/dom/model/def/"^^xsd:anyURI.
-
   decl:html
     sh:prefix "html";
     sh:namespace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI.
-
+  decl:htmlf
+    sh:prefix "htmlf";
+    sh:namespace "https://data.rijksfinancien.nl/html/model/function/"^^xsd:anyURI.
   decl:prov
     sh:prefix "prov";
     sh:namespace "http://www.w3.org/ns/prov#"^^xsd:anyURI.
-
   decl:rdf
     sh:prefix "rdf";
     sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI.
-
   decl:rdfs
     sh:prefix "rdfs";
     sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI.
-
   decl:xsd
     sh:prefix "xsd";
     sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI.
@@ -1284,16 +1283,17 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child elements all have an HTML fragment already.'@en;
     sh:prefixes html:;
     sh:select '''
-select $this {
-  $this a/rdfs:subClassOf* html:Element.
-  filter not exists { $this html:fragment []. }
-  filter not exists {
-    $this ?member ?child.
-    filter not exists { ?child html:fragment []. }
-    values ?class { html:CDATASection html:Comment html:Element html:Text }
-    ?child a/rdfs:subClassOf* ?class.
-  }
-}''';
+      select $this {
+        $this a/rdfs:subClassOf* html:Element.
+        filter not exists { $this html:fragment []. }
+        filter not exists {
+          $this ?member ?child.
+          ?child a/rdfs:subClassOf* ?class.
+          values ?class { html:CDATASection html:Comment html:Element html:Text }
+          filter(htmlf:is_membership_property(?member))
+          filter not exists { ?child html:fragment []. }
+        }
+      }''';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_HTML_Element
@@ -1302,38 +1302,38 @@ select $this {
     skos:prefLabel 'HTML element fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this html:fragment ?fragment.
-} where {
-  $this a/html:tag ?tag.
-  # Get the (possibly empty) sequence of HTML attributes, if there are any.
-  {
-    select (group_concat(distinct ?attribute) as ?attributes) {
-      $this ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
-    }
-  }
-  # Get the (possibly empty) sequence of child node fragments, if there are any.
-  {
-    select (group_concat(str(?fragment);separator='') as ?fragments) {
-      {
-        select ?member ?fragment {
-          $this ?member ?node.
-          filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?node html:fragment ?fragment.
+      construct {
+        $this html:fragment ?fragment.
+      } where {
+        $this a/html:tag ?tag.
+        # Get the (possibly empty) sequence of HTML attributes, if there are any.
+        {
+          select (group_concat(distinct ?attribute) as ?attributes) {
+            $this ?attribute0 ?value.
+            ?attribute0 html:key ?key.
+            bind(concat(?key,'="',str(?value),'"') as ?attribute)
+          }
         }
-        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
-      }
-    }
-  }
-  # Create the HTML fragment for this HTML element, by combining everything retrieved above.
-  bind(strdt(
-    concat(
-      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
-      # Void elements have neither content nor a closing tag.
-      if(?fragments='','',concat(?fragments,'</',?tag,'>'))),rdf:HTML) as ?fragment)
-}''';
+        # Get the (possibly empty) sequence of child node fragments, if there are any.
+        {
+          select (group_concat(str(?fragment);separator='') as ?fragments) {
+            {
+              select ?member ?fragment {
+                $this ?member ?node.
+                filter(htmlf:is_membership_property(?member))
+                ?node html:fragment ?fragment.
+              }
+              order by htmlf:member_index(?member)
+            }
+          }
+        }
+        # Create the HTML fragment for this HTML element, by combining everything retrieved above.
+        bind(strdt(
+          concat(
+            '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
+            # Void elements have neither content nor a closing tag.
+            if(?fragments='','',concat(?fragments,'</',?tag,'>'))),rdf:HTML) as ?fragment)
+      }''';
     rdfs:isDefinedBy html:.
 
 
@@ -1368,15 +1368,13 @@ construct {
     dct:conformsTo section:4.13.3;
     skos:definition 'A custom element is an element that is custom. Informally, this means that its constructor and prototype are defined by the author, instead of by the user agent. This author-supplied constructor function is called the custom element constructor. Two distinct types of custom elements can be defined: An autonomous custom element, which is defined with no extends option. These types of custom elements have a local name equal to their defined name. A customized built-in element, which is defined with an extends option. These types of custom elements have a local name equal to the value passed in their extends option, and their defined name is used as the value of the is attribute, which therefore must be a valid custom element name.'@en;
     skos:prefLabel 'custom HTML element'@en;
-    skos:example """
-
-    ex:someFlagIconElement rdf:type ex:FlagIcon.
-    ex:FlagIcon rdf:type html:CustomElement;
-                html:tag 'flag-icon';
-                html:extends html:Element;
-                rdfs:isDefinedBy ex:.
-
-    """;
+    skos:example '''
+      ex:someFlagIconElement a ex:FlagIcon.
+      ex:FlagIcon
+        a html:CustomElement;
+        html:extends html:Element;
+        html:tag 'flag-icon';
+        rdfs:isDefinedBy ex:.''';
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_CustomElement
@@ -1385,11 +1383,11 @@ construct {
     skos:prefLabel 'Custom element fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this rdfs:subClassOf  html:CustomElement.
-} where {
- # Condition is already met via the target, hence empty where clause
-}''';
+      construct {
+        $this rdfs:subClassOf  html:CustomElement.
+      } where {
+       # Condition is already met via the target, hence empty Where clause.
+      }''';
     rdfs:isDefinedBy html:.
 
   html:AutonomousCustomElement
@@ -1398,7 +1396,7 @@ construct {
     owl:equivalentClass [rdf:type owl:Restriction;
                          owl:someValuesFrom [owl:intersectionOf (html:Element [owl:complementOf [owl:unionOf (html:NormalElement html:RawTextElement html:EscapableRawTextElement html:ForeignElement html:VoidElement html:CustomizedBuiltInElement)]])];
                          owl:onProperty html:extends];
-    dct:conformsTo section:4.13.3;                         
+    dct:conformsTo section:4.13.3;
     skos:definition 'An autonomous custom element is a custom HTML element that is defined with no extends option. These types of custom elements have a local name equal to their defined name.'@en;
     skos:prefLabel 'autonomous custom element'@en;
     rdfs:isDefinedBy html:.
@@ -1409,10 +1407,10 @@ construct {
     owl:equivalentClass [rdf:type owl:Restriction;
                          owl:someValuesFrom [owl:unionOf (html:NormalElement html:RawTextElement html:EscapableRawTextElement html:ForeignElement html:VoidElement)];
                          owl:onProperty html:extends];
-    dct:conformsTo section:4.13.3;                         
+    dct:conformsTo section:4.13.3;
     skos:definition 'A customized built-in element is a custom HTML element that is defined with an extends option. These types of custom elements have a local name equal to the value passed in their extends option, and their defined name is used as the value of the is attribute, which therefore must be a valid custom element name.'@en;
     skos:prefLabel 'customized built-in element'@en;
-    rdfs:isDefinedBy html:.                         
+    rdfs:isDefinedBy html:.
 
   # CDATA section
 
@@ -1427,10 +1425,10 @@ construct {
     a sh:SPARQLTarget;
     sh:prefixes html:;
     sh:select '''
-select $this {
-  $this a/rdfs:subClassOf* html:CDATASection.
-  filter not exists { $this html:fragment []. }
-}''';
+      select $this {
+        $this a/rdfs:subClassOf* html:CDATASection.
+        filter not exists { $this html:fragment []. }
+      }''';
     rdfs:isDefinedBy html:.
 
   html:CDATASection
@@ -1439,14 +1437,14 @@ select $this {
     dct:conformsTo section:13.1.5;
     skos:definition 'A DOM element with textual content that contain characters that would otherwise be treated as markup. A CDATA section is typically used to include code snippets, scripts, or other data within an HTML document without having to worry about escaping special characters. In HTML, a CDATA section is denoted by enclosing the block of text within <![CDATA[ and ]]> tags. Anything contained within these tags is treated as raw character data and is not parsed as markup.'@en;
     skos:example'''
-<p>You can add a string to a number, but this stringifies the number:</p>
-<math>
- <ms><![CDATA[x<y]]></ms>
- <mo>+</mo>
- <mn>3</mn>
- <mo>=</mo>
- <ms><![CDATA[x<y3]]></ms>
-</math>'''@en;
+      <p>You can add a string to a number, but this stringifies the number:</p>
+      <math>
+       <ms><![CDATA[x<y]]></ms>
+       <mo>+</mo>
+       <mn>3</mn>
+       <mo>=</mo>
+       <ms><![CDATA[x<y3]]></ms>
+      </math>'''@en;
     skos:prefLabel 'CDATA section'@en;
     rdfs:isDefinedBy html:.
 
@@ -1456,24 +1454,24 @@ select $this {
     skos:prefLabel 'HTML CDATA section fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this html:fragment ?fragment.
-} where {
-  # Get the (possibly empty) sequence of child element fragments, if there are any.
-  {
-    select (group_concat(str(?fragment);separator='') as ?fragments) {
-      {
-        select ?member ?fragment {
-          $this ?member ?node.
-          filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?node html:fragment ?fragment.
+      construct {
+        $this html:fragment ?fragment.
+      } where {
+        # Get the (possibly empty) sequence of child element fragments, if there are any.
+        {
+          select (group_concat(str(?fragment);separator='') as ?fragments) {
+            {
+              select ?member ?fragment {
+                $this ?member ?node.
+                filter(htmlf:is_membership_property(?member))
+                ?node html:fragment ?fragment.
+              }
+              order by htmlf:member_index(?member)
+            }
+          }
         }
-        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
-      }
-    }
-  }
-  bind(strdt(concat('<![CDATA[',?fragments,']]>'),rdf:HTML) as ?fragment)
-}''';
+        bind(strdt(concat('<![CDATA[',?fragments,']]>'),rdf:HTML) as ?fragment)
+      }''';
     rdfs:isDefinedBy html:.
 
 
@@ -1490,10 +1488,10 @@ construct {
     a sh:SPARQLTarget;
     sh:prefixes html:;
     sh:select '''
-select $this {
-  $this a/rdfs:subClassOf* html:Comment.
-  filter not exists { $this html:fragment []. }
-}''';
+      select $this {
+        $this a/rdfs:subClassOf* html:Comment.
+        filter not exists { $this html:fragment []. }
+      }''';
     rdfs:isDefinedBy html:.
 
   html:Comment
@@ -1512,24 +1510,24 @@ select $this {
     skos:prefLabel 'HTML comment fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this html:fragment ?fragment.
-} where {
-  # Get the (possibly empty) sequence of child HTML nodes.
-  {
-    select (group_concat(str(?fragment);separator='') as ?fragments) {
-      {
-        select ?member ?fragment {
-          $this ?member ?node.
-          filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?node html:fragment ?fragment.
+      construct {
+        $this html:fragment ?fragment.
+      } where {
+        # Get the (possibly empty) sequence of child HTML nodes.
+        {
+          select (group_concat(str(?fragment);separator='') as ?fragments) {
+            {
+              select ?member ?fragment {
+                $this ?member ?node.
+                filter(htmlf:is_membership_property(?member))
+                ?node html:fragment ?fragment.
+              }
+              order by htmlf:member_index(?member)
+            }
+          }
         }
-        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
-      }
-    }
-  }
-  bind(strdt(concat('<!--',?fragments,'-->'),rdf:HTML) as ?fragment)
-}'''.
+        bind(strdt(concat('<!--',?fragments,'-->'),rdf:HTML) as ?fragment)
+      }'''.
 
 
   # Text element
@@ -1571,13 +1569,13 @@ construct {
                   [owl:intersectionOf (html:Area [rdf:type owl:Restriction;
                                                     owl:someValuesFrom html:Map ;
                                                     owl:onProperty [owl:inverseOf rdfs:member]
-                                                   ] 
+                                                   ]
                                          )]
                   [owl:unionOf(
-                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ; 
-                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ;
+                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onProperty  html:itemprop]
-                                                                )] 
+                                                                )]
 
                                     [owl:intersectionOf (html:Link [owl:unionOf(
 
@@ -1608,13 +1606,13 @@ construct {
                                                                                  [rdf:type owl:Restriction;
                                                                                   owl:onProperty html:rel;
                                                                                   owl:hasValue "stylesheet"^^xsd:string]
-                                                                                 )]   
+                                                                                 )]
                                                                 )]
-                                )] 
-                  [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ; 
-                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                )]
+                  [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ;
+                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                     owl:onProperty  html:itemprop]
-                                                )]    
+                                                )]
                   [owl:intersectionOf (html:Main [owl:unionOf (
                                                                    [rdf:type owl:Restriction;
                                                                     owl:someValuesFrom html:Html ;
@@ -1625,7 +1623,7 @@ construct {
                                                                     owl:someValuesFrom html:Body ;
                                                                     owl:onProperty [owl:inverseOf rdfs:member]
                                                                     ]
-                                                                    
+
                                                                    [rdf:type owl:Restriction;
                                                                     owl:someValuesFrom html:Div ;
                                                                     owl:onProperty [owl:inverseOf rdfs:member]
@@ -1633,12 +1631,12 @@ construct {
 
                                                                    [rdf:type owl:Restriction;
                                                                     owl:someValuesFrom html:CustomElement ;
-                                                                    owl:onProperty [owl:inverseOf rdfs:member]                                                                    
+                                                                    owl:onProperty [owl:inverseOf rdfs:member]
                                                                     ]
-                                                                    
+
                                                                    [rdf:type owl:Restriction;
-                                                                    owl:someValuesFrom [ owl:intersectionOf (html:Form [owl:complementOf [rdf:type owl:Restriction ; 
-                                                                                                                                          owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                                                    owl:someValuesFrom [ owl:intersectionOf (html:Form [owl:complementOf [rdf:type owl:Restriction ;
+                                                                                                                                          owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                                                                                                           owl:onProperty  aria:aria-label]
                                                                                                                         ])
                                                                                        ];
@@ -1646,7 +1644,7 @@ construct {
                                                                     ]
                                                                )
                                                      ])
-                   ]                                                
+                   ]
      html:A html:Abbr html:Address html:Article html:Aside html:Audio html:B html:Bdi html:Bdo html:Blockquote html:Br html:Button html:Canvas html:Cite html:Code html:Data html:Datalist html:Del html:Details html:Dfn html:Dialog html:Div html:Dl html:Em html:Embed html:Fieldset html:Figure html:Footer html:Form html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 html:Header html:Hgroup html:Hr html:I html:Iframe html:Img html:Input html:Ins html:Kbd html:Label html:Map html:Mark html:MathML html:Menu html:Meter html:Nav html:Noscript html:Object html:Ol html:Output html:P html:Picture html:Pre html:Progress html:Q html:Ruby html:S html:Samp html:Script html:Search html:Section html:Select html:Slot html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Table html:Template html:Textarea html:Time html:U html:Ul html:Var html:Video html:Wbr html:CustomElement html:Text);
     dct:conformsTo section:3.2.5.2.2;
     skos:definition 'Most elements that are used in the body of documents and applications are categorized as flow content.'@en;
@@ -1665,11 +1663,11 @@ construct {
   html:HeadingContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
-    owl:unionOf (html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 [ owl:intersectionOf 
+    owl:unionOf (html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 [ owl:intersectionOf
                                                                     (html:Hgroup [rdf:type owl:Restriction;
                                                                                   owl:someValuesFrom [owl:unionOf (html:H1 html:H2 html:H3 html:H4 html:H5 html:H6)];
                                                                                   owl:onProperty rdfs:member])
-    ]);  
+    ]);
     dct:conformsTo section:3.2.5.2.4;
     skos:definition 'Heading content defines the heading of a section (whether explicitly marked up using sectioning content elements, or implied by the heading content itself).'@en;
     skos:prefLabel 'Heading content'@en;
@@ -1681,17 +1679,17 @@ construct {
                     [owl:intersectionOf (html:Area [rdf:type owl:Restriction;
                                                     owl:someValuesFrom html:Map ;
                                                     owl:onProperty [owl:inverseOf rdfs:member]
-                                                   ] 
+                                                   ]
                                          )]
-                    [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ; 
-                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                    [owl:intersectionOf (html:Meta [rdf:type owl:Restriction ;
+                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                     owl:onProperty  html:itemprop]
                                                 )]
                     [owl:unionOf(
-                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ; 
-                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                    [owl:intersectionOf (html:Link [rdf:type owl:Restriction ;
+                                                                    owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onProperty  html:itemprop]
-                                                                )] 
+                                                                )]
 
                                     [owl:intersectionOf (html:Link [owl:unionOf(
 
@@ -1722,7 +1720,7 @@ construct {
                                                                                  [rdf:type owl:Restriction;
                                                                                   owl:onProperty html:rel;
                                                                                   owl:hasValue "stylesheet"^^xsd:string]
-                                                                                 )]   
+                                                                                 )]
                                                                 )]
                                 )]
     html:A html:Abbr html:Audio html:B html:Bdi html:Bdo html:Br html:Button html:Canvas html:Cite html:Code html:Data html:Datalist html:Del html:Dfn html:Em html:Embed html:I html:Iframe html:Img html:Input html:Ins html:Kbd html:Label html:Map html:Mark html:MathML html:Meter html:Noscript html:Object html:Output html:Picture html:Progress html:Q html:Ruby html:S html:Samp html:Script html:Select html:Slot html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Template html:Textarea html:Time html:U html:Var html:Video html:Wbr html:CustomElement html:Text);
@@ -1743,28 +1741,28 @@ construct {
   html:InteractiveContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
-    owl:unionOf ( 
-    [owl:intersectionOf (html:A [rdf:type owl:Restriction ; 
-                                 owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+    owl:unionOf (
+    [owl:intersectionOf (html:A [rdf:type owl:Restriction ;
+                                 owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onProperty  html:href]
-                                )] 
-    [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ; 
-                                     owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                )]
+    [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ;
+                                     owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                      owl:onProperty  html:controls]
-                                )]      
-    [owl:intersectionOf (html:Img [rdf:type owl:Restriction ; 
-                                   owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                                )]
+    [owl:intersectionOf (html:Img [rdf:type owl:Restriction ;
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onProperty  html:usemap]
-                                )] 
+                                )]
     [owl:intersectionOf (html:Input [owl:complementOf [rdf:type owl:Restriction;
                                                        owl:onProperty html:type;
                                                        owl:hasValue "hidden"^^xsd:string]
-                                     ]    
+                                     ]
                                 )]
-    [owl:intersectionOf (html:Video [rdf:type owl:Restriction ; 
-                                   owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+    [owl:intersectionOf (html:Video [rdf:type owl:Restriction ;
+                                   owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onProperty  html:controls]
-                                )]                                 
+                                )]
     html:Button html:Details html:Embed html:Iframe html:Label html:Select html:Textarea);
     dct:conformsTo section:3.2.5.2.7;
     skos:definition 'Interactive content is content that is specifically intended for user interaction.'@en;
@@ -1775,14 +1773,14 @@ construct {
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
     owl:unionOf (
-                 [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ; 
-                                                  owl:cardinality "1"^^xsd:nonNegativeInteger ; 
+                 [owl:intersectionOf (html:Audio [rdf:type owl:Restriction ;
+                                                  owl:cardinality "1"^^xsd:nonNegativeInteger ;
                                                   owl:onProperty  html:controls]
-                                )] 
+                                )]
                  [owl:intersectionOf (html:Input [owl:complementOf [rdf:type owl:Restriction;
                                                   owl:onProperty html:type;
                                                   owl:hasValue "hidden"^^xsd:string]
-                                     ]    
+                                     ]
                                 )]
                  [owl:intersectionOf (html:Menu [rdf:type owl:Restriction;
                                                  owl:someValuesFrom html:Li;
@@ -1791,21 +1789,21 @@ construct {
                  [owl:intersectionOf (html:Ol   [rdf:type owl:Restriction;
                                                  owl:someValuesFrom html:Li;
                                                  owl:onProperty rdfs:member]
-                                     )]                                      
+                                     )]
                  [owl:intersectionOf (html:Ul   [rdf:type owl:Restriction;
                                                  owl:someValuesFrom html:Li;
                                                  owl:onProperty rdfs:member]
-                                     )]    
+                                     )]
                  [owl:intersectionOf (html:Dl   [owl:intersectionOf (
                                                                      [rdf:type owl:Restriction;
                                                                      owl:someValuesFrom html:Dt;
                                                                      owl:onProperty rdfs:member]
-                                                                     
+
                                                                      [rdf:type owl:Restriction;
                                                                      owl:someValuesFrom html:Dd;
                                                                      owl:onProperty rdfs:member]
                                                                     )]
-                                     )]                                       
+                                     )]
     html:A html:Abbr html:Address html:Article html:Aside html:B html:Bdi html:Bdo html:Blockquote html:Button html:Canvas html:Cite html:Code html:Data html:Del html:Details html:Dfn html:Div  html:Em html:Embed html:Fieldset html:Figure html:Footer html:Form html:H1 html:H2 html:H3 html:H4 html:H5 html:H6 html:Header html:Hgroup html:I html:Iframe html:Img html:Ins html:Kbd html:Label html:Main html:Map html:Mark html:MathML html:Meter html:Nav html:Object html:Output html:P html:Picture html:Pre html:Progress html:Q html:Ruby html:S html:Samp html:Search html:Section html:Select html:Small html:Span html:Strong html:Sub html:Sup html:SVG html:Table html:Textarea html:Time html:U html:Var html:Video html:CustomElement html:Text);
     dct:conformsTo section:3.2.5.2.8;
     skos:definition 'As a general rule, elements whose content model allows any flow content or phrasing content should have at least one node in its contents that is palpable content and that does not have the hidden attribute specified.'@en;
@@ -1886,7 +1884,7 @@ construct {
     skos:note 'Global attributes are only defined by this specification as attributes for HTML elements. When this specification refers to elements having these attributes, elements from namespaces that are not defined as having these attributes must not be considered as being elements with these attributes.'@en;
     skos:prefLabel 'global attribute'@en;
     rdfs:isDefinedBy html:.
-    
+
   html:CustomDataAttribute
     rdf:type owl:Class;
     rdfs:subClassOf html:Attribute;
@@ -1901,7 +1899,7 @@ construct {
     dct:conformsTo section:3.2.6;
     skos:definition 'A custom data attribute is an attribute in no namespace whose name starts with the string "data-", has at least one character after the hyphen, is XML-compatible, and contains no ASCII upper alphas.'@en;
     skos:prefLabel 'custom data attribute'@en;
-    rdfs:isDefinedBy html:.    
+    rdfs:isDefinedBy html:.
 
   html:EventHandlerContentAttribute
     rdf:type owl:Class;
@@ -1938,10 +1936,10 @@ construct {
     a sh:SPARQLTarget;
     sh:prefixes html:;
     sh:select '''
-select $this {
-  $this a html:Document.
-  filter not exists { $this html:fragment []. }
-}''';
+      select $this {
+        $this a html:Document.
+        filter not exists { $this html:fragment []. }
+      }''';
     rdfs:isDefinedBy html:.
 
   rule:Document
@@ -1950,18 +1948,18 @@ select $this {
     rdfs:label 'HTML document generation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this html:fragment ?fragment.
-} where {
-  $this
-    rdf:_1
-      [ a html:DocumentType;
-        html:fragment ?fragment1 ];
-    rdf:_2
-      [ a html:Html;
-        html:fragment ?fragment2 ].
-  bind(strdt(concat(str(?fragment1),str(?fragment2)),rdf:HTML) as ?fragment)
-}''';
+      construct {
+        $this html:fragment ?fragment.
+      } where {
+        $this
+          rdf:_1
+            [ a html:DocumentType;
+              html:fragment ?fragment1 ];
+          rdf:_2
+            [ a html:Html;
+              html:fragment ?fragment2 ].
+        bind(strdt(concat(str(?fragment1),str(?fragment2)),rdf:HTML) as ?fragment)
+      }''';
     rdfs:isDefinedBy html:.
 
 
@@ -1978,10 +1976,10 @@ construct {
     a sh:SPARQLTarget;
     sh:prefixes html:;
     sh:select '''
-select $this {
-  $this a/rdfs:subClassOf* html:DocumentType.
-  filter not exists { $this html:fragment []. }
-}''';
+      select $this {
+        $this a/rdfs:subClassOf* html:DocumentType.
+        filter not exists { $this html:fragment []. }
+      }''';
     rdfs:isDefinedBy html:.
 
   html:DocumentType
@@ -1999,12 +1997,12 @@ select $this {
     skos:prefLabel 'HTML DocumentType fragment serialisation rule'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this html:fragment ?fragment.
-} where {
-  $this html:documentTypeName ?name.
-  bind(strdt(concat('<!DOCTYPE ',?name,'>'),rdf:HTML) as ?fragment)
-}''';
+      construct {
+        $this html:fragment ?fragment.
+      } where {
+        $this html:documentTypeName ?name.
+        bind(strdt(concat('<!DOCTYPE ',?name,'>'),rdf:HTML) as ?fragment)
+      }''';
     rdfs:isDefinedBy html:.
 
 
@@ -5573,5 +5571,44 @@ construct {
     skos:definition "Specifies the wheel event handler."@en;
     skos:prefLabel 'the onwheel attribute'@en;
     rdfs:isDefinedBy html:.
+
+
+
+  # SPARQL Functions #
+
+  htmlf:member_index
+    a sh:SPARQLFunction;
+    rdfs:isDefinedBy html:;
+    sh:parameter param:member_index_property;
+    sh:prefixes html:;
+    sh:returnType xsd:positiveInteger;
+    sh:select '''
+      select(
+        xsd:integer(
+          strafter(
+            str($property),
+            concat(str(rdf:), '_'))) as $retrun){}'''.
+  param:member_index_property
+    a sh:Parameter;
+    sh:class rdfs:ContainerMembershipProperty;
+    sh:order 1;
+    sh:path param:property.
+
+  htmlf:is_membership_property
+    a sh:SPARQLFunction;
+    rdfs:isDefinedBy html:;
+    sh:parameter param:is_membership_property_iri;
+    sh:prefixes html:;
+    sh:returnType xsd:boolean;
+    sh:select '''
+      select(
+        strstarts(
+          str($iri),
+          concat(str(rdf:), '_')) as $return){}'''.
+  param:is_membership_property_iri
+    a sh:Parameter;
+    sh:class rdfs:Resource;
+    sh:order 1;
+    sh:path param:iri.
 
 #}
