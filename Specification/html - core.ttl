@@ -160,6 +160,10 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:prefix "dom";
     sh:namespace "https://data.rijksfinancien.nl/dom/model/def/"^^xsd:anyURI.
 
+  decl:function
+    sh:prefix "function";
+    sh:namespace "https://data.rijksfinancien.nl/html/model/function/"^^xsd:anyURI.    
+
   decl:html
     sh:prefix "html";
     sh:namespace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI.
