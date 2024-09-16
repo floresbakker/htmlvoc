@@ -10,10 +10,10 @@ doc:34.0 a html:Body ;
     rdf:_2 doc:35.4 ;
     rdf:_3 doc:34.0.3 .
 
-doc:34.0.1 a html:TextElement ;
+doc:34.0.1 a html:Text ;
     html:fragment "" .
 
-doc:34.0.3 a html:TextElement ;
+doc:34.0.3 a html:Text ;
     html:fragment "" .
 
 doc:35.4 a html:Table ;
@@ -25,22 +25,22 @@ doc:35.4 a html:Table ;
     rdf:_6 doc:44.8 ;
     rdf:_7 doc:35.4.7 .
 
-doc:35.4.1 a html:TextElement ;
+doc:35.4.1 a html:Text ;
     html:fragment "" .
 
-doc:35.4.3 a html:TextElement ;
+doc:35.4.3 a html:Text ;
     html:fragment "" .
 
-doc:35.4.5 a html:TextElement ;
+doc:35.4.5 a html:Text ;
     html:fragment "" .
 
-doc:35.4.7 a html:TextElement ;
+doc:35.4.7 a html:Text ;
     html:fragment "" .
 
 doc:36.8 a html:Caption ;
     rdf:_1 doc:36.8.1 .
 
-doc:36.8.1 a html:TextElement ;
+doc:36.8.1 a html:Text ;
     html:fragment "Example table" .
 
 doc:37.8 a html:TableHeader ;
@@ -48,10 +48,10 @@ doc:37.8 a html:TableHeader ;
     rdf:_2 doc:38.12 ;
     rdf:_3 doc:37.8.3 .
 
-doc:37.8.1 a html:TextElement ;
+doc:37.8.1 a html:Text ;
     html:fragment "" .
 
-doc:37.8.3 a html:TextElement ;
+doc:37.8.3 a html:Text ;
     html:fragment "" .
 
 doc:38.12 a html:Row ;
@@ -63,34 +63,34 @@ doc:38.12 a html:Row ;
     rdf:_6 doc:41.16 ;
     rdf:_7 doc:38.12.7 .
 
-doc:38.12.1 a html:TextElement ;
+doc:38.12.1 a html:Text ;
     html:fragment "" .
 
-doc:38.12.3 a html:TextElement ;
+doc:38.12.3 a html:Text ;
     html:fragment "" .
 
-doc:38.12.5 a html:TextElement ;
+doc:38.12.5 a html:Text ;
     html:fragment "" .
 
-doc:38.12.7 a html:TextElement ;
+doc:38.12.7 a html:Text ;
     html:fragment "" .
 
 doc:39.16 a html:HeaderCell ;
     rdf:_1 doc:39.16.1 .
 
-doc:39.16.1 a html:TextElement ;
+doc:39.16.1 a html:Text ;
     html:fragment "banana" .
 
 doc:40.16 a html:HeaderCell ;
     rdf:_1 doc:40.16.1 .
 
-doc:40.16.1 a html:TextElement ;
+doc:40.16.1 a html:Text ;
     html:fragment "orange" .
 
 doc:41.16 a html:HeaderCell ;
     rdf:_1 doc:41.16.1 .
 
-doc:41.16.1 a html:TextElement ;
+doc:41.16.1 a html:Text ;
     html:fragment "apple" .
 
 doc:44.8 a html:TableBody ;
@@ -100,13 +100,13 @@ doc:44.8 a html:TableBody ;
     rdf:_4 doc:50.12 ;
     rdf:_5 doc:44.8.5 .
 
-doc:44.8.1 a html:TextElement ;
+doc:44.8.1 a html:Text ;
     html:fragment "" .
 
-doc:44.8.3 a html:TextElement ;
+doc:44.8.3 a html:Text ;
     html:fragment "" .
 
-doc:44.8.5 a html:TextElement ;
+doc:44.8.5 a html:Text ;
     html:fragment "" .
 
 doc:45.12 a html:Row ;
@@ -118,34 +118,34 @@ doc:45.12 a html:Row ;
     rdf:_6 doc:48.16 ;
     rdf:_7 doc:45.12.7 .
 
-doc:45.12.1 a html:TextElement ;
+doc:45.12.1 a html:Text ;
     html:fragment "" .
 
-doc:45.12.3 a html:TextElement ;
+doc:45.12.3 a html:Text ;
     html:fragment "" .
 
-doc:45.12.5 a html:TextElement ;
+doc:45.12.5 a html:Text ;
     html:fragment "" .
 
-doc:45.12.7 a html:TextElement ;
+doc:45.12.7 a html:Text ;
     html:fragment "" .
 
 doc:46.16 a html:DataCell ;
     rdf:_1 doc:46.16.1 .
 
-doc:46.16.1 a html:TextElement ;
+doc:46.16.1 a html:Text ;
     html:fragment "1" .
 
 doc:47.16 a html:DataCell ;
     rdf:_1 doc:47.16.1 .
 
-doc:47.16.1 a html:TextElement ;
+doc:47.16.1 a html:Text ;
     html:fragment "2" .
 
 doc:48.16 a html:DataCell ;
     rdf:_1 doc:48.16.1 .
 
-doc:48.16.1 a html:TextElement ;
+doc:48.16.1 a html:Text ;
     html:fragment "3" .
 
 doc:5.0 a html:Html ;
@@ -155,13 +155,13 @@ doc:5.0 a html:Html ;
     rdf:_4 doc:34.0 ;
     rdf:_5 doc:5.0.5 .
 
-doc:5.0.1 a html:TextElement ;
+doc:5.0.1 a html:Text ;
     html:fragment "" .
 
-doc:5.0.3 a html:TextElement ;
+doc:5.0.3 a html:Text ;
     html:fragment "" .
 
-doc:5.0.5 a html:TextElement ;
+doc:5.0.5 a html:Text ;
     html:fragment "" .
 
 doc:50.12 a html:Row ;
@@ -173,34 +173,34 @@ doc:50.12 a html:Row ;
     rdf:_6 doc:53.16 ;
     rdf:_7 doc:50.12.7 .
 
-doc:50.12.1 a html:TextElement ;
+doc:50.12.1 a html:Text ;
     html:fragment "" .
 
-doc:50.12.3 a html:TextElement ;
+doc:50.12.3 a html:Text ;
     html:fragment "" .
 
-doc:50.12.5 a html:TextElement ;
+doc:50.12.5 a html:Text ;
     html:fragment "" .
 
-doc:50.12.7 a html:TextElement ;
+doc:50.12.7 a html:Text ;
     html:fragment "" .
 
 doc:51.16 a html:DataCell ;
     rdf:_1 doc:51.16.1 .
 
-doc:51.16.1 a html:TextElement ;
+doc:51.16.1 a html:Text ;
     html:fragment "a" .
 
 doc:52.16 a html:DataCell ;
     rdf:_1 doc:52.16.1 .
 
-doc:52.16.1 a html:TextElement ;
+doc:52.16.1 a html:Text ;
     html:fragment "b" .
 
 doc:53.16 a html:DataCell ;
     rdf:_1 doc:53.16.1 .
 
-doc:53.16.1 a html:TextElement ;
+doc:53.16.1 a html:Text ;
     html:fragment "c" .
 
 doc:6.0 a html:Head ;
@@ -210,25 +210,25 @@ doc:6.0 a html:Head ;
     rdf:_4 doc:8.4 ;
     rdf:_5 doc:6.0.5 .
 
-doc:6.0.1 a html:TextElement ;
+doc:6.0.1 a html:Text ;
     html:fragment "" .
 
-doc:6.0.3 a html:TextElement ;
+doc:6.0.3 a html:Text ;
     html:fragment "" .
 
-doc:6.0.5 a html:TextElement ;
+doc:6.0.5 a html:Text ;
     html:fragment "" .
 
 doc:7.4 a html:Title ;
     rdf:_1 doc:7.4.1 .
 
-doc:7.4.1 a html:TextElement ;
+doc:7.4.1 a html:Text ;
     html:fragment "Tutorial Document Example" .
 
 doc:8.4 a html:StyleSheet ;
     rdf:_1 doc:8.4.1 .
 
-doc:8.4.1 a html:TextElement ;
+doc:8.4.1 a html:Text ;
     html:fragment """
         able {
             width: 70%;
