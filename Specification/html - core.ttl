@@ -142,6 +142,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:declare
       decl:aria,
       decl:dom,
+      decl:function, 
       decl:html,
       decl:prov,
       decl:rdf,
@@ -1294,7 +1295,7 @@ shp:SerializableNode
   target:SerializableNode
     a sh:SPARQLTarget;
     rdfs:comment 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
-    sh:prefixes html:, dom:;
+    sh:prefixes html:;
     sh:select '''
 select $this {
 
@@ -1317,7 +1318,7 @@ select $this {
     a sh:SPARQLRule;
     rdfs:comment 'Create the HTML fragment for a node in a HTML document.'@en;
     skos:prefLabel 'HTML fragment serialization algorithm'@en;
-    sh:prefixes html:, function:;
+    sh:prefixes html:;
     sh:construct '''
 construct {
 
