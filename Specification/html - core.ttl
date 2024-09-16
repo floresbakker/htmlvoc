@@ -1220,6 +1220,13 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:source 'https://html.spec.whatwg.org/#comments'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.6 Comments'@en;
     rdfs:isDefinedBy html:.
+    
+  section:13.3
+    a dcm:Text;
+    dct:isPartOf standard:html;
+    dct:source 'https://html.spec.whatwg.org/#serialising-html-fragments'^^xsd:anyURI;
+    skos:prefLabel '§ 13.3 Serializing HTML fragments'@en;
+    rdfs:isDefinedBy html:.    
 
   section:4.13.3
     a dcm:Text;
@@ -1272,7 +1279,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel 'foreign element'@en;
     rdfs:isDefinedBy html:.
 
-  shp:SerializableElement
+shp:SerializableElement
     a sh:NodeShape;
     sh:rule rule:Serialize_HTML_fragment_HTML_Element;
     sh:target target:SerializableElement;
@@ -1281,17 +1288,22 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   target:SerializableElement
     a sh:SPARQLTarget;
-    rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child elements all have an HTML fragment already.'@en;
-    sh:prefixes html:;
+    rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
+    sh:prefixes html:, dom:;
     sh:select '''
 select $this {
+
+  # Select all html elements...
   $this a/rdfs:subClassOf* html:Element.
+  
+  # ...that do not yet have an html fragment.
   filter not exists { $this html:fragment []. }
+  
+  # ...but whose child nodes all have an html fragment
   filter not exists {
     $this ?member ?child.
     filter not exists { ?child html:fragment []. }
-    values ?class { html:CDATASection html:Comment html:Element html:Text }
-    ?child a/rdfs:subClassOf* ?class.
+    ?child a/rdfs:subClassOf* dom:Node.
   }
 }''';
     rdfs:isDefinedBy html:.
@@ -1303,10 +1315,15 @@ select $this {
     sh:prefixes html:;
     sh:construct '''
 construct {
+
+  # Assert the new HTML fragment for this HTML element
   $this html:fragment ?fragment.
+  
 } where {
+
+  # Retrieve the tag name from the ontology
   $this a/html:tag ?tag.
-  # Get the (possibly empty) sequence of HTML attributes, if there are any.
+  # Get the HTML attributes, if there are any.
   {
     select (group_concat(distinct ?attribute) as ?attributes) {
       $this ?attribute0 ?value.
@@ -1314,20 +1331,20 @@ construct {
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
     }
   }
-  # Get the (possibly empty) sequence of child node fragments, if there are any.
+  # Get the HTML fragments of child nodes, if there are any.
   {
-    select (group_concat(str(?fragment);separator='') as ?fragments) {
+    select $this (group_concat(str(?fragment);separator='') as ?fragments) {
       {
-        select ?member ?fragment {
+        select $this ?member ?fragment {
           $this ?member ?node.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
           ?node html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
       }
-    }
+    } group by $this
   }
-  # Create the HTML fragment for this HTML element, by combining everything retrieved above.
+  # Build the HTML fragment for this HTML element, by combining everything retrieved above.
   bind(strdt(
     concat(
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
@@ -1428,7 +1445,9 @@ construct {
     sh:prefixes html:;
     sh:select '''
 select $this {
+  # Select all CDATA Sections...
   $this a/rdfs:subClassOf* html:CDATASection.
+  # ...that do not yet have an html fragment.
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
@@ -1457,9 +1476,10 @@ select $this {
     sh:prefixes html:;
     sh:construct '''
 construct {
+  # Assert the new HTML fragment for this CDATA Section
   $this html:fragment ?fragment.
 } where {
-  # Get the (possibly empty) sequence of child element fragments, if there are any.
+  # Get the HTML fragment of the child node underneath the CDATA Section, which is a text node.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
@@ -1472,6 +1492,7 @@ construct {
       }
     }
   }
+  # Build the HTML fragment for this CDATA Section, by combining everything retrieved above.  
   bind(strdt(concat('<![CDATA[',?fragments,']]>'),rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
@@ -1491,7 +1512,9 @@ construct {
     sh:prefixes html:;
     sh:select '''
 select $this {
+  # Select all HTML comments...
   $this a/rdfs:subClassOf* html:Comment.
+  # ...that do not yet have an HTML fragment.  
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
@@ -1513,9 +1536,10 @@ select $this {
     sh:prefixes html:;
     sh:construct '''
 construct {
+  # Assert the new HTML fragment for this html comment
   $this html:fragment ?fragment.
 } where {
-  # Get the (possibly empty) sequence of child HTML nodes.
+  # Get the HTML fragment of the child node underneath the HTML comment, which is a text node.
   {
     select (group_concat(str(?fragment);separator='') as ?fragments) {
       {
@@ -1528,6 +1552,7 @@ construct {
       }
     }
   }
+  # Build the HTML fragment for this HTML comment, by combining everything retrieved above.   
   bind(strdt(concat('<!--',?fragments,'-->'),rdf:HTML) as ?fragment)
 }'''.
 
@@ -1936,31 +1961,50 @@ construct {
 
   target:Document
     a sh:SPARQLTarget;
-    sh:prefixes html:;
+    sh:prefixes html:, dom:;
     sh:select '''
 select $this {
+
+  # Select all html documents...
   $this a html:Document.
+  
+  # ...that do not yet have an html fragment
   filter not exists { $this html:fragment []. }
+  
+  # ...but whose child nodes all have an html fragment
+  filter not exists {
+    $this ?member ?child.
+    filter not exists { ?child html:fragment []. }
+    ?child a/rdfs:subClassOf* dom:Node.
+  }  
 }''';
     rdfs:isDefinedBy html:.
 
   rule:Document
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates the upper HTML fragment for an HTML document and connects it with the previously generated tree of serialized HTML elements and their HTML fragments.'@en;
+    rdfs:comment 'A rule that creates the upper HTML fragment for an HTML document and connects it with the previously generated tree of serialized DOM nodes and their HTML fragments.'@en;
     rdfs:label 'HTML document generation rule'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
+  # Assert the new HTML fragment for this HTML document
   $this html:fragment ?fragment.
 } where {
-  $this
-    rdf:_1
-      [ a html:DocumentType;
-        html:fragment ?fragment1 ];
-    rdf:_2
-      [ a html:Html;
-        html:fragment ?fragment2 ].
-  bind(strdt(concat(str(?fragment1),str(?fragment2)),rdf:HTML) as ?fragment)
+
+{ # Get the HTML fragments of child nodes, if there are any.
+    select $this (group_concat(str(?fragment);separator='') as ?fragments) {
+      {
+        select $this ?member ?fragment {
+          $this ?member ?node.
+          filter(strstarts(str(?member),concat(str(rdf:),'_')))
+          ?node html:fragment ?fragment.
+        }
+        order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
+      }
+    } group by $this
+  }
+  # Build the HTML fragment for this HTML document, by combining everything retrieved above.
+  bind(strdt(?fragments,rdf:HTML) as ?fragment)
 }''';
     rdfs:isDefinedBy html:.
 
@@ -1980,6 +2024,7 @@ construct {
     sh:select '''
 select $this {
   $this a/rdfs:subClassOf* html:DocumentType.
+  # The DocumentType node is still to be serialized into a html fragment
   filter not exists { $this html:fragment []. }
 }''';
     rdfs:isDefinedBy html:.
