@@ -1313,7 +1313,7 @@ select $this {
     a sh:SPARQLRule;
     rdfs:comment 'Create the HTML fragment for a node in a HTML document.'@en;
     skos:prefLabel 'HTML fragment serialization algorithm'@en;
-    sh:prefixes html:;
+    sh:prefixes html:, function:;
     sh:construct '''
 construct {
 
@@ -1327,12 +1327,12 @@ construct {
   ?class rdfs:isDefinedBy html:.
 
   # Build the HTML fragment for the node in the HTML document depending on its class
-  bind(if(?class = html:Element),               function:getElementFragment($this), 
-       if(?class = html:Text),                  function:getTextFragment($this), 
-       if(?class = html:Comment),               function:getCommentFragment($this), 
-       if(?class = html:ProcessingInstruction), function:getProcessingInstructionFragment($this), 
-       if(?class = html:DocumentType),          function:getDocumentTypeFragment($this), 
-       if(?class = html:Document),              function:getDocumentFragment($this), 
+  bind(if(?class = html:Element,                function:getElementFragment($this), 
+       if(?class = html:Text ,                  function:getTextFragment($this), 
+       if(?class = html:Comment,                function:getCommentFragment($this), 
+       if(?class = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
+       if(?class = html:DocumentType,           function:getDocumentTypeFragment($this), 
+       if(?class = html:Document,               function:getDocumentFragment($this), ''))))))
   as ?fragment)
 
 }''';
