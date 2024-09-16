@@ -1325,11 +1325,11 @@ construct {
   $this a/html:tag ?tag.
   # Get the HTML attributes, if there are any.
   {
-    select (group_concat(distinct ?attribute) as ?attributes) {
+    select $this (group_concat(distinct ?attribute) as ?attributes) {
       $this ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
-    }
+    } group by $this
   }
   # Get the HTML fragments of child nodes, if there are any.
   {
