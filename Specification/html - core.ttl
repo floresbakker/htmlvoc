@@ -1289,7 +1289,7 @@ shp:SerializableElement
   target:SerializableElement
     a sh:SPARQLTarget;
     rdfs:comment 'Select HTML elements that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
-    sh:prefixes html:, dom:;
+    sh:prefixes html:;
     sh:select '''
 select $this {
 
