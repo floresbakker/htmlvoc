@@ -1337,7 +1337,7 @@ construct {
        if(?class = html:Comment,                function:getCommentFragment($this), 
        if(?class = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
        if(?class = html:DocumentType,           function:getDocumentTypeFragment($this), 
-       if(?class = html:Document,               function:getDocumentFragment($this), ''))))))
+       if(?class = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
   as ?fragment)
 
 }''';
