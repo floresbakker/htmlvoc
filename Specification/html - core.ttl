@@ -5445,11 +5445,11 @@ function:getElementFragment
     
     # Get the HTML attributes, if there are any.
     {
-    select (group_concat(distinct ?attribute) as ?attributes) {
+    select $element (group_concat(distinct ?attribute) as ?attributes) {
       $element ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
-      }
+      } group by $element
     }
     
     # Get the HTML fragments of child nodes, if there are any.
