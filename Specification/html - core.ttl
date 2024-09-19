@@ -5453,7 +5453,7 @@ function:getElementFragment
     }
     
     # Get the HTML fragments of child nodes, if there are any.
-    bind(function:getChildNodeFragment($element) as ?fragments)
+    bind(str(function:getChildNodeFragment($element)) as ?fragments)
     
     # Build the HTML fragment for this HTML element, by combining everything retrieved above.
     bind(strdt(
