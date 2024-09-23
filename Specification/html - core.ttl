@@ -24,7 +24,7 @@ prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
 prefix standard: <https://data.rijksfinancien.nl/html/id/standard/>
 prefix target: <https://data.rijksfinancien.nl/html/model/target/>
 
-#html: {
+html: {
   html:
     a
       owl:Ontology,
@@ -1308,6 +1308,7 @@ select $this {
   # ...but whose child nodes all have an html fragment
   filter not exists {
     $this ?member ?child.
+    filter(strstarts(str(?member),concat(str(rdf:),'_')))               
     filter not exists { ?child html:fragment []. }
     ?child a/rdfs:subClassOf* dom:Node.
   }
@@ -1338,7 +1339,10 @@ construct {
        if(?class = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
        if(?class = html:DocumentType,           function:getDocumentTypeFragment($this), 
        if(?class = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
-  as ?fragment)
+  as ?fragmentString)
+  
+  # Convert result from string to rdf:HTML
+  bind(strdt(?fragmentString, rdf:HTML) as ?fragment)
 
 }''';
     rdfs:isDefinedBy html:.
@@ -5430,37 +5434,29 @@ function:getElementFragment
         sh:datatype xsd:anyURI ;
         sh:description "A html element in a HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
 
     prefix function: <https://data.rijksfinancien.nl/html/model/function/>      
     prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#>
     
     select ?result where {
     
-    # Retrieve the tag name from the ontology
+    # Retrieve the tag name of the element.
     $element a/html:tag ?tag.
     
-    # Get the HTML attributes, if there are any.
-    {
-    select $element (group_concat(distinct ?attribute) as ?attributes) {
-      $element ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
-      } group by $element
-    }
+    # Get the HTML attributes for the element, if there are any.
+    bind(str(function:getElementAttribute($element)) as ?attributes)
     
-    # Get the HTML fragments of child nodes, if there are any.
+    # Get the HTML fragments of child nodes for the element, if there are any.
     bind(str(function:getChildNodeFragment($element)) as ?fragments)
     
     # Build the HTML fragment for this HTML element, by combining everything retrieved above.
-    bind(strdt(
+    bind(
     concat(
-      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
+      '<',?tag,if(!bound(?attributes),'',concat(' ',?attributes)),'>',
       # Void elements have neither content nor a closing tag.
-      if(?fragments='','',concat(?fragments,'</',?tag,'>'))),rdf:HTML) as ?result)
+      if(!bound(?fragments),'',concat(?fragments,'</',?tag,'>'))) as ?result)
 }
 	
 """ .
@@ -5474,17 +5470,19 @@ function:getTextFragment
         sh:datatype xsd:anyURI ;
         sh:description "A HTML text node in a HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
     
     prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix xsd: <http://www.w3.org/2001/XMLSchema#>     
     
     select ?result where {
+    
+    # Text is stored in de data attribute of DOM text nodes
     $text dom:data ?data.
     
-    # Return the HTML fragment for this HTML text node
-    bind(strdt(?data,rdf:HTML) as ?result)
+    # Establish the HTML fragment for this HTML text node
+    bind(strdt(?data,xsd:string) as ?result)
 }
 	
 """ .
@@ -5497,18 +5495,15 @@ function:getCommentFragment
         sh:datatype xsd:anyURI ;
         sh:description "A HTML comment in a HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>       
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#>    
+    prefix function: <https://data.rijksfinancien.nl/html/model/function/>
     
     select ?result where {
      
-    # Build the HTML fragment for this HTML comment, by combining everything retrieved above.
-    bind(strdt(concat('<!--',function:getChildNodeFragment($comment),'-->'),rdf:HTML) as ?result)
+    # Establish the HTML fragment for this HTML comment
+    bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?result)
 }
 	
 """ .
@@ -5521,18 +5516,15 @@ function:getProcessingInstructionFragment
         sh:datatype xsd:anyURI ;
         sh:description "A HTML processing instruction in a HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
 
     prefix function: <https://data.rijksfinancien.nl/html/model/function/>       
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#>    
     
     select ?result where {
 
-    # Build the HTML fragment for this HTML processingInstruction
-    bind(strdt(concat('<?',function:getChildNodeFragment($processingInstruction),'>'),rdf:HTML) as ?result)
+    # Establish the HTML fragment for this HTML processingInstruction
+    bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?result)
 }
 	
 """ .
@@ -5545,16 +5537,16 @@ function:getDocumentTypeFragment
         sh:datatype xsd:anyURI ;
         sh:description "An HTML DocumentType in a HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
     
     prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     
     select ?result where {
     
+    # Establish the doctype name for this Document Type.
     $doctype html:documentTypeName ?name.
-    bind(strdt(concat('<!DOCTYPE ',?name,'>'),rdf:HTML) as ?result)
+    bind(concat('<!DOCTYPE ',str(?name),'>') as ?result)
 }
 	
 """ .
@@ -5567,16 +5559,14 @@ function:getDocumentFragment
         sh:datatype xsd:anyURI ;
         sh:description "An HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
 
     prefix function: <https://data.rijksfinancien.nl/html/model/function/>    
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
     
+    # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
     bind(function:getChildNodeFragment($document) as ?result)
     
 }
@@ -5591,17 +5581,17 @@ function:getChildNodeFragment
         sh:datatype xsd:anyURI ;
         sh:description "A node in an HTML document." ;
     ] ;
-    sh:returnType rdf:HTML ;
+    sh:returnType xsd:string ;
     sh:select """
     
     prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
     
     { # Get the HTML fragments of child nodes, if there are any.
-    select $node (group_concat(str(?fragment);separator='') as ?fragments) {
+    select $node (group_concat(str(?fragment);separator='') as ?result) {
       {
         select $node ?member ?fragment {
           $node ?member ?childNode.
@@ -5609,13 +5599,35 @@ function:getChildNodeFragment
           ?childNode html:fragment ?fragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
-      }
-     } group by $node
+       }
+      } group by $node
+     }
     }
-    # Build the HTML fragment for this node in the HTML document
-    bind(strdt(?fragments,rdf:HTML) as ?result)
-}
-	
 """ .
 
-#}
+function:getElementAttribute
+    a sh:SPARQLFunction ;
+    rdfs:comment "Returns an HTML attribute of an HTML element" ;
+    sh:parameter [
+        sh:path function:element ;
+        sh:datatype xsd:anyURI ;
+        sh:description "An HTML element in an HTML document." ;
+    ] ;
+    sh:returnType xsd:string ;
+    sh:select """
+    
+    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    
+    select ?result where {
+   
+    { # Get the HTML attributes for this element, if there are any.
+    select $element (group_concat(distinct ?attribute) as ?result) {
+      $element ?attribute0 ?value.
+      ?attribute0 html:key ?key.
+      bind(concat(?key,'="',str(?value),'"') as ?attribute)
+      } group by $element
+     }   
+    }
+""" .
+
+}
