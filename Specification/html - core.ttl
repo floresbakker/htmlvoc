@@ -140,11 +140,9 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       skos:;
     owl:versionInfo '0.2.0';
     sh:declare
-      decl:aria,
       decl:dom,
       decl:function, 
       decl:html,
-      decl:prov,
       decl:rdf,
       decl:rdfs,
       decl:xsd;
@@ -152,10 +150,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
     void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
     void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
-
-  decl:aria
-    sh:prefix "aria";
-    sh:namespace "http://www.w3.org/ns/wai-aria/"^^xsd:anyURI.
 
   decl:dom
     sh:prefix "dom";
@@ -168,10 +162,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
   decl:html
     sh:prefix "html";
     sh:namespace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI.
-
-  decl:prov
-    sh:prefix "prov";
-    sh:namespace "http://www.w3.org/ns/prov#"^^xsd:anyURI.
 
   decl:rdf
     sh:prefix "rdf";
@@ -1285,7 +1275,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel 'foreign element'@en;
     rdfs:isDefinedBy html:.
 
-shp:SerializableNode
+  shp:SerializableNode
     a sh:NodeShape;
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
     sh:target target:SerializableNode;
@@ -1350,12 +1340,6 @@ construct {
 
   # Void element
 
-  shp:VoidElement
-    a sh:NodeShape;
-    skos:prefLabel 'void element shape'@en;
-    sh:target html:VoidElement;
-    rdfs:isDefinedBy html:.
-
   html:VoidElement
     a owl:Class;
     rdfs:subClassOf html:Element;
@@ -1366,7 +1350,9 @@ construct {
     skos:prefLabel 'void element'@en;
     rdfs:isDefinedBy html:.
 
- shp:CustomElement
+  # Custom element
+  
+  shp:CustomElement
     a sh:NodeShape;
     skos:prefLabel 'Custom element shape'@en;
     sh:rule rule:Serialize_HTML_fragment_CustomElement;
@@ -1843,7 +1829,6 @@ construct {
   html:Document
     a owl:Class;
     rdfs:subClassOf dom:Document;
-    owl:equivalentClass html:documentRestriction;
     dct:conformsTo section:13.1;
     skos:definition 'An HTML document consists of a tree of elements and text. Each element is denoted in the source by a start tag, such as ‘<body>’, and an end tag, such as ‘</body>’. Tags have to be nested such that elements are all completely within each other, without overlapping. Elements can have attributes, which control how the elements work. The HTML Core Vocabulary defines a set of elements that can be used in a HTML document, along with rules about the ways in which the elements can be nested. HTML user agents (e.g., web browsers) parse a HTML document, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. A HTML document represents a media-independent description of interactive content. A HTML document might be rendered to a screen, or through a speech synthesizer, or on a braille display. To influence exactly how such rendering takes place, authors can use a styling language such as CSS.'@en;
     skos:prefLabel 'html document'@en;
@@ -2980,9 +2965,16 @@ construct {
     skos:prefLabel 'the canvas element'@en;
     rdfs:isDefinedBy html:.
 
+  # HTML properties
 
-  # HTML class-level properties
-
+  html:documentTypeName
+    a owl:DatatypeProperty;
+    rdfs:domain html:DocumentType;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the doctype name of a doctype declaration in a HTML document."@en;
+    skos:prefLabel 'has document type name'@en;
+    rdfs:isDefinedBy html:.
+    
   html:attribute
     a owl:DatatypeProperty,
       dom:Attribute;
@@ -3021,7 +3013,7 @@ construct {
   html:key
     a owl:DatatypeProperty;
     dct:conformsTo section:13.1.2.3;
-    rdfs:domain owl:DatatypeProperty;
+    rdfs:domain html:Attribute;
     rdfs:range xsd:string;
     skos:definition 'Property that links the key name of a specific HTML attribute to that HTML attribute.'@en;
     skos:prefLabel 'key property'@en;
