@@ -3,8 +3,13 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 doc:1 a html:Document ;
-    rdf:_1 doc:2.0 .
+    rdf:_1 doc:1.0 ;
+    rdf:_2 doc:2.0 .
 
+doc:1.0
+    a html:DocumentType;
+    html:documentTypeName 'html'.
+    
 doc:2.0 a html:Html ;
     rdf:_1 doc:2.0.1 ;
     rdf:_2 doc:3.0 ;
@@ -13,15 +18,15 @@ doc:2.0 a html:Html ;
     rdf:_5 doc:2.0.5 ;
     html:lang "en" .
 
-doc:2.0.1 a html:TextElement ;
+doc:2.0.1 a html:Text ;
     html:fragment """
 """ .
 
-doc:2.0.3 a html:TextElement ;
+doc:2.0.3 a html:Text ;
     html:fragment """
 """ .
 
-doc:2.0.5 a html:TextElement ;
+doc:2.0.5 a html:Text ;
     html:fragment """
 """ .
 
@@ -46,52 +51,52 @@ doc:29.0 a html:Body ;
     rdf:_8 doc:29.0.8 ;
     rdf:_9 doc:29.0.9 .
 
-doc:29.0.1 a html:TextElement ;
+doc:29.0.1 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.11 a html:TextElement ;
+doc:29.0.11 a html:Text ;
     html:fragment """
 """ .
 
 doc:29.0.12 a html:Comment ;
     html:fragment " Add a heading for results " .
 
-doc:29.0.13 a html:TextElement ;
+doc:29.0.13 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.15 a html:TextElement ;
+doc:29.0.15 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.17 a html:TextElement ;
+doc:29.0.17 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.19 a html:TextElement ;
+doc:29.0.19 a html:Text ;
     html:fragment """
 """ .
 
 doc:29.0.2 a html:Comment ;
     html:fragment " Add a clear instruction for users " .
 
-doc:29.0.3 a html:TextElement ;
+doc:29.0.3 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.5 a html:TextElement ;
+doc:29.0.5 a html:Text ;
     html:fragment """
 """ .
 
-doc:29.0.7 a html:TextElement ;
+doc:29.0.7 a html:Text ;
     html:fragment """
 """ .
 
 doc:29.0.8 a html:Comment ;
     html:fragment " Improve accessibility by using a <button> element " .
 
-doc:29.0.9 a html:TextElement ;
+doc:29.0.9 a html:Text ;
     html:fragment """
 """ .
 
@@ -108,56 +113,56 @@ doc:3.0 a html:Head ;
     rdf:_8 doc:3.0.8 ;
     rdf:_9 doc:3.0.9 .
 
-doc:3.0.1 a html:TextElement ;
+doc:3.0.1 a html:Text ;
     html:fragment """
 """ .
 
-doc:3.0.11 a html:TextElement ;
+doc:3.0.11 a html:Text ;
     html:fragment """
 """ .
 
-doc:3.0.3 a html:TextElement ;
+doc:3.0.3 a html:Text ;
     html:fragment """
 """ .
 
-doc:3.0.5 a html:TextElement ;
+doc:3.0.5 a html:Text ;
     html:fragment """
 """ .
 
-doc:3.0.7 a html:TextElement ;
+doc:3.0.7 a html:Text ;
     html:fragment """
 """ .
 
 doc:3.0.8 a html:Comment ;
     html:fragment " Add some styling for better presentation " .
 
-doc:3.0.9 a html:TextElement ;
+doc:3.0.9 a html:Text ;
     html:fragment """
 """ .
 
 doc:31.4 a html:H1 ;
     rdf:_1 doc:31.4.1 .
 
-doc:31.4.1 a html:TextElement ;
+doc:31.4.1 a html:Text ;
     html:fragment "Execute SPARQL Query" .
 
 doc:32.4 a html:P ;
     rdf:_1 doc:32.4.1 .
 
-doc:32.4.1 a html:TextElement ;
+doc:32.4.1 a html:Text ;
     html:fragment "Click the button below to execute the SPARQL query:" .
 
 doc:34.4 a html:Button ;
     rdf:_1 doc:34.4.1 ;
     html:id "queryButton" .
 
-doc:34.4.1 a html:TextElement ;
+doc:34.4.1 a html:Text ;
     html:fragment "Execute SPARQL Query" .
 
 doc:36.4 a html:H2 ;
     rdf:_1 doc:36.4.1 .
 
-doc:36.4.1 a html:TextElement ;
+doc:36.4.1 a html:Text ;
     html:fragment "Results:" .
 
 doc:37.4 a html:Div ;
@@ -166,7 +171,7 @@ doc:37.4 a html:Div ;
 doc:39.0 a html:Script ;
     rdf:_1 doc:39.0.1 .
 
-doc:39.0.1 a html:TextElement ;
+doc:39.0.1 a html:Text ;
     html:fragment """\r
 document.getElementById('queryButton').addEventListener('click', function() {\r
     // Define your SPARQL endpoint URL\r
@@ -236,13 +241,13 @@ doc:5.4 a html:Meta ;
 doc:6.4 a html:Title ;
     rdf:_1 doc:6.4.1 .
 
-doc:6.4.1 a html:TextElement ;
+doc:6.4.1 a html:Text ;
     html:fragment "SPARQL Query Results" .
 
 doc:8.4 a html:StyleSheet ;
     rdf:_1 doc:8.4.1 .
 
-doc:8.4.1 a html:TextElement ;
+doc:8.4.1 a html:Text ;
     html:fragment """\r
         body {\r
             font-family: Arial, sans-serif;\r

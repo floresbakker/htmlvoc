@@ -78,6 +78,8 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
 
 # Get the HTML vocabulary and place it in a string
 html_vocabulary = readGraphFromFile(directory_path + "/htmlvoc/Specification/html - core.ttl")
+dom_vocabulary = readGraphFromFile(directory_path + "/htmlvoc/Specification/dom - core.ttl")
+vocabulary = dom_vocabulary + '\n\n' + html_vocabulary
 
 # loop through any turtle files in the input directory
 for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
@@ -91,7 +93,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
         document_graph = readGraphFromFile(file_path)                  
 
         # Join the HTML vocabulary and the RDF-model of some HTML document into a string
-        serializable_graph_string = html_vocabulary + document_graph
+        serializable_graph_string = vocabulary + '\n\n'+ document_graph
 
         # Create a graph of the string containing the HTML vocabulary and the RDF-model of some HTML document
         serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="ttl")

@@ -24,7 +24,7 @@ prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
 prefix standard: <https://data.rijksfinancien.nl/html/id/standard/>
 prefix target: <https://data.rijksfinancien.nl/html/model/target/>
 
-html: {
+#html: {
   html:
     a
       owl:Ontology,
@@ -1319,20 +1319,17 @@ construct {
 } where {
 
   # Establish the class of the node in the HTML document
-  $this a/rdfs:subClassOf* ?class.
-  ?class rdfs:isDefinedBy html:.
+  $this a/rdfs:subClassOf* ?htmlClass.
+  ?htmlClass rdfs:isDefinedBy html:.
 
   # Build the HTML fragment for the node in the HTML document depending on its class
-  bind(if(?class = html:Element,                function:getElementFragment($this), 
-       if(?class = html:Text ,                  function:getTextFragment($this), 
-       if(?class = html:Comment,                function:getCommentFragment($this), 
-       if(?class = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
-       if(?class = html:DocumentType,           function:getDocumentTypeFragment($this), 
-       if(?class = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
-  as ?fragmentString)
-  
-  # Convert result from string to rdf:HTML
-  bind(strdt(?fragmentString, rdf:HTML) as ?fragment)
+  bind(if(?htmlClass = html:Element,                function:getElementFragment($this), 
+       if(?htmlClass = html:Text ,                  function:getTextFragment($this), 
+       if(?htmlClass = html:Comment,                function:getCommentFragment($this), 
+       if(?htmlClass = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
+       if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this), 
+       if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
+  as ?fragment)
 
 }''';
     rdfs:isDefinedBy html:.
@@ -5438,21 +5435,20 @@ function:getElementFragment
     $element a/html:tag ?tag.
     
     # Get the HTML attributes for the element, if there are any.
-    bind(str(function:getElementAttribute($element)) as ?attributes)
+    bind(function:getElementAttribute($element) as ?attributes)
     
     # Get the HTML fragments of child nodes for the element, if there are any.
-    bind(str(function:getChildNodeFragment($element)) as ?fragments)
+    bind(function:getChildNodeFragment($element) as ?childFragments)
     
     # Build the HTML fragment for this HTML element, by combining everything retrieved above.
     bind(
     concat(
-      '<',?tag,if(!bound(?attributes),'',concat(' ',?attributes)),'>',
+      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
       # Void elements have neither content nor a closing tag.
-      if(!bound(?fragments),'',concat(?fragments,'</',?tag,'>'))) as ?result)
+      if(?childFragments='','',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)  
 }
-	
 """ .
-
 
 function:getTextFragment
     a sh:SPARQLFunction ;
@@ -5474,9 +5470,9 @@ function:getTextFragment
     $text dom:data ?data.
     
     # Establish the HTML fragment for this HTML text node
-    bind(strdt(?data,xsd:string) as ?result)
-}
-	
+    bind(strdt(?data,xsd:string) as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)  
+}	
 """ .
 
 function:getCommentFragment
@@ -5495,9 +5491,9 @@ function:getCommentFragment
     select ?result where {
      
     # Establish the HTML fragment for this HTML comment
-    bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?result)
-}
-	
+    bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)  
+}	
 """ .
 
 function:getProcessingInstructionFragment
@@ -5516,9 +5512,9 @@ function:getProcessingInstructionFragment
     select ?result where {
 
     # Establish the HTML fragment for this HTML processingInstruction
-    bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?result)
+    bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)  
 }
-	
 """ .
 
 function:getDocumentTypeFragment
@@ -5538,9 +5534,9 @@ function:getDocumentTypeFragment
     
     # Establish the doctype name for this Document Type.
     $doctype html:documentTypeName ?name.
-    bind(concat('<!DOCTYPE ',str(?name),'>') as ?result)
+    bind(concat('<!DOCTYPE ',str(?name),'>') as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)  
 }
-	
 """ .
 	
 function:getDocumentFragment
@@ -5559,10 +5555,9 @@ function:getDocumentFragment
     select ?result where {
     
     # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
-    bind(function:getChildNodeFragment($document) as ?result)
-    
+    bind(function:getChildNodeFragment($document) as ?fragment)
+    bind(if(bound(?fragment),?fragment,'') as ?result)
 }
-	
 """ .
 
 function:getChildNodeFragment
@@ -5583,7 +5578,7 @@ function:getChildNodeFragment
     select ?result where {
     
     { # Get the HTML fragments of child nodes, if there are any.
-    select $node (group_concat(str(?fragment);separator='') as ?result) {
+    select $node (group_concat(str(?fragment);separator='') as ?fragments) {
       {
         select $node ?member ?fragment {
           $node ?member ?childNode.
@@ -5594,7 +5589,8 @@ function:getChildNodeFragment
        }
       } group by $node
      }
-    }
+    bind(if(bound(?fragments),?fragments,'') as ?result)  
+}
 """ .
 
 function:getElementAttribute
@@ -5613,13 +5609,14 @@ function:getElementAttribute
     select ?result where {
    
     { # Get the HTML attributes for this element, if there are any.
-    select $element (group_concat(distinct ?attribute) as ?result) {
+    select $element (group_concat(distinct ?attribute; separator='') as ?attributes) {
       $element ?attribute0 ?value.
       ?attribute0 html:key ?key.
       bind(concat(?key,'="',str(?value),'"') as ?attribute)
       } group by $element
-     }   
-    }
+     }
+    bind(if(bound(?attributes),?attributes,'') as ?result)      
+}
 """ .
 
-}
+#}
