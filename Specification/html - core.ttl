@@ -5474,7 +5474,7 @@ construct {
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
+    prefix dom: <http://www.w3.org/DOM/model/def/>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#>     
     
     select ?result where {
