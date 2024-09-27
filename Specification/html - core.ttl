@@ -5363,7 +5363,7 @@ select $this {
   filter not exists { $this html:fragment []. }
   
   # ...but whose child nodes (if any) all have an html fragment
-  filter {
+  filter not exists {
     $this ?member ?child.
     filter(strstarts(str(?member),concat(str(rdf:),'_')))               
     filter not exists { ?child html:fragment []. }
