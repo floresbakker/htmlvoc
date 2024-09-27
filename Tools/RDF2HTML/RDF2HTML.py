@@ -21,7 +21,7 @@ rdflib.NORMALIZE_LITERALS = False #see bug https://github.com/RDFLib/rdflib/issu
 current_dir = os.getcwd()
 
 # Set the path to the desired standard directory. 
-directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
+directory_path = os.path.abspath(os.path.join(current_dir, '..'))
 
 # Function to read a graph (as a string) from a file 
 def readGraphFromFile(file_path):
@@ -55,7 +55,7 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
         resultquery = serializable_graph.query('''
             
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
+        PREFIX html: <https://www.w3.org/html/model/def/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
         ASK 
@@ -111,7 +111,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
         documentQuery = serialized_graph.query('''
             
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
+        PREFIX html: <https://www.w3.org/html/model/def/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
         select ?fragment

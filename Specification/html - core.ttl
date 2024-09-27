@@ -1,30 +1,32 @@
 # Generic prefixes
-prefix aria: <http://www.w3.org/ns/wai-aria/>
-prefix dcm: <http://purl.org/dc/dcmitype/>
-prefix dct: <http://purl.org/dc/terms/>
-prefix dom: <http://www.w3.org/DOM/model/def/>
-prefix foaf: <http://xmlns.com/foaf/0.1/>
-prefix owl: <http://www.w3.org/2002/07/owl#>
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix rdfa: <http://www.w3.org/ns/rdfa#>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix respec: <https://respec.org/model/def/>
-prefix sh: <http://www.w3.org/ns/shacl#>
-prefix skos: <http://www.w3.org/2004/02/skos/core#>
-prefix status: <http://purl.org/adms/status/>
-prefix vann: <http://purl.org/vocab/vann/>
-prefix void: <http://rdfs.org/ns/void#>
-prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix aria:     <http://www.w3.org/ns/wai-aria/>
+prefix dcm:      <http://purl.org/dc/dcmitype/>
+prefix dct:      <http://purl.org/dc/terms/>
+prefix dom:      <http://www.w3.org/DOM/model/def/>
+prefix foaf:     <http://xmlns.com/foaf/0.1/>
+prefix owl:      <http://www.w3.org/2002/07/owl#>
+prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfa:     <http://www.w3.org/ns/rdfa#>
+prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
+prefix respec:   <https://respec.org/model/def/>
+prefix sh:       <http://www.w3.org/ns/shacl#>
+prefix skos:     <http://www.w3.org/2004/02/skos/core#>
+prefix status:   <http://purl.org/adms/status/>
+prefix vann:     <http://purl.org/vocab/vann/>
+prefix void:     <http://rdfs.org/ns/void#>
+prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 # HTML prefixes
-prefix decl: <http://www.w3.org/1999/xhtml/id/decl/>
-prefix function: <http://www.w3.org/1999/xhtml/model/function/>
-prefix html: <http://www.w3.org/1999/xhtml/model/def/>
-prefix rule: <http://www.w3.org/1999/xhtml/model/rule/>
-prefix section: <http://www.w3.org/1999/xhtml/id/section/>
-prefix shp: <http://www.w3.org/1999/xhtml/model/shp/>
-prefix standard: <http://www.w3.org/1999/xhtml/id/standard/>
-prefix target: <http://www.w3.org/1999/xhtml/model/target/>
+prefix decl:     <https://www.w3.org/html/id/decl/>
+prefix function: <https://www.w3.org/html/model/function/>
+prefix html:     <https://www.w3.org/html/model/def/>
+prefix rule:     <https://www.w3.org/html/model/rule/>
+prefix section:  <https://www.w3.org/html/id/section/>
+prefix shp:      <https://www.w3.org/html/model/shp/>
+prefix standard: <https://www.w3.org/html/id/standard/>
+prefix target:   <https://www.w3.org/html/model/target/>
+
+prefix ex:      <http://www.w3.org/bla/>
 
 html: {
   html:
@@ -73,7 +75,7 @@ An 'hello world' HTML document:
 This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   prefix doc: <http://www.example.org/document/>
-  prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+  prefix html: <https://www.w3.org/html/model/def/>
   prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
   doc:1
@@ -149,9 +151,9 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       decl:rdfs,
       decl:xsd;
     vann:preferredNamespacePrefix 'html';
-    vann:preferredNamespaceUri 'http://www.w3.org/1999/xhtml/model/def/';
-    void:uriRegexPattern '^http://www.w3.org/1999/xhtml/model/def/';
-    void:uriSpace 'http://www.w3.org/1999/xhtml/model/def/'^^xsd:anyURI.
+    vann:preferredNamespaceUri 'https://www.w3.org/html/model/def/';
+    void:uriRegexPattern '^https://www.w3.org/html/model/def/';
+    void:uriSpace 'https://www.w3.org/html/model/def/'^^xsd:anyURI.
 
   decl:dom
     sh:prefix "dom";
@@ -159,11 +161,11 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   decl:function
     sh:prefix "function";
-    sh:namespace "http://www.w3.org/1999/xhtml/model/function/"^^xsd:anyURI.    
+    sh:namespace "https://www.w3.org/html/model/function/"^^xsd:anyURI.    
 
   decl:html
     sh:prefix "html";
-    sh:namespace "http://www.w3.org/1999/xhtml/model/def/"^^xsd:anyURI.
+    sh:namespace "https://www.w3.org/html/model/def/"^^xsd:anyURI.
 
   decl:rdf
     sh:prefix "rdf";
@@ -1277,66 +1279,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel 'foreign element'@en;
     rdfs:isDefinedBy html:.
 
-  shp:SerializableNode
-    a sh:NodeShape;
-    sh:rule rule:HTMLFragmentSerializationAlgorithm;
-    sh:target target:SerializableNode;
-    skos:prefLabel 'serializable node shape'@en;
-    rdfs:isDefinedBy html:.
-
-  target:SerializableNode
-    a sh:SPARQLTarget;
-    rdfs:comment 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
-    sh:prefixes html:;
-    sh:select '''
-select $this {
-
-  # Select all nodes in the HTML document...
-  $this a/rdfs:subClassOf* dom:Node.
-  
-  # ...that do not yet have an html fragment.
-  filter not exists { $this html:fragment []. }
-  
-  # ...but whose child nodes all have an html fragment
-  filter not exists {
-    $this ?member ?child.
-    filter(strstarts(str(?member),concat(str(rdf:),'_')))               
-    filter not exists { ?child html:fragment []. }
-    ?child a/rdfs:subClassOf* dom:Node.
-  }
-}''';
-    rdfs:isDefinedBy html:.
-
-  rule:HTMLFragmentSerializationAlgorithm
-    a sh:SPARQLRule;
-    rdfs:comment 'Create the HTML fragment for a node in a HTML document.'@en;
-    skos:prefLabel 'HTML fragment serialization algorithm'@en;
-    sh:prefixes html:;
-    sh:construct '''
-construct {
-
-  # Assert the new HTML fragment for this node in the HTML document
-  $this html:fragment ?fragment.
-  
-} where {
-
-  # Establish the class of the node in the HTML document
-  $this a/rdfs:subClassOf* ?htmlClass.
-  ?htmlClass rdfs:isDefinedBy html:.
-
-  # Build the HTML fragment for the node in the HTML document depending on its class
-  bind(if(?htmlClass = html:Element,                function:getElementFragment($this), 
-       if(?htmlClass = html:Text ,                  function:getTextFragment($this), 
-       if(?htmlClass = html:Comment,                function:getCommentFragment($this), 
-       if(?htmlClass = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
-       if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this), 
-       if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
-  as ?fragment)
-
-}''';
-    rdfs:isDefinedBy html:.
-
-
   # Void element
 
   html:VoidElement
@@ -1350,13 +1292,6 @@ construct {
     rdfs:isDefinedBy html:.
 
   # Custom element
-  
-  shp:CustomElement
-    a sh:NodeShape;
-    skos:prefLabel 'Custom element shape'@en;
-    sh:rule rule:Serialize_HTML_fragment_CustomElement;
-    sh:targetClass html:CustomElement;
-    rdfs:isDefinedBy html:.
 
   html:CustomElement
     a owl:Class;
@@ -1373,19 +1308,6 @@ construct {
                 rdfs:isDefinedBy ex:.
 
     """;
-    rdfs:isDefinedBy html:.
-
-  rule:Serialize_HTML_fragment_CustomElement
-    a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for a custom element.'@en;
-    skos:prefLabel 'Custom element fragment serialisation rule'@en;
-    sh:prefixes html:;
-    sh:construct '''
-construct {
-  $this rdfs:subClassOf  html:CustomElement.
-} where {
- # Condition is already met via the target, hence empty where clause
-}''';
     rdfs:isDefinedBy html:.
 
   html:AutonomousCustomElement
@@ -5417,7 +5339,96 @@ construct {
     skos:prefLabel 'the onwheel attribute'@en;
     rdfs:isDefinedBy html:.
 
-function:getElementFragment
+### Shapes ###
+
+  shp:SerializableNode
+    a sh:NodeShape;
+    sh:rule rule:HTMLFragmentSerializationAlgorithm;
+    sh:target target:SerializableNode;
+    skos:prefLabel 'serializable node shape'@en;
+    rdfs:isDefinedBy html:.
+
+  target:SerializableNode
+    a sh:SPARQLTarget;
+    rdfs:comment 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
+    sh:prefixes html:;
+    sh:select '''
+select $this {
+
+  # Select all DOM nodes...
+  $this a/rdfs:subClassOf* dom:Node.
+  
+  #...in a HTML document...
+  $this a/rdfs:subClassOf*/rdfs:isDefinedBy html:.
+  
+  # ...that do not yet have an html fragment.
+  filter not exists { $this html:fragment []. }
+  
+  # ...but whose child nodes (if any) all have an html fragment
+  filter not exists {
+    $this ?member ?child.
+    filter(strstarts(str(?member),concat(str(rdf:),'_')))               
+    filter not exists { ?child html:fragment []. }
+    ?child a/rdfs:subClassOf* dom:Node.
+  }
+}''';
+    rdfs:isDefinedBy html:.
+
+  rule:HTMLFragmentSerializationAlgorithm
+    a sh:SPARQLRule;
+    rdfs:comment 'Create the HTML fragment for a node in a HTML document.'@en;
+    skos:prefLabel 'HTML fragment serialization algorithm'@en;
+    sh:prefixes html:;
+    sh:construct '''
+construct {
+
+  # Assert the new HTML fragment for this node in the HTML document
+  $this html:fragment ?fragment.
+  
+} where {
+
+  # Establish the class of the node in the HTML document
+  $this a/rdfs:subClassOf* ?htmlClass.
+  ?htmlClass rdfs:isDefinedBy html:.
+
+  # Build the HTML fragment for the node in the HTML document depending on its class
+  bind(if(?htmlClass = html:Element,                function:getElementFragment($this), 
+       if(?htmlClass = html:Text ,                  function:getTextFragment($this), 
+       if(?htmlClass = html:Comment,                function:getCommentFragment($this), 
+       if(?htmlClass = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this), 
+       if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this), 
+       if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
+  as ?fragmentString)
+  
+  # Convert result from string to rdf:HTML
+  bind(strdt(str(?fragmentString), xsd:string) as ?fragment)
+
+}''';
+    rdfs:isDefinedBy html:.
+
+
+  shp:CustomElement
+    a sh:NodeShape;
+    skos:prefLabel 'Custom element shape'@en;
+    sh:rule rule:Serialize_HTML_fragment_CustomElement;
+    sh:targetClass html:CustomElement;
+    rdfs:isDefinedBy html:.
+
+  rule:Serialize_HTML_fragment_CustomElement
+    a sh:SPARQLRule;
+    rdfs:comment 'A rule that creates an HTML fragment for a custom element.'@en;
+    skos:prefLabel 'Custom element fragment serialisation rule'@en;
+    sh:prefixes html:;
+    sh:construct '''
+construct {
+  $this rdfs:subClassOf  html:CustomElement.
+} where {
+ # Condition is already met via the target, hence empty where clause
+}''';
+    rdfs:isDefinedBy html:.
+    
+
+  function:getElementFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment for a HTML element in a HTML document." ;
     sh:parameter [
@@ -5428,8 +5439,8 @@ function:getElementFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <http://www.w3.org/1999/xhtml/model/function/>      
-    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+    prefix function: <https://www.w3.org/html/model/function/>      
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
     
@@ -5452,7 +5463,7 @@ function:getElementFragment
 }
 """ .
 
-function:getTextFragment
+  function:getTextFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment for a HTML text node in a HTML document." ;
     sh:parameter [
@@ -5477,7 +5488,7 @@ function:getTextFragment
 }	
 """ .
 
-function:getCommentFragment
+  function:getCommentFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment for a HTML comment in a HTML document." ;
     sh:parameter [
@@ -5488,7 +5499,7 @@ function:getCommentFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <http://www.w3.org/1999/xhtml/model/function/>
+    prefix function: <https://www.w3.org/html/model/function/>
     
     select ?result where {
      
@@ -5498,7 +5509,7 @@ function:getCommentFragment
 }	
 """ .
 
-function:getProcessingInstructionFragment
+  function:getProcessingInstructionFragment
     a sh:SPARQLFunction ;
     rdfs:processingInstruction "Returns a HTML fragment for a HTML processing instruction in a HTML document." ;
     sh:parameter [
@@ -5509,7 +5520,7 @@ function:getProcessingInstructionFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <http://www.w3.org/1999/xhtml/model/function/>       
+    prefix function: <https://www.w3.org/html/model/function/>       
     
     select ?result where {
 
@@ -5519,7 +5530,7 @@ function:getProcessingInstructionFragment
 }
 """ .
 
-function:getDocumentTypeFragment
+  function:getDocumentTypeFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment for a HTML DocumentType in a HTML document." ;
     sh:parameter [
@@ -5530,7 +5541,7 @@ function:getDocumentTypeFragment
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
     
@@ -5541,7 +5552,7 @@ function:getDocumentTypeFragment
 }
 """ .
 	
-function:getDocumentFragment
+  function:getDocumentFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment for a HTML Document" ;
     sh:parameter [
@@ -5552,7 +5563,7 @@ function:getDocumentFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <http://www.w3.org/1999/xhtml/model/function/>    
+    prefix function: <https://www.w3.org/html/model/function/>    
     
     select ?result where {
     
@@ -5562,40 +5573,40 @@ function:getDocumentFragment
 }
 """ .
 
-function:getChildNodeFragment
+  function:getChildNodeFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment of child nodes for a node in an HTML Document" ;
     sh:parameter [
-        sh:path function:node ;
+        sh:path ex:parentNode ;
         sh:datatype xsd:anyURI ;
         sh:description "A node in an HTML document." ;
     ] ;
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
   	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
     
     { # Get the HTML fragments of child nodes, if there are any.
-    select $node (group_concat(str(?fragment);separator='') as ?fragments) {
+    select $parentNode (group_concat(str(?childFragment);separator='') as ?childFragments) {
       {
-        select $node ?member ?fragment {
-          $node ?member ?childNode.
+        select $parentNode ?member ?childFragment {
+          $parentNode ?member ?childNode.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?childNode html:fragment ?fragment.
+          ?childNode html:fragment ?childFragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
        }
-      } group by $node
+      } group by $parentNode
      }
-    bind(if(bound(?fragments),?fragments,'') as ?result)  
+    bind(if(bound(?childFragments),?childFragments,'') as ?result)  
 }
 """ .
 
-function:getElementAttribute
+  function:getElementAttribute
     a sh:SPARQLFunction ;
     rdfs:comment "Returns an HTML attribute of an HTML element" ;
     sh:parameter [
@@ -5606,18 +5617,18 @@ function:getElementAttribute
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
    
     { # Get the HTML attributes for this element, if there are any.
-    select $element (group_concat(distinct ?attribute; separator='') as ?attributes) {
-      $element ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
+    select $element (group_concat(distinct ?attributeFragment; separator='') as ?attributeFragments) {
+      $element ?attribute ?value.
+      ?attribute html:key ?key.
+      bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
       } group by $element
      }
-    bind(if(bound(?attributes),?attributes,'') as ?result)      
+    bind(if(bound(?attributeFragments),?attributeFragments,'') as ?result)      
 }
 """ .
 

@@ -1,42 +1,61 @@
 @prefix aria: <http://www.w3.org/ns/wai-aria/> .
 @prefix dcm: <http://purl.org/dc/dcmitype/> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix decl: <https://data.rijksfinancien.nl/html/id/decl/> .
+@prefix decl: <https://www.w3.org/html/id/decl/> .
 @prefix doc: <http://www.example.org/document/> .
-@prefix dom: <https://data.rijksfinancien.nl/dom/model/def/> .
+@prefix dom: <http://www.w3.org/DOM/model/def/> .
+@prefix ex: <http://www.w3.org/bla/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix function: <https://data.rijksfinancien.nl/html/model/function/> .
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
+@prefix function: <https://www.w3.org/html/model/function/> .
+@prefix html: <https://www.w3.org/html/model/def/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix respec: <https://respec.org/model/def/> .
-@prefix rule: <https://data.rijksfinancien.nl/html/model/rule/> .
-@prefix section: <https://data.rijksfinancien.nl/html/id/section/> .
+@prefix rule: <https://www.w3.org/html/model/rule/> .
+@prefix section: <https://www.w3.org/html/id/section/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix shp: <https://data.rijksfinancien.nl/html/model/shp/> .
+@prefix shp: <https://www.w3.org/html/model/shp/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix standard: <https://data.rijksfinancien.nl/html/id/standard/> .
+@prefix standard: <https://www.w3.org/html/id/standard/> .
 @prefix status: <http://purl.org/adms/status/> .
-@prefix target: <https://data.rijksfinancien.nl/html/model/target/> .
+@prefix target: <https://www.w3.org/html/model/target/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 doc:1 a html:Document ;
-    rdf:_1 doc:1.1 ;
-    rdf:_2 doc:1.15 ;
-    html:fragment "<!DOCTYPE html><html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>" .
+    rdf:_1 doc:docType ;
+    rdf:_2 doc:html ;
+    html:fragment "<!DOCTYPE html><html><head><title>My first 'Hello world' HTML page represented in RDF</title><style> .italic-text {font-style: italic;}</style><meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head><body>Hello world</body></html>" .
+
+<http://www.w3.org/DOM/id/section/DOMImplementation> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-domimplementation"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.5.1. Interface DOMImplementation"@en .
+
+<http://www.w3.org/DOM/id/section/NamedNodeMap> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-namednodemap"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.9.1. Interface NamedNodeMap"@en .
+
+<http://www.w3.org/DOM/id/section/NodeTree> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#node-trees"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.2. Node tree"@en .
 
 dom:ProcessingInstruction a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/ProcessingInstruction> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/ProcessingInstruction> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:CharacterData ;
     skos:definition "Represents a processing instruction in the DOM document. Processing instructions provide instructions to the application for processing the document."@en ;
     skos:prefLabel "Processing Instruction"@en .
 
 dom:ShadowRoot a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/ShadowRoot> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/ShadowRoot> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:DocumentFragment ;
     skos:definition "Represents a separate subtree of the document tree that can be associated with a particular element, effectively creating a 'shadow DOM' within the element."@en ;
@@ -44,7 +63,7 @@ dom:ShadowRoot a owl:Class ;
 
 dom:class a owl:DatatypeProperty,
         dom:Attribute ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Class> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Class> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -53,7 +72,7 @@ dom:class a owl:DatatypeProperty,
     dom:key "class" .
 
 dom:customElementDefinition a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -61,7 +80,7 @@ dom:customElementDefinition a owl:DatatypeProperty ;
     skos:prefLabel "custom element definition"@en .
 
 dom:customElementState a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -69,7 +88,7 @@ dom:customElementState a owl:DatatypeProperty ;
     skos:prefLabel "custom element state"@en .
 
 dom:documentBaseURL a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Node> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Node> ;
     rdfs:domain dom:Document ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -78,7 +97,7 @@ dom:documentBaseURL a owl:DatatypeProperty ;
 
 dom:id a owl:DatatypeProperty,
         dom:Attribute ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/ID> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/ID> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -87,7 +106,7 @@ dom:id a owl:DatatypeProperty,
     dom:key "id" .
 
 dom:isValue a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -96,7 +115,7 @@ dom:isValue a owl:DatatypeProperty ;
 
 dom:name a owl:DatatypeProperty,
         dom:Attribute ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Name> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Name> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -104,7 +123,7 @@ dom:name a owl:DatatypeProperty,
     skos:prefLabel "the name attribute"@en .
 
 dom:namespace a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:anyUri ;
@@ -112,7 +131,7 @@ dom:namespace a owl:DatatypeProperty ;
     skos:prefLabel "namespace"@en .
 
 dom:namespacePrefix a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -120,7 +139,7 @@ dom:namespacePrefix a owl:DatatypeProperty ;
     skos:prefLabel "namespace prefix"@en .
 
 dom:nodeName a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Node> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Node> ;
     rdfs:domain dom:Node ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -129,7 +148,7 @@ dom:nodeName a owl:DatatypeProperty ;
 
 dom:slot a owl:DatatypeProperty,
         dom:Attribute ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Slot> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Slot> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
@@ -2393,29 +2412,29 @@ function:getChildNodeFragment a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment of child nodes for a node in an HTML Document" ;
     sh:parameter [ sh:datatype xsd:anyURI ;
             sh:description "A node in an HTML document." ;
-            sh:path function:node ] ;
+            sh:path ex:parentNode ] ;
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
   	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
     
     { # Get the HTML fragments of child nodes, if there are any.
-    select $node (group_concat(str(?fragment);separator='') as ?fragments) {
+    select $parentNode (group_concat(str(?childFragment);separator='') as ?childFragments) {
       {
-        select $node ?member ?fragment {
-          $node ?member ?childNode.
+        select $parentNode ?member ?childFragment {
+          $parentNode ?member ?childNode.
           filter(strstarts(str(?member),concat(str(rdf:),'_')))
-          ?childNode html:fragment ?fragment.
+          ?childNode html:fragment ?childFragment.
         }
         order by xsd:integer(strafter(str(?member),concat(str(rdf:),'_')))
        }
-      } group by $node
+      } group by $parentNode
      }
-    bind(if(bound(?fragments),?fragments,'') as ?result)  
+    bind(if(bound(?childFragments),?childFragments,'') as ?result)  
 }
 """ .
 
@@ -2427,7 +2446,7 @@ function:getCommentFragment a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>
+    prefix function: <https://www.w3.org/html/model/function/>
     
     select ?result where {
      
@@ -2445,7 +2464,7 @@ function:getDocumentFragment a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>    
+    prefix function: <https://www.w3.org/html/model/function/>    
     
     select ?result where {
     
@@ -2463,7 +2482,7 @@ function:getDocumentTypeFragment a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
     
@@ -2482,18 +2501,18 @@ function:getElementAttribute a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
    
     { # Get the HTML attributes for this element, if there are any.
-    select $element (group_concat(distinct ?attribute; separator='') as ?attributes) {
-      $element ?attribute0 ?value.
-      ?attribute0 html:key ?key.
-      bind(concat(?key,'="',str(?value),'"') as ?attribute)
+    select $element (group_concat(distinct ?attributeFragment; separator='') as ?attributeFragments) {
+      $element ?attribute ?value.
+      ?attribute html:key ?key.
+      bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
       } group by $element
      }
-    bind(if(bound(?attributes),?attributes,'') as ?result)      
+    bind(if(bound(?attributeFragments),?attributeFragments,'') as ?result)      
 }
 """ .
 
@@ -2505,8 +2524,8 @@ function:getElementFragment a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>      
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix function: <https://www.w3.org/html/model/function/>      
+    prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
     
@@ -2537,7 +2556,7 @@ function:getProcessingInstructionFragment a sh:SPARQLFunction ;
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>       
+    prefix function: <https://www.w3.org/html/model/function/>       
     
     select ?result where {
 
@@ -2581,127 +2600,181 @@ shp:SerializableNode a sh:NodeShape ;
     sh:rule rule:HTMLFragmentSerializationAlgorithm ;
     sh:target target:SerializableNode .
 
-<https://data.rijksfinancien.nl/xml/id/section/DOMImplementation> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-domimplementation"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.5.1. Interface DOMImplementation"@en .
+doc:body a html:Body ;
+    rdf:_1 doc:bodyText ;
+    html:fragment "<body>Hello world</body>" .
 
-<https://data.rijksfinancien.nl/xml/id/section/NamedNodeMap> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-namednodemap"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.9.1. Interface NamedNodeMap"@en .
+doc:bodyText a html:Text ;
+    html:fragment "Hello world" .
 
-<https://data.rijksfinancien.nl/xml/id/section/NodeTree> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#node-trees"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.2. Node tree"@en .
-
-doc:1.1 a html:DocumentType ;
+doc:docType a html:DocumentType ;
     html:documentTypeName "html" ;
     html:fragment "<!DOCTYPE html>" .
 
-doc:1.145 a html:Meta ;
+doc:head a html:Head ;
+    rdf:_1 doc:title ;
+    rdf:_2 doc:style ;
+    rdf:_3 doc:meta ;
+    html:fragment "<head><title>My first 'Hello world' HTML page represented in RDF</title><style> .italic-text {font-style: italic;}</style><meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head>" .
+
+doc:html a html:Html ;
+    rdf:_1 doc:head ;
+    rdf:_2 doc:body ;
+    html:fragment "<html><head><title>My first 'Hello world' HTML page represented in RDF</title><style> .italic-text {font-style: italic;}</style><meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head><body>Hello world</body></html>" .
+
+doc:meta a html:Meta ;
     html:charset "utf-8" ;
     html:fragment "<meta charset=\"utf-8\"http-equiv=\"Content-Type\">" ;
     html:http-equiv "Content-Type" .
 
-doc:1.15 a html:Html ;
-    rdf:_1 doc:1.21 ;
-    rdf:_2 doc:1.15.2 ;
-    rdf:_3 doc:1.201 ;
-    html:fragment "<html><head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head> <body>Hello world</body></html>" .
-
-doc:1.15.2 a html:Text ;
-    html:fragment " " .
-
-doc:1.201 a html:Body ;
-    rdf:_1 doc:1.201.1 ;
-    html:fragment "<body>Hello world</body>" .
-
-doc:1.201.1 a html:Text ;
-    html:fragment "Hello world" .
-
-doc:1.21 a html:Head ;
-    rdf:_1 doc:1.27 ;
-    rdf:_2 doc:1.21.2 ;
-    rdf:_3 doc:1.94 ;
-    rdf:_4 doc:1.21.4 ;
-    rdf:_5 doc:1.145 ;
-    html:fragment "<head><title>My first 'Hello world' HTML page represented in RDF</title> <style> .italic-text {font-style: italic;}</style> <meta charset=\"utf-8\"http-equiv=\"Content-Type\"></head>" .
-
-doc:1.21.2 a html:Text ;
-    html:fragment " " .
-
-doc:1.21.4 a html:Text ;
-    html:fragment " " .
-
-doc:1.27 a html:Title ;
-    rdf:_1 doc:1.27.1 ;
-    html:fragment "<title>My first 'Hello world' HTML page represented in RDF</title>" .
-
-doc:1.27.1 a html:Text ;
-    html:fragment "My first 'Hello world' HTML page represented in RDF" .
-
-doc:1.94 a html:StyleSheet ;
-    rdf:_1 doc:1.94.1 ;
+doc:style a html:StyleSheet ;
+    rdf:_1 doc:styleSheetText ;
     html:fragment "<style> .italic-text {font-style: italic;}</style>" .
 
-doc:1.94.1 a html:Text ;
+doc:styleSheetText a html:Text ;
     html:fragment " .italic-text {font-style: italic;}" .
 
+doc:title a html:Title ;
+    rdf:_1 doc:titleText ;
+    html:fragment "<title>My first 'Hello world' HTML page represented in RDF</title>" .
+
+doc:titleText a html:Text ;
+    html:fragment "My first 'Hello world' HTML page represented in RDF" .
+
+<http://www.w3.org/DOM/id/section/Attribute> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-attr"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.9.2. Interface Attr"@en .
+
+<http://www.w3.org/DOM/id/section/CDATASection> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-cdatasection"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.12. Interface CDATASection"@en .
+
+<http://www.w3.org/DOM/id/section/CharacterData> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-characterdata"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.10. Interface CharacterData"@en .
+
+<http://www.w3.org/DOM/id/section/Class> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#concept-class"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.9. Interface Element - Class"@en .
+
+<http://www.w3.org/DOM/id/section/Comment> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-comment"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.14. Interface Comment"@en .
+
+<http://www.w3.org/DOM/id/section/Document> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-document"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.5. Interface Document"@en .
+
+<http://www.w3.org/DOM/id/section/DocumentElement> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#document-element"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.2. Node tree - document element"@en .
+
+<http://www.w3.org/DOM/id/section/DocumentFragment> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-documentfragment"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.7. Interface DocumentFragment"@en .
+
+<http://www.w3.org/DOM/id/section/DocumentType> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-documenttype"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.6. Interface DocumentType"@en .
+
+<http://www.w3.org/DOM/id/section/ID> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#concept-id"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.9. Interface Element - Unique Identifier (ID)"@en .
+
+<http://www.w3.org/DOM/id/section/ProcessingInstruction> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-processinginstruction"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.13. Interface ProcessingInstruction"@en .
+
+<http://www.w3.org/DOM/id/section/ShadowRoot> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-shadowroot"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.8. Interface ShadowRoot"@en .
+
+<http://www.w3.org/DOM/id/section/Slot> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#concept-slot"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.2.2.1. Slots"@en .
+
+<http://www.w3.org/DOM/id/section/Text> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-text"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.11. Interface Text"@en .
+
 dom:CDATASection a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/CDATASection> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/CDATASection> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Text ;
     skos:definition "A CDATA section in a DOM document is used to include blocks of text that should not be interpreted as markup by a processor."@en ;
     skos:prefLabel "CDATA Section"@en .
 
 dom:Comment a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Comment> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Comment> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:CharacterData ;
     skos:definition "Represents a comment in the HTML or XML document. Comments are not rendered but are included in the DOM for developers' reference."@en ;
     skos:prefLabel "Comment"@en .
 
 dom:DocumentElement a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/DocumentElement> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/DocumentElement> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Element ;
     skos:definition "The document element of a document is the element whose parent is that document."@en ;
     skos:prefLabel "Document element"@en .
 
 dom:DocumentFragment a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/DocumentFragment> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/DocumentFragment> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "Represents a minimal document object that has no parent. It can be used to hold a group of nodes for processing purposes before adding them to the main document."@en ;
     skos:prefLabel "Document Fragment"@en .
 
 dom:DocumentType a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/DocumentType> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/DocumentType> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "Represents the document type declaration (<!DOCTYPE>) of a DOM-document. It specifies the document type to which the document conforms."@en ;
     skos:prefLabel "Doctype"@en .
 
 dom:localName a owl:DatatypeProperty ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:domain dom:Element ;
     rdfs:isDefinedBy dom: ;
     rdfs:range xsd:string ;
     skos:definition "Specifies the local name for a DOM element."@en ;
     skos:prefLabel "local name"@en .
 
-decl:dom sh:namespace "https://data.rijksfinancien.nl/dom/model/def/"^^xsd:anyURI ;
+decl:dom sh:namespace "http://www.w3.org/DOM/model/def/"^^xsd:anyURI ;
     sh:prefix "dom" .
 
-decl:function sh:namespace "https://data.rijksfinancien.nl/html/model/function/"^^xsd:anyURI ;
+decl:function sh:namespace "https://www.w3.org/html/model/function/"^^xsd:anyURI ;
     sh:prefix "function" .
 
-decl:html sh:namespace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI ;
+decl:html sh:namespace "https://www.w3.org/html/model/def/"^^xsd:anyURI ;
     sh:prefix "html" .
 
 decl:rdf sh:namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#"^^xsd:anyURI ;
@@ -3630,6 +3703,9 @@ construct {
        if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this), 
        if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
   as ?fragment)
+  
+  # Convert result from string to rdf:HTML
+ # bind(strdt(str(?fragmentString), xsd:string) as ?fragment)
 
 }""" ;
     sh:prefixes html: .
@@ -3653,13 +3729,16 @@ target:SerializableNode a sh:SPARQLTarget ;
     sh:select """
 select $this {
 
-  # Select all nodes in the HTML document...
+  # Select all DOM nodes...
   $this a/rdfs:subClassOf* dom:Node.
+  
+  #...in a HTML document...
+  $this a/rdfs:subClassOf*/rdfs:isDefinedBy html:.
   
   # ...that do not yet have an html fragment.
   filter not exists { $this html:fragment []. }
   
-  # ...but whose child nodes all have an html fragment
+  # ...but whose child nodes (if any) all have an html fragment
   minus {
     $this ?member ?child.
     filter(strstarts(str(?member),concat(str(rdf:),'_')))               
@@ -3668,99 +3747,15 @@ select $this {
   }
 }""" .
 
-<https://data.rijksfinancien.nl/xml/id/section/Attribute> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-attr"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.9.2. Interface Attr"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/CDATASection> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-cdatasection"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.12. Interface CDATASection"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/CharacterData> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-characterdata"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.10. Interface CharacterData"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/Class> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#concept-class"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.9. Interface Element - Class"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/Comment> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-comment"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.14. Interface Comment"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/Document> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-document"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.5. Interface Document"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/DocumentElement> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#document-element"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.2. Node tree - document element"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/DocumentFragment> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-documentfragment"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.7. Interface DocumentFragment"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/DocumentType> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-documenttype"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.6. Interface DocumentType"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/ID> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#concept-id"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.9. Interface Element - Unique Identifier (ID)"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/ProcessingInstruction> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-processinginstruction"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.13. Interface ProcessingInstruction"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/ShadowRoot> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-shadowroot"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.8. Interface ShadowRoot"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/Slot> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#concept-slot"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.2.2.1. Slots"@en .
-
-<https://data.rijksfinancien.nl/xml/id/section/Text> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-text"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.11. Interface Text"@en .
-
 dom:Document a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Document> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Document> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "In the DOM specification, the term 'document' is used for any markup-based resource, ranging from short static documents to long essays or reports with rich multimedia, as well as to fully-fledged interactive applications. Each such document is represented as a node tree, whose root is a document. Some of the nodes in a tree can have children, while others are always leaves. "@en ;
     skos:prefLabel "Document"@en .
 
 dom:Text a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Text> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Text> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:CharacterData ;
     skos:definition "Represents textual content within a DOM document. It's used to represent plain text nodes that are not part of markup elements. Text nodes can occur within elements, between elements, or as the content of attributes."@en ;
@@ -3975,8 +3970,14 @@ html:type a owl:DatatypeProperty,
     skos:prefLabel "the type attribute"@en ;
     html:key "type" .
 
+<http://www.w3.org/DOM/id/section/Node> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-node"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.4. Interface Node"@en .
+
 dom:CharacterData a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/CharacterData> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/CharacterData> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "Represents textual data nodes within a DOM document. It is a common superclass for specific types of nodes that contain text, including elements, comments, and CDATA sections."@en ;
@@ -4267,12 +4268,6 @@ html:controls a owl:DatatypeProperty,
     skos:prefLabel "the controls attribute"@en ;
     html:key "controls" .
 
-<https://data.rijksfinancien.nl/xml/id/section/Node> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-node"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.4. Interface Node"@en .
-
 html:Data a owl:Class ;
     dct:conformsTo section:4.5.13 ;
     rdfs:isDefinedBy html: ;
@@ -4479,7 +4474,7 @@ html:Track a owl:Class ;
     html:tag "track" .
 
 dom:Attribute a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Attribute> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Attribute> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "An attribute is a name-value pair associated with a DOM element. An attributes has a namespace (null or a non-empty string), namespace prefix (null or a non-empty string), local name (a non-empty string), value (a string), and element (null or an element)."@en ;
@@ -4529,17 +4524,26 @@ html:Source a owl:Class ;
     skos:prefLabel "the source element"@en ;
     html:tag "source" .
 
+<http://www.w3.org/DOM/id/section/Element> a dcm:Text ;
+    dct:isPartOf <http://www.w3.org/DOM/id/standard/dom> ;
+    dct:source "https://dom.spec.whatwg.org/#interface-element"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "4.9. Interface Element"@en .
+
 dom:Node a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Node> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Node> ;
     rdfs:isDefinedBy dom: ;
     skos:definition "A node is an object that implements Node. A node participates in a tree, which is known as the node tree."@en ;
     skos:prefLabel "Node"@en .
 
-<https://data.rijksfinancien.nl/xml/id/section/Element> a dcm:Text ;
-    dct:isPartOf <https://data.rijksfinancien.nl/xml/id/standard/dom> ;
-    dct:source "https://dom.spec.whatwg.org/#interface-element"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "4.9. Interface Element"@en .
+html:Text a owl:Class ;
+    dct:conformsTo section:13.1.3 ;
+    rdfs:isDefinedBy html: ;
+    rdfs:subClassOf dom:Text ;
+    skos:definition "Textual content that does not contain any HTML Core Vocabulary."@en ;
+    skos:example "A natural language sentence that appears in a table caption."@en,
+        "A numeric value that appears in a table cell."@en ;
+    skos:prefLabel "text"@en .
 
 html:CustomElement a owl:Class ;
     dct:conformsTo section:4.13.3 ;
@@ -4597,15 +4601,6 @@ html:Form a owl:Class ;
     skos:prefLabel "the form element"@en ;
     html:tag "form" .
 
-html:Text a owl:Class ;
-    dct:conformsTo section:13.1.3 ;
-    rdfs:isDefinedBy html: ;
-    rdfs:subClassOf dom:Text ;
-    skos:definition "Textual content that does not contain any HTML Core Vocabulary."@en ;
-    skos:example "A natural language sentence that appears in a table caption."@en,
-        "A numeric value that appears in a table cell."@en ;
-    skos:prefLabel "text"@en .
-
 html:A a owl:Class ;
     dct:conformsTo section:4.5.1 ;
     rdfs:isDefinedBy html: ;
@@ -4654,7 +4649,7 @@ html:Select a owl:Class ;
     html:tag "select" .
 
 dom:Element a owl:Class ;
-    dct:conformsTo <https://data.rijksfinancien.nl/xml/id/section/Element> ;
+    dct:conformsTo <http://www.w3.org/DOM/id/section/Element> ;
     rdfs:isDefinedBy dom: ;
     rdfs:subClassOf dom:Node ;
     skos:definition "Represents an element in the document. Each element may contain other elements, attributes, or text nodes."@en ;
@@ -4718,6 +4713,12 @@ html:Textarea a owl:Class ;
     skos:prefLabel "the textarea element"@en ;
     html:tag "textarea" .
 
+<http://www.w3.org/DOM/id/standard/dom> a dct:Standard ;
+    dct:created "2024-04-07"^^xsd:date ;
+    dct:source "https://dom.spec.whatwg.org/"^^xsd:anyURI ;
+    rdfs:isDefinedBy dom: ;
+    skos:prefLabel "Document Object Model (DOM) - Living Standard"@en .
+
 html:Img a owl:Class ;
     dct:conformsTo section:4.8.3 ;
     rdfs:isDefinedBy html: ;
@@ -4725,12 +4726,6 @@ html:Img a owl:Class ;
     skos:definition "The <img> HTML element embeds an image into the document."@en ;
     skos:prefLabel "the img element"@en ;
     html:tag "img" .
-
-<https://data.rijksfinancien.nl/xml/id/standard/dom> a dct:Standard ;
-    dct:created "2024-04-07"^^xsd:date ;
-    dct:source "https://dom.spec.whatwg.org/"^^xsd:anyURI ;
-    rdfs:isDefinedBy dom: ;
-    skos:prefLabel "Document Object Model (DOM) - Living Standard"@en .
 
 html:Link a owl:Class ;
     dct:conformsTo section:4.2.4 ;
@@ -4770,9 +4765,9 @@ dom: a void:Dataset,
     dct:subject "dom"@en ;
     dct:title "DOM Ontology"@en ;
     vann:preferredNamespacePrefix "dom" ;
-    vann:preferredNamespaceUri "http://www.w3.org/DOM/" ;
-    void:uriRegexPattern "^http://www.w3.org/DOM/" ;
-    void:uriSpace "http://www.w3.org/DOM/#"^^xsd:anyURI ;
+    vann:preferredNamespaceUri "http://www.w3.org/DOM/model/def/" ;
+    void:uriRegexPattern "^http://www.w3.org/DOM/model/def/" ;
+    void:uriSpace "http://www.w3.org/DOM/model/def/"^^xsd:anyURI ;
     owl:imports dct:,
         rdf:,
         rdfs:,
@@ -4836,9 +4831,9 @@ html: a void:Dataset,
     dct:subject "HTML"@en ;
     dct:title "Semantic HTML Core Ontology"@en ;
     vann:preferredNamespacePrefix "html" ;
-    vann:preferredNamespaceUri "https://data.rijksfinancien.nl/html/model/def/" ;
-    void:uriRegexPattern "^https://data.rijksfinancien.nl/html/model/def/" ;
-    void:uriSpace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI ;
+    vann:preferredNamespaceUri "https://www.w3.org/html/model/def/" ;
+    void:uriRegexPattern "^https://www.w3.org/html/model/def/" ;
+    void:uriSpace "https://www.w3.org/html/model/def/"^^xsd:anyURI ;
     owl:imports dct:,
         rdf:,
         rdfs:,
@@ -4868,7 +4863,7 @@ An 'hello world' HTML document:
 This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   prefix doc: <http://www.example.org/document/>
-  prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+  prefix html: <https://www.w3.org/html/model/def/>
   prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
   doc:1

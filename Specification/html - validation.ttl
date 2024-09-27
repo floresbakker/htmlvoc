@@ -17,14 +17,14 @@ prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # HTML prefixes
-prefix decl: <http://www.w3.org/1999/xhtml/id/decl/>
-prefix function: <http://www.w3.org/1999/xhtml/model/function/>
-prefix html: <http://www.w3.org/1999/xhtml/model/def/>
-prefix rule: <http://www.w3.org/1999/xhtml/model/rule/>
-prefix section: <http://www.w3.org/1999/xhtml/id/section/>
-prefix shp: <http://www.w3.org/1999/xhtml/model/shp/>
-prefix standard: <http://www.w3.org/1999/xhtml/id/standard/>
-prefix target: <http://www.w3.org/1999/xhtml/model/target/>
+prefix decl: <https://www.w3.org/html/id/decl/>
+prefix function: <https://www.w3.org/html/model/function/>
+prefix html: <https://www.w3.org/html/model/def/>
+prefix rule: <https://www.w3.org/html/model/rule/>
+prefix section: <https://www.w3.org/html/id/section/>
+prefix shp: <https://www.w3.org/html/model/shp/>
+prefix standard: <https://www.w3.org/html/id/standard/>
+prefix target: <https://www.w3.org/html/model/target/>
 
 html: {
   shp:Element

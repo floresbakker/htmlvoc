@@ -1,55 +1,45 @@
-@prefix doc: <http://www.example.org/document/> .
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+prefix doc: <http://www.example.org/document/> 
+prefix html: <https://www.w3.org/html/model/def/> 
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
 doc:1 a html:Document ;
-    rdf:_1 doc:1.1 ;
-    rdf:_2 doc:1.15 .
+    rdf:_1 doc:docType ;
+    rdf:_2 doc:html .
     
-doc:1.1
-    a html:DocumentType;
-    html:documentTypeName 'html'.    
+doc:docType
+    a html:DocumentType ;
+    html:documentTypeName 'html' .    
 
-doc:1.145 a html:Meta ;
+doc:html a html:Html ;
+    rdf:_1 doc:head ;
+    rdf:_2 doc:body .
+
+doc:head a html:Head ;
+    rdf:_1 doc:title ;
+    rdf:_2 doc:style ;
+    rdf:_3 doc:meta .
+
+doc:title a html:Title ;
+    rdf:_1 doc:titleText .
+
+doc:titleText a html:Text ;
+    html:fragment "My first 'Hello world' HTML page represented in RDF" .
+
+doc:style a html:StyleSheet ;
+    rdf:_1 doc:styleSheetText .
+
+doc:styleSheetText a html:Text ;
+    html:fragment " .italic-text {font-style: italic;}" .
+
+doc:meta a html:Meta ;
     html:charset "utf-8" ;
     html:http-equiv "Content-Type" .
 
-doc:1.15 a html:Html ;
-    rdf:_1 doc:1.21 ;
-    rdf:_2 doc:1.15.2 ;
-    rdf:_3 doc:1.201 .
+doc:body a html:Body ;
+    rdf:_1 doc:bodyText .
 
-doc:1.15.2 a html:Text ;
-    html:fragment " " .
-
-doc:1.201 a html:Body ;
-    rdf:_1 doc:1.201.1 .
-
-doc:1.201.1 a html:Text ;
+doc:bodyText a html:Text ;
     html:fragment "Hello world" .
 
-doc:1.21 a html:Head ;
-    rdf:_1 doc:1.27 ;
-    rdf:_2 doc:1.21.2 ;
-    rdf:_3 doc:1.94 ;
-    rdf:_4 doc:1.21.4 ;
-    rdf:_5 doc:1.145 .
 
-doc:1.21.2 a html:Text ;
-    html:fragment " " .
-
-doc:1.21.4 a html:Text ;
-    html:fragment " " .
-
-doc:1.27 a html:Title ;
-    rdf:_1 doc:1.27.1 .
-
-doc:1.27.1 a html:Text ;
-    html:fragment "My first 'Hello world' HTML page represented in RDF" .
-
-doc:1.94 a html:StyleSheet ;
-    rdf:_1 doc:1.94.1 .
-
-doc:1.94.1 a html:Text ;
-    html:fragment " .italic-text {font-style: italic;}" .
 
