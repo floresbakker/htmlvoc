@@ -26,8 +26,6 @@ prefix shp:      <https://www.w3.org/html/model/shp/>
 prefix standard: <https://www.w3.org/html/id/standard/>
 prefix target:   <https://www.w3.org/html/model/target/>
 
-prefix ex:      <http://www.w3.org/bla/>
-
 html: {
   html:
     a
@@ -5365,7 +5363,7 @@ select $this {
   filter not exists { $this html:fragment []. }
   
   # ...but whose child nodes (if any) all have an html fragment
-  filter not exists {
+  filter {
     $this ?member ?child.
     filter(strstarts(str(?member),concat(str(rdf:),'_')))               
     filter not exists { ?child html:fragment []. }
@@ -5400,8 +5398,8 @@ construct {
        if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
   as ?fragmentString)
   
-  # Convert result from string to rdf:HTML
-  bind(strdt(str(?fragmentString), xsd:string) as ?fragment)
+  # Convert result from string to rdf:HTML if fragment exists
+  bind(if(bound(?fragmentString), strdt(?fragmentString, rdf:HTML), ?unboundDummy) as ?fragment)
 
 }''';
     rdfs:isDefinedBy html:.
@@ -5444,6 +5442,7 @@ construct {
     
     select ?result where {
     
+    OPTIONAL {
     # Retrieve the tag name of the element.
     $element a/html:tag ?tag.
     
@@ -5459,8 +5458,9 @@ construct {
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
       # Void elements have neither content nor a closing tag.
       if(?childFragments='','',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-}
+    }
 """ .
 
   function:getTextFragment
@@ -5481,11 +5481,12 @@ construct {
     
     # Text is stored in de data attribute of DOM text nodes
     $text dom:data ?data.
-    
+    OPTIONAL {
     # Establish the HTML fragment for this HTML text node
     bind(strdt(?data,xsd:string) as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-}	
+    }	
 """ .
 
   function:getCommentFragment
@@ -5502,11 +5503,12 @@ construct {
     prefix function: <https://www.w3.org/html/model/function/>
     
     select ?result where {
-     
+    OPTIONAL { 
     # Establish the HTML fragment for this HTML comment
     bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-}	
+    }
 """ .
 
   function:getProcessingInstructionFragment
@@ -5523,11 +5525,13 @@ construct {
     prefix function: <https://www.w3.org/html/model/function/>       
     
     select ?result where {
-
+    
+    OPTIONAL {
     # Establish the HTML fragment for this HTML processingInstruction
     bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-}
+    }
 """ .
 
   function:getDocumentTypeFragment
@@ -5545,11 +5549,13 @@ construct {
     
     select ?result where {
     
+    OPTIONAL {
     # Establish the doctype name for this Document Type.
     $doctype html:documentTypeName ?name.
     bind(concat('<!DOCTYPE ',str(?name),'>') as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-}
+    }
 """ .
 	
   function:getDocumentFragment
@@ -5566,18 +5572,19 @@ construct {
     prefix function: <https://www.w3.org/html/model/function/>    
     
     select ?result where {
-    
+    OPTIONAL {
     # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
     bind(function:getChildNodeFragment($document) as ?fragment)
+     }
     bind(if(bound(?fragment),?fragment,'') as ?result)
-}
+    }
 """ .
 
   function:getChildNodeFragment
     a sh:SPARQLFunction ;
     rdfs:comment "Returns a HTML fragment of child nodes for a node in an HTML Document" ;
     sh:parameter [
-        sh:path ex:parentNode ;
+        sh:path function:parentNode ;
         sh:datatype xsd:anyURI ;
         sh:description "A node in an HTML document." ;
     ] ;
@@ -5589,8 +5596,8 @@ construct {
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
-    
-    { # Get the HTML fragments of child nodes, if there are any.
+    OPTIONAL { 
+    # Get the HTML fragments of child nodes, if there are any.
     select $parentNode (group_concat(str(?childFragment);separator='') as ?childFragments) {
       {
         select $parentNode ?member ?childFragment {
@@ -5603,7 +5610,7 @@ construct {
       } group by $parentNode
      }
     bind(if(bound(?childFragments),?childFragments,'') as ?result)  
-}
+    }
 """ .
 
   function:getElementAttribute
@@ -5620,7 +5627,7 @@ construct {
     prefix html: <https://www.w3.org/html/model/def/>
     
     select ?result where {
-   
+    OPTIONAL
     { # Get the HTML attributes for this element, if there are any.
     select $element (group_concat(distinct ?attributeFragment; separator='') as ?attributeFragments) {
       $element ?attribute ?value.
@@ -5629,7 +5636,7 @@ construct {
       } group by $element
      }
     bind(if(bound(?attributeFragments),?attributeFragments,'') as ?result)      
-}
+    }
 """ .
 
 }
