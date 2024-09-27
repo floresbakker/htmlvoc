@@ -2896,7 +2896,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     
   html:attribute
     a owl:DatatypeProperty,
-      dom:Attribute;
+      html:Attribute;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Element;
     rdfs:range rdfs:Literal;
@@ -2931,6 +2931,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:key
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf dom:localName;
     dct:conformsTo section:13.1.2.3;
     rdfs:domain html:Attribute;
     rdfs:range xsd:string;
@@ -5356,13 +5357,13 @@ select $this {
   # Select all DOM nodes...
   $this a/rdfs:subClassOf* dom:Node.
   
-  #...in a HTML document...
-  $this a/rdfs:subClassOf*/rdfs:isDefinedBy html:.
+  #...that are part of the HTML vocabulary...
+  $this a/rdfs:isDefinedBy html:.
   
-  # ...that do not yet have an html fragment.
+  # ...that do not yet have an HTML fragment.
   filter not exists { $this html:fragment []. }
   
-  # ...but whose child nodes (if any) all have an html fragment
+  # ...but whose child nodes (if any) all have an HTML fragment
   filter not exists {
     $this ?member ?child.
     filter(strstarts(str(?member),concat(str(rdf:),'_')))               
@@ -5623,15 +5624,19 @@ construct {
     ] ;
     sh:returnType xsd:string ;
     sh:select """
-    
+
+    prefix dom: <http://www.w3.org/DOM/model/def/>       
     prefix html: <https://www.w3.org/html/model/def/>
+    prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>    
     
     select ?result where {
     OPTIONAL
     { # Get the HTML attributes for this element, if there are any.
     select $element (group_concat(distinct ?attributeFragment; separator='') as ?attributeFragments) {
       $element ?attribute ?value.
-      ?attribute html:key ?key.
+      ?attribute a/rdfs:subClassOf* dom:Attribute;
+                 ?localName ?key.
+      ?localName rdfs:subPropertyOf dom:localName. 
       bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
       } group by $element
      }
