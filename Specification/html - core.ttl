@@ -1,10 +1,14 @@
+# Generic prefixes
+prefix aria: <http://www.w3.org/ns/wai-aria/>
 prefix dcm: <http://purl.org/dc/dcmitype/>
 prefix dct: <http://purl.org/dc/terms/>
+prefix dom: <http://www.w3.org/DOM/model/def/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfa: <http://www.w3.org/ns/rdfa#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix respec: <https://respec.org/model/def/>
 prefix sh: <http://www.w3.org/ns/shacl#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix status: <http://purl.org/adms/status/>
@@ -12,19 +16,17 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-prefix aria: <http://www.w3.org/ns/wai-aria/>
-prefix decl: <https://data.rijksfinancien.nl/html/id/decl/>
-prefix dom: <https://data.rijksfinancien.nl/dom/model/def/>
-prefix function: <https://data.rijksfinancien.nl/html/model/function/>
-prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix respec: <https://respec.org/model/def/>
-prefix rule: <https://data.rijksfinancien.nl/html/model/rule/>
-prefix section: <https://data.rijksfinancien.nl/html/id/section/>
-prefix shp: <https://data.rijksfinancien.nl/html/model/shp/>
-prefix standard: <https://data.rijksfinancien.nl/html/id/standard/>
-prefix target: <https://data.rijksfinancien.nl/html/model/target/>
+# HTML prefixes
+prefix decl: <http://www.w3.org/1999/xhtml/id/decl/>
+prefix function: <http://www.w3.org/1999/xhtml/model/function/>
+prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+prefix rule: <http://www.w3.org/1999/xhtml/model/rule/>
+prefix section: <http://www.w3.org/1999/xhtml/id/section/>
+prefix shp: <http://www.w3.org/1999/xhtml/model/shp/>
+prefix standard: <http://www.w3.org/1999/xhtml/id/standard/>
+prefix target: <http://www.w3.org/1999/xhtml/model/target/>
 
-#html: {
+html: {
   html:
     a
       owl:Ontology,
@@ -71,7 +73,7 @@ An 'hello world' HTML document:
 This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   prefix doc: <http://www.example.org/document/>
-  prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+  prefix html: <http://www.w3.org/1999/xhtml/model/def/>
   prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
   doc:1
@@ -147,21 +149,21 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       decl:rdfs,
       decl:xsd;
     vann:preferredNamespacePrefix 'html';
-    vann:preferredNamespaceUri 'https://data.rijksfinancien.nl/html/model/def/';
-    void:uriRegexPattern '^https://data.rijksfinancien.nl/html/model/def/';
-    void:uriSpace 'https://data.rijksfinancien.nl/html/model/def/'^^xsd:anyURI.
+    vann:preferredNamespaceUri 'http://www.w3.org/1999/xhtml/model/def/';
+    void:uriRegexPattern '^http://www.w3.org/1999/xhtml/model/def/';
+    void:uriSpace 'http://www.w3.org/1999/xhtml/model/def/'^^xsd:anyURI.
 
   decl:dom
     sh:prefix "dom";
-    sh:namespace "https://data.rijksfinancien.nl/dom/model/def/"^^xsd:anyURI.
+    sh:namespace "http://www.w3.org/DOM/model/def/"^^xsd:anyURI.
 
   decl:function
     sh:prefix "function";
-    sh:namespace "https://data.rijksfinancien.nl/html/model/function/"^^xsd:anyURI.    
+    sh:namespace "http://www.w3.org/1999/xhtml/model/function/"^^xsd:anyURI.    
 
   decl:html
     sh:prefix "html";
-    sh:namespace "https://data.rijksfinancien.nl/html/model/def/"^^xsd:anyURI.
+    sh:namespace "http://www.w3.org/1999/xhtml/model/def/"^^xsd:anyURI.
 
   decl:rdf
     sh:prefix "rdf";
@@ -5426,8 +5428,8 @@ function:getElementFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>      
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix function: <http://www.w3.org/1999/xhtml/model/function/>      
+    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
     
     select ?result where {
     
@@ -5486,7 +5488,7 @@ function:getCommentFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>
+    prefix function: <http://www.w3.org/1999/xhtml/model/function/>
     
     select ?result where {
      
@@ -5507,7 +5509,7 @@ function:getProcessingInstructionFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>       
+    prefix function: <http://www.w3.org/1999/xhtml/model/function/>       
     
     select ?result where {
 
@@ -5528,7 +5530,7 @@ function:getDocumentTypeFragment
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
     
     select ?result where {
     
@@ -5550,7 +5552,7 @@ function:getDocumentFragment
     sh:returnType xsd:string ;
     sh:select """
 
-    prefix function: <https://data.rijksfinancien.nl/html/model/function/>    
+    prefix function: <http://www.w3.org/1999/xhtml/model/function/>    
     
     select ?result where {
     
@@ -5571,7 +5573,7 @@ function:getChildNodeFragment
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
   	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
@@ -5604,7 +5606,7 @@ function:getElementAttribute
     sh:returnType xsd:string ;
     sh:select """
     
-    prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+    prefix html: <http://www.w3.org/1999/xhtml/model/def/>
     
     select ?result where {
    
@@ -5619,4 +5621,4 @@ function:getElementAttribute
 }
 """ .
 
-#}
+}

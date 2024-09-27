@@ -1,11 +1,14 @@
+# Generic prefixes
+prefix aria: <http://www.w3.org/ns/wai-aria/>
 prefix dcm: <http://purl.org/dc/dcmitype/>
 prefix dct: <http://purl.org/dc/terms/>
+prefix dom: <http://www.w3.org/DOM/model/def/>
 prefix foaf: <http://xmlns.com/foaf/0.1/>
 prefix owl: <http://www.w3.org/2002/07/owl#>
-prefix prov: <http://www.w3.org/ns/prov#>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfa: <http://www.w3.org/ns/rdfa#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix respec: <https://respec.org/model/def/>
 prefix sh: <http://www.w3.org/ns/shacl#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
 prefix status: <http://purl.org/adms/status/>
@@ -13,10 +16,17 @@ prefix vann: <http://purl.org/vocab/vann/>
 prefix void: <http://rdfs.org/ns/void#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
-prefix html: <https://data.rijksfinancien.nl/html/model/def/>
-prefix shp: <https://data.rijksfinancien.nl/htmlv/model/shp/>
+# HTML prefixes
+prefix decl: <http://www.w3.org/1999/xhtml/id/decl/>
+prefix function: <http://www.w3.org/1999/xhtml/model/function/>
+prefix html: <http://www.w3.org/1999/xhtml/model/def/>
+prefix rule: <http://www.w3.org/1999/xhtml/model/rule/>
+prefix section: <http://www.w3.org/1999/xhtml/id/section/>
+prefix shp: <http://www.w3.org/1999/xhtml/model/shp/>
+prefix standard: <http://www.w3.org/1999/xhtml/id/standard/>
+prefix target: <http://www.w3.org/1999/xhtml/model/target/>
 
-#html: {
+html: {
   shp:Element
     a sh:NodeShape;
     sh:property
@@ -311,4 +321,4 @@ prefix shp: <https://data.rijksfinancien.nl/htmlv/model/shp/>
     sh:maxCount 1;
     sh:path html:rowspan;
     rdfs:isDefinedBy html:.
-#}
+}
