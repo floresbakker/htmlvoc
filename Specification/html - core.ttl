@@ -5632,7 +5632,7 @@ construct {
     select ?result where {
     OPTIONAL
     { # Get the HTML attributes for this element, if there are any.
-    select $element (group_concat(distinct ?attributeFragment; separator='') as ?attributeFragments) {
+    select $element (group_concat(distinct ?attributeFragment; separator=' ') as ?attributeFragments) {
       $element ?attribute ?value.
       ?attribute a/rdfs:subClassOf* dom:Attribute;
                  ?localName ?key.
