@@ -1,9 +1,14 @@
-@prefix doc: <http://www.example.org/document/> .
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+prefix doc:  <http://www.example.org/document/> 
+prefix html: <https://www.w3.org/html/model/def/>
+prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
 doc:1 a html:Document ;
-    rdf:_1 doc:1.15 .
+    rdf:_1 doc:1.1 ;
+    rdf:_2 doc:1.15 .
+    
+doc:1.1
+    a html:DocumentType;
+    html:documentTypeName 'html'. 
 
 doc:1.1058 a html:Meta ;
     html:charset "utf-8" ;

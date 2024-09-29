@@ -20,7 +20,7 @@ current_dir = os.getcwd()
 directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 
 # namespace declaration
-html = Namespace("https://data.rijksfinancien.nl/html/model/def/")
+html = Namespace("https://www.w3.org/html/model/def/")
 rdf = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 rdfs = Namespace("http://www.w3.org/2000/01/rdf-schema#")
 doc = Namespace("http://www.example.org/document/")
@@ -58,7 +58,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
         tagquerystring = '''
             
         prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        prefix html: <https://data.rijksfinancien.nl/html/model/def/>
+        prefix html: <https://www.w3.org/html/model/def/>
 
         select ?element_IRI where {
           ?element_IRI html:tag ?tag
@@ -120,7 +120,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
                       g.add((doc[element_id], rdf["_" + str(member_count)], doc[child_id]))  
                       
                       # write to graph that the child element is of type TextElement
-                      g.add((doc[child_id], RDF.type, html["TextElement"]))
+                      g.add((doc[child_id], RDF.type, html["Text"]))
                       
                       # Get the text content of the current text element and preserve exact indentation and whitespaces
                       text_content = str(child)
@@ -141,7 +141,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
                       g.add((doc[child_id], rdf["_1"], doc[child_text_id]))
                       
                       # write to graph that the grand child element is of type TextElement
-                      g.add((doc[child_text_id], RDF.type, html["TextElement"]))
+                      g.add((doc[child_text_id], RDF.type, html["Text"]))
                       
                       # Get the text content of the current text element and preserve exact indentation and whitespaces
                       text_content = str(child)
@@ -162,7 +162,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
                       g.add((doc[child_id], rdf["_1"], doc[child_text_id]))
                         
                       # write to graph that the grand child element is of type TextElement
-                      g.add((doc[child_text_id], RDF.type, html["TextElement"]))
+                      g.add((doc[child_text_id], RDF.type, html["Text"]))
                         
                       # Get the text content of the current text element and preserve exact indentation and whitespaces
                       text_content = str(child)

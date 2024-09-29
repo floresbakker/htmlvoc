@@ -5,7 +5,7 @@ This is the repository for htmlvoc, the semantic HTML-vocabulary. You're welcome
 
 # Status
 
-Stable, but no release yet. Work in progress together with the community group [Semantic HTML-vocabulary](https://www.w3.org/community/htmlvoc/).
+Stable, but no release yet. Work in progress together with the community group [Semantic HTML-vocabulary](https://www.w3.org/community/htmlvoc/). We aim for a preliminary release in the end of 2024, together with a draft report on the vocabulary.
 
 # Background
 
@@ -84,12 +84,17 @@ This table is rendered in a browser as follows:
 Now we can represent the very same document in <i>RDF</i> using the HTML-vocabulary. As it is very cumbersome to do so by hand, a <i>HTML2RDF</i> tool is available in this repository that will do exactly that for you. For further information on this tool and other neat tools, scroll down this Readme file.
 
 ```
-@prefix doc: <http://www.example.org/document/> . 
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> . 
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+prefix doc:  <http://www.example.org/document/> 
+prefix html: <https://www.w3.org/html/model/def/> 
+prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
 doc:1 a html:Document ; 
- rdf:_1 doc:2.0 . 
+ rdf:_1 doc:1.0 ;
+ rdf:_2 doc:2.0 . 
+
+doc:1.0 a html:DocumentType ;
+ html:documentTypeName "html" ;
+ html:fragment "<!DOCTYPE html>"^^rdf:HTML .
  
 doc:2.0 a html:Html ; 
  rdf:_1 doc:3.0 ; 
@@ -110,7 +115,7 @@ doc:32.4 a html:Table ;
 doc:33.8 a html:Caption ; 
  rdf:_1 doc:33.8.1 .
 
-doc:33.8.1 a html:TextElement ; 
+doc:33.8.1 a html:Text ; 
  html:fragment "Example table" . 
 
 doc:34.8 a html:TableHeader ; 
@@ -124,25 +129,25 @@ doc:35.12 a html:Row ;
 doc:36.16 a html:HeaderCell ; 
  rdf:_1 doc:36.16.1 . 
 
-doc:36.16.1 a html:TextElement ; 
+doc:36.16.1 a html:Text ; 
  html:fragment "banana" .
 
 doc:37.16 a html:HeaderCell ; 
  rdf:_1 doc:37.16.1 .
 
-doc:37.16.1 a html:TextElement ; 
+doc:37.16.1 a html:Text ; 
  html:fragment "orange" .
 
 doc:38.16 a html:HeaderCell ; 
  rdf:_1 doc:38.16.1 .
 
-doc:38.16.1 a html:TextElement ; 
+doc:38.16.1 a html:Text ; 
  html:fragment "apple" .
 
 doc:4.4 a html:Title ; 
  rdf:_1 doc:4.4.1 . 
 
-doc:4.4.1 a html:TextElement ; 
+doc:4.4.1 a html:Text ; 
  html:fragment "Tutorial Document Example" . 
 
 doc:41.8 a html:TableBody ; 
@@ -157,19 +162,19 @@ doc:42.12 a html:Row ;
 doc:43.16 a html:DataCell ; 
  rdf:_1 doc:43.16.1 .
 
-doc:43.16.1 a html:TextElement ;
+doc:43.16.1 a html:Text ;
  html:fragment "1" .
 
 doc:44.16 a html:DataCell ; 
  rdf:_1 doc:44.16.1 . 
 
-doc:44.16.1 a html:TextElement ; 
+doc:44.16.1 a html:Text ; 
  html:fragment "2" . 
 
 doc:45.16 a html:DataCell ; 
  rdf:_1 doc:45.16.1 . 
 
-doc:45.16.1 a html:TextElement ; 
+doc:45.16.1 a html:Text ; 
  html:fragment "3" . 
 
 doc:47.12 a html:Row ; 
@@ -180,31 +185,31 @@ doc:47.12 a html:Row ;
 doc:48.16 a html:DataCell ;
  rdf:_1 doc:48.16.1 .
 
-doc:48.16.1 a html:TextElement ;
+doc:48.16.1 a html:Text ;
  html:fragment "a" . 
 
 doc:49.16 a html:DataCell ;
  rdf:_1 doc:49.16.1 . 
 
-doc:49.16.1 a html:TextElement ; 
+doc:49.16.1 a html:Text ; 
  html:fragment "b" . 
 
 doc:5.4 a html:StyleSheet ; 
  rdf:_1 doc:5.4.1 . 
 
-doc:5.4.1 a html:TextElement ; 
+doc:5.4.1 a html:Text ; 
  html:fragment """\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r """ . 
 
 doc:50.16 a html:DataCell ;
  rdf:_1 doc:50.16.1 . 
 
-doc:50.16.1 a html:TextElement ; 
+doc:50.16.1 a html:Text ; 
  html:fragment "c" .
 
 doc:50.16 a html:DataCell ;
     rdf:_1 doc:50.16.1 .
 
-doc:50.16.1 a html:TextElement ;
+doc:50.16.1 a html:Text ;
     html:fragment "c" .
 ```
 
@@ -224,12 +229,17 @@ This GUI with forms is rendered in a browser as follows:
 
 
 ```
-@prefix doc: <http://www.example.org/document/> .
-@prefix html: <https://data.rijksfinancien.nl/html/model/def/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+prefix doc:  <http://www.example.org/document/> 
+prefix html: <https://www.w3.org/html/model/def/> 
+prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
 doc:1 a html:Document ;
-    rdf:_1 doc:1.15 .
+    rdf:_1 doc:1.10 ;
+    rdf:_2 doc:1.15 .
+
+doc:1.10 a html:DocumentType ;
+    html:documentTypeName "html" ;
+    html:fragment "<!DOCTYPE html>"^^rdf:HTML .
 
 doc:1.1058 a html:Meta ;
     html:charset "utf-8" ;
@@ -261,13 +271,13 @@ doc:1.1150 a html:Div ;
 doc:1.1173 a html:H1 ;
     rdf:_1 doc:1.1173.1 .
 
-doc:1.1173.1 a html:TextElement ;
+doc:1.1173.1 a html:Text ;
     html:fragment "Register" .
 
 doc:1.1190 a html:P ;
     rdf:_1 doc:1.1190.1 .
 
-doc:1.1190.1 a html:TextElement ;
+doc:1.1190.1 a html:Text ;
     html:fragment "Please fill in this form to create an account." .
 
 doc:1.1243 a html:Hr .
@@ -279,7 +289,7 @@ doc:1.1247 a html:Label ;
 doc:1.1266 a html:B ;
     rdf:_1 doc:1.1266.1 .
 
-doc:1.1266.1 a html:TextElement ;
+doc:1.1266.1 a html:Text ;
     html:fragment "email" .
 
 doc:1.1286 a html:Input ;
@@ -296,7 +306,7 @@ doc:1.1371 a html:Label ;
 doc:1.1388 a html:B ;
     rdf:_1 doc:1.1388.1 .
 
-doc:1.1388.1 a html:TextElement ;
+doc:1.1388.1 a html:Text ;
     html:fragment "Password" .
 
 doc:1.1411 a html:Input ;
@@ -317,7 +327,7 @@ doc:1.15 a html:Html ;
 doc:1.1523 a html:B ;
     rdf:_1 doc:1.1523.1 .
 
-doc:1.1523.1 a html:TextElement ;
+doc:1.1523.1 a html:Text ;
     html:fragment "Repeat Password" .
 
 doc:1.1553 a html:Input ;
@@ -334,17 +344,17 @@ doc:1.1660 a html:P ;
     rdf:_2 doc:1.1703 ;
     rdf:_3 doc:1.1660.3 .
 
-doc:1.1660.1 a html:TextElement ;
+doc:1.1660.1 a html:Text ;
     html:fragment "" .
 
-doc:1.1660.3 a html:TextElement ;
+doc:1.1660.3 a html:Text ;
     html:fragment "" .
 
 doc:1.1703 a html:A ;
     rdf:_1 doc:1.1703.1 ;
     html:href "#" .
 
-doc:1.1703.1 a html:TextElement ;
+doc:1.1703.1 a html:Text ;
     html:fragment "Terms & Privacy" .
 
 doc:1.1739 a html:Button ;
@@ -352,7 +362,7 @@ doc:1.1739 a html:Button ;
     html:class "registerbtn" ;
     html:type "submit" .
 
-doc:1.1739.1 a html:TextElement ;
+doc:1.1739.1 a html:Text ;
     html:fragment "Register" .
 
 doc:1.1804 a html:Div ;
@@ -364,17 +374,17 @@ doc:1.1834 a html:P ;
     rdf:_2 doc:1.1861 ;
     rdf:_3 doc:1.1834.3 .
 
-doc:1.1834.1 a html:TextElement ;
+doc:1.1834.1 a html:Text ;
     html:fragment "" .
 
-doc:1.1834.3 a html:TextElement ;
+doc:1.1834.3 a html:Text ;
     html:fragment "" .
 
 doc:1.1861 a html:A ;
     rdf:_1 doc:1.1861.1 ;
     html:href "#" .
 
-doc:1.1861.1 a html:TextElement ;
+doc:1.1861.1 a html:Text ;
     html:fragment "Sign in" .
 
 doc:1.21 a html:Head ;
@@ -387,7 +397,7 @@ doc:1.27 a html:Title .
 doc:1.42 a html:StyleSheet ;
     rdf:_1 doc:1.42.1 .
 
-doc:1.42.1 a html:TextElement ;
+doc:1.42.1 a html:Text ;
     html:fragment "body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the \"sign in\" section */ .signin {  background-color: #f1f1f1;  text-align: center;}" .
 ```
 
@@ -398,7 +408,6 @@ This repository comes with two, fairly primitive, Python-based tools to handle H
 1. HTML2RDF
 2. RDF2HTML
 3. Playground
-
 
 
 ## HTML2RDF
@@ -466,8 +475,6 @@ A. Install all necessary libraries (in this order):
 	2. pip install pyshacl
 	3. pip install rdflib
 
-NOTE: pyshacl has a dependency with an older RDFlib version. However, for an optimal functioning of the semantic SVG-vocabulary, the most recent release of RDFlib should be used. Hence, it is advised to first install pyshacl and then RDFlib, so that RDFlib is installed having the latest version. This is currently the least instrusive way of handling the dependency, offering accessibility for those not well versed in Python. 
-
 B. Run the script in the command prompt by typing: 
 
 ```
@@ -486,15 +493,15 @@ C. Navigate to the URL http://localhost:5000/. Then choose one of two options:
 
 Currently there are some needed workaround concerning the use of both RDFlib and PyShacl.
 
-1. The generated HTML-code is captured in a graph with datatype xsd:string. Although not inherently incorrect, ideally a fragment of HTML-code would be represented with the more suiting datatype rdf:HTML. The latter unfortunately triggers an issue in a library HTML5Parser that appearantly is called by RDFLib in one way or the other. Hence, we adjusted our vocabulary, specifically the SHACL shapes in which we manipulate the HTML code, and represent html fragments as xsd:string for now.
+1. The generated HTML-code is captured in a graph with datatype xsd:string. Although not inherently incorrect, ideally a fragment of HTML-code would be represented with the more suiting datatype rdf:HTML. The latter unfortunately triggers an issue in the library HTML5lib that appearantly is called by RDFLib in one way or the other. Hence, we adjusted our vocabulary, specifically the SHACL shapes in which we manipulate the HTML code, and represent html fragments as xsd:string for now.
 
-See https://github.com/RDFLib/rdflib/issues/2475 (Although neatly corrected as much as possible within the scope of RDFlib, the issue remains in an external library HTML5Parser)
+See https://github.com/RDFLib/rdflib/issues/2475 (Although neatly corrected as much as possible within the scope of RDFlib, the issue remains in an external library HTML5Lib)
 
 2. There is a small issue in RDFlib using double "filter not exists" SPARQL statements. There is elegant workaround and this has been applied to the HTML-vocabulary. In time this workaround may be reversed if the bug has been solved and the community has expressed its wish in doing so.
 
 See https://github.com/RDFLib/rdflib/issues/2484 
 
-3. When a RDF-based representation of an HTML-document contains html attributes that are not yet known in the vocabulary, the generation process to HTML-code skips the element to which the attribute belongs, hence one might miss portions of the document. Solution is to add to the vocabulary. Currently we are working on completing the RDF-representation of all known HTML attributes in the living standard. For custom HTML attributes the same issue and solution applies.
+3. When a RDF-based representation of an HTML-document contains html attributes that are not yet known in the vocabulary, the generation process to HTML-code skips the element to which the attribute belongs, hence one might miss portions of the document. Solution is to add a separate vocabulary containing the attributes. 
 
 The html_vocabulary on line 79 should then be adjusted: 
 
@@ -508,7 +515,7 @@ html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html
 
 addendum_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/addendum.ttl")
 
-html_vocabulary = html_vocabulary + addendum_vocabulary
+html_vocabulary = html_vocabulary + '\n' + addendum_vocabulary
 ```
 
 4. Please note: the runtime of RDF2HTML for a rather complex and long HTML-file can be rather large.
