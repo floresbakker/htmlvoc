@@ -26,7 +26,7 @@ prefix shp:      <https://www.w3.org/html/model/shp/>
 prefix standard: <https://www.w3.org/html/id/standard/>
 prefix target:   <https://www.w3.org/html/model/target/>
 
-#html: {
+html: {
   html:
     a
       owl:Ontology,
@@ -5355,20 +5355,20 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 select $this {
 
   # Select all DOM nodes...
-  $this a/rdfs:subClassOf* dom:Node.
+  $this a/rdfs:subClassOf* dom:DocumentTreeNode.
   
-  #...that are part of the HTML vocabulary...
-  $this a/rdfs:isDefinedBy html:.
+                                             
+                                 
   
   # ...that do not yet have an HTML fragment.
   filter not exists { $this html:fragment []. }
   
   # ...but whose child nodes (if any) all have an HTML fragment
-  minus {
+  filter not exists {
     $this ?member ?child.
     filter(strstarts(str(?member),concat(str(rdf:),'_')))               
     filter not exists { ?child html:fragment []. }
-    ?child a/rdfs:subClassOf* dom:Node.
+    ?child a/rdfs:subClassOf* dom:DocumentTreeNode.
   }
 }''';
     rdfs:isDefinedBy html:.
@@ -5445,7 +5445,9 @@ construct {
     
     OPTIONAL {
     # Retrieve the tag name of the element.
-    $element a/html:tag ?tag.
+    $element a ?class.
+    ?class html:tag ?tag;
+             rdfs:subClassOf ?elementType.
     
     # Get the HTML attributes for the element, if there are any.
     bind(function:getElementAttribute($element) as ?attributes)
@@ -5458,7 +5460,7 @@ construct {
     concat(
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
       # Void elements have neither content nor a closing tag.
-      if(?childFragments='','',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
+      if(?childFragments='' && ?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
@@ -5644,4 +5646,4 @@ construct {
     }
 """ .
 
-#}
+}

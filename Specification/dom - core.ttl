@@ -17,7 +17,7 @@ prefix dom:      <http://www.w3.org/DOM/model/def/>
 prefix section:  <http://www.w3.org/DOM/id/section/>
 prefix standard: <http://www.w3.org/DOM/id/standard/>
 
-#dom:{
+dom:{
   dom:
     a
       owl:Ontology,
@@ -199,9 +199,17 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
     skos:prefLabel 'Node'@en;
     rdfs:isDefinedBy dom:.
 
-  dom:Document
+  dom:DocumentTreeNode
     a owl:Class;
     rdfs:subClassOf dom:Node;
+    dct:conformsTo section:DocumentTree;
+    skos:definition "A document tree node is any node within a node tree whose root is a document node. These nodes form the hierarchical representation of the document, including document, documenttype, elements, comments, and text nodes, that contribute to the document's structure and content."@en;
+    skos:prefLabel 'Document tree node'@en;
+    rdfs:isDefinedBy dom:.
+    
+  dom:Document
+    a owl:Class;
+    rdfs:subClassOf dom:DocumentTreeNode;
     dct:conformsTo section:Document;
     skos:definition "In the DOM specification, the term 'document' is used for any markup-based resource, ranging from short static documents to long essays or reports with rich multimedia, as well as to fully-fledged interactive applications. Each such document is represented as a node tree, whose root is a document. Some of the nodes in a tree can have children, while others are always leaves. "@en;
     skos:prefLabel 'Document'@en;
@@ -209,7 +217,7 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
 
   dom:DocumentType
     a owl:Class;
-    rdfs:subClassOf dom:Node;
+    rdfs:subClassOf dom:DocumentTreeNode;
     dct:conformsTo section:DocumentType;
     skos:prefLabel 'Doctype'@en;
     skos:definition "Represents the document type declaration (<!DOCTYPE>) of a DOM-document. It specifies the document type to which the document conforms."@en;
@@ -241,7 +249,7 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
 
   dom:Element
     a owl:Class;
-    rdfs:subClassOf dom:Node;
+    rdfs:subClassOf dom:DocumentTreeNode;
     dct:conformsTo section:Element;
     skos:definition 'Represents an element in the document. Each element may contain other elements, attributes, or text nodes.'@en;
     skos:prefLabel 'Element'@en;
@@ -249,7 +257,7 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
 
   dom:DocumentElement
     a owl:Class;
-    rdfs:subClassOf dom:Element;
+    rdfs:subClassOf dom:DocumentTreeNode;
     dct:conformsTo section:DocumentElement;
     skos:definition "The document element of a document is the element whose parent is that document."@en;
     skos:prefLabel 'Document element'@en;
@@ -257,7 +265,7 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
 
   dom:CharacterData
     a owl:Class;
-    rdfs:subClassOf dom:Node;
+    rdfs:subClassOf dom:DocumentTreeNode;
     dct:conformsTo section:CharacterData;
     skos:definition 'Represents textual data nodes within a DOM document. It is a common superclass for specific types of nodes that contain text, including elements, comments, and CDATA sections.'@en;
     skos:prefLabel 'Character Data'@en;
@@ -412,4 +420,4 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
     skos:definition "Specifies a name for a DOM element."@en;
     rdfs:isDefinedBy dom:.
 
-#}
+}
