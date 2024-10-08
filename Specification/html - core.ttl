@@ -8,7 +8,7 @@ prefix owl:      <http://www.w3.org/2002/07/owl#>
 prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfa:     <http://www.w3.org/ns/rdfa#>
 prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
-prefix respec:   <https://respec.org/model/def/>
+prefix respec:   <https://respec.org/model/ontorespec/model/def/>
 prefix sh:       <http://www.w3.org/ns/shacl#>
 prefix skos:     <http://www.w3.org/2004/02/skos/core#>
 prefix status:   <http://purl.org/adms/status/>
@@ -39,18 +39,26 @@ html: {
       'Rosaline de Haan',
       'Thomas de Groot',
       'Wouter Beek';
+      
     respec:introduction '''
 In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
 
 So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
 
 To address this need, we have pioneered the development of the RDF-based Semantic HTML Core Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
+
     respec:background 'In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'@en;
-    respec:objective 'In response to these challenges, we introduce the RDF-based semantic HTML Core Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions. In the following sections, we delve deeper into the RDF-based Semantic HTML Core Vocabulary, providing comprehensive insights, implementation guidelines, and real-world examples to empower organizations in their quest for information mastery.'@en;
+    
+    respec:objective 'In response to these challenges, we introduce the RDF-based semantic HTML Core Vocabulary - a paradigm-shifting framework that empowers organizations to conquer the intricacies of information management. With this vocabulary, organizations gain the capacity to (1) construct and deconstruct, (2) generate and validate and (3) adapt and reuse. Constructing and deconstructing means that one can craft and dismantle information products at will, from their fundamental building blocks to their overarching significance. Generating and validating comes down to creating new information products and rigorously validating their accuracy and completeness. Finally, adapting and reusing is about adapting existing information products to swiftly respond to evolving scenarios and reusing valuable components across a spectrum of contexts. This innovative vocabulary forms the cornerstone of an information management ecosystem that harmonizes the power of RDF with the ubiquity of HTML. It revolutionizes how organizations handle information artifacts, enabling them to seamlessly transition from raw data to strategic insights and practical solutions.'@en;
+    
     respec:audience 'This document is intended for a diverse audience of web developers, content managers, semantic web enthusiasts, and anyone seeking to enhance the sustainability of information management, information processing and information technology.'@en;
+    
     respec:acknowledgements 'This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'@en;
-    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables a semantic representation of any HTML document. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML DOM element and is in fact a subclass of 'dom:Element', the latter being the class of all DOM elements. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:attribute' datatype property. Any attribute in HTML like 'html:class' or 'html:style' is a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text; html:fragment "Hello, World!".'. Finally, there are the HTML void elements like 'html:Br' (line break), which are subclass of 'html:VoidElement'. Together, these classes and attributes can be used to represent any HTML document in RDF. In order to serialize this HTML document to actual HTML code, there are three SHACL node shapes to process the RDF-structure and transform this into HTML code, (1) shp:VoidElement, (2) shp:SerializableElement and (3) shp:Document. The logic behind these shapes is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are the void elements, that do not contain any child elements and thus can be transformed into HTML code immediately without the necessity of any context, together with HTML text elements, themselves already containing HTML fragments with textual strings. From the outer edges the node shape shp:SerializableElement works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
-    dct:abstract 'This RDF-based vocabulary establishes a draft standard for semantically representing HTML documents, adhering to the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. This enables the generation of HTML from RDF representations and the parsing of HTML into RDF, offering comprehensive control and detailed description of HTML content. This vocabulary enhances web content management and integration, bridging HTML and semantic technologies.'@en;
+    
+    dct:description '''The HTML Core Vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML element and is in fact a subclass of 'dom:Element', an element as specified in the Document Object Model specification. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:Attribute' class of all HTML attributes. Any attribute in HTML like 'html:class' or 'html:style' is also a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML, RDFa or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text; html:fragment "Hello, World!".'. In order to serialize this HTML document to actual HTML code, there is the SHACL node shape shp:SerializableNode to process the RDF-structure and transform this into HTML code. The rule in the node shape calls six functions, depending on the content of the HTML document. The logic behind the shape is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are text nodes and elements that do not contain any child elements. From the start these can be transformed into HTML code immediately without the necessity of any context. From the outer edges the node shape shp:SerializableNode works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
+    
+    dct:abstract 'This RDF-based vocabulary establishes a draft standard to semantically represent HTML documents in RDF. The vocabulary is based on the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. HTML documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves. As HTML documents are widely used in a myriad of use cases, from websites, dashboard, applications, to social media and documents, this vocabulary helps organisations and individuals to get a better grasp of their information products.'@en;
+    
     skos:example '''
 An 'hello world' HTML document:
 
@@ -149,7 +157,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       decl:rdfs,
       decl:xsd;
     vann:preferredNamespacePrefix 'html';
-    vann:preferredNamespaceUri 'https://www.w3.org/html/model/def/';
+    vann:preferredNamespaceUri 'https://www.w3.org/html/model/def/'^^xsd:anyURI;
     void:uriRegexPattern '^https://www.w3.org/html/model/def/';
     void:uriSpace 'https://www.w3.org/html/model/def/'^^xsd:anyURI.
 
@@ -1360,7 +1368,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel 'comment element'@en;
     rdfs:isDefinedBy html:.
 
-  # Text element
+  # Text node
 
   html:Text
     a owl:Class;
@@ -2970,6 +2978,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:abbr
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;
     html:key 'abbr';
     rdf:type html:Attribute;
     rdfs:domain html:Th;
@@ -2980,6 +2989,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:accept
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'accept';
     rdf:type html:Attribute;
     rdfs:domain html:Input;
@@ -2990,6 +3000,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:accept-charset
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'accept-charset';
     rdf:type html:Attribute;
     rdfs:domain html:Form;
@@ -3000,6 +3011,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:accesskey
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'accesskey';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3010,6 +3022,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:action
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'action';
     rdfs:domain html:Form;
     rdfs:range xsd:string;
@@ -3020,6 +3033,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:allow
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'allow';
     rdf:type html:Attribute;
     rdfs:domain html:Iframe;
@@ -3030,6 +3044,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:allowfullscreen
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'allowfullscreen';
     rdf:type html:Attribute;
     rdfs:domain html:Iframe;
@@ -3040,6 +3055,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:alt
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'alt';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3055,6 +3071,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:as
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'as';
     rdf:type html:Attribute;
     rdfs:domain html:Link;
@@ -3065,6 +3082,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:async
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'async';
     rdf:type html:Attribute;
     rdfs:domain html:Script;
@@ -3075,6 +3093,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:autocapitalize
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'autocapitalize';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3085,6 +3104,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:autocomplete
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'autocomplete';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3101,6 +3121,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:autofocus
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'autofocus';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3111,6 +3132,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:autoplay
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'autoplay';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3125,6 +3147,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:blocking
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'blocking';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3140,6 +3163,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:charset
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'charset';
     rdf:type html:Attribute;
     rdfs:domain html:Meta;
@@ -3150,6 +3174,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:checked
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'checked';
     rdf:type html:Attribute;
     rdfs:domain html:Input;
@@ -3160,6 +3185,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:cite
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'cite';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3176,6 +3202,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:class
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'class';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -3186,6 +3213,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:color
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'color';
     rdf:type html:Attribute;
     rdfs:domain html:Link;
@@ -3196,6 +3224,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:cols
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'cols';
     rdf:type html:Attribute;
     rdfs:domain html:Link;
@@ -3206,6 +3235,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:colspan
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'colspan';
     rdf:type html:Attribute;
     rdfs:domain html:Cell;
@@ -3216,6 +3246,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:content
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'content';
     rdf:type html:Attribute;
     rdfs:domain html:Meta;
@@ -3226,6 +3257,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:contenteditable
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'contenteditable';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3236,6 +3268,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:controls
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'controls';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -3246,6 +3279,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:coords
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'coords';
     rdf:type html:Attribute;
     rdfs:domain html:Area;
@@ -3256,6 +3290,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:crossorigin
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'crossorigin';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3273,6 +3308,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:data
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'data';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -3283,6 +3319,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:datetime
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'datetime';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3298,6 +3335,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:decoding
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'decoding';
     rdf:type html:Attribute;
     rdfs:domain html:Img;
@@ -3308,6 +3346,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:default
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'default';
     rdf:type html:Attribute;
     rdfs:domain html:Track;
@@ -3318,6 +3357,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:defer
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'defer';
     rdf:type html:Attribute;
     rdfs:domain html:Script;
@@ -3328,6 +3368,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:dir
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'dir';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3338,6 +3379,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:dirname
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'dirname';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3352,6 +3394,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:disabled
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'disabled';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3372,6 +3415,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:download
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'download';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3386,6 +3430,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:draggable
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'draggable';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3396,6 +3441,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:enctype
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'enctype';
     rdf:type html:Attribute;
     rdfs:domain html:Form;
@@ -3406,6 +3452,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:enterkeyhint
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'enterkeyhint';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3416,6 +3463,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:fetchpriority
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'fetchpriority';
     rdfs:domain
       [ a owl:Class;
@@ -3431,6 +3479,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:for
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'for';
     rdfs:domain
       [ a owl:Class;
@@ -3445,6 +3494,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:form
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'form';
     rdfs:domain
       [ a owl:Class;
@@ -3464,6 +3514,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:formaction
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'formaction';
     rdfs:domain
       [ a owl:Class;
@@ -3478,6 +3529,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:formenctype
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'formenctype';
     rdfs:domain
       [ a owl:Class;
@@ -3492,6 +3544,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:formmethod
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'formmethod';
     rdfs:domain
       [ a owl:Class;
@@ -3506,6 +3559,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:formnovalidate
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'formnovalidate';
     rdfs:domain
       [ a owl:Class;
@@ -3520,6 +3574,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:formtarget
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'formtarget';
     rdfs:domain
       [ a owl:Class;
@@ -3534,6 +3589,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:headers
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'headers';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3548,6 +3604,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:height
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'height';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3568,6 +3625,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:hidden
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'hidden';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3578,6 +3636,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:high
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'high';
     rdf:type html:Attribute;
     rdfs:domain html:Meter;
@@ -3588,6 +3647,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:href
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'href';
     rdfs:domain
       [ a owl:Class;
@@ -3604,6 +3664,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:hreflang
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'hreflang';
     rdfs:domain
       [ a owl:Class;
@@ -3618,6 +3679,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:http-equiv
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'http-equiv';
     rdf:type html:Attribute;
     rdfs:domain html:Meta;
@@ -3628,6 +3690,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:id
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'id';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -3638,6 +3701,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:imagesizes
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'imagesizes';
     rdf:type html:Attribute;
     rdfs:domain html:Link;
@@ -3648,6 +3712,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:imagesrcset
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'imagesrcset';
     rdf:type html:Attribute;
     rdfs:domain html:Link;
@@ -3658,6 +3723,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:inert
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'inert';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3668,6 +3734,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:inputmode
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'inputmode';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3678,6 +3745,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:integrity
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'integrity';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3692,6 +3760,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:is
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'is';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3702,6 +3771,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ismap
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ismap';
     rdf:type html:Attribute;
     rdfs:domain html:Img;
@@ -3712,6 +3782,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:itemid
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'itemid';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3722,6 +3793,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:itemprop
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'itemprop';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3732,6 +3804,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:itemref
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'itemref';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3742,6 +3815,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:itemscope
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'itemscope';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3752,6 +3826,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:itemtype
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'itemtype';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3762,6 +3837,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:kind
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'kind';
     rdf:type html:Attribute;
     rdfs:domain html:Track;
@@ -3772,6 +3848,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:label
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'label';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3787,6 +3864,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:lang
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'lang';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -3797,6 +3875,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:list
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'list';
     rdf:type html:Attribute;
     rdfs:domain html:Input;
@@ -3807,6 +3886,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:loading
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'loading';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3821,6 +3901,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:loop
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'loop';
     rdf:type html:Attribute;
     rdfs:domain
@@ -3835,6 +3916,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:low
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'low';
     rdf:type html:Attribute;
     rdfs:domain html:Meter;
@@ -3845,6 +3927,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:max
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'max';
     rdfs:domain
       [ a owl:Class;
@@ -3860,6 +3943,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:maxlength
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'maxlength';
     rdfs:domain
       [ a owl:Class;
@@ -3874,6 +3958,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:media
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'media';
     rdfs:domain
       [ a owl:Class;
@@ -3891,6 +3976,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:method
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'method';
     rdfs:domain html:Form;
     rdfs:range xsd:string;
@@ -3901,6 +3987,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:min
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'min';
     rdfs:domain
       [ a owl:Class;
@@ -3915,6 +4002,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:minlength
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'minlength';
     rdfs:domain
       [ a owl:Class;
@@ -3929,6 +4017,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:multiple
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'multiple';
     rdfs:domain
       [ a owl:Class;
@@ -3943,6 +4032,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:muted
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'muted';
     rdfs:domain
       [ a owl:Class;
@@ -3957,6 +4047,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:name
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'name';
     rdfs:domain
       [ a owl:Class;
@@ -3982,6 +4073,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:nomodule
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'nomodule';
     rdf:type html:Attribute;
     rdfs:domain html:Script;
@@ -3992,6 +4084,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:nonce
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'nonce';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4002,6 +4095,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:novalidate
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'novalidate';
     rdf:type html:Attribute;
     rdfs:domain html:Form;
@@ -4012,6 +4106,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:open
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'open';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4026,6 +4121,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:optimum
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'optimum';
     rdf:type html:Attribute;
     rdfs:domain html:Meter;
@@ -4036,6 +4132,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:pattern
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'pattern';
     rdf:type html:Attribute;
     rdfs:domain html:Input;
@@ -4046,6 +4143,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ping
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ping';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4060,6 +4158,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:placeholder
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'placeholder';
     rdfs:domain
       [ a owl:Class;
@@ -4074,6 +4173,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:playsinline
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'playsinline';
     rdf:type html:Attribute;
     rdfs:domain html:Video;
@@ -4084,6 +4184,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:popover
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'popover';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4094,6 +4195,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:popovertarget
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'popovertarget';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4108,6 +4210,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:popovertargetaction
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'popovertargetaction';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4122,6 +4225,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:poster
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'poster';
     rdf:type html:Attribute;
     rdfs:domain html:Video;
@@ -4132,6 +4236,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:preload
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'preload';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4146,6 +4251,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:readonly
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'readonly';
     rdfs:domain
       [ a owl:Class;
@@ -4160,6 +4266,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:referrerpolicy
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'referrerpolicy';
     rdfs:domain
       [ a owl:Class;
@@ -4178,6 +4285,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:rel
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'rel';
     rdfs:domain
       [ a owl:Class;
@@ -4193,6 +4301,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:required
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'required';
     rdfs:domain
       [ a owl:Class;
@@ -4208,6 +4317,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:resource
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'resource';
     rdfs:domain html:Element;
     rdfs:range xsd:string;
@@ -4218,6 +4328,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:reversed
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'reversed';
     rdfs:domain html:Ol;
     rdfs:range xsd:boolean;
@@ -4228,6 +4339,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:rows
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'rows';
     rdf:type html:Attribute;
     rdfs:domain html:Textarea;
@@ -4238,6 +4350,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:rowspan
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'rowspan';
     rdf:type html:Attribute;
     rdfs:domain html:Cell;
@@ -4248,6 +4361,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:sandbox
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'sandbox';
     rdf:type html:Attribute;
     rdfs:domain html:Iframe;
@@ -4258,6 +4372,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:scope
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'scope';
     rdf:type html:Attribute;
     rdfs:domain html:Th;
@@ -4268,6 +4383,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:selected
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'selected';
     rdf:type html:Attribute;
     rdfs:domain html:Option;
@@ -4278,6 +4394,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:shape
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'shape';
     rdf:type html:Attribute;
     rdfs:domain html:Area;
@@ -4288,6 +4405,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:size
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'size';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4302,6 +4420,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:sizes
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'sizes';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4317,6 +4436,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:slot
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'slot';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -4327,6 +4447,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:span
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'span';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4341,6 +4462,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:spellcheck
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'spellcheck';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4351,6 +4473,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:src
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'src';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4372,6 +4495,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:srcdoc
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'srcdoc';
     rdf:type html:Attribute;
     rdfs:domain html:Iframe;
@@ -4382,6 +4506,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:srclang
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'srclang';
     rdf:type html:Attribute;
     rdfs:domain html:Track;
@@ -4392,6 +4517,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:srcset
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'srcset';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4406,6 +4532,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:start
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'start';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4420,6 +4547,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:step
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'step';
     rdf:type html:Attribute;
     rdfs:domain html:Input;
@@ -4430,6 +4558,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:style
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'style';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4440,6 +4569,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:tabindex
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'tabindex';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4450,6 +4580,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:target
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'target';
     rdf:type html:Attribute;
     rdfs:domain html:Element;
@@ -4460,6 +4591,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:title
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'title';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4470,6 +4602,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:translate
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'translate';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:Element;
@@ -4480,6 +4613,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:type
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'type';
     rdfs:domain html:Input;
     rdfs:range xsd:string;
@@ -4490,6 +4624,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:usemap
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'usemap';
     rdfs:domain html:Img;
     rdfs:range xsd:string;
@@ -4500,6 +4635,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:value
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'value';
     rdfs:domain
       [ a owl:Class;
@@ -4519,6 +4655,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:width
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'width';
     rdf:type html:Attribute;
     rdfs:domain
@@ -4538,6 +4675,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:wrap
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'wrap';
     rdfs:domain html:Textarea;
     rdfs:range xsd:string;
@@ -4548,6 +4686,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:writingsuggestions
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'writingsuggestions';
     rdf:type html:GlobalAttribute;
     rdfs:domain html:NormalElement;
@@ -4560,6 +4699,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onafterprint
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onafterprint';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Body;
@@ -4570,6 +4710,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onauxclick
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onauxclick';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4580,6 +4721,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onbeforeinput
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onbeforeinput';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4590,6 +4732,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onbeforematch
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onbeforematch';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4600,6 +4743,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onbeforeprint
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onbeforeprint';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Body;
@@ -4610,6 +4754,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onbeforeunload
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onbeforeunload';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Body;
@@ -4620,6 +4765,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onbeforetoggle
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onbeforetoggle';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4630,6 +4776,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onblur
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onblur';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4640,6 +4787,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncancel
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncancel';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4650,6 +4798,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncanplay
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncanplay';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4660,6 +4809,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncanplaythrough
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncanplaythrough';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4670,6 +4820,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onchange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onchange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4680,6 +4831,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onclick
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onclick';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4690,6 +4842,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onclose
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onclose';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4700,6 +4853,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncontextlost
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncontextlost';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4710,6 +4864,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncontextmenu
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncontextmenu';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4720,6 +4875,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncontextrestored
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncontextrestored';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4730,6 +4886,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncopy
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncopy';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4740,6 +4897,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncuechange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncuechange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4750,6 +4908,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oncut
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oncut';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4760,6 +4919,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondblclick
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondblclick';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4770,6 +4930,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondrag
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondrag';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4780,6 +4941,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragend
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragend';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4790,6 +4952,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragenter
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragenter';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4800,6 +4963,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragexit
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragexit';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4810,6 +4974,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragleave
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragleave';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4820,6 +4985,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragover
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragover';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4830,6 +4996,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondragstart
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondragstart';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4840,6 +5007,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondrop
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondrop';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4850,6 +5018,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ondurationchange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ondurationchange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4860,6 +5029,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onemptied
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onemptied';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4870,6 +5040,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onended
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onended';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4880,6 +5051,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onerror
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onerror';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -4890,6 +5062,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onfocus
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onfocus';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4900,6 +5073,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onformdata
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onformdata';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4910,6 +5084,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oninput
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oninput';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4920,6 +5095,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:oninvalid
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'oninvalid';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4930,6 +5106,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onkeydown
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onkeydown';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4940,6 +5117,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onkeypress
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onkeypress';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4950,6 +5128,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onkeyup
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onkeyup';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4960,6 +5139,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onlanguagechange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onlanguagechange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Window;
@@ -4970,6 +5150,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onload
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onload';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -4980,6 +5161,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onloadeddata
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onloadeddata';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -4990,6 +5172,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onloadedmetadata
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onloadedmetadata';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5000,6 +5183,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onloadstart
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onloadstart';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5010,6 +5194,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmessage
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmessage';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -5020,6 +5205,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmessageerror
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmessageerror';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Window;
@@ -5030,6 +5216,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmousedown
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmousedown';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5040,6 +5227,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmouseenter
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmouseenter';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5050,6 +5238,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmouseleave
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmouseleave';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5060,6 +5249,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmousemove
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmousemove';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5070,6 +5260,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmouseout
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmouseout';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5080,6 +5271,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmouseover
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmouseover';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5090,6 +5282,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmouseup
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmouseup';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5100,6 +5293,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onmousewheel
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onmousewheel';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5110,6 +5304,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onpause
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onpause';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5120,6 +5315,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onplay
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onplay';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5130,6 +5326,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onplaying
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onplaying';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5140,6 +5337,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onprogress
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onprogress';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5150,6 +5348,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onratechange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onratechange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5160,6 +5359,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onreset
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onreset';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5170,6 +5370,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onresize
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onresize';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -5180,6 +5381,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onscroll
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onscroll';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -5190,6 +5392,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onscrollend
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onscrollend';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5200,6 +5403,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onsecuritypolicyviolation
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onsecuritypolicyviolation';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element, html:Body, html:Window;
@@ -5210,6 +5414,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onseeked
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onseeked';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5220,6 +5425,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onseeking
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onseeking';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5230,6 +5436,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onselect
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onselect';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5240,6 +5447,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onslotchange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onslotchange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5250,6 +5458,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onstalled
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onstalled';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5260,6 +5469,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onstorage
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onstorage';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Window;
@@ -5270,6 +5480,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onsubmit
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onsubmit';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5280,6 +5491,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onsuspend
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onsuspend';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5290,6 +5502,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ontimeupdate
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ontimeupdate';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5300,6 +5513,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:ontoggle
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'ontoggle';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5310,6 +5524,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onvolumechange
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onvolumechange';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5320,6 +5535,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onwaiting
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onwaiting';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5330,6 +5546,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   html:onwheel
     a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
     html:key 'onwheel';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
@@ -5356,9 +5573,6 @@ select $this {
 
   # Select all DOM nodes...
   $this a/rdfs:subClassOf* dom:DocumentTreeNode.
-  
-                                             
-                                 
   
   # ...that do not yet have an HTML fragment.
   filter not exists { $this html:fragment []. }
