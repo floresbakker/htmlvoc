@@ -131,7 +131,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   doc:1.93.1
     a html:Text;
-    html:fragment ".italic-text {font-style: italic;}".''';
+    html:fragment ".italic-text {font-style: italic;}".'''@en;
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
     dct:publisher <https://rijksfinancien.nl>;
