@@ -8,7 +8,7 @@ prefix owl:      <http://www.w3.org/2002/07/owl#>
 prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfa:     <http://www.w3.org/ns/rdfa#>
 prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
-prefix respec:   <https://respec.org/model/ontorespec/model/def/>
+prefix respec:   <https://respec.org/ontorespec/model/def/>
 prefix sh:       <http://www.w3.org/ns/shacl#>
 prefix skos:     <http://www.w3.org/2004/02/skos/core#>
 prefix status:   <http://purl.org/adms/status/>
