@@ -17,6 +17,7 @@ prefix void:     <http://rdfs.org/ns/void#>
 prefix xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 # HTML prefixes
+prefix concept:  <https://www.w3.org/html/model/concept/>
 prefix decl:     <https://www.w3.org/html/id/decl/>
 prefix function: <https://www.w3.org/html/model/function/>
 prefix html:     <https://www.w3.org/html/model/def/>
@@ -184,7 +185,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
   decl:xsd
     sh:prefix "xsd";
     sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI.
-
 
 
   # HTML standard
@@ -1241,6 +1241,56 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:prefLabel '§ 4.13.3 Core concepts'@en;
     rdfs:isDefinedBy html:.
 
+  # HTML conceptual model
+  
+  concept:html rdf:type skos:ConceptScheme;
+    dct:subject html: ;
+    skos:prefLabel 'concept scheme of the HTML core vocabulary'@en;
+    skos:definition 'The concept scheme of the HTML core vocabulary contains concepts that define aspects of the HTML core vocabulary. It includes concepts that refer to classes, properties, SHACL shapes or other resources, that make up the core of the HTML vocabulary.'@en;
+    rdfs:isDefinedBy html:. 
+
+  concept:document rdf:type skos:Concept;
+    skos:prefLabel 'HTML document';
+    skos:definition 'An HTML document consists of a tree of elements and text. The HTML specification defines a set of elements that can be used in HTML, along with rules about the ways in which the elements can be nested. Elements can have attributes, which control how the elements work. HTML user agents (e.g., web browsers) parse the markup of HTML, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. DOM trees contain several kinds of nodes, in particular a DocumentType node, Element nodes, Text nodes, Comment nodes, and in some cases ProcessingInstruction nodes.';
+    skos:inScheme concept:html;
+    dct:subject html:Document,
+	              html:DocumentType,
+                html:Element,
+                html:Attribute,
+                html:Text,
+                html:Comment,
+                html:ProcessingInstruction;
+    rdfs:isDefinedBy html:.
+
+  concept:contentCategory rdf:type skos:Concept;
+    skos:prefLabel 'content category';
+    skos:definition 'Content category as defined in the HTML core vocabulary';
+    skos:inScheme concept:html;             
+    dct:subject html:MetadataContent,
+                html:FlowContent,
+                html:SectioningContent,
+                html:HeadingContent,
+                html:PhrasingContent,
+                html:EmbeddedContent,     
+                html:InteractiveContent,
+                html:PalpableContent,
+                html:ScriptSupportingElement,
+                html:FormAssociatedElement,
+                html:LabelableElement;
+    rdfs:isDefinedBy html:.
+
+  concept:elementType rdf:type skos:Concept;
+    skos:prefLabel 'element type';
+    skos:definition 'Element type as defined in the HTML core vocabulary';
+    skos:inScheme concept:html;             
+    dct:subject html:NormalElement,
+                html:RawTextElement,
+                html:EscapableRawTextElement,
+                html:ForeignElement,
+                html:VoidElement,
+                html:CustomElement;
+    rdfs:isDefinedBy html:.
+
   # HTML - living standard - 3.2 Elements
 
   # HTML element (<TAG>…</TAG>)
@@ -1284,8 +1334,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:definition 'HTML element from a namespace other than the HTML namespace.'@en;
     skos:prefLabel 'foreign element'@en;
     rdfs:isDefinedBy html:.
-
-  # Void element
 
   html:VoidElement
     a owl:Class;
@@ -5562,6 +5610,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
     sh:target target:SerializableNode;
     skos:prefLabel 'serializable node shape'@en;
+    rdfs:comment 'Node shape to create the HTML fragment for a node in a HTML document.'@en;    
     rdfs:isDefinedBy html:.
 
   target:SerializableNode
@@ -5623,6 +5672,7 @@ construct {
   shp:CustomElement
     a sh:NodeShape;
     skos:prefLabel 'Custom element shape'@en;
+    rdfs:comment 'Node shape to create an HTML fragment for a custom element.'@en;    
     sh:rule rule:Serialize_HTML_fragment_CustomElement;
     sh:targetClass html:CustomElement;
     rdfs:isDefinedBy html:.
@@ -5674,7 +5724,7 @@ construct {
     concat(
       '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
       # Void elements have neither content nor a closing tag.
-      if(?childFragments='' && ?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
+      if(?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
