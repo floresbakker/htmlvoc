@@ -135,7 +135,10 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     html:fragment ".italic-text {font-style: italic;}".'''@en;
     dct:language 'iso639-1:en';
     dct:license 'http://creativecommons.org/licenses/by/4.0'^^xsd:anyURI;
-    dct:publisher <https://rijksfinancien.nl>;
+    dct:publisher 'https://www.w3.org/community/htmlvoc/'^^xsd:anyURI;
+    respec:group "htmlvoc";
+    respec:shortName "htmlvoc";
+    respec:specStatus "CG-DRAFT";
     dct:status status:UnderDevelopment;
     dct:subject 'HTML'@en;
     dct:title 'Semantic HTML Core Ontology'@en;
@@ -204,6 +207,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#elements'^^xsd:anyURI;
     skos:prefLabel '§ 3.2 Elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2
@@ -211,6 +215,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#kinds-of-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2 Kinds of content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.1
@@ -218,6 +223,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#metadata-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.1 Metadata content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.2
@@ -225,6 +231,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#flow-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.2 Flow content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.3
@@ -232,6 +239,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#sectioning-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.3 Sectioning content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.4
@@ -239,6 +247,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#heading-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.4 Heading content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.5
@@ -246,6 +255,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#phrasing-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.5 Phrasing content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.6
@@ -253,6 +263,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#embedded-content-2'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.6 Metadata content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.7
@@ -260,6 +271,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#interactive-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.7 Interactive content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.8
@@ -267,6 +279,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#palpable-content'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.8 Palpable content'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.2.9
@@ -274,6 +287,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#script-supporting-elements'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.2.9 Script-supporting elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;    
     rdfs:isDefinedBy html:.
 
   section:3.2.5.3
@@ -281,6 +295,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#transparent-content-models'^^xsd:anyURI;
     skos:prefLabel '§ 3.2.5.3 Transparant content models'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -291,6 +306,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-html-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.1.1 The html element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -301,6 +317,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-head-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.1 The head element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.2.2
@@ -308,6 +325,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-title-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.2 The title element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.2.3
@@ -315,6 +333,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-base-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.2 The base element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.2.4
@@ -322,6 +341,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-link-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.4 The link element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.2.5
@@ -329,6 +349,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-meta-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.5 The meta element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.2.6
@@ -336,6 +357,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-style-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.2.6 The style element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -346,6 +368,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-body-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.1 The body element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
    section:4.3.2
@@ -353,6 +376,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-article-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.2 The article element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.3
@@ -360,6 +384,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-section-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.3 The section element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.4
@@ -367,6 +392,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-nav-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.4 The nav element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.5
@@ -374,6 +400,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-aside-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.5 The aside element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.6
@@ -381,6 +408,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.6 The h1, h2, h3, h4 and h6 elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.7
@@ -388,6 +416,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-hgroup-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.7 The hgroup element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.8
@@ -395,6 +424,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-header-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.8 The header element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.9
@@ -402,6 +432,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-footer-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.9 The footer element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.3.10
@@ -409,6 +440,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-address-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.3.10 The address element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -419,6 +451,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-p-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.1 The p element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.2
@@ -426,6 +459,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-hr-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.2 The hr element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.3
@@ -433,6 +467,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-pre-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.3 The pre element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.4
@@ -440,6 +475,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-blockquote-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.4 The blockquote element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.5
@@ -447,6 +483,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-ol-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.5 The ol element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.6
@@ -454,6 +491,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-ul-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.6 The ul element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.7
@@ -461,6 +499,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-menu-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.7 The menu element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.8
@@ -468,6 +507,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-li-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.8 The li element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.9
@@ -475,6 +515,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-dl-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.9 The dl element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.10
@@ -482,6 +523,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-dt-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.10 The dt element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.11
@@ -489,6 +531,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-dd-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.11 The dd element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.12
@@ -496,6 +539,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-figure-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.12 The figure element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.13
@@ -503,6 +547,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-figcaption-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.13 The figcaption element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.14
@@ -510,6 +555,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-main-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.14 The main element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.15
@@ -517,6 +563,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-search-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.15 The search element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.4.16
@@ -524,6 +571,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-div-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.4.16 The div element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -534,6 +582,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-a-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.1 The a element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.2
@@ -541,6 +590,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-em-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.2 The em element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.3
@@ -548,6 +598,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-strong-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.3 The strong element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.4
@@ -555,6 +606,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-small-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.4 The small element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.5
@@ -562,6 +614,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-s-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.5 The s element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.6
@@ -569,6 +622,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-cite-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.6 The cite element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.7
@@ -576,6 +630,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-q-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.7 The q element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.8
@@ -583,6 +638,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-dfn-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.8 The dfn element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.9
@@ -590,6 +646,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-abbr-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.9 The abbr element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.10
@@ -597,6 +654,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-ruby-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.10 The ruby element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.11
@@ -604,6 +662,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-rt-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.11 The rt element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.12
@@ -611,6 +670,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-rp-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.12 The rp element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.13
@@ -618,6 +678,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-data-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.13 The data element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.14
@@ -625,6 +686,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-time-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.14 The time element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.15
@@ -632,6 +694,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-code-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.15 The code element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.16
@@ -639,6 +702,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'hhttps://html.spec.whatwg.org/#the-var-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.16 The var element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.17
@@ -646,6 +710,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-samp-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.17 The samp element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.18
@@ -653,6 +718,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-kbd-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.18 The kbd element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.19
@@ -660,6 +726,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-sub-and-sup-elements'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.19 The sub and sup elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.20
@@ -667,6 +734,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-i-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.20 The i element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.21
@@ -674,6 +742,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-b-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.21 The b element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.22
@@ -681,6 +750,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-u-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.22 The u element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.23
@@ -688,6 +758,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-mark-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.23 The mark element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.24
@@ -695,6 +766,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-bdi-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.24 The bdi element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.25
@@ -702,6 +774,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-bdo-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.25 The bdo element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.26
@@ -709,6 +782,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-span-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.26 The span element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.27
@@ -716,6 +790,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-br-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.27 The br element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.5.28
@@ -723,6 +798,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-wbr-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.5.28 The wbr element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -738,6 +814,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-ins-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.7.1 The ins element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.7.2
@@ -745,6 +822,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-del-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.7.2 The del element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -755,6 +833,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-picture-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.1 The picture element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.2
@@ -762,6 +841,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-source-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.2 The source element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.3
@@ -769,6 +849,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-img-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.3 The img element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.5
@@ -776,6 +857,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-iframe-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.5 The iframe element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.6
@@ -783,6 +865,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-embed-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.6 The embed element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.7
@@ -790,6 +873,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-object-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.7 The object element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.8
@@ -797,6 +881,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-video-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.8 The video element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.9
@@ -804,6 +889,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-audio-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.9 The audio element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.10
@@ -811,6 +897,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-track-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.10 The track element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.12
@@ -818,6 +905,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-map-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.12 The map element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.13
@@ -825,6 +913,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-area-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.8.13 The area element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.15
@@ -832,6 +921,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#mathml';
     skos:prefLabel '§ 4.8.15 MathML'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.8.16
@@ -839,6 +929,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#svg-0';
     skos:prefLabel '§ 4.8.16 SVG'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -849,6 +940,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-table-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.1 The table element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.2
@@ -856,6 +948,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-caption-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.2 The caption element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.3
@@ -863,6 +956,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-colgroup-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.3 The colgroup element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.4
@@ -870,6 +964,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-col-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.4. The col element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.5
@@ -877,6 +972,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-tbody-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.5 The tbody element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.6
@@ -884,6 +980,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-thead-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.6 The thead element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.7
@@ -891,6 +988,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-tfoot-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.7 The tfoot element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.8
@@ -898,6 +996,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-tr-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.8 The tr element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.9
@@ -905,6 +1004,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-td-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.9 The td element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.9.10
@@ -912,6 +1012,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-th-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.9.10 The th element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -922,6 +1023,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#categories'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.2 Categories'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.3
@@ -929,6 +1031,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-form-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.3 The form element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.4
@@ -936,6 +1039,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-label-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.4 The label element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.5
@@ -943,6 +1047,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-input-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.5 The input element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.6
@@ -950,6 +1055,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-button-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.6 The button element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.7
@@ -957,6 +1063,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-select-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.7 The select element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.8
@@ -964,6 +1071,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-datalist-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.8 The datalist element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.9
@@ -971,6 +1079,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-optgroup-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.9 The optgroup element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.10
@@ -978,6 +1087,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-option-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.10 The option element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.11
@@ -985,6 +1095,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-textarea-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.11 The textarea element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.12
@@ -992,6 +1103,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-output-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.12 The output element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.13
@@ -999,6 +1111,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-progress-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.13 The progress element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.14
@@ -1006,6 +1119,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-meter-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.14 The meter element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.15
@@ -1013,6 +1127,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-fieldset-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.15 The fieldset element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.10.16
@@ -1020,6 +1135,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-legend-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.10.16 The legend element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 # HTML - living standard - 4.11 - Interactive elements
@@ -1029,6 +1145,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-details-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.11.1 The details element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.11.2
@@ -1036,6 +1153,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-summary-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.11.2 The summary element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.11.4
@@ -1043,6 +1161,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-dialog-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.11.4 The dialog element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -1053,6 +1172,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-script-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.12.1 The script element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.12.2
@@ -1060,6 +1180,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-noscript-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.12.2 The noscript element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.12.3
@@ -1067,6 +1188,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-template-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.12.3 The template element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.12.4
@@ -1074,6 +1196,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-slot-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.12.4 The slot element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:4.12.5
@@ -1081,6 +1204,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-canvas-element'^^xsd:anyURI;
     skos:prefLabel '§ 4.12.5 The canvas element'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -1091,6 +1215,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#custom-elements-core-concepts'^^xsd:anyURI;
     skos:prefLabel '§ 4.13.3 Core concepts'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
 
@@ -1115,7 +1240,8 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#events'^^xsd:anyURI;
-    rdfs:label '§ 8.1.8 Events'@en;
+    skos:prefLabel '§ 8.1.8 Events'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   # HTML - living standard - 8.1.8.1 Event handlers
@@ -1124,7 +1250,8 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#event-handler-attributes'^^xsd:anyURI;
-    rdfs:label '§ 8.1.8.1 Event handlers'@en;
+    skos:prefLabel '§ 8.1.8.1 Event handlers'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   # HTML - living standard - 13.1 - Writing HTML documents
@@ -1133,7 +1260,8 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#writing'^^xsd:anyURI;
-    rdfs:label '§ 13.1 Writing HTML documents'@en;
+    skos:prefLabel '§ 13.1 Writing HTML documents'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.1
@@ -1141,6 +1269,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/multipage/syntax.html#the-doctype'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.1 The DOCTYPE'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2
@@ -1148,6 +1277,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#elements-2'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2-VoidElements
@@ -1155,6 +1285,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#void-elements'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Void elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2-NormalElements
@@ -1162,6 +1293,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#normal-elements'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Normal elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2-ForeignElements
@@ -1169,6 +1301,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#foreign-elements'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Foreign elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2-RawTextElements
@@ -1176,6 +1309,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#raw-text-elements'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Raw text elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2-EscapableRawTextElements
@@ -1183,6 +1317,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#escapable-raw-text-elements'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2 Escapable raw text elements'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2.1
@@ -1190,6 +1325,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#start-tags'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2.1 Start tags'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2.2
@@ -1197,6 +1333,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#end-tags'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2.2 End tags'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.2.3
@@ -1204,6 +1341,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#attributes-2'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.2.3 Attributes'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.3
@@ -1211,6 +1349,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#text-2'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.3 Text'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.5
@@ -1218,6 +1357,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#cdata-sections'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.5 CDATA sections'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   section:13.1.6
@@ -1225,6 +1365,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#comments'^^xsd:anyURI;
     skos:prefLabel '§ 13.1.6 Comments'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
     
   section:13.3
@@ -1232,6 +1373,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#serialising-html-fragments'^^xsd:anyURI;
     skos:prefLabel '§ 13.3 Serializing HTML fragments'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.    
 
   section:4.13.3
@@ -1239,6 +1381,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#custom-elements-core-concepts'^^xsd:anyURI;
     skos:prefLabel '§ 4.13.3 Core concepts'@en;
+    skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
   # HTML conceptual model
@@ -1251,7 +1394,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   concept:document rdf:type skos:Concept;
     skos:prefLabel 'HTML document';
-    skos:definition 'An HTML document consists of a tree of elements and text. The HTML specification defines a set of elements that can be used in HTML, along with rules about the ways in which the elements can be nested. Elements can have attributes, which control how the elements work. HTML user agents (e.g., web browsers) parse the markup of HTML, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. DOM trees contain several kinds of nodes, in particular a DocumentType node, Element nodes, Text nodes, Comment nodes, and in some cases ProcessingInstruction nodes.';
+    skos:definition 'An HTML document consists of a tree of elements and text. The HTML specification defines a set of elements that can be used in HTML, along with rules about the ways in which the elements can be nested. Elements can have attributes, which control how the elements work. HTML user agents (e.g., web browsers) parse the markup of HTML, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. DOM trees contain several kinds of nodes, in particular a DocumentType node, Element nodes, Text nodes, Comment nodes, and in some cases ProcessingInstruction nodes.'@en;
     skos:inScheme concept:html;
     dct:subject html:Document,
 	              html:DocumentType,
@@ -1264,7 +1407,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   concept:contentCategory rdf:type skos:Concept;
     skos:prefLabel 'content category';
-    skos:definition 'Content category as defined in the HTML core vocabulary';
+    skos:definition 'Content category as defined in the HTML core vocabulary'@en;
     skos:inScheme concept:html;             
     dct:subject html:MetadataContent,
                 html:FlowContent,
@@ -1281,7 +1424,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
   concept:elementType rdf:type skos:Concept;
     skos:prefLabel 'element type';
-    skos:definition 'Element type as defined in the HTML core vocabulary';
+    skos:definition 'Element type as defined in the HTML core vocabulary'@en;
     skos:inScheme concept:html;             
     dct:subject html:NormalElement,
                 html:RawTextElement,
@@ -5610,12 +5753,13 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
     sh:target target:SerializableNode;
     skos:prefLabel 'serializable node shape'@en;
-    rdfs:comment 'Node shape to create the HTML fragment for a node in a HTML document.'@en;    
+    skos:definition 'Node shape to create the HTML fragment for a node in a HTML document.'@en;    
     rdfs:isDefinedBy html:.
 
   target:SerializableNode
     a sh:SPARQLTarget;
-    rdfs:comment 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
+    skos:prefLabel 'the target for serializable nodes'@en;
+    skos:definition 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
     sh:prefixes html:;
     sh:select '''
 select $this {
@@ -5638,8 +5782,8 @@ select $this {
 
   rule:HTMLFragmentSerializationAlgorithm
     a sh:SPARQLRule;
-    rdfs:comment 'Create the HTML fragment for a node in a HTML document.'@en;
     skos:prefLabel 'HTML fragment serialization algorithm'@en;
+    skos:definition 'Create the HTML fragment for a node in a HTML document.'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
@@ -5672,15 +5816,15 @@ construct {
   shp:CustomElement
     a sh:NodeShape;
     skos:prefLabel 'Custom element shape'@en;
-    rdfs:comment 'Node shape to create an HTML fragment for a custom element.'@en;    
+    skos:definition 'Node shape to create an HTML fragment for a custom element.'@en;    
     sh:rule rule:Serialize_HTML_fragment_CustomElement;
     sh:targetClass html:CustomElement;
     rdfs:isDefinedBy html:.
 
   rule:Serialize_HTML_fragment_CustomElement
     a sh:SPARQLRule;
-    rdfs:comment 'A rule that creates an HTML fragment for a custom element.'@en;
     skos:prefLabel 'Custom element fragment serialisation rule'@en;
+    skos:definition 'A rule that creates an HTML fragment for a custom element.'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
@@ -5693,7 +5837,8 @@ construct {
 
   function:getElementFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment for a HTML element in a HTML document." ;
+    skos:prefLabel  "the getElementFragment() function"@en;
+    skos:definition "Returns a HTML fragment for a HTML element in a HTML document."@en ;
     sh:parameter [
         sh:path function:element ;
         sh:datatype xsd:anyURI ;
@@ -5728,11 +5873,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getTextFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment for a HTML text node in a HTML document." ;
+    skos:prefLabel  "the getTextFragment() function"@en;    
+    skos:definition "Returns a HTML fragment for a HTML text node in a HTML document."@en ;
     sh:parameter [
         sh:path function:text ;
         sh:datatype xsd:anyURI ;
@@ -5754,11 +5901,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }	
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getCommentFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment for a HTML comment in a HTML document." ;
+    skos:prefLabel  "the getCommentFragment() function"@en;    
+    skos:definition "Returns a HTML fragment for a HTML comment in a HTML document."@en ;
     sh:parameter [
         sh:path function:comment ;
         sh:datatype xsd:anyURI ;
@@ -5776,11 +5925,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getProcessingInstructionFragment
     a sh:SPARQLFunction ;
-    rdfs:processingInstruction "Returns a HTML fragment for a HTML processing instruction in a HTML document." ;
+    skos:prefLabel  "the getProcessingInstructionFragment() function"@en;    
+    skos:definition "Returns a HTML fragment for a HTML processing instruction in a HTML document."@en ;
     sh:parameter [
         sh:path function:processingInstruction ;
         sh:datatype xsd:anyURI ;
@@ -5799,11 +5950,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getDocumentTypeFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment for a HTML DocumentType in a HTML document." ;
+    skos:prefLabel  "the getDocumentTypeFragment() function"@en;    
+    skos:definition "Returns a HTML fragment for a HTML DocumentType in a HTML document."@en ;
     sh:parameter [
         sh:path function:doctype ;
         sh:datatype xsd:anyURI ;
@@ -5823,11 +5976,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 	
   function:getDocumentFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment for a HTML Document" ;
+    skos:prefLabel  "the getDocumentFragment() function"@en;    
+    skos:definition "Returns a HTML fragment for a HTML Document"@en ;
     sh:parameter [
         sh:path function:document ;
         sh:datatype xsd:anyURI ;
@@ -5845,11 +6000,13 @@ construct {
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getChildNodeFragment
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns a HTML fragment of child nodes for a node in an HTML Document" ;
+    skos:prefLabel  "the getChildNodeFragment() function"@en;    
+    skos:definition "Returns a HTML fragment of child nodes for a node in an HTML Document"@en ;
     sh:parameter [
         sh:path function:parentNode ;
         sh:datatype xsd:anyURI ;
@@ -5878,11 +6035,13 @@ construct {
      }
     bind(if(bound(?childFragments),?childFragments,'') as ?result)  
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
   function:getElementAttribute
     a sh:SPARQLFunction ;
-    rdfs:comment "Returns an HTML attribute of an HTML element" ;
+    skos:prefLabel "the getElementAttribute() function"@en;
+    skos:definition "Returns an HTML attribute of an HTML element"@en ;
     sh:parameter [
         sh:path function:element ;
         sh:datatype xsd:anyURI ;
@@ -5908,6 +6067,7 @@ construct {
      }
     bind(if(bound(?attributeFragments),?attributeFragments,'') as ?result)      
     }
-""" .
+""" ;
+    rdfs:isDefinedBy html:.
 
 }
