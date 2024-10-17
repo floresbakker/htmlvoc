@@ -1,96 +1,54 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html>
 <head>
-<meta charset="UTF-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>SPARQL Query Results</title>
-<!-- Add some styling for better presentation -->
+<title>Tutorial Document Example</title>
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        able {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
+
+        caption {
+            text-align: left;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f2f2f2; /* Light gray */
         }
-        button:hover {
-            background-color: #0056b3;
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd; /* Light gray border */
         }
-        #resultsContainer {
-            margin-top: 20px;
+
+        th {
+            background-color: #4CAF50; /* Green */
+            color: white;
         }
     </style>
 </head>
 <body>
-<!-- Add a clear instruction for users -->
-<h1>Execute SPARQL Query</h1>
-<p>Click the button below to execute the SPARQL query:</p>
-<!-- Improve accessibility by using a <button> element -->
-<button id="queryButton">Execute SPARQL Query</button>
-<!-- Add a heading for results -->
-<h2>Results:</h2>
-<div id="resultsContainer"></div>
-<script>
-document.getElementById('queryButton').addEventListener('click', function() {
-    // Define your SPARQL endpoint URL
-    var sparqlEndpoint = 'https://api.triplydb.com/datasets/DBpedia-association/dbpedia/sparql';
-
-    // Define your SPARQL query
-    var sparqlQuery = 'SELECT ?subject ?predicate ?object WHERE { ?subject ?predicate ?object } LIMIT 10';
-
-    // Construct the full URL with the query parameters
-    var fullURL = sparqlEndpoint + '?query=' + encodeURIComponent(sparqlQuery) + '&format=json';
-
-    // Make the AJAX GET request
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', fullURL, true);
-    xhr.setRequestHeader('Accept', 'application/sparql-results+json');
-
-    xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            // Parse the JSON response
-            var responseData = JSON.parse(xhr.responseText);
-
-            // Extract the results from the response
-            var bindings = responseData.results.bindings;
-
-            // Render the results
-            var resultsHtml = '<ul>';
-            for (var i = 0; i < bindings.length; i++) {
-                var binding = bindings[i];
-                resultsHtml += '<li>';
-                // Add some formatting for better readability
-                resultsHtml += '<strong>Subject:</strong> ' + binding.subject.value + '<br>';
-                resultsHtml += '<strong>Predicate:</strong> ' + binding.predicate.value + '<br>';
-                resultsHtml += '<strong>Object:</strong> ' + binding.object.value;
-                resultsHtml += '</li>';
-            }
-            resultsHtml += '</ul>';
-
-            // Display the results in the container
-            document.getElementById('resultsContainer').innerHTML = resultsHtml;
-        } else {
-            // Handle errors
-            console.error('Error fetching SPARQL data: ' + xhr.statusText);
-            // Inform users about the error
-            document.getElementById('resultsContainer').innerHTML = '<p>Error fetching SPARQL data. Please try again later.</p>';
-        }
-    };
-
-    xhr.onerror = function() {
-        // Handle errors
-        console.error('Error fetching SPARQL data.');
-        // Inform users about the error
-        document.getElementById('resultsContainer').innerHTML = '<p>Error fetching SPARQL data. Please try again later.</p>';
-    };
-
-    // Send the request
-    xhr.send();
-});
-</script>
+<table>
+<caption>Example table</caption>
+<thead>
+<tr>
+<th>banana</th>
+<th>orange</th>
+<th>apple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
