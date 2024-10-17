@@ -3,7 +3,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 doc:1 a html:Document ;
-    rdf:_1 doc:5.0 .
+    rdf:_1 doc:2.0 ;
+    rdf:_1 doc:3.0 .
+
+doc:2.0
+    a html:DocumentType;
+    html:documentTypeName 'html'.    
 
 doc:34.0 a html:Body ;
     rdf:_1 doc:34.0.1 ;
@@ -148,7 +153,7 @@ doc:48.16 a html:DataCell ;
 doc:48.16.1 a html:TextElement ;
     html:fragment "3" .
 
-doc:5.0 a html:Html ;
+doc:3.0 a html:Html ;
     rdf:_1 doc:5.0.1 ;
     rdf:_2 doc:6.0 ;
     rdf:_3 doc:5.0.3 ;

@@ -7,15 +7,11 @@ Created on Wed Sep 14 19:42:53 2023
 The HTML generator offers a simple way of serialising a RDF-model of an HTML-document into an actual HTML-file with HTML-code. 
 Just place your own RDF-model (in turtle format) in the input directory.
 
-Attention: whenever a custom made html attribute is used (for example 'html:myOwnAttribute' or something), the serialisation will skip the element to which the attribute belongs, unless this attribute is explicitly defined as being rdfs:subPropertyOf html:attribute. 
-Only then the SHACL engine can work with this attribute. This rdfs:subPropertyOf relation defining the custom attribute as a subproperty of html:attribute should be added as part of the vocabulary. In the future this will be supported better by this script, for instance with a separate turtle file containg any additionally created custom attributes.
-
 
 """
 import pyshacl
 import rdflib 
 import os
-rdflib.NORMALIZE_LITERALS = False #see bug https://github.com/RDFLib/rdflib/issues/2475
 
 # Get the current working directory in which the RDF2HTML.py file is located.
 current_dir = os.getcwd()
@@ -54,15 +50,15 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
         # Query to know if the document has been fully serialised by testing whether the root has a html:fragment property. If it has, the algorithm has reached the final level of the document.
         resultquery = serializable_graph.query('''
             
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+       prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+       prefix html: <https://www.w3.org/html/model/def/>
+       prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-        ASK 
-        WHERE {
-          ?document a html:Document ;
-                  html:fragment ?fragment.
-        }
+       ASK 
+       WHERE {
+         ?document a html:Document ;
+                 html:fragment ?fragment.
+       }
 
         ''')   
 
@@ -76,8 +72,9 @@ def iteratePyShacl(html_vocabulary, serializable_graph):
                 writeGraph(serializable_graph)
              
 
-# Get the HTML vocabulary and place it in a string
+# Get the HTML & DOM vocabularies and place it in a string
 html_vocabulary = readGraphFromFile(directory_path + "/htmlvoc/Specification/html - core.ttl")
+dom_vocabulary  = readGraphFromFile(directory_path + "/htmlvoc/Specification/dom - core.ttl")
 
 # loop through any turtle files in the input directory
 for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
@@ -91,7 +88,7 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
         document_graph = readGraphFromFile(file_path)                  
 
         # Join the HTML vocabulary and the RDF-model of some HTML document into a string
-        serializable_graph_string = html_vocabulary + document_graph
+        serializable_graph_string = html_vocabulary + '\n' + dom_vocabulary + '\n' + document_graph
 
         # Create a graph of the string containing the HTML vocabulary and the RDF-model of some HTML document
         serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="ttl")
@@ -108,15 +105,15 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/RDF2HTML/Input"):
         # Query to get the resulting fragment of the document
         documentQuery = serialized_graph.query('''
             
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX html: <https://data.rijksfinancien.nl/html/model/def/>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+               prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+               prefix html: <https://www.w3.org/html/model/def/>
+               prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-        select ?fragment
-        WHERE {
-          ?document a html:Document ;
-                  html:fragment ?fragment.
-        }
+               select ?fragment
+               WHERE {
+                 ?document a html:Document ;
+                         html:fragment ?fragment.
+               }
 
         ''')   
 

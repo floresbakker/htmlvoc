@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, url_for
 import rdflib
 from rdflib import Graph, Namespace, Literal, RDF
 import pyshacl
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Doctype
 from bs4.element import Tag, NavigableString, Comment, CData
 import os
 
@@ -156,7 +156,16 @@ def convert_to_rdf():
 
         # parse html document
         soup = BeautifulSoup(htmlInput, 'html.parser')
-
+        document_id = '1'
+        
+        for item in soup.contents:
+          if isinstance(item, Doctype):
+              doctype_id = '2'  # Assign a unique identifier for the Doctype
+              g.add((doc[document_id], RDF.type, html["Document"]))
+              g.add((doc[document_id], rdf["_1"], doc[doctype_id]))
+              g.add((doc[doctype_id], RDF.type, html["DocumentType"]))  # Add the doctype as a DocumentType element in your graph
+              g.add((doc[doctype_id], html["documentTypeName"], Literal(str(item))))  # Add the doctype content to the graph
+              
         # go through each node in the html document
         for node in soup.descendants:
             
@@ -176,9 +185,7 @@ def convert_to_rdf():
                 
                 # add a document node as a container of the HTML-tree
                 if node.name == 'html':
-                    document_id = '1'
-                    g.add((doc[document_id], RDF.type, html["Document"]))
-                    g.add((doc[document_id], rdf["_" + str(document_id)], doc[node_id]))
+                    g.add((doc[document_id], rdf["_2"], doc[node_id]))
 
                 # establish optional attributes of the element       
                 for attribute, values in node.attrs.items():
