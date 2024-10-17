@@ -36,17 +36,18 @@ html: {
     dct:conformsTo 'https://datatracker.ietf.org/doc/html/rfc1942'^^xsd:anyURI;
     dct:created '2021-12-08'^^xsd:date;
     dct:creator
-      'Flores Bakker',
-      'Rosaline de Haan',
+      'Flores Bakker',      
       'Thomas de Groot',
       'Wouter Beek';
+    dct:contributor
+      'Rosaline de Haan',
+      'Chayenne Halvemaan';
       
-    respec:introduction '''
-In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
+    respec:introduction '''In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
 
-So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
+    So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
 
-To address this need, we have pioneered the development of the RDF-based Semantic HTML Core Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
+    To address this need, we have pioneered the development of the RDF-based Semantic HTML Core Vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
 
     respec:background 'In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'@en;
     
@@ -139,6 +140,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     respec:group "htmlvoc";
     respec:shortName "htmlvoc";
     respec:specStatus "CG-DRAFT";
+    respec:latestVersion "https://github.com/floresbakker/htmlvoc"^^xsd:anyURI;
     dct:status status:UnderDevelopment;
     dct:subject 'HTML'@en;
     dct:title 'Semantic HTML Core Ontology'@en;
@@ -5752,14 +5754,14 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     a sh:NodeShape;
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
     sh:target target:SerializableNode;
-    skos:prefLabel 'serializable node shape'@en;
-    skos:definition 'Node shape to create the HTML fragment for a node in a HTML document.'@en;    
+    skos:prefLabel 'A node shape for serializable nodes'@en;
+    skos:definition 'Node shape to create an HTML fragment for a node in an HTML document.'@en;    
     rdfs:isDefinedBy html:.
 
   target:SerializableNode
     a sh:SPARQLTarget;
     skos:prefLabel 'the target for serializable nodes'@en;
-    skos:definition 'Select nodes in a HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
+    skos:definition 'SPARQL Target to select all nodes in an HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
     sh:prefixes html:;
     sh:select '''
 select $this {
@@ -5783,7 +5785,7 @@ select $this {
   rule:HTMLFragmentSerializationAlgorithm
     a sh:SPARQLRule;
     skos:prefLabel 'HTML fragment serialization algorithm'@en;
-    skos:definition 'Create the HTML fragment for a node in a HTML document.'@en;
+    skos:definition 'A SPARQL rule to create an HTML fragment for a node in an HTML document, analogue to the HTML fragment serialisation algorithm as described in the living standard of HTML.'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
@@ -5816,15 +5818,15 @@ construct {
   shp:CustomElement
     a sh:NodeShape;
     skos:prefLabel 'Custom element shape'@en;
-    skos:definition 'Node shape to create an HTML fragment for a custom element.'@en;    
-    sh:rule rule:Serialize_HTML_fragment_CustomElement;
+    skos:definition 'A node shape to establish an individual custom element as a subclass of the class html:CustomElement.'@en;    
+    sh:rule rule:CustomElement;
     sh:targetClass html:CustomElement;
     rdfs:isDefinedBy html:.
 
-  rule:Serialize_HTML_fragment_CustomElement
+  rule:CustomElement
     a sh:SPARQLRule;
     skos:prefLabel 'Custom element fragment serialisation rule'@en;
-    skos:definition 'A rule that creates an HTML fragment for a custom element.'@en;
+    skos:definition 'A SPARQL rule to establish an individual custom element as a subclass of the class html:CustomElement.'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
@@ -5838,7 +5840,7 @@ construct {
   function:getElementFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getElementFragment() function"@en;
-    skos:definition "Returns a HTML fragment for a HTML element in a HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for an element in an HTML document."@en ;
     sh:parameter [
         sh:path function:element ;
         sh:datatype xsd:anyURI ;
@@ -5879,7 +5881,7 @@ construct {
   function:getTextFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getTextFragment() function"@en;    
-    skos:definition "Returns a HTML fragment for a HTML text node in a HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a text node in an HTML document."@en ;
     sh:parameter [
         sh:path function:text ;
         sh:datatype xsd:anyURI ;
@@ -5907,7 +5909,7 @@ construct {
   function:getCommentFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getCommentFragment() function"@en;    
-    skos:definition "Returns a HTML fragment for a HTML comment in a HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a comment node in an HTML document."@en ;
     sh:parameter [
         sh:path function:comment ;
         sh:datatype xsd:anyURI ;
@@ -5931,7 +5933,7 @@ construct {
   function:getProcessingInstructionFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getProcessingInstructionFragment() function"@en;    
-    skos:definition "Returns a HTML fragment for a HTML processing instruction in a HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a processing instruction in an HTML document."@en ;
     sh:parameter [
         sh:path function:processingInstruction ;
         sh:datatype xsd:anyURI ;
@@ -5956,7 +5958,7 @@ construct {
   function:getDocumentTypeFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getDocumentTypeFragment() function"@en;    
-    skos:definition "Returns a HTML fragment for a HTML DocumentType in a HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a document type in an HTML document."@en ;
     sh:parameter [
         sh:path function:doctype ;
         sh:datatype xsd:anyURI ;
@@ -5982,7 +5984,7 @@ construct {
   function:getDocumentFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getDocumentFragment() function"@en;    
-    skos:definition "Returns a HTML fragment for a HTML Document"@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en ;
     sh:parameter [
         sh:path function:document ;
         sh:datatype xsd:anyURI ;
@@ -6006,7 +6008,7 @@ construct {
   function:getChildNodeFragment
     a sh:SPARQLFunction ;
     skos:prefLabel  "the getChildNodeFragment() function"@en;    
-    skos:definition "Returns a HTML fragment of child nodes for a node in an HTML Document"@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment of child nodes for a node in an HTML document."@en ;
     sh:parameter [
         sh:path function:parentNode ;
         sh:datatype xsd:anyURI ;
@@ -6041,7 +6043,7 @@ construct {
   function:getElementAttribute
     a sh:SPARQLFunction ;
     skos:prefLabel "the getElementAttribute() function"@en;
-    skos:definition "Returns an HTML attribute of an HTML element"@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for the attributes of an HTML element."@en ;
     sh:parameter [
         sh:path function:element ;
         sh:datatype xsd:anyURI ;
