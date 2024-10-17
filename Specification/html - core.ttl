@@ -156,17 +156,27 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       skos:;
     owl:versionInfo '0.2.0';
     sh:declare
+      decl:concept,
       decl:dom,
       decl:function, 
       decl:html,
       decl:rdf,
       decl:rdfs,
+      decl:rule,
+      decl:section,
+      decl:shp,
+      decl:standard,
+      decl:target,       
       decl:xsd;
     vann:preferredNamespacePrefix 'html';
     vann:preferredNamespaceUri 'https://www.w3.org/html/model/def/'^^xsd:anyURI;
     void:uriRegexPattern '^https://www.w3.org/html/model/def/';
     void:uriSpace 'https://www.w3.org/html/model/def/'^^xsd:anyURI.
 
+  decl:concept
+    sh:prefix "concept";
+    sh:namespace "https://www.w3.org/html/model/concept/"^^xsd:anyURI.  
+    
   decl:dom
     sh:prefix "dom";
     sh:namespace "http://www.w3.org/DOM/model/def/"^^xsd:anyURI.
@@ -187,9 +197,30 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     sh:prefix "rdfs";
     sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI.
 
+  decl:rule
+    sh:prefix "rule";
+    sh:namespace "https://www.w3.org/html/model/rule/"^^xsd:anyURI.   
+
+  decl:section
+    sh:prefix "section";
+    sh:namespace "https://www.w3.org/html/id/section/"^^xsd:anyURI.  
+    
+  decl:shp
+    sh:prefix "shp";
+    sh:namespace "https://www.w3.org/html/model/shp/"^^xsd:anyURI.       
+
+  decl:standard
+    sh:prefix "standard";
+    sh:namespace "https://www.w3.org/html/id/standard/"^^xsd:anyURI.  
+    
+  decl:target
+    sh:prefix "target";
+    sh:namespace "https://www.w3.org/html/model/target/"^^xsd:anyURI.   
+    
   decl:xsd
     sh:prefix "xsd";
     sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI.
+
 
 
   # HTML standard
@@ -198,6 +229,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     a dct:Standard;
     dct:created '2021-11-09'^^xsd:date;
     dct:source 'https://html.spec.whatwg.org'^^xsd:anyURI;
+    skos:definition """HTML is the World Wide Web's core markup language. It is described in the WHATWG "HTML Living Standard" specification."""@en;
     skos:prefLabel 'HTML Living Standard'@en;
     rdfs:isDefinedBy html:.
 
