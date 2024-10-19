@@ -156,7 +156,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
       skos:;
     owl:versionInfo '0.2.0';
     sh:declare
-      decl:concept,
       decl:dom,
       decl:function, 
       decl:html,
@@ -171,11 +170,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     vann:preferredNamespacePrefix 'html';
     vann:preferredNamespaceUri 'https://www.w3.org/html/model/def/'^^xsd:anyURI;
     void:uriRegexPattern '^https://www.w3.org/html/model/def/';
-    void:uriSpace 'https://www.w3.org/html/model/def/'^^xsd:anyURI.
-
-  decl:concept
-    sh:prefix "concept";
-    sh:namespace "https://www.w3.org/html/model/concept/"^^xsd:anyURI.  
+    void:uriSpace 'https://www.w3.org/html/model/def/'^^xsd:anyURI. 
     
   decl:dom
     sh:prefix "dom";
@@ -220,7 +215,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
   decl:xsd
     sh:prefix "xsd";
     sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI.
-
 
 
   # HTML standard
@@ -405,7 +399,7 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
-   section:4.3.2
+  section:4.3.2
     a dcm:Text;
     dct:isPartOf standard:html;
     dct:source 'https://html.spec.whatwg.org/#the-article-element'^^xsd:anyURI;
@@ -1418,55 +1412,6 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
     skos:definition 'A section in the living standard of HTML.'@en;
     rdfs:isDefinedBy html:.
 
-  # HTML conceptual model
-  
-  concept:html rdf:type skos:ConceptScheme;
-    dct:subject html: ;
-    skos:prefLabel 'concept scheme of the HTML core vocabulary'@en;
-    skos:definition 'The concept scheme of the HTML core vocabulary contains concepts that define aspects of the HTML core vocabulary. It includes concepts that refer to classes, properties, SHACL shapes or other resources, that make up the core of the HTML vocabulary.'@en;
-    rdfs:isDefinedBy html:. 
-
-  concept:document rdf:type skos:Concept;
-    skos:prefLabel 'HTML document';
-    skos:definition 'An HTML document consists of a tree of elements and text. The HTML specification defines a set of elements that can be used in HTML, along with rules about the ways in which the elements can be nested. Elements can have attributes, which control how the elements work. HTML user agents (e.g., web browsers) parse the markup of HTML, turning it into a DOM (Document Object Model) tree. A DOM tree is an in-memory representation of a document. DOM trees contain several kinds of nodes, in particular a DocumentType node, Element nodes, Text nodes, Comment nodes, and in some cases ProcessingInstruction nodes.'@en;
-    skos:inScheme concept:html;
-    dct:subject html:Document,
-	              html:DocumentType,
-                html:Element,
-                html:Attribute,
-                html:Text,
-                html:Comment,
-                html:ProcessingInstruction;
-    rdfs:isDefinedBy html:.
-
-  concept:contentCategory rdf:type skos:Concept;
-    skos:prefLabel 'content category';
-    skos:definition 'Content category as defined in the HTML core vocabulary'@en;
-    skos:inScheme concept:html;             
-    dct:subject html:MetadataContent,
-                html:FlowContent,
-                html:SectioningContent,
-                html:HeadingContent,
-                html:PhrasingContent,
-                html:EmbeddedContent,     
-                html:InteractiveContent,
-                html:PalpableContent,
-                html:ScriptSupportingElement,
-                html:FormAssociatedElement,
-                html:LabelableElement;
-    rdfs:isDefinedBy html:.
-
-  concept:elementType rdf:type skos:Concept;
-    skos:prefLabel 'element type';
-    skos:definition 'Element type as defined in the HTML core vocabulary'@en;
-    skos:inScheme concept:html;             
-    dct:subject html:NormalElement,
-                html:RawTextElement,
-                html:EscapableRawTextElement,
-                html:ForeignElement,
-                html:VoidElement,
-                html:CustomElement;
-    rdfs:isDefinedBy html:.
 
   # HTML - living standard - 3.2 Elements
 
@@ -5782,18 +5727,18 @@ This can be rendered in RDF using the HTML Core Vocabulary as follows:
 
 ### Shapes ###
 
-  shp:SerializableNode
+  shp:HTMLFragmentSerializationAlgorithm
     a sh:NodeShape;
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
-    sh:target target:SerializableNode;
-    skos:prefLabel 'A node shape for serializable nodes'@en;
-    skos:definition 'Node shape to create an HTML fragment for a node in an HTML document.'@en;    
+    sh:target target:HTMLFragmentSerializationAlgorithm;
+    skos:prefLabel 'Node shape for HTML fragment serialization algorithm'@en;
+    skos:definition 'A node shape with an algorithm to serialize an HTML fragment for a node in an HTML document.'@en;    
     rdfs:isDefinedBy html:.
 
-  target:SerializableNode
+  target:HTMLFragmentSerializationAlgorithm
     a sh:SPARQLTarget;
-    skos:prefLabel 'the target for serializable nodes'@en;
-    skos:definition 'SPARQL Target to select all nodes in an HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
+    skos:prefLabel 'SPARQL target for HTML fragment serialization algorithm'@en;
+    skos:definition 'A SPARQL Target to select all nodes in an HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
     sh:prefixes html:;
     sh:select '''
 select $this {
@@ -5816,8 +5761,8 @@ select $this {
 
   rule:HTMLFragmentSerializationAlgorithm
     a sh:SPARQLRule;
-    skos:prefLabel 'HTML fragment serialization algorithm'@en;
-    skos:definition 'A SPARQL rule to create an HTML fragment for a node in an HTML document, analogue to the HTML fragment serialisation algorithm as described in the living standard of HTML.'@en;
+    skos:prefLabel 'SPARQL rule for HTML fragment serialization algorithm'@en;
+    skos:definition 'A SPARQL rule to serialize an HTML fragment for a node in an HTML document, analogue to the HTML fragment serialisation algorithm as described in the living standard of HTML.'@en;
     sh:prefixes html:;
     sh:construct '''
 construct {
@@ -5849,7 +5794,7 @@ construct {
 
   shp:CustomElement
     a sh:NodeShape;
-    skos:prefLabel 'Custom element shape'@en;
+    skos:prefLabel 'Node shape for custom element'@en;
     skos:definition 'A node shape to establish an individual custom element as a subclass of the class html:CustomElement.'@en;    
     sh:rule rule:CustomElement;
     sh:targetClass html:CustomElement;
@@ -5857,7 +5802,7 @@ construct {
 
   rule:CustomElement
     a sh:SPARQLRule;
-    skos:prefLabel 'Custom element fragment serialisation rule'@en;
+    skos:prefLabel 'SPARQL rule for custom element'@en;
     skos:definition 'A SPARQL rule to establish an individual custom element as a subclass of the class html:CustomElement.'@en;
     sh:prefixes html:;
     sh:construct '''
