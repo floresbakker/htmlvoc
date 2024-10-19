@@ -218,7 +218,47 @@ Make note on how each element in the HTML-document is identified by a unique ide
 ## Example #2: an application GUI as HTML-document
 
 ```
-<!DOCTYPE html><html><head><title></title><style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the "sign in" section */ .signin {  background-color: #f1f1f1;  text-align: center;}</style><meta http-equiv="Content-Type" charset="utf-8"></head><body><form action="action_page.php"><div class="container"><h1>Register</h1><p>Please fill in this form to create an account.</p><hr><label for="email"><b>email</b></label><input id="email" name="email" placeholder="Enter Email" required="true" type="text"><label for="psw"><b>Password</b></label><input id="psw" name="psw" placeholder="Enter Password" required="true" type="password"><label for="psw-repeat"><b>Repeat Password</b></label><input id="psw-repeat" name="psw-repeat" placeholder="Repeat Password" required="true" type="password"><hr><p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p><button class="registerbtn" type="submit">Register</button></div><div class="container signin"><p>Already have an account?<a href="#">Sign in</a>.</p></div></form></body></html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title>
+        <style>body {font-family: Arial, Helvetica, sans-serif; background-color: black; } * {box-sizing: border-box;} /* Add padding to containers */.container {padding: 16px; background-color: white;} /* Full-width input fields */ input[type=text], input[type=password] {width: 100%; padding: 15px;  margin: 5px 0 22px 0; display: inline-block; border: none;  background: #f1f1f1;} input[type=text]:focus, input[type=password]:focus {  background-color: #ddd;  outline: none;} /* Overwrite default styles of hr */ hr {   border: 1px solid #f1f1f1;   margin-bottom: 25px;} /* Set a style for the submit button */ .registerbtn {   background-color: #04AA6D;   color: white;   padding: 16px 20px;   margin: 8px 0;   border:  none;  cursor: pointer;   width: 100%;   opacity: 0.9; } .registerbtn:hover {  opacity: 1;} /* Add a blue text color to links */ a {  color: dodgerblue;} /* Set a grey background color and center the text of the "sign in" section */ .signin {  background-color: #f1f1f1;  text-align: center;}
+        </style>
+        <meta http-equiv="Content-Type" charset="utf-8">
+    </head>
+    <body>
+        <form action="action_page.php">
+            <div class="container">
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+                <label for="email">
+                   <b>email</b>
+                </label>
+                <input id="email" name="email" placeholder="Enter Email" required="true" type="text">
+                   <label for="psw">
+                      <b>Password</b>
+                   </label>
+                 <input id="psw" name="psw" placeholder="Enter Password" required="true" type="password">
+                    <label for="psw-repeat">
+                       <b>Repeat Password</b>
+                    </label>
+                 <input id="psw-repeat" name="psw-repeat" placeholder="Repeat Password" required="true" type="password">
+                 <hr>
+                 <p>By creating an account you agree to our 
+                   <a href="#">Terms & Privacy</a>.
+                  </p>
+                  <button class="registerbtn" type="submit">Register</button>
+             </div>
+             <div class="container signin">
+                <p>Already have an account?
+                    <a href="#">Sign in</a>.
+                </p>
+            </div>
+        </form>
+    </body>
+</html>
 ```
 
 This GUI with forms is rendered in a browser as follows:
@@ -238,8 +278,7 @@ doc:1 a html:Document ;
     rdf:_2 doc:1.15 .
 
 doc:1.10 a html:DocumentType ;
-    html:documentTypeName "html" ;
-    html:fragment "<!DOCTYPE html>"^^rdf:HTML .
+    html:documentTypeName "html" .
 
 doc:1.1058 a html:Meta ;
     html:charset "utf-8" ;
@@ -488,37 +527,7 @@ C. Navigate to the URL http://localhost:5000/. Then choose one of two options:
    *Option 2*: Place the HTML-code of your HTML-document into the corresponding text area and press the button 'convert to RDF'. The playground will convert the HTML-document to a RDF-based representation of that document. This should be rather quick.
 
 
-
-### Known issues
-
-Currently there are some needed workaround concerning the use of both RDFlib and PyShacl.
-
-1. The generated HTML-code is captured in a graph with datatype xsd:string. Although not inherently incorrect, ideally a fragment of HTML-code would be represented with the more suiting datatype rdf:HTML. The latter unfortunately triggers an issue in the library HTML5lib that appearantly is called by RDFLib in one way or the other. Hence, we adjusted our vocabulary, specifically the SHACL shapes in which we manipulate the HTML code, and represent html fragments as xsd:string for now.
-
-See https://github.com/RDFLib/rdflib/issues/2475 (Although neatly corrected as much as possible within the scope of RDFlib, the issue remains in an external library HTML5Lib)
-
-2. There is a small issue in RDFlib using double "filter not exists" SPARQL statements. There is elegant workaround and this has been applied to the HTML-vocabulary. In time this workaround may be reversed if the bug has been solved and the community has expressed its wish in doing so.
-
-See https://github.com/RDFLib/rdflib/issues/2484 
-
-3. When a RDF-based representation of an HTML-document contains html attributes that are not yet known in the vocabulary, the generation process to HTML-code skips the element to which the attribute belongs, hence one might miss portions of the document. Solution is to add a separate vocabulary containing the attributes. 
-
-The html_vocabulary on line 79 should then be adjusted: 
-
-```
-html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html.ttl")
-```
-To:
-
-```
-html_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/html.ttl")
-
-addendum_vocabulary = readGraphFromFile(directory_path + "htmlvoc/Specification/addendum.ttl")
-
-html_vocabulary = html_vocabulary + '\n' + addendum_vocabulary
-```
-
-4. Please note: the runtime of RDF2HTML for a rather complex and long HTML-file can be rather large.
+   Please note: the runtime of RDF2HTML for a rather complex and long HTML-file can be rather large.
 
 ## Dependencies 
 
