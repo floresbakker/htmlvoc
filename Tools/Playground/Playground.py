@@ -156,11 +156,11 @@ def convert_to_rdf():
 
         # parse html document
         soup = BeautifulSoup(htmlInput, 'html.parser')
-        document_id = '1'
+        document_id = '1.0'
         
         for item in soup.contents:
           if isinstance(item, Doctype):
-              doctype_id = '2'  # Assign a unique identifier for the Doctype
+              doctype_id = '1.1'  # Assign a unique identifier for the Doctype
               g.add((doc[document_id], RDF.type, html["Document"]))
               g.add((doc[document_id], rdf["_1"], doc[doctype_id]))
               g.add((doc[doctype_id], RDF.type, html["DocumentType"]))  # Add the doctype as a DocumentType element in your graph
