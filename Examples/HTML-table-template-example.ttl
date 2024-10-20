@@ -2,9 +2,29 @@ prefix doc: <http://www.example.org/document/>
 prefix html: <https://www.w3.org/html/model/def/> 
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
-doc:1 a html:Document ;
-    rdf:_1 doc:5.0 .
+doc:1.0 a html:Document ;
+    rdf:_1 doc:2.0 ;
+    rdf:_2 doc:3.0 .
 
+doc:2.0 a html:DocumentType ;
+    html:documentTypeName "html" .    
+
+doc:3.0 a html:Html ;
+    rdf:_1 doc:5.0.1 ;
+    rdf:_2 doc:6.0 ;
+    rdf:_3 doc:5.0.3 ;
+    rdf:_4 doc:34.0 ;
+    rdf:_5 doc:5.0.5 .
+
+doc:5.0.1 a html:Text ;
+    html:fragment "" .
+
+doc:5.0.3 a html:Text ;
+    html:fragment "" .
+
+doc:5.0.5 a html:Text ;
+    html:fragment "" .
+    
 doc:34.0 a html:Body ;
     rdf:_1 doc:34.0.1 ;
     rdf:_2 doc:35.4 ;
@@ -148,21 +168,7 @@ doc:48.16 a html:DataCell ;
 doc:48.16.1 a html:Text ;
     html:fragment "3" .
 
-doc:5.0 a html:Html ;
-    rdf:_1 doc:5.0.1 ;
-    rdf:_2 doc:6.0 ;
-    rdf:_3 doc:5.0.3 ;
-    rdf:_4 doc:34.0 ;
-    rdf:_5 doc:5.0.5 .
 
-doc:5.0.1 a html:Text ;
-    html:fragment "" .
-
-doc:5.0.3 a html:Text ;
-    html:fragment "" .
-
-doc:5.0.5 a html:Text ;
-    html:fragment "" .
 
 doc:50.12 a html:Row ;
     rdf:_1 doc:50.12.1 ;
