@@ -6303,7 +6303,8 @@ construct {
 
   function:getMemberIndex
     a sh:SPARQLFunction;
-    rdfs:isDefinedBy html:;
+    skos:prefLabel "the getMemberIndex() function"@en;
+    skos:definition "A SPARQL function that returns the sibling index of a node in an HTML document."@en ;    
     sh:parameter parameter:getMemberIndex;
     sh:prefixes html:;
     sh:returnType xsd:positiveInteger;
@@ -6312,17 +6313,20 @@ construct {
         xsd:integer(
           strafter(
             str($property),
-            concat(str(rdf:), '_'))) as $return){}'''.
+            concat(str(rdf:), '_'))) as $return){}''';
+    rdfs:isDefinedBy html:.            
             
   parameter:getMemberIndex
     a sh:Parameter;
     sh:class rdfs:ContainerMembershipProperty;
     sh:order 1;
-    sh:path parameter:property.
+    sh:path parameter:property;
+    rdfs:isDefinedBy html:.    
 
   function:isMembershipProperty
     a sh:SPARQLFunction;
-    rdfs:isDefinedBy html:;
+    skos:prefLabel "the isMembershipProperty() function"@en;
+    skos:definition "A SPARQL function that returns a boolean value based on whether a property is or is not an instance of the ContainerMembershipProperty class."@en ;    
     sh:parameter parameter:isMembershipProperty;
     sh:prefixes html:;
     sh:returnType xsd:boolean;
@@ -6330,11 +6334,13 @@ construct {
       select(
         strstarts(
           str($iri),
-          concat(str(rdf:), '_')) as $return){}'''.
+          concat(str(rdf:), '_')) as $return){}''';
+    rdfs:isDefinedBy html:.          
           
   parameter:isMembershipProperty
     a sh:Parameter;
     sh:class rdfs:Resource;
     sh:order 1;
-    sh:path parameter:iri.
+    sh:path parameter:iri;
+    rdfs:isDefinedBy html:.    
 #}
