@@ -6318,6 +6318,8 @@ construct {
             
   parameter:getMemberIndex
     a sh:Parameter;
+    skos:prefLabel "the getMemberIndex parameter"@en;
+    skos:definition "A SHACL parameter"@en;       
     sh:class rdfs:ContainerMembershipProperty;
     sh:order 1;
     sh:path parameter:property;
@@ -6339,6 +6341,8 @@ construct {
           
   parameter:isMembershipProperty
     a sh:Parameter;
+    skos:prefLabel "the isMembershipProperty parameter"@en;
+    skos:definition "A SHACL parameter"@en;     
     sh:class rdfs:Resource;
     sh:order 1;
     sh:path parameter:iri;
