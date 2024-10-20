@@ -6,5 +6,4 @@ For each released version of the HTML Vocabulary, we offer a special download fo
 
 - No support for named graphs. Fix: change the TriG file into a Turtle file.
 - No support for the default value of `group_concat()`, i.e. the space character. Fix: set the default value explicitly.
-- No support for datatype IRIs that are not `xsd:string`. Fix: change `rdf:HTML` to `xsd:string`.
-- Nested `filter not exists` are not supported. Fix: use `minus`.
+- Low performance in RDFlib based scripts for datatype IRIs that are `rdf:HTML`. Workaround if performance is too low: change `rdf:HTML` to `xsd:string` in the SHACL rule for html fragment serialisation. Issue is caused by erroneous behavior of the html5lib package that is used by RDFlib.
