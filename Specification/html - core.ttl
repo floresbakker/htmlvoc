@@ -1600,41 +1600,55 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                   owl:someValuesFrom html:Map;
                   owl:onProperty
                     [ owl:inverseOf rdfs:member] ] ) ]
+                                                     
+                                           
                     [ owl:unionOf
                         ( [ owl:intersectionOf
                               ( html:Link
                                 [ a owl:Restriction;
                                   owl:cardinality "1"^^xsd:nonNegativeInteger;
                                   owl:onProperty  html:itemprop ] ) ]
+                                                                   
+
                           [ owl:intersectionOf
                               ( html:Link
                                 [ owl:unionOf
                                     ( [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "dns-prefetch" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "modulepreload" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "pingback" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "preconnect" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "prefetch" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "preload" ]
+
                                       [ a owl:Restriction;
                                         owl:onProperty html:rel;
                                         owl:hasValue "stylesheet" ] ) ] ) ] ) ]
+                                                                                      
+                                                                  
+                                   
                       [ owl:intersectionOf
                           ( html:Meta
                               [ a owl:Restriction;
                                 owl:cardinality "1"^^xsd:nonNegativeInteger;
                                 owl:onProperty  html:itemprop ] ) ]
+                                                      
                       [ owl:intersectionOf
                           ( html:Main
                               [ owl:unionOf
@@ -1642,18 +1656,26 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                                       owl:someValuesFrom html:Html;
                                       owl:onProperty
                                         [ owl:inverseOf rdfs:member ] ]
+                                                                     
+
                                     [ a owl:Restriction;
                                       owl:someValuesFrom html:Body ;
                                       owl:onProperty
                                         [ owl:inverseOf rdfs:member ] ]
+                                                                     
+                                                                    
                                     [ a owl:Restriction;
                                       owl:someValuesFrom html:Div;
                                       owl:onProperty
                                         [ owl:inverseOf rdfs:member ] ]
+                                                                     
+
                                     [ a owl:Restriction;
                                       owl:someValuesFrom html:CustomElement;
                                       owl:onProperty
                                         [ owl:inverseOf rdfs:member] ]
+                                                                     
+                                                                    
                                     [ a owl:Restriction;
                                       owl:someValuesFrom
                                         [ owl:intersectionOf
@@ -1663,6 +1685,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                                                     owl:cardinality "1"^^xsd:nonNegativeInteger;
                                                     owl:onProperty aria:aria-label ] ] ) ];
                                       owl:onProperty
+                                                                                         
                                         [ owl:inverseOf rdfs:member ] ] ) ] ) ]
         html:A
         html:Abbr
@@ -1785,6 +1808,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                           html:H5
                           html:H6 ) ];
                   owl:onProperty rdfs:member ] ) ] ); 
+         
     dct:conformsTo section:3.2.5.2.4;
     skos:definition 'Heading content defines the heading of a section (whether explicitly marked up using sectioning content elements, or implied by the heading content itself).'@en;
     skos:prefLabel 'Heading content'@en;
@@ -1799,38 +1823,49 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                   owl:someValuesFrom html:Map;
                   owl:onProperty
                     [ owl:inverseOf rdfs:member ] ] ) ]
+                                                     
+                                           
         [ owl:intersectionOf
             ( html:Meta
                 [ a owl:Restriction;
                   owl:cardinality "1"^^xsd:nonNegativeInteger ;
                   owl:onProperty  html:itemprop ] ) ]
+                                                  
         [ owl:unionOf
             ( [ owl:intersectionOf
                   ( html:Link
                       [ a owl:Restriction;
                         owl:cardinality "1"^^xsd:nonNegativeInteger ;
                         owl:onProperty  html:itemprop ] ) ]
+                                                                   
+
               [ owl:intersectionOf
                   ( html:Link
                       [ owl:unionOf
                           ( [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "dns-prefetch" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "modulepreload" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "pingback" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "preconnect" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "prefetch" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "preload" ]
+
                             [ a owl:Restriction;
                               owl:onProperty html:rel;
                               owl:hasValue "stylesheet" ] ) ] ) ] ) ]
@@ -1912,11 +1947,13 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                 [ a owl:Restriction;
                   owl:cardinality "1"^^xsd:nonNegativeInteger;
                   owl:onProperty  html:href ] ) ]
+                                   
         [ owl:intersectionOf
             ( html:Audio
                 [ a owl:Restriction;
                   owl:cardinality "1"^^xsd:nonNegativeInteger;
                   owl:onProperty  html:controls ] ) ]
+                                        
         [ owl:intersectionOf
             ( html:Img
                 [ a owl:Restriction;
@@ -1928,6 +1965,8 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                     [ a owl:Restriction;
                       owl:onProperty html:type;
                       owl:hasValue "hidden" ] ] ) ]
+                                          
+                                  
         [ owl:intersectionOf
             ( html:Video
                 [ a owl:Restriction;
@@ -1960,27 +1999,33 @@ This can be rendered in RDF using the HTML vocabulary as follows:
                   [ a owl:Restriction;
                     owl:onProperty html:type;
                     owl:hasValue "hidden" ] ] ) ]
+                                          
+                                  
         [ owl:intersectionOf
             ( html:Menu
                 [ a owl:Restriction;
                   owl:someValuesFrom html:Li;
                   owl:onProperty rdfs:member ] ) ]
+                                       
         [ owl:intersectionOf
             ( html:Ol
                 [ a owl:Restriction;
                   owl:someValuesFrom html:Li;
                   owl:onProperty rdfs:member ] ) ]
+                                                                                                                                        
         [ owl:intersectionOf
             ( html:Ul
                 [ a owl:Restriction;
                   owl:someValuesFrom html:Li;
                   owl:onProperty rdfs:member ] ) ]
+                                           
         [ owl:intersectionOf
             ( html:Dl
               [ owl:intersectionOf
                   ( [ a owl:Restriction;
                       owl:someValuesFrom html:Dt;
                       owl:onProperty rdfs:member ]
+                                                                     
                     [ a owl:Restriction;
                       owl:someValuesFrom html:Dd;
                       owl:onProperty rdfs:member ] ) ] ) ]
@@ -2146,6 +2191,8 @@ This can be rendered in RDF using the HTML vocabulary as follows:
             owl:onDatatype xsd:string;
             owl:withRestrictions
               ( [ xsd:pattern "^data-[a-z_:][a-z0-9_.:-]*$" ] ) ] ];
+                                            
+      
     dct:conformsTo section:3.2.6;
     skos:definition 'A custom data attribute is an attribute in no namespace whose name starts with the string "data-", has at least one character after the hyphen, is XML-compatible, and contains no ASCII upper alphas.'@en;
     skos:prefLabel 'custom data attribute'@en;
@@ -5373,17 +5420,6 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel 'the ondragenter attribute'@en;
     rdfs:isDefinedBy html:.
 
-  html:ondragexit
-    a owl:DatatypeProperty;
-    rdfs:subPropertyOf html:attribute;    
-    html:key 'ondragexit';
-    rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element;
-    rdfs:range xsd:string;
-    skos:definition "Specifies the dragexit event handler."@en;
-    skos:prefLabel 'the ondragexit attribute'@en;
-    rdfs:isDefinedBy html:.
-
   html:ondragleave
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;    
@@ -5466,7 +5502,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onerror';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the error event handler."@en;
     skos:prefLabel 'the onerror attribute'@en;
@@ -5494,6 +5530,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel 'the onformdata attribute'@en;
     rdfs:isDefinedBy html:.
 
+  html:onhashchange
+    a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
+    html:key 'onhashchange';
+    rdf:type html:EventHandlerContentAttribute;
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the hashchange event handler for Window object."@en;
+    skos:prefLabel 'the onhashchange attribute'@en;
+    rdfs:isDefinedBy html:.
+    
   html:oninput
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;    
@@ -5554,7 +5601,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onlanguagechange';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Window;
+    rdfs:domain html:Body;
     rdfs:range xsd:string;
     skos:definition "Specifies the languagechange event handler for a Window object."@en;
     skos:prefLabel 'the onlanguagechange attribute'@en;
@@ -5565,7 +5612,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onload';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the load event handler."@en;
     skos:prefLabel 'the onload attribute'@en;
@@ -5609,7 +5656,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onmessage';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Body;
     rdfs:range xsd:string;
     skos:definition "Specifies the message event handler."@en;
     skos:prefLabel 'the onmessage attribute'@en;
@@ -5620,7 +5667,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onmessageerror';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Window;
+    rdfs:domain html:Body;
     rdfs:range xsd:string;
     skos:definition "Specifies the messageerror event handler for a Window object."@en;
     skos:prefLabel 'the onmessageerror attribute'@en;
@@ -5703,15 +5750,15 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel 'the onmouseup attribute'@en;
     rdfs:isDefinedBy html:.
 
-  html:onmousewheel
+  html:onpaste
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;    
-    html:key 'onmousewheel';
+    html:key 'onpaste';
     rdf:type html:EventHandlerContentAttribute;
     rdfs:domain html:Element;
     rdfs:range xsd:string;
-    skos:definition "Specifies the mousewheel event handler."@en;
-    skos:prefLabel 'the onmousewheel attribute'@en;
+    skos:definition "Specifies the paste event handler."@en;
+    skos:prefLabel 'the onpaste attribute'@en;
     rdfs:isDefinedBy html:.
 
   html:onpause
@@ -5745,6 +5792,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:range xsd:string;
     skos:definition "Specifies the playing event handler."@en;
     skos:prefLabel 'the onplaying attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onpopstate
+    a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
+    html:key 'onpopstate';
+    rdf:type html:EventHandlerContentAttribute;
+    rdfs:domain html:Element;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the popstate event handler for Window object."@en;
+    skos:prefLabel 'the onpopstate attribute'@en;
     rdfs:isDefinedBy html:.
 
   html:onprogress
@@ -5785,18 +5843,29 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onresize';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the resize event handler."@en;
     skos:prefLabel 'the onresize attribute'@en;
     rdfs:isDefinedBy html:.
+
+  html:onrejectionhandled
+    a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
+    html:key 'onrejectionhandled';
+    rdf:type html:EventHandlerContentAttribute;
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the rejectionhandled event handler for Window object."@en;
+    skos:prefLabel 'the onrejectionhandled attribute'@en;
+    rdfs:isDefinedBy html:.    
 
   html:onscroll
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;    
     html:key 'onscroll';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the scroll event handler."@en;
     skos:prefLabel 'the onscroll attribute'@en;
@@ -5818,7 +5887,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onsecuritypolicyviolation';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Element, html:Body, html:Window;
+    rdfs:domain html:Element;
     rdfs:range xsd:string;
     skos:definition "Specifies the securitypolicyviolation event handler."@en;
     skos:prefLabel 'the onsecuritypolicyviolation attribute'@en;
@@ -5884,7 +5953,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subPropertyOf html:attribute;    
     html:key 'onstorage';
     rdf:type html:EventHandlerContentAttribute;
-    rdfs:domain html:Window;
+    rdfs:domain html:Body;
     rdfs:range xsd:string;
     skos:definition "Specifies the storage event handler for a Window object."@en;
     skos:prefLabel 'the onstorage attribute'@en;
@@ -5934,6 +6003,28 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel 'the ontoggle attribute'@en;
     rdfs:isDefinedBy html:.
 
+  html:onunhandledrejection
+    a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
+    html:key 'onunhandledrejection';
+    rdf:type html:EventHandlerContentAttribute;
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the unhandledrejection event handler for Window object."@en;
+    skos:prefLabel 'the onunhandledrejection attribute'@en;
+    rdfs:isDefinedBy html:.
+
+  html:onunload
+    a owl:DatatypeProperty;
+    rdfs:subPropertyOf html:attribute;    
+    html:key 'onunload';
+    rdf:type html:EventHandlerContentAttribute;
+    rdfs:domain html:Body;
+    rdfs:range xsd:string;
+    skos:definition "Specifies the unload event handler for Window object."@en;
+    skos:prefLabel 'the onunload attribute'@en;
+    rdfs:isDefinedBy html:.
+    
   html:onvolumechange
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;    
