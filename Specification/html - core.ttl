@@ -17,7 +17,6 @@ prefix void:      <http://rdfs.org/ns/void#>
 prefix xsd:       <http://www.w3.org/2001/XMLSchema#>
 
 # HTML prefixes
-prefix concept:   <https://www.w3.org/html/model/concept/>
 prefix decl:      <https://www.w3.org/html/id/decl/>
 prefix function:  <https://www.w3.org/html/model/function/>
 prefix html:      <https://www.w3.org/html/model/def/>
@@ -46,9 +45,9 @@ prefix target:    <https://www.w3.org/html/model/target/>
       
     respec:introduction '''In today's fast-paced business landscape, organizations grapple with the formidable challenge of information management. The demand for robust information products and agile information processing is relentless, constantly evolving with each passing moment, transcending industry boundaries. In this dynamic environment, the creation, validation, and utilization of information products are paramount, serving as the bedrock for informed decision-making and organizational effectiveness. The ability to swiftly respond to unforeseen crises or seize emerging opportunities hinges on having the right answers to previously unasked questions.
 
-    So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
+So, how can organizations effectively navigate this information-intensive terrain? A key part of the solution lies in the capability to exercise complete control over the generation, modification, validation, and reuse of information products. This entails the profound ability to construct and deconstruct any arbitrary information product, dissecting it from its foundational elements to its broader, strategic significance.
 
-    To address this need, we have pioneered the development of the RDF-based HTML vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
+To address this need, we have pioneered the development of the RDF-based HTML vocabulary - a transformative framework designed to facilitate the management of an array of information artifacts built upon HTML.'''@en;
 
     respec:background 'In an era where information is akin to a constantly flowing stream, organizations must grapple with several pressing challenges in aspects like velocity, variety, the insightfulness, adaptability and validity. The speed at which information is generated, transformed, and consumed is unparalleled. Keeping pace with this velocity is essential for timely decision-making. Information comes in diverse formats, from structured data to unstructured text, images, and multimedia. Effective management necessitates the ability to handle this rich variety seamlessly. Information is not merely data; it embodies insights, functionality, and knowledge. Extracting meaningful insights and practical functionality is vital for organizational success. Organizations must be agile in adapting information products to address new crises and opportunities swiftly. Finally, ensuring the correctness, compliance and reliability of information is fundamental to trustworthy decision-making and operations.'@en;
     
@@ -58,7 +57,11 @@ prefix target:    <https://www.w3.org/html/model/target/>
     
     respec:acknowledgements 'This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'@en;
     
-    dct:description '''The HTML vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code. Center to this ontology is the class 'html:Element', which represents a HTML element and is in fact a subclass of 'dom:Element', an element as specified in the Document Object Model specification. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:Attribute' class of all HTML attributes. Any attribute in HTML like 'html:class' or 'html:style' is also a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML, RDFa or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text; html:fragment "Hello, World!".'. In order to serialize this HTML document to actual HTML code, there is the SHACL node shape shp:HTMLFragmentSerializationAlgorithm to process the RDF-structure and transform this into HTML code. The rule in the node shape calls six functions, depending on the content of the HTML document. The logic behind the shape is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are text nodes and elements that do not contain any child elements. From the start these can be transformed into HTML code immediately without the necessity of any context. From the outer edges the node shape shp:HTMLFragmentSerializationAlgorithm works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
+    dct:description '''The HTML vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF. The vocabulary is based on the Living Standard of HTML and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes for the serialisation of HTML code.
+
+Center to this ontology is the class 'html:Element', which represents a HTML element and is in fact a subclass of 'dom:Element', an element as specified in the Document Object Model specification. Any specific HTML element like 'html:A' (anchor element) or 'html:Body' (body element) is a subclass of the class 'html:Element'. Another fundamental building block of this ontology is the 'html:Attribute' class of all HTML attributes. Any attribute in HTML like 'html:class' or 'html:style' is also a subproperty of 'html:attribute'. An HTML attribute can be an attribute as defined in the Living Standard of HTML, RDFa or a custom defined attribute. In addition, there is the class of 'html:Text', where all instantiations contain a html:fragment property relation with an actual textual string, as for example in the triples 'doc:1.0 a html:Text; html:fragment "Hello, World!".'.
+
+In order to serialize this HTML document to actual HTML code, there is the SHACL node shape shp:HTMLFragmentSerializationAlgorithm to process the RDF-structure and transform this into HTML code. The rule in the node shape calls six functions, depending on the content of the HTML document. The logic behind the shape is that the HTML code can be serialized from the leaves of the tree upwards up and till the top of the tree. It means that an arbitrary element in the DOM tree of an HTML document can only be serialized to HTML code, whenever the underlying child elements of that element have been serialized to HTML already, including the HTML code of possible attributes and their values. The outer edges of the tree are text nodes and elements that do not contain any child elements. From the start these can be transformed into HTML code immediately without the necessity of any context. From the outer edges the node shape shp:HTMLFragmentSerializationAlgorithm works its way up the tree until the moment that all the HTML elements have received an HTML fragment and the HTML document can be created based on the html:fragment, as contained in the html:html root element of that document. The processing halts the moment the document itself has an html:fragment.'''@en;
     
     dct:abstract 'The HTML vocabulary establishes a draft standard to semantically represent HTML documents in RDF. The vocabulary is based on the HTML Living Standard. It includes classes for HTML elements, datatype properties for attributes, and SHACL shapes for code serialization. HTML documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves. As HTML documents are widely used in a myriad of use cases, from websites, dashboard, applications, to social media and documents, this vocabulary helps organisations and individuals to get a better grasp of their information products.'@en;
     
@@ -6212,7 +6215,7 @@ construct {
     bind(strdt(?data,xsd:string) as ?fragment)
      }
     bind(if(bound(?fragment),?fragment,'') as ?result)  
-    }	
+    }
 """ ;
     rdfs:isDefinedBy html:.
 
@@ -6329,7 +6332,7 @@ construct {
 
     prefix function: <https://www.w3.org/html/model/function/>      
     prefix html: <https://www.w3.org/html/model/def/>
-  	prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
     
     select ?result where {
