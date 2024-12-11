@@ -3,6 +3,8 @@
 
 This is the repository for htmlvoc, the semantic HTML-vocabulary. You're welcome to contribute! 
 
+Here you can find the official specification: https://floresbakker.github.io/htmlvoc/
+
 # Status
 
 Stable, but no release yet. Work in progress together with the community group [Semantic HTML-vocabulary](https://www.w3.org/community/htmlvoc/). We aim for a preliminary release in the end of 2024, together with a draft report on the vocabulary.

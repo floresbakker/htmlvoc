@@ -2533,7 +2533,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     a owl:Class;
     dct:conformsTo section:4.4.8;
     html:tag 'li';
-    rdfs:subClassOf html:VoidElement;
+    rdfs:subClassOf html:NormalElement;
     skos:definition 'The <li> HTML element is used to represent an item in a list. It must be contained in a parent element: an ordered list (<ol>), an unordered list (<ul>), or a menu (<menu>). In menus and unordered lists, list items are usually displayed using bullet points. In ordered lists, they are usually displayed with an ascending counter on the left, such as a number or letter.'@en;
     skos:prefLabel 'the li element'@en;
     rdfs:isDefinedBy html:.
@@ -2941,7 +2941,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
 
   html:Embed
     a owl:Class;
-    rdfs:subClassOf html:NormalElement;
+    rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.8.6;
     html:tag 'embed';
     skos:definition 'The <embed> HTML element embeds external content at the specified point in the document. This content is provided by an external application or other source of interactive content such as a browser plug-in.'@en;
