@@ -6159,13 +6159,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "A html element in a HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix function: <https://www.w3.org/html/model/function/>
-    prefix html: <https://www.w3.org/html/model/def/>
-    prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
     select ?result where {
 
     OPTIONAL {
@@ -6201,12 +6197,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "A HTML text node in a HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix dom: <http://www.w3.org/DOM/model/def/>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
     select ?result where {
 
     # Text is stored in de data attribute of DOM text nodes
@@ -6229,11 +6222,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "A HTML comment in a HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix function: <https://www.w3.org/html/model/function/>
-
     select ?result where {
     OPTIONAL {
     # Establish the HTML fragment for this HTML comment
@@ -6253,11 +6244,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "A HTML processing instruction in a HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix function: <https://www.w3.org/html/model/function/>
-
     select ?result where {
 
     OPTIONAL {
@@ -6278,11 +6267,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "An HTML DocumentType in a HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix html: <https://www.w3.org/html/model/def/>
-
     select ?result where {
 
     OPTIONAL {
@@ -6304,11 +6291,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "An HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix function: <https://www.w3.org/html/model/function/>
-
     select ?result where {
     OPTIONAL {
     # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
@@ -6328,14 +6313,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "A node in an HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix function: <https://www.w3.org/html/model/function/>
-    prefix html: <https://www.w3.org/html/model/def/>
-    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-
     select ?result where {
     OPTIONAL {
     # Get the HTML fragments of child nodes, if there are any.
@@ -6364,13 +6344,9 @@ construct {
         sh:datatype xsd:anyURI ;
         sh:description "An HTML element in an HTML document." ;
     ] ;
+    sh:prefixes html:;
     sh:returnType xsd:string ;
     sh:select """
-
-    prefix dom: <http://www.w3.org/DOM/model/def/>
-    prefix html: <https://www.w3.org/html/model/def/>
-    prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-
     select ?result where {
     OPTIONAL
     { # Get the HTML attributes for this element, if there are any.
