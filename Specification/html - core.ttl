@@ -1662,7 +1662,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
 
 
                                     [ a owl:Restriction;
-                                      owl:someValuesFrom html:Body ;
+                                      owl:someValuesFrom html:Body;
                                       owl:onProperty
                                         [ owl:inverseOf rdfs:member ] ]
 
@@ -1831,14 +1831,14 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         [ owl:intersectionOf
             ( html:Meta
                 [ a owl:Restriction;
-                  owl:cardinality "1"^^xsd:nonNegativeInteger ;
+                  owl:cardinality "1"^^xsd:nonNegativeInteger;
                   owl:onProperty  html:itemprop ] ) ]
 
         [ owl:unionOf
             ( [ owl:intersectionOf
                   ( html:Link
                       [ a owl:Restriction;
-                        owl:cardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger;
                         owl:onProperty  html:itemprop ] ) ]
 
 
@@ -2170,7 +2170,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdf:type owl:Class;
     rdfs:subClassOf dom:Attribute;
     dct:conformsTo section:13.1.2.3;
-    skos:definition """An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string."""@en;
+    skos:definition "An attribute is a name-value pair that is associated with an HTML element. Attributes provide additional information about an element and are specified within the start tag of an element. Attributes can modify the behavior or appearance of an element, define relationships between elements, or provide other metadata. The name of the attribute is followed by an equal sign (=) and the attribute's value, which is enclosed in double or single quotes. Some attributes affect the element simply by their presence in the start tag of the element, with the value implicitly being an empty string."@en;
     skos:prefLabel 'attribute'@en;
     rdfs:isDefinedBy html:.
 
@@ -6077,22 +6077,22 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:definition 'A SPARQL Target to select all nodes in an HTML document that do not have an HTML fragment yet, and whose child nodes all have an HTML fragment already.'@en;
     sh:prefixes html:;
     sh:select '''
-select $this {
+      select $this {
 
-  # Select all DOM nodes...
-  $this a/rdfs:subClassOf* dom:DocumentTreeNode.
+        # Select all DOM nodes...
+        $this a/rdfs:subClassOf* dom:DocumentTreeNode.
 
-  # ...that do not yet have an HTML fragment.
-  filter not exists { $this html:fragment []. }
+        # ...that do not yet have an HTML fragment.
+        filter not exists { $this html:fragment []. }
 
-  # ...but whose child nodes (if any) all have an HTML fragment
-  filter not exists {
-    $this ?member ?child.
-    filter(function:isMembershipProperty(?member))
-    filter not exists { ?child html:fragment []. }
-    ?child a/rdfs:subClassOf* dom:DocumentTreeNode.
-  }
-}''';
+        # ...but whose child nodes (if any) all have an HTML fragment
+        filter not exists {
+          $this ?member ?child.
+          filter(function:isMembershipProperty(?member))
+          filter not exists { ?child html:fragment []. }
+          ?child a/rdfs:subClassOf* dom:DocumentTreeNode.
+        }
+      }''';
     rdfs:isDefinedBy html:.
 
   rule:HTMLFragmentSerializationAlgorithm
@@ -6101,30 +6101,30 @@ select $this {
     skos:definition 'A SPARQL rule to serialize an HTML fragment for a node in an HTML document, analogue to the HTML fragment serialisation algorithm as described in the living standard of HTML.'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
+      construct {
 
-  # Assert the new HTML fragment for this node in the HTML document
-  $this html:fragment ?fragment.
+        # Assert the new HTML fragment for this node in the HTML document
+        $this html:fragment ?fragment.
 
-} where {
+      } where {
 
-  # Establish the class of the node in the HTML document
-  $this a/rdfs:subClassOf* ?htmlClass.
-  ?htmlClass rdfs:isDefinedBy html:.
+        # Establish the class of the node in the HTML document
+        $this a/rdfs:subClassOf* ?htmlClass.
+        ?htmlClass rdfs:isDefinedBy html:.
 
-  # Build the HTML fragment for the node in the HTML document depending on its class
-  bind(if(?htmlClass = html:Element,                function:getElementFragment($this),
-       if(?htmlClass = html:Text ,                  function:getTextFragment($this),
-       if(?htmlClass = html:Comment,                function:getCommentFragment($this),
-       if(?htmlClass = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this),
-       if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this),
-       if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
-  as ?fragmentString)
+        # Build the HTML fragment for the node in the HTML document depending on its class
+        bind(if(?htmlClass = html:Element,                function:getElementFragment($this),
+             if(?htmlClass = html:Text,                   function:getTextFragment($this),
+             if(?htmlClass = html:Comment,                function:getCommentFragment($this),
+             if(?htmlClass = html:ProcessingInstruction,  function:getProcessingInstructionFragment($this),
+             if(?htmlClass = html:DocumentType,           function:getDocumentTypeFragment($this),
+             if(?htmlClass = html:Document,               function:getDocumentFragment($this), ?unboundDummy))))))
+        as ?fragmentString)
 
-  # Convert result from string to rdf:HTML if fragment exists
-  bind(if(bound(?fragmentString), strdt(?fragmentString, rdf:HTML), ?unboundDummy) as ?fragment)
+        # Convert result from string to rdf:HTML if fragment exists
+        bind(if(bound(?fragmentString), strdt(?fragmentString, rdf:HTML), ?unboundDummy) as ?fragment)
 
-}''';
+      }''';
     rdfs:isDefinedBy html:.
 
 
@@ -6142,231 +6142,219 @@ construct {
     skos:definition 'A SPARQL rule to establish an individual custom element as a subclass of the class html:CustomElement.'@en;
     sh:prefixes html:;
     sh:construct '''
-construct {
-  $this rdfs:subClassOf  html:CustomElement.
-} where {
- # Condition is already met via the target, hence empty where clause
-}''';
+      construct { $this rdfs:subClassOf  html:CustomElement. }
+      where {} # Condition is already met via the target, hence empty where clause.''';
     rdfs:isDefinedBy html:.
 
 
   function:getElementFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getElementFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for an element in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for an element in an HTML document."@en;
     sh:parameter [
-        sh:path function:element ;
-        sh:datatype xsd:anyURI ;
-        sh:description "A html element in a HTML document." ;
-    ] ;
+        sh:path function:element;
+        sh:datatype xsd:anyURI;
+        sh:description "A html element in a HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Retrieve the tag name of the element.
+          $element a ?class.
+          ?class
+            html:tag ?tag;
+            rdfs:subClassOf ?elementType.
 
-    OPTIONAL {
-    # Retrieve the tag name of the element.
-    $element a ?class.
-    ?class html:tag ?tag;
-             rdfs:subClassOf ?elementType.
+          # Get the HTML attributes for the element, if there are any.
+          bind(function:getElementAttribute($element) as ?attributes)
 
-    # Get the HTML attributes for the element, if there are any.
-    bind(function:getElementAttribute($element) as ?attributes)
+          # Get the HTML fragments of child nodes for the element, if there are any.
+          bind(function:getChildNodeFragment($element) as ?childFragments)
 
-    # Get the HTML fragments of child nodes for the element, if there are any.
-    bind(function:getChildNodeFragment($element) as ?childFragments)
-
-    # Build the HTML fragment for this HTML element, by combining everything retrieved above.
-    bind(
-    concat(
-      '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
-      # Void elements have neither content nor a closing tag.
-      if(?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+          # Build the HTML fragment for this HTML element, by combining everything retrieved above.
+          bind(concat(
+            '<',?tag,if(?attributes='','',concat(' ',?attributes)),'>',
+            # Void elements have neither content nor a closing tag.
+            if(?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getTextFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getTextFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for a text node in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a text node in an HTML document."@en;
     sh:parameter [
-        sh:path function:text ;
-        sh:datatype xsd:anyURI ;
-        sh:description "A HTML text node in a HTML document." ;
-    ] ;
+        sh:path function:text;
+        sh:datatype xsd:anyURI;
+        sh:description "A HTML text node in a HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-
-    # Text is stored in de data attribute of DOM text nodes
-    $text dom:data ?data.
-    OPTIONAL {
-    # Establish the HTML fragment for this HTML text node
-    bind(strdt(?data,xsd:string) as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        # Text is stored in de data attribute of DOM text nodes
+        $text dom:data ?data.
+        optional {
+          # Establish the HTML fragment for this HTML text node
+          bind(strdt(?data,xsd:string) as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getCommentFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getCommentFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for a comment node in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a comment node in an HTML document."@en;
     sh:parameter [
-        sh:path function:comment ;
-        sh:datatype xsd:anyURI ;
-        sh:description "A HTML comment in a HTML document." ;
-    ] ;
+        sh:path function:comment;
+        sh:datatype xsd:anyURI;
+        sh:description "A HTML comment in a HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-    OPTIONAL {
-    # Establish the HTML fragment for this HTML comment
-    bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Establish the HTML fragment for this HTML comment
+          bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getProcessingInstructionFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getProcessingInstructionFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for a processing instruction in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a processing instruction in an HTML document."@en;
     sh:parameter [
-        sh:path function:processingInstruction ;
-        sh:datatype xsd:anyURI ;
-        sh:description "A HTML processing instruction in a HTML document." ;
-    ] ;
+        sh:path function:processingInstruction;
+        sh:datatype xsd:anyURI;
+        sh:description "A HTML processing instruction in a HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-
-    OPTIONAL {
-    # Establish the HTML fragment for this HTML processingInstruction
-    bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Establish the HTML fragment for this HTML processingInstruction
+          bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getDocumentTypeFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getDocumentTypeFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for a document type in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for a document type in an HTML document."@en;
     sh:parameter [
-        sh:path function:doctype ;
-        sh:datatype xsd:anyURI ;
-        sh:description "An HTML DocumentType in a HTML document." ;
-    ] ;
+        sh:path function:doctype;
+        sh:datatype xsd:anyURI;
+        sh:description "An HTML DocumentType in a HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-
-    OPTIONAL {
-    # Establish the doctype name for this Document Type.
-    $doctype html:documentTypeName ?name.
-    bind(concat('<!DOCTYPE ',str(?name),'>') as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Establish the doctype name for this Document Type.
+          $doctype html:documentTypeName ?name.
+          bind(concat('<!DOCTYPE ',str(?name),'>') as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getDocumentFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getDocumentFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en;
     sh:parameter [
-        sh:path function:document ;
-        sh:datatype xsd:anyURI ;
-        sh:description "An HTML document." ;
-    ] ;
+        sh:path function:document;
+        sh:datatype xsd:anyURI;
+        sh:description "An HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-    OPTIONAL {
-    # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
-    bind(function:getChildNodeFragment($document) as ?fragment)
-     }
-    bind(coalesce(?fragment, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
+          bind(function:getChildNodeFragment($document) as ?fragment)
+        }
+        bind(coalesce(?fragment, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getChildNodeFragment
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel  "the getChildNodeFragment() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment of child nodes for a node in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment of child nodes for a node in an HTML document."@en;
     sh:parameter [
-        sh:path function:parentNode ;
-        sh:datatype xsd:anyURI ;
-        sh:description "A node in an HTML document." ;
-    ] ;
+        sh:path function:parentNode;
+        sh:datatype xsd:anyURI;
+        sh:description "A node in an HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-    OPTIONAL {
-    # Get the HTML fragments of child nodes, if there are any.
-    select $parentNode (group_concat(str(?childFragment);separator='') as ?childFragments) {
-      {
-        select $parentNode ?member ?childFragment {
-          $parentNode ?member ?childNode.
-          filter(function:isMembershipProperty(?member))
-          ?childNode html:fragment ?childFragment.
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Get the HTML fragments of child nodes, if there are any.
+          select $parentNode (group_concat(str(?childFragment);separator='') as ?childFragments) {
+            {
+              select $parentNode ?member ?childFragment {
+                $parentNode ?member ?childNode.
+                filter(function:isMembershipProperty(?member))
+                ?childNode html:fragment ?childFragment.
+              }
+              order by function:getMemberIndex(?member)
+            }
+          }
+          group by $parentNode
         }
-        order by function:getMemberIndex(?member)
-       }
-      } group by $parentNode
-     }
-    bind(coalesce(?childFragments, '') as ?result)
-    }
-""" ;
+        bind(coalesce(?childFragments, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getElementAttribute
-    a sh:SPARQLFunction ;
+    a sh:SPARQLFunction;
     skos:prefLabel "the getElementAttribute() function"@en;
-    skos:definition "A SPARQL function that returns an HTML fragment for the attributes of an HTML element."@en ;
+    skos:definition "A SPARQL function that returns an HTML fragment for the attributes of an HTML element."@en;
     sh:parameter [
-        sh:path function:element ;
-        sh:datatype xsd:anyURI ;
-        sh:description "An HTML element in an HTML document." ;
-    ] ;
+        sh:path function:element;
+        sh:datatype xsd:anyURI;
+        sh:description "An HTML element in an HTML document.";
+    ];
     sh:prefixes html:;
-    sh:returnType xsd:string ;
-    sh:select """
-    select ?result where {
-    OPTIONAL
-    { # Get the HTML attributes for this element, if there are any.
-    select $element (group_concat(distinct ?attributeFragment; separator=' ') as ?attributeFragments) {
-      $element ?attribute ?value.
-      ?attribute a/rdfs:subClassOf* dom:Attribute;
-                 ?localName ?key.
-      ?localName rdfs:subPropertyOf dom:localName.
-      bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
-      } group by $element
-     }
-    bind(coalesce(?attributeFragments, '') as ?result)
-    }
-""" ;
+    sh:returnType xsd:string;
+    sh:select '''
+      select ?result {
+        optional {
+          # Get the HTML attributes for this element, if there are any.
+          select $element (group_concat(distinct ?attributeFragment) as ?attributeFragments) {
+            $element ?attribute ?value.
+            ?attribute
+              a/rdfs:subClassOf* dom:Attribute;
+              ?localName ?key.
+            ?localName rdfs:subPropertyOf dom:localName.
+            bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
+          }
+          group by $element
+        }
+        bind(coalesce(?attributeFragments, '') as ?result)
+      }''';
     rdfs:isDefinedBy html:.
 
   function:getMemberIndex
     a sh:SPARQLFunction;
     skos:prefLabel "the getMemberIndex() function"@en;
-    skos:definition "A SPARQL function that returns the sibling index of a node in an HTML document."@en ;
+    skos:definition "A SPARQL function that returns the sibling index of a node in an HTML document."@en;
     sh:parameter parameter:getMemberIndex;
     sh:prefixes html:;
     sh:returnType xsd:positiveInteger;
@@ -6390,7 +6378,7 @@ construct {
   function:isMembershipProperty
     a sh:SPARQLFunction;
     skos:prefLabel "the isMembershipProperty() function"@en;
-    skos:definition "A SPARQL function that returns a boolean value based on whether a property is or is not an instance of the ContainerMembershipProperty class."@en ;
+    skos:definition "A SPARQL function that returns a boolean value based on whether a property is or is not an instance of the ContainerMembershipProperty class."@en;
     sh:parameter parameter:isMembershipProperty;
     sh:prefixes html:;
     sh:returnType xsd:boolean;
