@@ -6355,18 +6355,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     a sh:SPARQLFunction;
     skos:prefLabel "the getMemberIndex() function"@en;
     skos:definition "A SPARQL function that returns the sibling index of a node in an HTML document."@en;
-    sh:parameter parameter:getMemberIndex;
+    sh:parameter parameter:getMemberIndex_property;
     sh:prefixes html:;
-    sh:returnType xsd:positiveInteger;
+    sh:returnType xsd:integer;
     sh:select '''
-      select(
-        xsd:integer(
-          strafter(
-            str($property),
-            concat(str(rdf:), '_'))) as $return){}''';
+      select(?index as $return) {
+        bind(strafter(str($property), concat(str(rdf:),'_')) as ?after)
+        bind(xsd:integer(?after) as ?index)
+        filter(isIRI($property) && ?index > 0 && ?after = str(?index))
+      }''';
     rdfs:isDefinedBy html:.
-
-  parameter:getMemberIndex
+  parameter:getMemberIndex_property
     a sh:Parameter;
     skos:prefLabel "the getMemberIndex parameter"@en;
     skos:definition "A SHACL parameter"@en;
@@ -6379,22 +6378,22 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     a sh:SPARQLFunction;
     skos:prefLabel "the isMembershipProperty() function"@en;
     skos:definition "A SPARQL function that returns a boolean value based on whether a property is or is not an instance of the ContainerMembershipProperty class."@en;
-    sh:parameter parameter:isMembershipProperty;
+    sh:parameter parameter:isMembershipProperty_term;
     sh:prefixes html:;
     sh:returnType xsd:boolean;
     sh:select '''
-      select(
-        strstarts(
-          str($iri),
-          concat(str(rdf:), '_')) as $return){}''';
+      select $return {
+        bind(strafter(str($term), concat(str(rdf:),'_')) as ?after)
+        bind(xsd:integer(?after) as ?index)
+        bind(coalesce(isIRI($term) && ?index > 0 && ?after = str(?index), false) as $return)
+      }''';
     rdfs:isDefinedBy html:.
-
-  parameter:isMembershipProperty
+  parameter:isMembershipProperty_term
     a sh:Parameter;
     skos:prefLabel "the isMembershipProperty parameter"@en;
     skos:definition "A SHACL parameter"@en;
     sh:class rdfs:Resource;
     sh:order 1;
-    sh:path parameter:iri;
+    sh:path parameter:term;
     rdfs:isDefinedBy html:.
 #}
