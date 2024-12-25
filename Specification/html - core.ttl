@@ -6183,7 +6183,7 @@ construct {
       # Void elements have neither content nor a closing tag.
       if(?elementType=html:VoidElement,'',concat(?childFragments,'</',?tag,'>'))) as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6208,7 +6208,7 @@ construct {
     # Establish the HTML fragment for this HTML text node
     bind(strdt(?data,xsd:string) as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6230,7 +6230,7 @@ construct {
     # Establish the HTML fragment for this HTML comment
     bind(concat('<!--',function:getChildNodeFragment($comment),'-->') as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6253,7 +6253,7 @@ construct {
     # Establish the HTML fragment for this HTML processingInstruction
     bind(concat('<?',function:getChildNodeFragment($processingInstruction),'>') as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6277,7 +6277,7 @@ construct {
     $doctype html:documentTypeName ?name.
     bind(concat('<!DOCTYPE ',str(?name),'>') as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6299,7 +6299,7 @@ construct {
     # Establish the HTML fragment of the HTML document by retrieving the HTML fragments of all child nodes.
     bind(function:getChildNodeFragment($document) as ?fragment)
      }
-    bind(if(bound(?fragment),?fragment,'') as ?result)
+    bind(coalesce(?fragment, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6330,7 +6330,7 @@ construct {
        }
       } group by $parentNode
      }
-    bind(if(bound(?childFragments),?childFragments,'') as ?result)
+    bind(coalesce(?childFragments, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
@@ -6358,7 +6358,7 @@ construct {
       bind(concat(?key,'="',str(?value),'"') as ?attributeFragment)
       } group by $element
      }
-    bind(if(bound(?attributeFragments),?attributeFragments,'') as ?result)
+    bind(coalesce(?attributeFragments, '') as ?result)
     }
 """ ;
     rdfs:isDefinedBy html:.
