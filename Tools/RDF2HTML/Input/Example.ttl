@@ -1,0 +1,40 @@
+    prefix doc:  <http://www.example.org/document/> 
+    prefix html: <https://www.w3.org/html/model/def/> 
+    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+    # This document has two child nodes, modeled using the rdf:_1 and rdf:_2 statements.
+    doc:Example a html:Document ; 
+      rdf:_1 doc:doctype ;
+      rdf:_2 doc:html . 
+
+    # A doctype declaration
+    doc:doctype a html:DocumentType ;
+      html:documentTypeName "html" .
+    
+    # The root node with two child nodes
+    doc:html a html:Html ; 
+      rdf:_1 doc:head ; 
+      rdf:_2 doc:body .
+
+    doc:head a html:Head ; 
+      rdf:_1 doc:title ; 
+      rdf:_2 doc:style .
+
+    doc:title a html:Title ; 
+      rdf:_1 doc:titleText . 
+
+    # Note that text nodes always should have a html:fragment statement
+    doc:titleText a html:Text ; 
+      html:fragment "Tutorial Document Example"^^rdf:HTML . 
+     
+    doc:style a html:StyleSheet ; 
+      rdf:_1 doc:styleText . 
+
+    doc:styleText a html:Text ; 
+      html:fragment """\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r """^^rdf:HTML .
+
+    doc:body a html:Body ;  
+      rdf:_1 doc:bodyText .
+
+    doc:bodyText a html:Text;
+      html:fragment 'Hello world!'^^rdf:HTML .
