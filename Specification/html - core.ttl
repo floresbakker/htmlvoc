@@ -84,65 +84,65 @@ Let us take a look at an example in order to get a better understanding of the v
 *Example:*
 
 ```
-    prefix doc:  <http://www.example.org/document/> 
-    prefix html: <https://www.w3.org/html/model/def/> 
-    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+    prefix doc:  <http://www.example.org/document/>
+    prefix html: <https://www.w3.org/html/model/def/>
+    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     # An example of a simple HTML document. Note how a specific HTML document is an instance of the class html:Document.
     # This HTML document has two child nodes, a docType declaration and the root node 'html' modeled using the rdf:_1 and rdf:_2 statements.
     # Note how this HTML document has not yet been serialized to HTML, as the doc:example node does not yet have an html:fragment statement.
-    doc:example a html:Document ; 
+    doc:example a html:Document ;
       rdf:_1 doc:doctype ;
-      rdf:_2 doc:html . 
+      rdf:_2 doc:html .
 
     # A doctype declaration stating this is document type html
     doc:doctype a html:DocumentType ;
       html:documentTypeName "html" .
-    
+
     # The root node with two child nodes, a head node and a body node
-    doc:html a html:Html ; 
-      rdf:_1 doc:head ; 
+    doc:html a html:Html ;
+      rdf:_1 doc:head ;
       rdf:_2 doc:body .
 
     # The head node contains in this example two child nodes, a title and a stylesheet node
-    doc:head a html:Head ; 
-      rdf:_1 doc:title ; 
+    doc:head a html:Head ;
+      rdf:_1 doc:title ;
       rdf:_2 doc:style .
 
     # The title node contains a text node
-    doc:title a html:Title ; 
-      rdf:_1 doc:titleText . 
+    doc:title a html:Title ;
+      rdf:_1 doc:titleText .
 
     # Note that text nodes always should have a html:fragment statement
-    doc:titleText a html:Text ; 
-      html:fragment "Tutorial Document Example"^^rdf:HTML . 
-    
+    doc:titleText a html:Text ;
+      html:fragment "Tutorial Document Example"^^rdf:HTML .
+
     # The style node contains a text node
-    doc:style a html:StyleSheet ; 
-      rdf:_1 doc:styleText . 
+    doc:style a html:StyleSheet ;
+      rdf:_1 doc:styleText .
 
     # Note that text nodes always should have a html:fragment statement
-    doc:styleText a html:Text ; 
+    doc:styleText a html:Text ;
       html:fragment """
                    able {
                    width: 70%;
                    margin: 0 auto;
                    border-collapse: collapse;
                    }
-                   
+
                    caption {
                    text-align: left;
                    font-weight: bold;
                    padding: 10px;
                    background-color: #f2f2f2; /* Light gray */
                    }
-                   
+
                    th, td {
                    padding: 12px;
                    text-align: center;
                    border: 1px solid #ddd; /* Light gray border */
                    }
-                   
+
                    th {
                    background-color: #4CAF50; /* Green */
                    color: white;
@@ -150,7 +150,7 @@ Let us take a look at an example in order to get a better understanding of the v
                    """^^rdf:HTML .
 
     # The body node contains a text node
-    doc:body a html:Body ;  
+    doc:body a html:Body ;
       rdf:_1 doc:bodyText .
 
     # Note that text nodes always should have a html:fragment statement
@@ -162,7 +162,7 @@ Let us take a look at an example in order to get a better understanding of the v
 
 ***HTML and DOM alignment***
 
-The components of an HTML document together form a tree-like structure of nodes known as the Document Object Model (DOM), which is a programmatic representation of the document that allows it to be manipulated dynamically. For this reason a separate DOM vocabulary had to be created as well, next to the HTML vocabulary. Classes like html:Document, html:Text, html:Comment, html:ProcessingInstruction and html:DocumentType are defined as subclasses of dom:Document, dom:Text, dom:Comment, dom:ProcessingInstruction and dom:DocumentType. The DOM vocabulary provides thus, through a RDF-based representation of the Document Object Model, the necessary context for the HTML vocabulary. 
+The components of an HTML document together form a tree-like structure of nodes known as the Document Object Model (DOM), which is a programmatic representation of the document that allows it to be manipulated dynamically. For this reason a separate DOM vocabulary had to be created as well, next to the HTML vocabulary. Classes like html:Document, html:Text, html:Comment, html:ProcessingInstruction and html:DocumentType are defined as subclasses of dom:Document, dom:Text, dom:Comment, dom:ProcessingInstruction and dom:DocumentType. The DOM vocabulary provides thus, through a RDF-based representation of the Document Object Model, the necessary context for the HTML vocabulary.
 
 ***Relation between HTML and DOM classes***
 ```
@@ -177,19 +177,19 @@ html:CDATASection is a subclass of dom:CDATASection.
 
 ***Node index***
 
-The index of a DOM node within an HTML document, indicating its relative position towards any preceding siblings, is modeled using the properties that are instances of the class rdfs:ContainerMembershipProperty, like rdf:_1, rdf:_2, rdf:_3, ...et cetera. 
+The index of a DOM node within an HTML document, indicating its relative position towards any preceding siblings, is modeled using the properties that are instances of the class rdfs:ContainerMembershipProperty, like rdf:_1, rdf:_2, rdf:_3, ...et cetera.
 
 *Example:*
 
 ```
-    prefix doc:  <http://www.example.org/document/> 
-    prefix html: <https://www.w3.org/html/model/def/> 
-    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+    prefix doc:  <http://www.example.org/document/>
+    prefix html: <https://www.w3.org/html/model/def/>
+    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     # This HTML document has two child nodes, a docType declaration and the root node 'html' modeled using the rdf:_1 and rdf:_2 statements.
-    doc:example a html:Document ; 
+    doc:example a html:Document ;
       rdf:_1 doc:doctype ;
-      rdf:_2 doc:html . 
+      rdf:_2 doc:html .
 ```
 
 
@@ -216,14 +216,14 @@ A specific instance of the body element can be seen in the example below.
 *Example:*
 ```
     # An instance of a body element, with a connected text node
-    doc:body a html:Body ;  
+    doc:body a html:Body ;
       rdf:_1 doc:bodyText .
 
     # Note that text nodes always should have a html:fragment statement
     doc:bodyText a html:Text;
       html:fragment 'Hello world!'^^rdf:HTML .
 ```
-    
+
 
 ***Kinds of elements***
 
@@ -309,7 +309,7 @@ rdfa:Attribute
     skos:definition """An RDFa attribute is used within web documents (HTML, XHTML, or XML) to embed structured metadata in the form of RDF (Resource Description Framework) triples. These attributes either define RDF concepts (like subjects, predicates, and objects) or modify existing HTML attributes to include RDF semantics. RDFa attributes allow semantic data to be expressed directly in web content without altering its visual presentation for human readers."""@en;
     skos:prefLabel 'attribute'@en;
     rdfs:isDefinedBy rdfa:.
-    
+
 rdfa:property
     a owl:DatatypeProperty;
     rdf:type rdfa:Attribute;
@@ -320,10 +320,10 @@ rdfa:property
     skos:prefLabel 'the property attribute'@en;
     skos:definition "Specifies a property for an DOM element."@en;
     rdfs:isDefinedBy rdfa:.
-    
+
 ```
 
-##### HTML serialisation 
+##### HTML serialisation
 
 A RDF-based HTML document, HTML element, text, document type declaration, HTML comment or CDATA section can have an associated HTML fragment through the html:fragment property, representing the HTML code of itself, its possible underlying child nodes and possible HTML attributes. If a RDF-based node of an HTML document contains an HTML fragment through this property, it is said to be serialized to HTML. In order to serialize an HTML document to actual HTML code based on its RDF-representation, the ontology provides the SHACL based node shape shp:HTMLFragmentSerializationAlgorithm, with its associated target target:HTMLFragmentSerializationAlgorithm; and rule rule:HTMLFragmentSerializationAlgorithm. In doing so, we make use of the Advanced Features of SHACL (see https://www.w3.org/TR/shacl-af/).
 
@@ -346,7 +346,7 @@ This nodeshape searches, through its target, for nodes that do not have an HTML 
 
 ***target:HTMLFragmentSerializationAlgorithm***
 
-This target looks for nodes that do not have an HTML fragment yet, but whose child nodes (if any) all have an HTML fragment. 
+This target looks for nodes that do not have an HTML fragment yet, but whose child nodes (if any) all have an HTML fragment.
 
 ```
   target:HTMLFragmentSerializationAlgorithm
@@ -426,7 +426,7 @@ function:getProcessingInstructionFragment
 function:getDocumentTypeFragment
 function:getDocumentFragment
 ```
- 
+
 These functions establish and return the HTML fragment for a node in an HTML document. As an example, let us see the function:getDocumentFragment.
 
 *Example:*
@@ -454,7 +454,7 @@ These functions establish and return the HTML fragment for a node in an HTML doc
     rdfs:isDefinedBy html:.
 ```
 
-This function has a name and definition, captured through the SKOS properties skos:prefLabel and skos:definition. There is a parameter defined (for an arbitrary document), and a returntype which details the kind of output the function will give back (a string). In the select query the actual algorithm is represented to retrieve the HTML code for the HTML document, by calling function function:getChildNodeFragment. As one can see, the HTML vocabulary has a modular structure, not only for classes but also for rules, targets, functions and the like. 
+This function has a name and definition, captured through the SKOS properties skos:prefLabel and skos:definition. There is a parameter defined (for an arbitrary document), and a returntype which details the kind of output the function will give back (a string). In the select query the actual algorithm is represented to retrieve the HTML code for the HTML document, by calling function function:getChildNodeFragment. As one can see, the HTML vocabulary has a modular structure, not only for classes but also for rules, targets, functions and the like.
 
 
 ***Suppporting functions***
@@ -494,12 +494,12 @@ Take for example the HTML document as modeled above. Running this through a SHAC
 *Example:*
 
 ```
-    prefix doc:  <http://www.example.org/document/> 
-    prefix html: <https://www.w3.org/html/model/def/> 
-    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+    prefix doc:  <http://www.example.org/document/>
+    prefix html: <https://www.w3.org/html/model/def/>
+    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     # An example of an HTML document that has been serialized to HTML code.
-    doc:Example a html:Document ; 
+    doc:Example a html:Document ;
       rdf:_1 doc:doctype ;
       rdf:_2 doc:html ;
       html:fragment "<!DOCTYPE html><html><head><title>Tutorial Document Example</title><style>\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r </style></head><body>Hello world!</body></html>"^^rdf:HTML .
@@ -508,51 +508,51 @@ Take for example the HTML document as modeled above. Running this through a SHAC
     doc:doctype a html:DocumentType ;
       html:documentTypeName "html" ;
       html:fragment "<!DOCTYPE html>"^^rdf:HTML .
-    
+
     # The root node with two child nodes
-    doc:html a html:Html ; 
-      rdf:_1 doc:head ; 
+    doc:html a html:Html ;
+      rdf:_1 doc:head ;
       rdf:_2 doc:body ;
       html:fragment "<html><head><title>Tutorial Document Example</title><style>\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r </style></head><body>Hello world!</body></html>"^^rdf:HTML .
 
-    doc:head a html:Head ; 
-      rdf:_1 doc:title ; 
+    doc:head a html:Head ;
+      rdf:_1 doc:title ;
       rdf:_2 doc:style ;
       html:fragment "<head><title>Tutorial Document Example</title><style>\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r </style></head>"^^rdf:HTML .
 
-    doc:title a html:Title ; 
+    doc:title a html:Title ;
       rdf:_1 doc:titleText ;
-      html:fragment "<title>Tutorial Document Example</title>"^^rdf:HTML . 
+      html:fragment "<title>Tutorial Document Example</title>"^^rdf:HTML .
 
     # Note that text nodes always should have a html:fragment statement
-    doc:titleText a html:Text ; 
-      html:fragment "Tutorial Document Example"^^rdf:HTML . 
-     
-    doc:style a html:StyleSheet ; 
-      rdf:_1 doc:styleText ;
-      html:fragment "<style>\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r </style>"^^rdf:HTML . 
+    doc:titleText a html:Text ;
+      html:fragment "Tutorial Document Example"^^rdf:HTML .
 
-    doc:styleText a html:Text ; 
+    doc:style a html:StyleSheet ;
+      rdf:_1 doc:styleText ;
+      html:fragment "<style>\r able {\r width: 70%;\r margin: 0 auto;\r border-collapse: collapse;\r }\r \r caption {\r text-align: left;\r font-weight: bold;\r padding: 10px;\r background-color: #f2f2f2; /* Light gray */\r }\r \r th, td {\r padding: 12px;\r text-align: center;\r border: 1px solid #ddd; /* Light gray border */\r }\r \r th {\r background-color: #4CAF50; /* Green */\r color: white;\r }\r </style>"^^rdf:HTML .
+
+    doc:styleText a html:Text ;
       html:fragment """
                    able {
                    width: 70%;
                    margin: 0 auto;
                    border-collapse: collapse;
                    }
-                   
+
                    caption {
                    text-align: left;
                    font-weight: bold;
                    padding: 10px;
                    background-color: #f2f2f2; /* Light gray */
                    }
-                   
+
                    th, td {
                    padding: 12px;
                    text-align: center;
                    border: 1px solid #ddd; /* Light gray border */
                    }
-                   
+
                    th {
                    background-color: #4CAF50; /* Green */
                    color: white;
@@ -581,7 +581,7 @@ As the Living Standard of HTML provides the possibility of custom defined HTML e
 ```
     # Some snippet of an arbitrary HTML document, showcasing the use of a custom element.
     ex:someFlagIconElement rdf:type ex:FlagIcon.
-    
+
     # A definition of the custom element that should be added to the dataset containing the HTML vocabulary, for instance through a separate vocabulary.
     ex:FlagIcon rdf:type html:CustomElement;
                 html:tag 'flag-icon';
@@ -605,7 +605,7 @@ html:CustomizedBuiltInElement is a subclass of html:CustomElement.
 
 Here follow the most important design patterns that were applied during the creation of the HTML vocabulary that shape the content, structure and behaviour of the HTML vocabulary.
 
-1. Every HTML attribute in the HTML vocabulary is defined as both an instance of the class html:Attribute as well as a subproperty of 'html:attribute'. This resonates with the design pattern in RDF Schema 1.1 (RDFS) where a container membership (like rdf:_1, rdf:_2, ...) is represented through both the membership of the class rdfs:ContainerMembershipProperty and through the assertion that the membership property (like rdf:_1, rdf:_2, ...) is a subproperty of 'rdfs:member'. 
+1. Every HTML attribute in the HTML vocabulary is defined as both an instance of the class html:Attribute as well as a subproperty of 'html:attribute'. This resonates with the design pattern in RDF Schema 1.1 (RDFS) where a container membership (like rdf:_1, rdf:_2, ...) is represented through both the membership of the class rdfs:ContainerMembershipProperty and through the assertion that the membership property (like rdf:_1, rdf:_2, ...) is a subproperty of 'rdfs:member'.
 
 2. The index of a node within an HTML document, indicating its relative position towards any preceding siblings, is modeled using the properties that are instances of the class rdfs:ContainerMembershipProperty, like rdf:_1, rdf:_2, rdf:_3, ...et cetera. This design choice for the vocabulary facilitates readability, writeability and maintainability of HTML documents. An alternative approach that was considered within the W3C community group involved using the list concept of RDF. The latter approach however would quickly render complex HTML documents unreadable, difficult to write manually and hard to maintain. Hence, the community group chose the approach of the container membership. Downside is that exhaustiveness of a sequence of HTML child nodes has to be achieved through other means (like for instance through the use of SHACL shapes). In addition, to retrieve the true index according to the DOM Living Standard specification where the index of a node is defined as the number of its preceding siblings, or 0 if it has none, one should write a specific SPARQL function to yield exactly that. This function would look like function:getMemberIndex but would need to substract '1' from the result. As this is easy to do so and seeing there is no need for now to use such a function, it was not seen as an hindrance.
 
