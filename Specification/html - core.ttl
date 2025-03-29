@@ -6908,8 +6908,8 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     sh:prefixes html:;
     sh:returnType xsd:integer;
     sh:select '''
-      select(?index as $return) {
-        bind(strafter(str($property), concat(str(rdf:),'_')) as ?after)
+      select (?index as $return) {
+        bind(function:strafterPrefix(str($property), concat(str(rdf:),'_')) as ?after)
         bind(xsd:integer(?after) as ?index)
         filter(isIRI($property) && ?index > 0 && ?after = str(?index))
       }''';
@@ -6933,7 +6933,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     sh:returnType xsd:boolean;
     sh:select '''
       select $return {
-        bind(strafter(str($term), concat(str(rdf:),'_')) as ?after)
+        bind(function:strafterPrefix(str($term), concat(str(rdf:),'_')) as ?after)
         bind(xsd:integer(?after) as ?index)
         bind(coalesce(isIRI($term) && ?index > 0 && ?after = str(?index), false) as $return)
       }''';
@@ -6947,4 +6947,32 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     sh:order 1;
     sh:path parameter:term;
     rdfs:isDefinedBy html:.
+
+  function:strafterPrefix
+    a sh:SPARQLFunction;
+    skos:prefLabel "the strafterPrefix() function"@en;
+    skos:definition "Returns the substring of '?args1' that occurs after string prefix '?arg2'. Returns the empty string in case '?arg2' is not a string prefix of '?arg1'. Notice that this function is a specialization of STRAFTER/2, due to the added requirement that the first argument starts with the second argument."@en;
+    sh:parameter
+      parameter:strafterPrefix_arg1,
+      parameter:strafterPrefix_arg2;
+    sh:prefixes html:;
+    sh:returnType xsd:string;
+    sh:select '''
+      select $return {
+        bind(concat('^',$arg2,'(.*)$') as ?pattern)
+        bind(if(regex($arg1, ?pattern), replace(str($arg1), ?pattern, '$1'), '') as $return)
+      }''';
+    rdfs:isDefinedBy html:.
+
+  parameter:strafterPrefix_arg1
+    a sh:Parameter;
+    sh:datatype xsd:string;
+    sh:order 1;
+    sh:path parameter:arg1.
+
+  parameter:strafterPrefix_arg2
+    a sh:Parameter;
+    sh:datatype xsd:string;
+    sh:order 2;
+    sh:path parameter:arg2.
 #}
