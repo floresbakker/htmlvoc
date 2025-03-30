@@ -6700,11 +6700,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     a sh:SPARQLFunction;
     skos:prefLabel  "the getElementFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for an element in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:element;
-        sh:datatype xsd:anyURI;
-        sh:description "A html element in a HTML document.";
-    ];
+    sh:parameter parameter:getElementFragment_element;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6732,15 +6728,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getElementFragment_element
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "A html element in a HTML document.";
+    sh:path parameter:element.
+
   function:getTextFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getTextFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a text node in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:text;
-        sh:datatype xsd:anyURI;
-        sh:description "A HTML text node in a HTML document.";
-    ];
+    sh:parameter parameter:getTextFragment_text;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6755,15 +6753,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getTextFragment_text
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "A HTML text node in a HTML document.";
+    sh:path parameter:text.
+
   function:getCommentFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getCommentFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a comment node in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:comment;
-        sh:datatype xsd:anyURI;
-        sh:description "A HTML comment in a HTML document.";
-    ];
+    sh:parameter parameter:getCommentFragment_comment;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6776,15 +6776,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getCommentFragment_comment
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "A HTML comment in a HTML document.";
+    sh:path parameter:comment.
+
   function:getProcessingInstructionFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getProcessingInstructionFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a processing instruction in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:processingInstruction;
-        sh:datatype xsd:anyURI;
-        sh:description "A HTML processing instruction in a HTML document.";
-    ];
+    sh:parameter parameter:getProcessingInstructionFragment_processingInstruction;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6797,15 +6799,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getProcessingInstructionFragment_processingInstruction
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "A HTML processing instruction in a HTML document.";
+    sh:path parameter:processingInstruction.
+
   function:getDocumentTypeFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getDocumentTypeFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a document type in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:doctype;
-        sh:datatype xsd:anyURI;
-        sh:description "An HTML DocumentType in a HTML document.";
-    ];
+    sh:parameter parameter:getDocumentTypeFragment_doctype;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6819,15 +6823,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getDocumentTypeFragment_doctype
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "An HTML DocumentType in a HTML document.";
+    sh:path parameter:doctype.
+
   function:getDocumentFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getDocumentFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:document;
-        sh:datatype xsd:anyURI;
-        sh:description "An HTML document.";
-    ];
+    sh:parameter parameter:getDocumentFragment_document;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6840,15 +6846,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getDocumentFragment_document
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "An HTML document.";
+    sh:path parameter:document.
+
   function:getChildNodeFragment
     a sh:SPARQLFunction;
     skos:prefLabel  "the getChildNodeFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment of child nodes for a node in an HTML document."@en;
-    sh:parameter [
-        sh:path parameter:parentNode;
-        sh:datatype xsd:anyURI;
-        sh:description "A node in an HTML document.";
-    ];
+    sh:parameter parameter:getChildNodeFragment_parentNode;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6871,15 +6879,17 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
+  parameter:getChildNodeFragment_parentNode
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "A node in an HTML document.";
+    sh:path parameter:parentNode.
+
   function:getElementAttribute
     a sh:SPARQLFunction;
     skos:prefLabel "the getElementAttribute() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for the attributes of an HTML element."@en;
-    sh:parameter [
-        sh:path parameter:element;
-        sh:datatype xsd:anyURI;
-        sh:description "An HTML element in an HTML document.";
-    ];
+    sh:parameter parameter:getElementAttribute_element;
     sh:prefixes html:;
     sh:returnType xsd:string;
     sh:select '''
@@ -6899,6 +6909,12 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         bind(coalesce(?attributeFragments, '') as ?result)
       }''';
     rdfs:isDefinedBy html:.
+
+  parameter:getElementAttribute_element
+    a sh:Parameter;
+    sh:datatype xsd:anyURI;
+    sh:description "An HTML element in an HTML document.";
+    sh:path parameter:element.
 
   function:getMemberIndex
     a sh:SPARQLFunction;
