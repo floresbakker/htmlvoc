@@ -437,7 +437,7 @@ These functions establish and return the HTML fragment for a node in an HTML doc
     skos:prefLabel  "the getDocumentFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en;
     sh:parameter [
-        sh:path function:document;
+        sh:path parameter:document;
         sh:datatype xsd:anyURI;
         sh:description "An HTML document.";
     ];
@@ -6701,7 +6701,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getElementFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for an element in an HTML document."@en;
     sh:parameter [
-        sh:path function:element;
+        sh:path parameter:element;
         sh:datatype xsd:anyURI;
         sh:description "A html element in a HTML document.";
     ];
@@ -6737,7 +6737,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getTextFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a text node in an HTML document."@en;
     sh:parameter [
-        sh:path function:text;
+        sh:path parameter:text;
         sh:datatype xsd:anyURI;
         sh:description "A HTML text node in a HTML document.";
     ];
@@ -6760,7 +6760,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getCommentFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a comment node in an HTML document."@en;
     sh:parameter [
-        sh:path function:comment;
+        sh:path parameter:comment;
         sh:datatype xsd:anyURI;
         sh:description "A HTML comment in a HTML document.";
     ];
@@ -6781,7 +6781,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getProcessingInstructionFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a processing instruction in an HTML document."@en;
     sh:parameter [
-        sh:path function:processingInstruction;
+        sh:path parameter:processingInstruction;
         sh:datatype xsd:anyURI;
         sh:description "A HTML processing instruction in a HTML document.";
     ];
@@ -6802,7 +6802,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getDocumentTypeFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for a document type in an HTML document."@en;
     sh:parameter [
-        sh:path function:doctype;
+        sh:path parameter:doctype;
         sh:datatype xsd:anyURI;
         sh:description "An HTML DocumentType in a HTML document.";
     ];
@@ -6824,7 +6824,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getDocumentFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for an HTML document."@en;
     sh:parameter [
-        sh:path function:document;
+        sh:path parameter:document;
         sh:datatype xsd:anyURI;
         sh:description "An HTML document.";
     ];
@@ -6845,7 +6845,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel  "the getChildNodeFragment() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment of child nodes for a node in an HTML document."@en;
     sh:parameter [
-        sh:path function:parentNode;
+        sh:path parameter:parentNode;
         sh:datatype xsd:anyURI;
         sh:description "A node in an HTML document.";
     ];
@@ -6876,7 +6876,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     skos:prefLabel "the getElementAttribute() function"@en;
     skos:definition "A SPARQL function that returns an HTML fragment for the attributes of an HTML element."@en;
     sh:parameter [
-        sh:path function:element;
+        sh:path parameter:element;
         sh:datatype xsd:anyURI;
         sh:description "An HTML element in an HTML document.";
     ];
