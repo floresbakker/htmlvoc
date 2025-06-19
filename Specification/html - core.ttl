@@ -4,6 +4,7 @@ prefix dcm:       <http://purl.org/dc/dcmitype/>
 prefix dct:       <http://purl.org/dc/terms/>
 prefix dom:       <http://www.w3.org/DOM/model/def/>
 prefix foaf:      <http://xmlns.com/foaf/0.1/>
+prefix mathml:    <http://www.w3.org/1998/Math/MathML/model/def/>
 prefix owl:       <http://www.w3.org/2002/07/owl#>
 prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfa:      <http://www.w3.org/ns/rdfa#>
@@ -12,6 +13,7 @@ prefix respec:    <https://respec.org/ontorespec/model/def/>
 prefix sh:        <http://www.w3.org/ns/shacl#>
 prefix skos:      <http://www.w3.org/2004/02/skos/core#>
 prefix status:    <http://purl.org/adms/status/>
+prefix svg:       <http://www.w3.org/SVG/model/def/>
 prefix vann:      <http://purl.org/vocab/vann/>
 prefix void:      <http://rdfs.org/ns/void#>
 prefix xsd:       <http://www.w3.org/2001/XMLSchema#>
@@ -240,7 +242,7 @@ html:EscapableRawTextElement
   html:Textarea, html:Title
 
 html:ForeignElement
-  html:MathML, html:SVG
+  mathml:MathML, svg:Svg
 
 html:CustomElement
 
@@ -2281,7 +2283,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Label
         html:Map
         html:Mark
-        html:MathML
+        mathml:MathML
         html:Menu
         html:Meter
         html:Nav
@@ -2307,7 +2309,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Strong
         html:Sub
         html:Sup
-        html:SVG
+        svg:Svg
         html:Table
         html:Template
         html:Textarea
@@ -2442,7 +2444,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Label
         html:Map
         html:Mark
-        html:MathML
+        mathml:MathML
         html:Meter
         html:Noscript
         html:Object
@@ -2461,7 +2463,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Strong
         html:Sub
         html:Sup
-        html:SVG
+        svg:Svg
         html:Template
         html:Textarea
         html:Time
@@ -2479,7 +2481,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
   html:EmbeddedContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
-    owl:unionOf (html:Audio html:Canvas html:Embed html:Iframe html:Img html:MathML html:Object html:SVG html:Video);
+    owl:unionOf (html:Audio html:Canvas html:Embed html:Iframe html:Img mathml:MathML html:Object svg:Svg html:Video);
     dct:conformsTo section:3.2.5.2.6;
     skos:definition 'Embedded content is content that imports another resource into the document, or content from another vocabulary that is inserted into the document.'@en;
     skos:prefLabel 'Embedded content'@en;
@@ -2617,7 +2619,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Main
         html:Map
         html:Mark
-        html:MathML
+        mathml:MathML
         html:Meter
         html:Nav
         html:Object
@@ -2638,7 +2640,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         html:Strong
         html:Sub
         html:Sup
-        html:SVG
+        svg:Svg
         html:Table
         html:Textarea
         html:Time
@@ -3542,28 +3544,19 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.8.13;
     html:tag 'area';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <area> HTML element defines an area inside an image map that has predefined clickable areas. An image map allows geometric areas on an image to be associated with hypertext link.'@en;
     skos:prefLabel 'the area element'@en;
     rdfs:isDefinedBy html:.
 
-  html:MathML
-    a owl:Class;
-    rdfs:subClassOf html:ForeignElement;
-    dct:conformsTo section:4.8.15;
-    html:tag 'math';
-    skos:definition 'The <math> HTML element is a container for MathML content.'@en;
-    skos:prefLabel 'the math element'@en;
-    rdfs:isDefinedBy html:.
+  # Foreign element
 
-  html:SVG
-    a owl:Class;
+  mathml:MathML
     rdfs:subClassOf html:ForeignElement;
-    dct:conformsTo section:4.8.16;
-    html:tag 'svg';
-    skos:definition 'The <svg> HTML element is a container for SVG graphics. SVG allows for three types of graphics: vector graphic shapes (e.g., paths consisting of straight lines and curves), images, and text.'@en;
-    skos:prefLabel 'the svg element'@en;
-    rdfs:isDefinedBy html:.
+    dct:conformsTo section:4.8.15.
+
+  svg:Svg
+    rdfs:subClassOf html:ForeignElement;
+    dct:conformsTo section:4.8.16.
 
 
   # HTML - living standard - 4.9 Tabular data
@@ -3715,7 +3708,6 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     rdfs:subClassOf html:VoidElement;
     dct:conformsTo section:4.10.5;
     html:tag 'input';
-    rdfs:subClassOf html:VoidElement;
     skos:definition 'The <input> HTML element is used to create interactive controls for web-based forms in order to accept data from the user; a wide variety of types of input data and control widgets are available, depending on the device and user agent. The <input> element is one of the most powerful and complex in all of HTML due to the sheer number of combinations of input types and attributes.'@en;
     skos:prefLabel 'the input element'@en;
     rdfs:isDefinedBy html:.
@@ -6610,6 +6602,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
 
   shp:HTMLFragmentSerializationAlgorithm
     a sh:NodeShape;
+    sh:order 2;                   
     sh:rule rule:HTMLFragmentSerializationAlgorithm;
     sh:target target:HTMLFragmentSerializationAlgorithm;
     skos:prefLabel 'Node shape for HTML fragment serialization algorithm'@en;
@@ -6672,9 +6665,9 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       }''';
     rdfs:isDefinedBy html:.
 
-
   shp:CustomElement
     a sh:NodeShape;
+    sh:order 1;                   
     skos:prefLabel 'Node shape for custom element'@en;
     skos:definition 'A node shape to establish an individual custom element as a subclass of the class html:CustomElement.'@en;
     sh:rule rule:CustomElement;
@@ -6689,6 +6682,50 @@ This can be rendered in RDF using the HTML vocabulary as follows:
     sh:construct '''
       construct { $this rdfs:subClassOf  html:CustomElement. }
       where {} # Condition is already met via the target, hence empty where clause.''';
+    rdfs:isDefinedBy html:.
+
+  shp:ForeignElement
+    a sh:NodeShape;
+    sh:order 1;
+    skos:prefLabel 'Node shape for foreign element'@en;
+    skos:definition 'A node shape to transform the contents of a foreign element into a html fragment.'@en;    
+    sh:rule rule:ForeignElement;
+    sh:targetClass html:ForeignElement;
+    rdfs:isDefinedBy html:.
+
+  target:ForeignElement
+    a sh:SPARQLTarget;
+    skos:prefLabel 'SPARQL target for foreign element nodeshape'@en;
+    skos:definition 'A SPARQL Target to select all foreign element nodes in an HTML document that do not have an HTML fragment yet, but who do have a XML fragment.'@en;
+    sh:prefixes html:;
+    sh:select '''
+select $this {
+
+  # Select all foreign element nodes with a XML fragment...
+  $this a/rdfs:subClassOf* html:ForeignElement;
+        xml:fragment [].
+  
+  # ...that do not yet have an HTML fragment.
+  filter not exists { $this html:fragment []. }
+  
+}''';
+    rdfs:isDefinedBy html:.
+    
+  rule:ForeignElement
+    a sh:SPARQLRule;
+    skos:prefLabel 'SPARQL rule for foreign element'@en;
+    skos:definition 'A SPARQL rule to establish a HTML fragment for a foreign element based on its XML fragment.'@en;
+    sh:prefixes html:;
+    sh:construct '''
+construct {
+
+  $this html:fragment ?fragment.
+  
+} where {
+ 
+  $this xml:fragment ?fragment.
+ 
+}''';
     rdfs:isDefinedBy html:.
 
 
