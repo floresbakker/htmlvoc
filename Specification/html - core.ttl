@@ -57,13 +57,71 @@ prefix target:    <https://www.w3.org/html/model/target/>
 
     respec:acknowledgements 'This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'@en;
 
-    dct:description '''The HTML vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF, in order to generate, validate, query, annotate, reuse and adapt HTML documents within a semantic web framework. The vocabulary is based on the Living Standard of HTML (https://html.spec.whatwg.org/) and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes and SPARQL functions for the serialisation of HTML code.
+    dct:description '''The HTML vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF. The vocabulary can be used to generate, validate, query, annotate, reuse and adapt HTML documents within a semantic web framework. The vocabulary is based on the Living Standard of HTML (https://html.spec.whatwg.org/) and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes and SPARQL functions for the serialisation of HTML code. 
+    
+The example below shows how a 'Hello world!' snippet of HTML code can be represented in RDF using the HTML vocabulary.
+
+```Example
+
+A 'Hello world!' example in HTML code:
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello world!</title>
+</head>
+<body>
+<p>Hello world!</p>
+</body>
+</html>
+```
+
+
+
+This is represented in RDF using the HTML vocabulary as follows:
+
+```Example
+prefix doc:  <http://www.example.org/document/>
+prefix html: <https://www.w3.org/html/model/def/>
+prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+doc:helloWorld a html:Document ;
+    rdf:_1 doc:docType ;
+    rdf:_2 doc:html .
+
+doc:docType a html:DocumentType ;
+    html:documentTypeName "html" .
+
+doc:html a html:Html ;
+    rdf:_1 doc:head ;
+    rdf:_2 doc:body .
+
+doc:head a html:Head ;
+    rdf:_1 doc:title .
+
+doc:title a html:Title ;
+    rdf:_1 doc:titleText .
+
+doc:titleText a html:Text ;
+    html:fragment "Hello world!" .
+
+doc:body a html:Body ;
+    rdf:_1 doc:paragraph ;
+
+doc:paragraph a html:P ;
+    rdf:_1 doc:paragraphText .
+
+doc:paragraphText a html:Text ;
+    html:fragment "Hello world!" .
+
+```
+
 
 #### Basic components of the ontology
 
 ##### HTML document
 
-Central to the HTML living standard is the concept of an HTML document and accordingly also in the HTML vocabulary. An HTML document is a document written in the standard markup language HyperText Markup Language (HTML) and designed to be displayed in a web browser. The HTML of that document defines its content and structure. An HTML document contains underlying nodes, like HTML elements, text, comments, processing instructions, CDATA sections and a document type declaration. Hence, the ontology provides the following main classes to model instances of these HTML components:
+The HTML vocabulary describes all the components of the HTML Living Standard. Central to the Living Standard is the concept of an HTML document. An HTML document is a document written in the standard markup language HyperText Markup Language (HTML) and designed to be displayed in a web browser. The HTML of that document defines its content and structure. An HTML document contains underlying nodes, like HTML elements, text, comments, processing instructions, CDATA sections and a document type declaration. Hence, the ontology provides the following main classes to model instances of these HTML components:
 
 
 ***Main classes***
@@ -77,128 +135,55 @@ html:ProcessingInstruction
 html:CDATASection
 ```
 
-Let us take a look at an example in order to get a better understanding of the vocabulary.
+##### Document structure
 
-*Example:*
+The components of an HTML document together form a tree-like structure of nodes known as the Document Object Model (DOM), which is a programmatic representation of the document that allows it to be manipulated dynamically. The HTML vocabulary models the relationship between the DOM and the HTML components, as described in the Living Standard of HTML. The DOM itself requires a separate RDF-based DOM vocabulary, modeling the Living Standard of DOM. 
+
+Essential classes like html:Document, html:DocumentType, html:Element, html:Text, html:Comment, html:ProcessingInstruction and html:CDATASection, are defined as subclasses of respectively dom:Document, dom:DocumentType, dom:Text, dom:Comment, dom:ProcessingInstruction and dom:CDATASection, which all are manifestations of dom:DocumentTreeNode. The DOM vocabulary provides thus, through a RDF-based representation of the Document Object Model, the necessary context for the HTML vocabulary. 
+
+***Overview DOM and HTML classes***
+
 
 ```
+dom:DocumentTreeNode
+├── dom:Document
+│    └── html:Document
+├── dom:DocumentType
+│    └── html:DocumentType
+├── dom:Element
+│    └── html:Element
+├── dom:Text
+│    └── html:Text
+├── dom:Comment
+│    └── html:Comment
+├── dom:ProcessingInstruction
+│    └── html:ProcessingInstruction
+└── dom:CDATASection
+     └── html:CDATASection
+
+```
+
+***Document hierarchy***
+
+The treelike structure underlying an HTML document is hierarchical. Every node in that tree occupies a certain hierarchical position. This position is modeled in the HTML vocabulary through the use of the rdfs:member property and its subproperties, e.g. rdf:_1, rdf:_2, rdf:_3,... The use of this property and its subproperties indicates a parent-child relationship between two nodes as well as the relative position of a node towards any preceding or following siblings.
+
+```Example
     prefix doc:  <http://www.example.org/document/> 
     prefix html: <https://www.w3.org/html/model/def/> 
     prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
-    # An example of a simple HTML document. Note how a specific HTML document is an instance of the class html:Document.
-    # This HTML document has two child nodes, a docType declaration and the root node 'html' modeled using the rdf:_1 and rdf:_2 statements.
-    # Note how this HTML document has not yet been serialized to HTML, as the doc:example node does not yet have an html:fragment statement.
-    doc:example a html:Document ; 
-      rdf:_1 doc:doctype ;
-      rdf:_2 doc:html . 
-
-    # A doctype declaration stating this is document type html
-    doc:doctype a html:DocumentType ;
-      html:documentTypeName "html" .
-    
-    # The root node with two child nodes, a head node and a body node
-    doc:html a html:Html ; 
-      rdf:_1 doc:head ; 
-      rdf:_2 doc:body .
-
-    # The head node contains in this example two child nodes, a title and a stylesheet node
-    doc:head a html:Head ; 
-      rdf:_1 doc:title ; 
-      rdf:_2 doc:style .
-
-    # The title node contains a text node
-    doc:title a html:Title ; 
-      rdf:_1 doc:titleText . 
-
-    # Note that text nodes always should have a html:fragment statement
-    doc:titleText a html:Text ; 
-      html:fragment "Tutorial Document Example"^^rdf:HTML . 
-    
-    # The style node contains a text node
-    doc:style a html:StyleSheet ; 
-      rdf:_1 doc:styleText . 
-
-    # Note that text nodes always should have a html:fragment statement
-    doc:styleText a html:Text ; 
-      html:fragment """
-                   able {
-                   width: 70%;
-                   margin: 0 auto;
-                   border-collapse: collapse;
-                   }
-                   
-                   caption {
-                   text-align: left;
-                   font-weight: bold;
-                   padding: 10px;
-                   background-color: #f2f2f2; /* Light gray */
-                   }
-                   
-                   th, td {
-                   padding: 12px;
-                   text-align: center;
-                   border: 1px solid #ddd; /* Light gray border */
-                   }
-                   
-                   th {
-                   background-color: #4CAF50; /* Green */
-                   color: white;
-                   }
-                   """^^rdf:HTML .
-
-    # The body node contains a text node
-    doc:body a html:Body ;  
-      rdf:_1 doc:bodyText .
-
-    # Note that text nodes always should have a html:fragment statement
-    doc:bodyText a html:Text;
-      html:fragment 'Hello world!'^^rdf:HTML .
-```
-
-##### Document Object Model (DOM)
-
-***HTML and DOM alignment***
-
-The components of an HTML document together form a tree-like structure of nodes known as the Document Object Model (DOM), which is a programmatic representation of the document that allows it to be manipulated dynamically. For this reason a separate DOM vocabulary had to be created as well, next to the HTML vocabulary. Classes like html:Document, html:Text, html:Comment, html:ProcessingInstruction and html:DocumentType are defined as subclasses of dom:Document, dom:Text, dom:Comment, dom:ProcessingInstruction and dom:DocumentType. The DOM vocabulary provides thus, through a RDF-based representation of the Document Object Model, the necessary context for the HTML vocabulary. 
-
-***Relation between HTML and DOM classes***
-```
-html:Document is a subclass of dom:Document.
-html:DocumentType is a subclass of dom:DocumentType.
-html:Element is a subclass of dom:Element.
-html:Text is a subclass of dom:Text.
-html:Comment is a subclass of dom:Comment.
-html:ProcessingInstruction is a subclass of dom:ProcessingInstruction.
-html:CDATASection is a subclass of dom:CDATASection.
-```
-
-***Node index***
-
-The index of a DOM node within an HTML document, indicating its relative position towards any preceding siblings, is modeled using the properties that are instances of the class rdfs:ContainerMembershipProperty, like rdf:_1, rdf:_2, rdf:_3, ...et cetera. 
-
-*Example:*
-
-```
-    prefix doc:  <http://www.example.org/document/> 
-    prefix html: <https://www.w3.org/html/model/def/> 
-    prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-
-    # This HTML document has two child nodes, a docType declaration and the root node 'html' modeled using the rdf:_1 and rdf:_2 statements.
+    # This HTML document has two child nodes; a docType declaration and the root node 'html', which are modeled using the rdf:_1 and rdf:_2 statements. The doctype declaration precedes the html root element, indicated by the lower integer number.
     doc:example a html:Document ; 
       rdf:_1 doc:doctype ;
       rdf:_2 doc:html . 
 ```
-
-
 
 ##### HTML element
 
 An HTML element is the building block of an HTML document. For each HTML element, its name and the definition as given in the according section of the HTML Living Standard is modeled in the ontology using SKOS properties skos:prefLabel and skos:definition. In addition, the tag of the HTML element (like 'body' for the body element) is represented through the property html:tag. Each element is linked to the section of the HTML Living Standard in which the element is described, using the dct:conformsTo property.
 
-*Example:*
 
-```
+```Example
   html:Body
     a owl:Class;
     dct:conformsTo section:4.3.1;
@@ -211,8 +196,7 @@ An HTML element is the building block of an HTML document. For each HTML element
 
 A specific instance of the body element can be seen in the example below.
 
-*Example:*
-```
+```Example
     # An instance of a body element, with a connected text node
     doc:body a html:Body ;  
       rdf:_1 doc:bodyText .
@@ -221,7 +205,7 @@ A specific instance of the body element can be seen in the example below.
     doc:bodyText a html:Text;
       html:fragment 'Hello world!'^^rdf:HTML .
 ```
-    
+
 
 ***Kinds of elements***
 
@@ -230,28 +214,34 @@ According to the Living Standard of HTML there are six different kinds of elemen
 These kinds of elements are represented in the HTML vocabulary as follows:
 
 ```
-html:VoidElement
-  html:Area, html:Base, html:Br, html:Col, html:Embed, html:Hr, html:Img, html:Input, html:Link, html:Meta, html:Source, html:Track, html:Wbr
 
-html:Template
-
-html:RawTextElement
-  html:Script, html:Style
-
-html:EscapableRawTextElement
-  html:Textarea, html:Title
-
-html:ForeignElement
-  mathml:MathML, svg:Svg
-
-html:CustomElement
-
-html:NormalElement
-  All other subclasses of HTML:element
+html:Element
+    ├── html:VoidElement
+    │    ├── html:Area
+    │    ├── html:Base
+    │    ├── html:Br
+    │    ├── html:Col
+    │    ├── html:Embed
+    │    ├── html:Hr
+    │    ├── html:Img
+    │    ├── html:Input
+    │    ├── html:Link
+    │    ├── html:Meta
+    │    ├── html:Source
+    │    ├── html:Track
+    │    └── html:Wbr
+    ├── html:Template
+    ├── html:RawTextElement
+    │    ├── html:Script
+    │    └── html:Style
+    ├── html:ForeignElement
+    │    ├── mathml:MathML
+    │    └── svg:Svg
+    ├── html:CustomElement
+    └── html:NormalElement
+         └── all other subclasses of html:Element
 
 ```
-
-There exists a subclass relation between a specific element class (for instance: html:Area) and the kind of element (for instance html:VoidElement).
 
 ##### Content category
 
@@ -260,17 +250,18 @@ The Living Standard of HTML states that each HTML element falls into zero or mor
 ***Content category classes***
 
 ```
-html:MetadataContent is a subclass of html:ContentCategory.
-html:FlowContent is a subclass of html:ContentCategory.
-html:SectioningContent is a subclass of html:ContentCategory.
-html:HeadingContent is a subclass of html:ContentCategory.
-html:PhrasingContent is a subclass of html:ContentCategory.
-html:EmbeddedContent is a subclass of html:ContentCategory.
-html:InteractiveContent is a subclass of html:ContentCategory.
-html:PalpableContent is a subclass of html:ContentCategory.
-html:ScriptSupportingElement is a subclass of html:ContentCategory.
-html:FormAssociatedElement is a subclass of html:ContentCategory.
-html:LabelableElement is a subclass of html:ContentCategory.
+html:ContentCategory
+  ├── html:MetadataContent
+  ├── html:FlowContent
+  ├── html:SectioningContent
+  ├── html:HeadingContent
+  ├── html:PhrasingContent
+  ├── html:EmbeddingContent
+  ├── html:InteractiveContent
+  ├── html:PalpableContent
+  ├── html:ScriptSupportingElement
+  ├── html:FormAssociatedElement
+  └── html:LabelableElement
 ```
 
 These content categories are all subclasses of html:ContentCategory. Note that the HTML Living Standard defines its content categories scattered across multiple sections of its specification. As the content categories are defined in the vocabulary as complex classes using OWL, one can use an OWL inference engine to establish which element belongs in which category.
@@ -280,9 +271,8 @@ These content categories are all subclasses of html:ContentCategory. Note that t
 
 The Living Standard of HTML defines an HTML attribute as a key-value pair that is associated with an HTML element to control its behavior, written within the start tag of an element. Examples are 'style' and 'colspan'. The ontology provides the 'html:Attribute' class to represent the set of all these HTML attributes, like the attributes 'html:style' and 'html:colspan'. Note that 'html:Attribute' itself is a subclass of dom:Attribute, a node in the Document Object Model (DOM). The key of the HTML attribute (like 'colspan' in 'html:colspan') is represented through the property html:key. In addition, every HTML attribute in the HTML vocabulary is also defined as a subproperty of 'html:attribute'. For each HTML attribute, its name and the definition as given in the according section of the HTML Living Standard is modeled in the ontology using SKOS properties skos:prefLabel and skos:definition.
 
-*Example:*
 
-```
+```Example
   html:colspan
     a owl:DatatypeProperty;
     rdfs:subPropertyOf html:attribute;
@@ -297,9 +287,8 @@ The Living Standard of HTML defines an HTML attribute as a key-value pair that i
 
 Next to the already defined HTML attributes in the HTML vocabulary (conforming to the Living Standard of HTML), custom defined attributes can also be used in RDF-based HTML documents. These attributes need to be defined in some arbitrary vocabulary using the same design pattern as is shown in the example. An example of an existing vocabulary with a custom defined attribute is the RDFa vocabulary, based on the formal RDFa specification of W3C.
 
-*Example:*
 
-```
+```Example
 rdfa:Attribute
     rdf:type owl:Class;
     rdfs:subClassOf dom:Attribute;
@@ -318,7 +307,7 @@ rdfa:property
     skos:prefLabel 'the property attribute'@en;
     skos:definition "Specifies a property for an DOM element."@en;
     rdfs:isDefinedBy rdfa:.
-    
+
 ```
 
 ##### HTML serialisation 
@@ -425,9 +414,7 @@ function:getDocumentTypeFragment
 function:getDocumentFragment
 ```
  
-These functions establish and return the HTML fragment for a node in an HTML document. As an example, let us see the function:getDocumentFragment.
-
-*Example:*
+These functions establish and return the HTML fragment for a node in an HTML document. For illustration purposes, let us examine the function:getDocumentFragment.
 
 ```
   function:getDocumentFragment
@@ -455,7 +442,7 @@ These functions establish and return the HTML fragment for a node in an HTML doc
 This function has a name and definition, captured through the SKOS properties skos:prefLabel and skos:definition. There is a parameter defined (for an arbitrary document), and a returntype which details the kind of output the function will give back (a string). In the select query the actual algorithm is represented to retrieve the HTML code for the HTML document, by calling function function:getChildNodeFragment. As one can see, the HTML vocabulary has a modular structure, not only for classes but also for rules, targets, functions and the like. 
 
 
-***Suppporting functions***
+***Supporting functions***
 
 The HTML vocabulary offers some additional supporting functions in order to serialize a HTML document to HTML from its RDF-representation.
 
@@ -489,9 +476,8 @@ parameter:isMembershipProperty_term
 
 Take for example the HTML document as modeled above. Running this through a SHACL engine will lead to the following triples:
 
-*Example:*
 
-```
+```Example
     prefix doc:  <http://www.example.org/document/> 
     prefix html: <https://www.w3.org/html/model/def/> 
     prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
@@ -574,9 +560,9 @@ Note how each node in the HTML document has a html:fragment statement in which t
 
 As the Living Standard of HTML provides the possibility of custom defined HTML elements, so should the HTML vocabulary. Hence, the class html:CustomElement and the node shape shp:CustomElement and associated rule rule:CustomElement are defined in the vocabulary. A custom element can then be defined in some arbitrary vocabulary and applied in some HTML document.
 
-*Example:*
 
-```
+```Example
+
     # Some snippet of an arbitrary HTML document, showcasing the use of a custom element.
     ex:someFlagIconElement rdf:type ex:FlagIcon.
     
@@ -710,6 +696,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       decl:dom,
       decl:function,
       decl:html,
+      decl:mathml,
       decl:parameter,
       decl:rdf,
       decl:rdfs,
@@ -717,6 +704,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
       decl:section,
       decl:shp,
       decl:standard,
+      decl:svg,
       decl:target,
       decl:xsd;
     vann:preferredNamespacePrefix 'html';
@@ -739,6 +727,10 @@ This can be rendered in RDF using the HTML vocabulary as follows:
   decl:html
     sh:prefix "html";
     sh:namespace "https://www.w3.org/html/model/def/"^^xsd:anyURI.
+
+  decl:mathml
+    sh:prefix "mathml";
+    sh:namespace "http://www.w3.org/1998/Math/MathML/model/def/"^^xsd:anyURI.
 
   decl:parameter
     sh:prefix "parameter";
@@ -767,6 +759,10 @@ This can be rendered in RDF using the HTML vocabulary as follows:
   decl:standard
     sh:prefix "standard";
     sh:namespace "https://www.w3.org/html/id/standard/"^^xsd:anyURI.
+
+  decl:svg
+    sh:prefix "svg";
+    sh:namespace "http://www.w3.org/SVG/model/def/"^^xsd:anyURI.
 
   decl:target
     sh:prefix "target";
