@@ -57,8 +57,39 @@ prefix target:    <https://www.w3.org/html/model/target/>
 
     respec:acknowledgements 'This standard has been developed through collaborative efforts and contributions from a diverse community of experts and stakeholders. Their dedication and expertise have been instrumental in bringing this vocabulary to life.'@en;
 
+    respec:relatedWork """The HTML vocabulary is part of a family of RDF-based document languages. Central to this family of document languages is the DOM vocabulary, which models the tree-like structure underlying a document as specified by the W3C Living Standard for the DOM. Different languages, such as the HTML vocabulary, the XML vocabulary and the RDFa vocabulary, refer through subclass and subproperty relations to the DOM vocabulary.
+
+```
+DOM vocabulary
+├── HTML vocabulary
+├── XML vocabulary
+│    ├── XMLNS vocabulary
+│    ├── XLINK vocabulary
+│    ├── XSI vocabulary
+│    ├── OntoSVG
+│    ├── OntoArchimate
+│    └── ...
+└── RDFa vocabulary
+```
+
+##### DOM vocabulary
+
+The DOM vocabulary is an RDF-based representation of the Document Object Model, enabling DOM documents to be expressed in RDF. It models the W3C living standard for DOM. As a result, DOM-based documents can be represented, queried, generated, validated, analyzed, transformed, and reused as semantic objects themselves. The HTML vocabulary builds upon the DOM vocabulary, as explored in more detail in its dedicated description. See https://github.com/floresbakker/domvoc.
+
+##### XML vocabulary
+
+The XML vocabulary is an RDF-based representation of the W3C XML standard to express XML-documents in RDF. XML documents can thus be represented, queried, generated, validated, analysed, transformed and reused as semantic objects themselves. Since XML can be embedded in HTML (and vice versa), RDF-based representations of XML code can also be embedded within RDF-based representations of HTML code (and vice versa). See https://github.com/floresbakker/xmlvoc.
+
+The XMLNS, XLINK, and XSI vocabularies provide RDF-based models of their respective W3C XML-related standards. The XMLNS vocabulary formally represents XML Namespace declarations, defining classes and properties to describe namespace attributes and their use within XML documents. The XLINK vocabulary formalizes the XML Linking Language (XLink) Version 1.1, offering terms to model the structure and semantics of XLink elements and attributes. The XSI (XML Schema Instance) vocabulary represents concepts related to XML Schema instance documents, describing the necessary terms and relationships for validating XML using XML Schema. Together, these vocabularies form a technical foundation that complements domain-oriented models like OntoSVG or OntoArchimate, focusing on structural and interoperability concerns rather than domain-specific semantics. See https://github.com/floresbakker/xmlvoc.
+
+Within the XML branch of this RDF-based family, there are also vocabularies for XML-based domain standards, such as SVG (modeled by OntoSVG) and Archimate (modeled by OntoArchimate). See https://github.com/floresbakker/OntoSVG and https://github.com/floresbakker/OntoArchimate.
+
+##### RDFa vocabulary
+
+The RDFa vocabulary is an RDF-based representation of RDFa, a W3C standard for rich structured data markup within web documents. The purpose of RDFa is to provide a set of attributes that allow embedding rich metadata directly into web pages. The RDFa vocabulary represents these attributes in RDF itself. The RDFa vocabulary, as well as the W3C RDFa standard it models, is complementary to the HTML vocabulary. Whereas the HTML vocabulary provides an RDF-based representation of the HTML language — including elements, attributes, and the structural semantics of documents — the RDFa vocabulary focuses on describing how metadata can be layered into those HTML documents. In other words, the HTML vocabulary captures the syntactic and structural building blocks of web pages, while the RDFa vocabulary describes the attributes used to embed machine-readable data. Together, they allow both the structure and the semantic annotations of web content to be modeled in RDF. For example, the specific values of RDFa metadata attributes in a particular HTML document can be derived from its RDF-based representation via the HTML vocabulary. See https://github.com/floresbakker/RDFa-voc."""@en;
+
     dct:description '''The HTML vocabulary establishes a draft standard that enables the semantic representation of any HTML document in RDF. The vocabulary can be used to generate, validate, query, annotate, reuse and adapt HTML documents within a semantic web framework. The vocabulary is based on the Living Standard of HTML (https://html.spec.whatwg.org/) and offers classes to represent HTML elements, datatype properties to represent HTML attributes and a small number of SHACL shapes and SPARQL functions for the serialisation of HTML code. 
-    
+
 The example below shows how a 'Hello world!' snippet of HTML code can be represented in RDF using the HTML vocabulary.
 
 ```Example
@@ -558,7 +589,7 @@ Note how each node in the HTML document has a html:fragment statement in which t
 
 ##### Custom element
 
-As the Living Standard of HTML provides the possibility of custom defined HTML elements, so should the HTML vocabulary. Hence, the class html:CustomElement and the node shape shp:CustomElement and associated rule rule:CustomElement are defined in the vocabulary. A custom element can then be defined in some arbitrary vocabulary and applied in some HTML document.
+As the Living Standard of HTML provides the possibility of custom defined HTML elements, so should the HTML vocabulary. Hence, the class html:CustomElement, the node shape shp:CustomElement and associated rule rule:CustomElement are defined in the vocabulary. A custom element can then be defined in some arbitrary vocabulary and applied in some HTML document.
 
 
 ```Example
