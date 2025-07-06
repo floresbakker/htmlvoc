@@ -19,7 +19,7 @@ Let us go through the HTML vocabulary with an example of an ordinary HTML-docume
 
 ## Example #1: an ordinary HTML-document with a table
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +85,7 @@ This table is rendered in a browser as follows:
 
 Now we can represent the very same document in <i>RDF</i> using the HTML-vocabulary. As it is very cumbersome to do so by hand, a <i>HTML2RDF</i> tool is available in this repository that will do exactly that for you. For further information on this tool and other neat tools, scroll down this Readme file.
 
-```
+```turtle
 prefix doc:  <http://www.example.org/document/> 
 prefix html: <https://www.w3.org/html/model/def/> 
 prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
@@ -219,7 +219,7 @@ Make note on how each element in the HTML-document is identified by a unique ide
 
 ## Example #2: an application GUI as HTML-document
 
-```
+```html
 <!DOCTYPE html>
 <html>
     <head>
@@ -270,7 +270,7 @@ This GUI with forms is rendered in a browser as follows:
 ## Again expressing the HTML-document in RDF
 
 
-```
+```turtle
 prefix doc:  <http://www.example.org/document/> 
 prefix html: <https://www.w3.org/html/model/def/> 
 prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
