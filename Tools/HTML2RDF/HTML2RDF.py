@@ -10,20 +10,20 @@ The HTML2RDF script offers a simple way of transforming an HTML-document into a 
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag, NavigableString, Comment, CData
-from rdflib import Graph, Namespace, Literal, RDF
+from rdflib import Graph, Namespace, Literal, RDF, Dataset
 import os
 
 # Get the current working directory in which the HTML2RDF.py file is located.
 current_dir = os.getcwd()
 
 # Set the path to the desired standard directory. 
-directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
+directory_path = os.path.abspath(os.path.join(current_dir))
 
 # namespace declaration
 html = Namespace("https://www.w3.org/html/model/def/")
-rdf = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+rdf  = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
 rdfs = Namespace("http://www.w3.org/2000/01/rdf-schema#")
-doc = Namespace("http://www.example.org/document/")
+doc  = Namespace("http://www.example.org/document/")
 
 # function to read a graph (as a string) from a file 
 def readGraphFromFile(file_path):
@@ -34,9 +34,9 @@ def readGraphFromFile(file_path):
     return file_content
 
 # loop through any html files in the input directory
-for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
+for filename in os.listdir(directory_path+"/tools/HTML2RDF/input"):
     if filename.endswith(".html"):
-        file_path = os.path.join(directory_path+"/htmlvoc/Tools/HTML2RDF/Input", filename)
+        file_path = os.path.join(directory_path+"/tools/HTML2RDF/input", filename)
         
         # Establish the stem of the file name for reuse in newly created files
         filename_stem = os.path.splitext(filename)[0]
@@ -52,7 +52,8 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
         g.bind("doc", doc)
 
         # fill graph with html vocabulary
-        html_graph = Graph().parse(directory_path+"/htmlvoc/Specification/html - core.ttl" , format="ttl")
+        html_graph = Dataset(default_union=True)
+        html_graph.parse(directory_path+"/specification/html - core.trig" , format="trig")
 
         # string for query to establish IRI of a 'tag' HTML element
         tagquerystring = '''
@@ -171,9 +172,9 @@ for filename in os.listdir(directory_path+"/htmlvoc/Tools/HTML2RDF/Input"):
                       g.add((doc[child_text_id], html["fragment"], Literal(text_content)))
 
         # write the resulting graph to file
-        g.serialize(destination=directory_path+"/htmlvoc/Tools/HTML2RDF/Output/" + filename_stem + "-parsed.ttl", format="turtle")
+        g.serialize(destination=directory_path+"/tools/HTML2RDF/output/" + filename_stem + "-parsed.trig", format="trig")
         
-        print ("HTML file ", filename," is succesfullly transformed to file ", filename_stem + "-parsed.ttl in Turtle format.")
+        print ("HTML file ", filename," is succesfullly transformed to file ", filename_stem + "-parsed.trig in Trig format.")
     else: 
         print ('Warning: file in directory "input" is no HTML file and cannot be parsed.')
 

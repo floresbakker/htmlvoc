@@ -1,0 +1,52 @@
+@prefix doc: <http://www.example.org/document/> .
+@prefix html: <https://www.w3.org/html/model/def/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+_:N78c91659a27e41fd876d35cb83f0f713 {
+    doc:1 a html:Document ;
+        rdf:_1 doc:1.15 .
+
+    doc:1.145 a html:Meta ;
+        html:charset "utf-8" ;
+        html:http-equiv "Content-Type" .
+
+    doc:1.15 a html:Html ;
+        rdf:_1 doc:1.21 ;
+        rdf:_2 doc:1.15.2 ;
+        rdf:_3 doc:1.201 .
+
+    doc:1.15.2 a html:Text ;
+        html:fragment " " .
+
+    doc:1.201 a html:Body ;
+        rdf:_1 doc:1.201.1 .
+
+    doc:1.201.1 a html:Text ;
+        html:fragment "Hello world" .
+
+    doc:1.21 a html:Head ;
+        rdf:_1 doc:1.27 ;
+        rdf:_2 doc:1.21.2 ;
+        rdf:_3 doc:1.94 ;
+        rdf:_4 doc:1.21.4 ;
+        rdf:_5 doc:1.145 .
+
+    doc:1.21.2 a html:Text ;
+        html:fragment " " .
+
+    doc:1.21.4 a html:Text ;
+        html:fragment " " .
+
+    doc:1.27 a html:Title ;
+        rdf:_1 doc:1.27.1 .
+
+    doc:1.27.1 a html:Text ;
+        html:fragment "My first 'Hello world' HTML page represented in RDF" .
+
+    doc:1.94 a html:StyleSheet ;
+        rdf:_1 doc:1.94.1 .
+
+    doc:1.94.1 a html:Text ;
+        html:fragment " .italic-text {font-style: italic;}" .
+}
+

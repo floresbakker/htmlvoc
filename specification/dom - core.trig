@@ -17,7 +17,7 @@ prefix dom:      <http://www.w3.org/DOM/model/def/>
 prefix section:  <http://www.w3.org/DOM/id/section/>
 prefix standard: <http://www.w3.org/DOM/id/standard/>
 
-#dom:{
+dom:{
   dom:
     a
       owl:Ontology,
@@ -420,4 +420,4 @@ prefix standard: <http://www.w3.org/DOM/id/standard/>
     skos:definition "Specifies a name for a DOM element."@en;
     rdfs:isDefinedBy dom:.
 
-#}
+}

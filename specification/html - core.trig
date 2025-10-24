@@ -29,7 +29,7 @@ prefix shp:       <https://www.w3.org/html/model/shp/>
 prefix standard:  <https://www.w3.org/html/id/standard/>
 prefix target:    <https://www.w3.org/html/model/target/>
 
-#html: {
+html: {
   html:
     a
       owl:Ontology,
@@ -7007,4 +7007,4 @@ construct {
     sh:order 1;
     sh:path parameter:term;
     rdfs:isDefinedBy html:.
-#}
+}

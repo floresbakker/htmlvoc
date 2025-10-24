@@ -1,18 +1,19 @@
 from flask import Flask, request, render_template, url_for
 import rdflib
-from rdflib import Graph, Namespace, Literal, RDF
+from rdflib import Graph, Namespace, Literal, RDF, Dataset
 import pyshacl
 from bs4 import BeautifulSoup, Doctype
 from bs4.element import Tag, NavigableString, Comment, CData
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='tools/playground/templates', static_folder='tools/playground/static')
+
 
 # Get the current working directory in which the Playground.py file is located.
 current_dir = os.getcwd()
 
 # Set the path to the desired standard directory. 
-directory_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
+directory_path = os.path.abspath(os.path.join(current_dir))
 
 # namespace declaration
 doc  = Namespace("http://www.example.org/document/")
@@ -29,14 +30,14 @@ def readStringFromFile(file_path):
             file_content = file.read()
     return file_content
 
-html_vocabulary = readStringFromFile(directory_path + "/htmlvoc/Specification/html - core.ttl")
-dom_vocabulary = readStringFromFile(directory_path + "/htmlvoc/Specification/dom - core.ttl")
+html_vocabulary = readStringFromFile(directory_path + "/specification/html - core.trig")
+dom_vocabulary = readStringFromFile(directory_path + "/specification/dom - core.trig")
 example_rdf_code = """### Enter here your RDF-code (turtle-format). 
                            
-### For example: \n""" + readStringFromFile(directory_path + "/htmlvoc/Examples/HTML-table-template-example.ttl")
+### For example: \n""" + readStringFromFile(directory_path + "/examples/HTML-table-template-example.ttl")
 example_html_code = """<!-- Enter here your HTML-code. 
 
-For example: --> \n""" + readStringFromFile(directory_path + "/htmlvoc/Examples/HTML-table-template-example.html")
+For example: --> \n""" + readStringFromFile(directory_path + "/examples/HTML-table-template-example.html")
 
 def generate_node_id(node):
     # Base case: If there's no parent, return an empty string (root-level element)
@@ -64,8 +65,8 @@ def iteratePyShacl(shaclgraph, serializable_graph):
         pyshacl.validate(
         data_graph=serializable_graph,
         shacl_graph=shaclgraph,
-        data_graph_format="turtle",
-        shacl_graph_format="turtle",
+        data_graph_format="trig",
+        shacl_graph_format="trig",
         advanced=True,
         inplace=True,
         inference=None,
@@ -116,13 +117,14 @@ def iteratePyShacl(shaclgraph, serializable_graph):
 @app.route('/convert2HTML', methods=['POST'])
 def convert_to_html():
     text = request.form['rdf']   
-    g = rdflib.Graph().parse(data=text , format="turtle")
+    g = rdflib.Graph().parse(data=text , format="trig")
     # Zet de RDF-triples om naar een string
-    triples = g.serialize(format='turtle')
+    triples = g.serialize(format='trig')
     serializable_graph_string = html_vocabulary + '\n' + dom_vocabulary + '\n' + triples
-    serializable_graph = rdflib.Graph().parse(data=serializable_graph_string , format="turtle")
+    serializable_graph = Dataset(default_union=True)
+    serializable_graph.parse(data=serializable_graph_string , format="trig")
     html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
-    filepath = directory_path+"/htmlvoc/Tools/Playground/static/output.html"
+    filepath = directory_path+"/tools/playground/static/output.html"
     src_filepath = url_for('static', filename='output.html')
     with open(filepath, 'w', encoding='utf-8') as file:
        file.write(html_fragment)
@@ -141,7 +143,8 @@ def convert_to_rdf():
         g.bind("dom", dom)
 
         # fill graph with html vocabulary
-        html_graph = Graph().parse(directory_path+"/htmlvoc/Specification/html - core.ttl" , format="ttl")
+        html_graph = Dataset(default_union=True)
+        html_graph.parse(directory_path+"/specification/html - core.trig" , format="trig")
 
         # string for query to establish IRI of a 'tag' HTML element
         tagquerystring = '''
@@ -268,7 +271,7 @@ def convert_to_rdf():
 
         # return the resulting triples
         triples = g.serialize(format="turtle",normalize=True).split('\n\n\n')
-        filepath = directory_path+"/htmlvoc/Tools/Playground/static/input.html"
+        filepath = directory_path+"/tools/playground/static/input.html"
         src_filepath = url_for('static', filename='input.html')
         with open(filepath, 'w', encoding='utf-8') as file:
            file.write(htmlInput)
