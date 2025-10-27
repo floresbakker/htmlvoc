@@ -79,7 +79,7 @@ Let us go through the HTML vocabulary with an example of an ordinary HTML-docume
 
 This table is rendered in a browser as follows:
 
-![An example of an HTML-document](/Examples/ExampleTable-HTMLDocument.JPG)
+![An example of an HTML-document](/examples/ExampleTable-HTMLDocument.JPG)
 
 ## Expressing the HTML-document in RDF
 
@@ -265,7 +265,7 @@ Make note on how each element in the HTML-document is identified by a unique ide
 
 This GUI with forms is rendered in a browser as follows:
 
-![An example of an HTML-document with forms](/Examples/ExampleGUI-HTMLDocument.JPG)
+![An example of an HTML-document with forms](/examples/ExampleGUI-HTMLDocument.JPG)
 
 ## Again expressing the HTML-document in RDF
 
@@ -506,7 +506,7 @@ D. Go to the output folder in htmlvoc\Tools\RDF2HTML\Output and grab your HTML-f
 
 The tool Playground offers a visual user interface in which a RDF-based representation of an HTML-document can be converted to an actual HTML-document, and an actual HTML-document can be converted to a RDF-based representation of an HTML-document.
 
-![A screenshot of the playground environment](/Examples/Playground.PNG)
+![A screenshot of the playground environment](/examples/Playground.PNG)
 
 ### How to use Playground
 
