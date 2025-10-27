@@ -32,9 +32,9 @@ def readStringFromFile(file_path):
 
 html_vocabulary = readStringFromFile(directory_path + "/specification/html - core.trig")
 dom_vocabulary = readStringFromFile(directory_path + "/specification/dom - core.trig")
-example_rdf_code = """### Enter here your RDF-code (turtle-format). 
+example_rdf_code = """### Enter here your RDF-code (trig-format). 
                            
-### For example: \n""" + readStringFromFile(directory_path + "/examples/HTML-table-template-example.ttl")
+### For example: \n""" + readStringFromFile(directory_path + "/examples/HTML-table-template-example.trig")
 example_html_code = """<!-- Enter here your HTML-code. 
 
 For example: --> \n""" + readStringFromFile(directory_path + "/examples/HTML-table-template-example.html")
@@ -116,22 +116,28 @@ def iteratePyShacl(shaclgraph, serializable_graph):
 
 @app.route('/convert2HTML', methods=['POST'])
 def convert_to_html():
-    text = request.form['rdf']   
-    g = rdflib.Graph().parse(data=text , format="trig")
-    # Zet de RDF-triples om naar een string
-    triples = g.serialize(format='trig')
-    serializable_graph_string = html_vocabulary + '\n' + dom_vocabulary + '\n' + triples
-    serializable_graph = Dataset(default_union=True)
-    serializable_graph.parse(data=serializable_graph_string , format="trig")
-    html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
-    filepath = directory_path+"/tools/playground/static/output.html"
-    src_filepath = url_for('static', filename='output.html')
-    with open(filepath, 'w', encoding='utf-8') as file:
-       file.write(html_fragment)
-    return render_template('index.html', htmlOutput='<iframe src='+ src_filepath + ' width="100%" height="600"></iframe>', htmlRawOutput=html_fragment, rdfInput=text)
+    try:
+        text = request.form['rdf']   
+        g = rdflib.Graph().parse(data=text , format="trig")
+        # Zet de RDF-triples om naar een string
+        triples = g.serialize(format='trig')
+        serializable_graph_string = html_vocabulary + '\n' + dom_vocabulary + '\n' + triples
+        serializable_graph = Dataset(default_union=True)
+        serializable_graph.parse(data=serializable_graph_string , format="trig")
+        html_fragment = iteratePyShacl(html_vocabulary, serializable_graph)
+        filepath = directory_path+"/tools/playground/static/output.html"
+        src_filepath = url_for('static', filename='output.html')
+        with open(filepath, 'w', encoding='utf-8') as file:
+           file.write(html_fragment)
+        return render_template('index.html', htmlOutput='<iframe src='+ src_filepath + ' width="100%" height="600"></iframe>', htmlRawOutput=html_fragment, rdfInput=text)
+
+    except Exception as e:
+        print("Error during processing:", e)
+        return render_template('index.html', rdfInput=f"Error: {e}")
 
 @app.route('/convert2RDF', methods=['POST'])
 def convert_to_rdf():
+    try:
         htmlInput = request.form['html']
         # initialize graph
         g = Graph(bind_namespaces="rdflib")
@@ -277,6 +283,10 @@ def convert_to_rdf():
            file.write(htmlInput)
         return render_template('index.html', rdfOutput=triples, htmlInput='<iframe src='+ src_filepath + ' width="100%" height="600"></iframe>', htmlRawInput = htmlInput)
 
+    except Exception as e:
+        print("Error during processing:", e)
+        return render_template('index.html', htmlInput=f"Error: {e}")
+    
 @app.route('/output')
 def output():
     return render_template('output.html')
