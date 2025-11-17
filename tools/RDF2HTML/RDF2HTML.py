@@ -17,11 +17,16 @@ import rdflib
 from rdflib import Dataset 
 import os
 
-# Get the current working directory in which the RDF2HTML.py file is located.
-current_dir = os.getcwd()
+try:
+    # Command prompt execution: current directory is based on location of playground.py file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    directory_path = os.path.abspath(os.path.join(current_dir, '..', '..'))
 
-# Set the path to the desired standard directory. 
-directory_path = os.path.abspath(os.path.join(current_dir))
+except NameError:
+    # Python IDE exectution: current directory is based on the IDE working directory in Spyder, Jupyter or iPython.
+    # PLEASE NOTE: Set working directory in IDE to OntoMermaid root dir.
+    current_dir = os.getcwd()
+    directory_path  = os.path.abspath(os.path.join(current_dir))
 
 # Function to read a graph (as a string) from a file 
 def readGraphFromFile(file_path):

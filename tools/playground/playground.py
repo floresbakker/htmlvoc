@@ -6,14 +6,30 @@ from bs4 import BeautifulSoup, Doctype
 from bs4.element import Tag, NavigableString, Comment, CData
 import os
 
-app = Flask(__name__, template_folder='tools/playground/templates', static_folder='tools/playground/static')
+# NOTE: due to a bug in the html5parser as part of the RDFlib family, there will be 
+# a significant amount of error messages displayed in the command prompt when running
+# this script. These pertain to some unnecessary and erroneous parsing of HTML snippets. 
+# The error messages are ignored and do not hinder the process apart from performance
+# detoriation. In the future it seems that RDFLib will not be using this html5parser
+# anymore. Until that time we have just to accept this. 
+# See https://github.com/RDFLib/rdflib/issues/2946
 
+try:
+    # Command prompt execution: current directory is based on location of playground.py file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    directory_path = os.path.abspath(os.path.join(current_dir, '..', '..'))
+    template_folder = 'templates' 
+    static_folder   = 'static' 
 
-# Get the current working directory in which the Playground.py file is located.
-current_dir = os.getcwd()
+except NameError:
+    # Python IDE exectution: current directory is based on the IDE working directory in Spyder, Jupyter or iPython.
+    # PLEASE NOTE: Set working directory in IDE to OntoMermaid root dir.
+    current_dir = os.getcwd()
+    directory_path  = os.path.abspath(os.path.join(current_dir))
+    template_folder = 'tools/playground/templates' 
+    static_folder   = 'tools/playground/static' 
 
-# Set the path to the desired standard directory. 
-directory_path = os.path.abspath(os.path.join(current_dir))
+app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
 
 # namespace declaration
 doc  = Namespace("http://www.example.org/document/")
@@ -90,7 +106,7 @@ def iteratePyShacl(shaclgraph, serializable_graph):
 
         # Check whether another iteration is needed. If the html root of the document contains a html:fragment statement then the serialisation is considered done.
         for result in resultquery:
-            print ("ask result = ", result)
+            print ("process completed status = ", result)
             if result == False:
                 return iteratePyShacl(shaclgraph, serializable_graph)
          
