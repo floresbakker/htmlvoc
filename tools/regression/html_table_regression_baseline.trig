@@ -1,0 +1,407 @@
+base <http://www.example.org/htmlvoc-regression/>
+prefix html: <https://www.w3.org/html/model/def/>
+prefix mathml: <http://www.w3.org/1998/Math/MathML/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix reg: <https://www.w3.org/htmlvoc/regression/>
+prefix svg: <http://www.w3.org/SVG/model/def/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+
+reg:htmlTableRegressionSuite
+  a reg:RegressionSuite;
+  reg:case
+    <complex_table/document>,
+    <commented_table/document>,
+    <foreign_element_table/document>.
+
+<complex_table/document>
+  a reg:RegressionCase, html:Document;
+  reg:covers
+    reg:DocumentSerialization,
+    reg:HtmlAttributes,
+    reg:StyleElement,
+    reg:TableStructure;
+  reg:expectedFragment """<!DOCTYPE html><html><head><title>complex_table</title><style media=screen>table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }</style><meta charset=utf-8></head><body><table class="data-table compact" id=complex-table style="border-collapse: collapse"><caption>Quarterly fruit totals</caption><colgroup span=2><col class=region-column><col class=total-column><thead><tr><th scope=col>Region<th scope=col>Total<tbody><tr><th scope=row>North<td colspan=1>42<tr><th scope=row>South<td rowspan=1>37<tfoot><tr><th>Grand total<td>79</table></body></html>"""^^rdf:HTML;
+  rdf:_1 <complex_table/doctype>;
+  rdf:_2 <complex_table/html>.
+
+<complex_table/doctype>
+  a html:DocumentType;
+  html:documentTypeName "html".
+
+<complex_table/html>
+  a html:Html;
+  rdf:_1 <complex_table/head>;
+  rdf:_2 <complex_table/body>.
+
+<complex_table/head>
+  a html:Head;
+  rdf:_1 <complex_table/title>;
+  rdf:_2 <complex_table/style>;
+  rdf:_3 <complex_table/meta>.
+
+<complex_table/title>
+  a html:Title;
+  rdf:_1 <complex_table/title-text>.
+
+<complex_table/title-text>
+  a html:Text;
+  html:fragment "complex_table"^^rdf:HTML.
+
+<complex_table/style>
+  a html:StyleSheet;
+  html:media "screen";
+  rdf:_1 <complex_table/style-text>.
+
+<complex_table/style-text>
+  a html:Text;
+  html:fragment "table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }"^^rdf:HTML.
+
+<complex_table/meta>
+  a html:Meta;
+  html:charset "utf-8".
+
+<complex_table/body>
+  a html:Body;
+  rdf:_1 <complex_table/table>.
+
+<complex_table/table>
+  a html:Table;
+  html:class "data-table compact";
+  html:id "complex-table";
+  html:style "border-collapse: collapse";
+  rdf:_1 <complex_table/caption>;
+  rdf:_2 <complex_table/colgroup>;
+  rdf:_3 <complex_table/thead>;
+  rdf:_4 <complex_table/tbody>;
+  rdf:_5 <complex_table/tfoot>.
+
+<complex_table/caption>
+  a html:Caption;
+  rdf:_1 <complex_table/caption-text>.
+
+<complex_table/caption-text>
+  a html:Text;
+  html:fragment "Quarterly fruit totals"^^rdf:HTML.
+
+<complex_table/colgroup>
+  a html:Colgroup;
+  html:span 2;
+  rdf:_1 <complex_table/col-region>;
+  rdf:_2 <complex_table/col-total>.
+
+<complex_table/col-region>
+  a html:Col;
+  html:class "region-column".
+
+<complex_table/col-total>
+  a html:Col;
+  html:class "total-column".
+
+<complex_table/thead>
+  a html:TableHeader;
+  rdf:_1 <complex_table/header-row>.
+
+<complex_table/header-row>
+  a html:Row;
+  rdf:_1 <complex_table/head-region>;
+  rdf:_2 <complex_table/head-total>.
+
+<complex_table/head-region>
+  a html:HeaderCell;
+  html:scope "col";
+  rdf:_1 <complex_table/head-region-text>.
+
+<complex_table/head-region-text>
+  a html:Text;
+  html:fragment "Region"^^rdf:HTML.
+
+<complex_table/head-total>
+  a html:HeaderCell;
+  html:scope "col";
+  rdf:_1 <complex_table/head-total-text>.
+
+<complex_table/head-total-text>
+  a html:Text;
+  html:fragment "Total"^^rdf:HTML.
+
+<complex_table/tbody>
+  a html:TableBody;
+  rdf:_1 <complex_table/north-row>;
+  rdf:_2 <complex_table/south-row>.
+
+<complex_table/north-row>
+  a html:Row;
+  rdf:_1 <complex_table/north-label>;
+  rdf:_2 <complex_table/north-total>.
+
+<complex_table/north-label>
+  a html:HeaderCell;
+  html:scope "row";
+  rdf:_1 <complex_table/north-label-text>.
+
+<complex_table/north-label-text>
+  a html:Text;
+  html:fragment "North"^^rdf:HTML.
+
+<complex_table/north-total>
+  a html:DataCell;
+  html:colspan 1;
+  rdf:_1 <complex_table/north-total-text>.
+
+<complex_table/north-total-text>
+  a html:Text;
+  html:fragment "42"^^rdf:HTML.
+
+<complex_table/south-row>
+  a html:Row;
+  rdf:_1 <complex_table/south-label>;
+  rdf:_2 <complex_table/south-total>.
+
+<complex_table/south-label>
+  a html:HeaderCell;
+  html:scope "row";
+  rdf:_1 <complex_table/south-label-text>.
+
+<complex_table/south-label-text>
+  a html:Text;
+  html:fragment "South"^^rdf:HTML.
+
+<complex_table/south-total>
+  a html:DataCell;
+  html:rowspan 1;
+  rdf:_1 <complex_table/south-total-text>.
+
+<complex_table/south-total-text>
+  a html:Text;
+  html:fragment "37"^^rdf:HTML.
+
+<complex_table/tfoot>
+  a html:TableFooter;
+  rdf:_1 <complex_table/footer-row>.
+
+<complex_table/footer-row>
+  a html:Row;
+  rdf:_1 <complex_table/footer-label>;
+  rdf:_2 <complex_table/footer-total>.
+
+<complex_table/footer-label>
+  a html:HeaderCell;
+  rdf:_1 <complex_table/footer-label-text>.
+
+<complex_table/footer-label-text>
+  a html:Text;
+  html:fragment "Grand total"^^rdf:HTML.
+
+<complex_table/footer-total>
+  a html:DataCell;
+  rdf:_1 <complex_table/footer-total-text>.
+
+<complex_table/footer-total-text>
+  a html:Text;
+  html:fragment "79"^^rdf:HTML.
+
+<commented_table/document>
+  a reg:RegressionCase, html:Document;
+  reg:covers
+    reg:DocumentSerialization,
+    reg:HtmlComments,
+    reg:StyleElement,
+    reg:TableStructure;
+  reg:expectedFragment """<!DOCTYPE html><html><head><title>commented_table</title><style media=screen>table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }</style><meta charset=utf-8></head><body><table id=commented-table><!-- table generated from RDF --><caption>Release checklist</caption><tbody><!-- row notes remain visible in source --><tr><th>Status<td><p><span>Ready</span></table></body></html>"""^^rdf:HTML;
+  rdf:_1 <commented_table/doctype>;
+  rdf:_2 <commented_table/html>.
+
+<commented_table/doctype>
+  a html:DocumentType;
+  html:documentTypeName "html".
+
+<commented_table/html>
+  a html:Html;
+  rdf:_1 <commented_table/head>;
+  rdf:_2 <commented_table/body>.
+
+<commented_table/head>
+  a html:Head;
+  rdf:_1 <commented_table/title>;
+  rdf:_2 <commented_table/style>;
+  rdf:_3 <commented_table/meta>.
+
+<commented_table/title>
+  a html:Title;
+  rdf:_1 <commented_table/title-text>.
+
+<commented_table/title-text>
+  a html:Text;
+  html:fragment "commented_table"^^rdf:HTML.
+
+<commented_table/style>
+  a html:StyleSheet;
+  html:media "screen";
+  rdf:_1 <commented_table/style-text>.
+
+<commented_table/style-text>
+  a html:Text;
+  html:fragment "table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }"^^rdf:HTML.
+
+<commented_table/meta>
+  a html:Meta;
+  html:charset "utf-8".
+
+<commented_table/body>
+  a html:Body;
+  rdf:_1 <commented_table/table>.
+
+<commented_table/table>
+  a html:Table;
+  html:id "commented-table";
+  rdf:_1 <commented_table/table-comment>;
+  rdf:_2 <commented_table/caption>;
+  rdf:_3 <commented_table/tbody>.
+
+<commented_table/table-comment>
+  a html:Comment;
+  rdf:_1 <commented_table/table-comment-text>.
+
+<commented_table/table-comment-text>
+  a html:Text;
+  html:fragment " table generated from RDF "^^rdf:HTML.
+
+<commented_table/caption>
+  a html:Caption;
+  rdf:_1 <commented_table/caption-text>.
+
+<commented_table/caption-text>
+  a html:Text;
+  html:fragment "Release checklist"^^rdf:HTML.
+
+<commented_table/tbody>
+  a html:TableBody;
+  rdf:_1 <commented_table/row-comment>;
+  rdf:_2 <commented_table/status-row>.
+
+<commented_table/row-comment>
+  a html:Comment;
+  rdf:_1 <commented_table/row-comment-text>.
+
+<commented_table/row-comment-text>
+  a html:Text;
+  html:fragment " row notes remain visible in source "^^rdf:HTML.
+
+<commented_table/status-row>
+  a html:Row;
+  rdf:_1 <commented_table/status-label>;
+  rdf:_2 <commented_table/status-value>.
+
+<commented_table/status-label>
+  a html:HeaderCell;
+  rdf:_1 <commented_table/status-label-text>.
+
+<commented_table/status-label-text>
+  a html:Text;
+  html:fragment "Status"^^rdf:HTML.
+
+<commented_table/status-value>
+  a html:DataCell;
+  rdf:_1 <commented_table/summary-paragraph>.
+
+<commented_table/summary-paragraph>
+  a html:P;
+  rdf:_1 <commented_table/summary-span>.
+
+<commented_table/summary-span>
+  a html:Span;
+  rdf:_1 <commented_table/summary-span-text>.
+
+<commented_table/summary-span-text>
+  a html:Text;
+  html:fragment "Ready"^^rdf:HTML.
+
+<foreign_element_table/document>
+  a reg:RegressionCase, html:Document;
+  reg:covers
+    reg:DocumentSerialization,
+    reg:ForeignElements,
+    reg:StyleElement,
+    reg:TableStructure;
+  reg:expectedFragment """<!DOCTYPE html><html><head><title>foreign_element_table</title><style media=screen>table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }</style><meta charset=utf-8></head><body><table id=foreign-element-table><caption>Embedded notation</caption><tr><td><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx=8 cy=8 r=6></circle></svg><td><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>=</mo><mn>42</mn></math></table></body></html>"""^^rdf:HTML;
+  rdf:_1 <foreign_element_table/doctype>;
+  rdf:_2 <foreign_element_table/html>.
+
+<foreign_element_table/doctype>
+  a html:DocumentType;
+  html:documentTypeName "html".
+
+<foreign_element_table/html>
+  a html:Html;
+  rdf:_1 <foreign_element_table/head>;
+  rdf:_2 <foreign_element_table/body>.
+
+<foreign_element_table/head>
+  a html:Head;
+  rdf:_1 <foreign_element_table/title>;
+  rdf:_2 <foreign_element_table/style>;
+  rdf:_3 <foreign_element_table/meta>.
+
+<foreign_element_table/title>
+  a html:Title;
+  rdf:_1 <foreign_element_table/title-text>.
+
+<foreign_element_table/title-text>
+  a html:Text;
+  html:fragment "foreign_element_table"^^rdf:HTML.
+
+<foreign_element_table/style>
+  a html:StyleSheet;
+  html:media "screen";
+  rdf:_1 <foreign_element_table/style-text>.
+
+<foreign_element_table/style-text>
+  a html:Text;
+  html:fragment "table { border-collapse: collapse; } caption { text-align: left; } th, td { border: 1px solid #999; padding: 0.25rem; }"^^rdf:HTML.
+
+<foreign_element_table/meta>
+  a html:Meta;
+  html:charset "utf-8".
+
+<foreign_element_table/body>
+  a html:Body;
+  rdf:_1 <foreign_element_table/table>.
+
+<foreign_element_table/table>
+  a html:Table;
+  html:id "foreign-element-table";
+  rdf:_1 <foreign_element_table/caption>;
+  rdf:_2 <foreign_element_table/tbody>.
+
+<foreign_element_table/caption>
+  a html:Caption;
+  rdf:_1 <foreign_element_table/caption-text>.
+
+<foreign_element_table/caption-text>
+  a html:Text;
+  html:fragment "Embedded notation"^^rdf:HTML.
+
+<foreign_element_table/tbody>
+  a html:TableBody;
+  rdf:_1 <foreign_element_table/foreign-row>.
+
+<foreign_element_table/foreign-row>
+  a html:Row;
+  rdf:_1 <foreign_element_table/icon-cell>;
+  rdf:_2 <foreign_element_table/formula-cell>.
+
+<foreign_element_table/icon-cell>
+  a html:DataCell;
+  rdf:_1 <foreign_element_table/status-icon>.
+
+<foreign_element_table/status-icon>
+  a svg:Svg;
+  html:fragment """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"></circle></svg>"""^^rdf:HTML.
+
+<foreign_element_table/formula-cell>
+  a html:DataCell;
+  rdf:_1 <foreign_element_table/formula>.
+
+<foreign_element_table/formula>
+  a mathml:MathML;
+  html:fragment """<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mo>=</mo><mn>42</mn></math>"""^^rdf:HTML.

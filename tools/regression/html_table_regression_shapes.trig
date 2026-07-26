@@ -1,0 +1,64 @@
+prefix html: <https://www.w3.org/html/model/def/>
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix reg: <https://www.w3.org/htmlvoc/regression/>
+prefix sh: <http://www.w3.org/ns/shacl#>
+
+reg:RegressionSuiteShape
+  a sh:NodeShape;
+  sh:targetClass reg:RegressionSuite;
+  sh:property [
+    sh:path reg:case;
+    sh:class reg:RegressionCase;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:TableStructure;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:HtmlComments;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:ForeignElements;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:StyleElement;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:HtmlAttributes;
+    sh:minCount 1;
+  ],
+  [
+    sh:path (reg:case reg:covers);
+    sh:hasValue reg:DocumentSerialization;
+    sh:minCount 1;
+  ].
+
+reg:RegressionCaseShape
+  a sh:NodeShape;
+  sh:targetClass reg:RegressionCase;
+  sh:property [
+    sh:path reg:expectedFragment;
+    sh:equals html:fragment;
+    sh:message "Generated document HTML differs from the baseline fragment.";
+    sh:minCount 1;
+    sh:maxCount 1;
+  ],
+  [
+    sh:path html:fragment;
+    sh:message "Newly generated data must contain exactly one document html:fragment.";
+    sh:minCount 1;
+    sh:maxCount 1;
+  ],
+  [
+    sh:path reg:covers;
+    sh:minCount 1;
+  ].
