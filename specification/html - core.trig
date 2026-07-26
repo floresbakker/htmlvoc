@@ -264,7 +264,7 @@ html:Element
     ├── html:Template
     ├── html:RawTextElement
     │    ├── html:Script
-    │    └── html:Style
+    │    └── html:StyleSheet
     ├── html:ForeignElement
     │    ├── mathml:MathML
     │    └── svg:Svg
@@ -2160,7 +2160,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
   html:MetadataContent
     rdf:type owl:Class;
     rdfs:subClassOf html:ContentCategory;
-    owl:unionOf (html:Base html:Link html:Meta html:Noscript html:Script html:Style html:Template html:Title);
+    owl:unionOf (html:Base html:Link html:Meta html:Noscript html:Script html:StyleSheet html:Template html:Title);
     dct:conformsTo section:3.2.5.2.1;
     skos:definition 'Metadata content is content that sets up the presentation or behavior of the rest of the content, or that sets up the relationship of the document with other documents, or that conveys other "out of band" information.'@en;
     skos:prefLabel 'Metadata content'@en;
@@ -4181,7 +4181,7 @@ This can be rendered in RDF using the HTML vocabulary as follows:
         owl:unionOf
           ( html:Link
             html:Script
-            html:Style ) ];
+            html:StyleSheet ) ];
     rdfs:range xsd:string;
     skos:definition "Indicates that the fetching of a resource should block the loading of the page until the resource is fetched."@en;
     skos:prefLabel 'the blocking attribute'@en;

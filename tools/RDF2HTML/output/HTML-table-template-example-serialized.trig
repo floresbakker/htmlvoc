@@ -5833,7 +5833,7 @@ html:Element
     ├── html:Template
     ├── html:RawTextElement
     │    ├── html:Script
-    │    └── html:Style
+    │    └── html:StyleSheet
     ├── html:ForeignElement
     │    ├── mathml:MathML
     │    └── svg:Svg
@@ -6845,7 +6845,7 @@ The RDFa vocabulary is an RDF-based representation of RDFa, a W3C standard for r
     _:ne7d5c9557a7244d28bf2c3ca47cc1a30b249 rdf:first html:Em ;
         rdf:rest _:ne7d5c9557a7244d28bf2c3ca47cc1a30b250 .
 
-    _:ne7d5c9557a7244d28bf2c3ca47cc1a30b25 rdf:first html:Style ;
+    _:ne7d5c9557a7244d28bf2c3ca47cc1a30b25 rdf:first html:StyleSheet ;
         rdf:rest _:ne7d5c9557a7244d28bf2c3ca47cc1a30b26 .
 
     _:ne7d5c9557a7244d28bf2c3ca47cc1a30b250 rdf:first html:Embed ;
@@ -7568,7 +7568,7 @@ The RDFa vocabulary is an RDF-based representation of RDFa, a W3C standard for r
     _:ne7d5c9557a7244d28bf2c3ca47cc1a30b466 rdf:first html:Script ;
         rdf:rest _:ne7d5c9557a7244d28bf2c3ca47cc1a30b467 .
 
-    _:ne7d5c9557a7244d28bf2c3ca47cc1a30b467 rdf:first html:Style ;
+    _:ne7d5c9557a7244d28bf2c3ca47cc1a30b467 rdf:first html:StyleSheet ;
         rdf:rest () .
 
     _:ne7d5c9557a7244d28bf2c3ca47cc1a30b468 a owl:Class ;
